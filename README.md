@@ -82,6 +82,13 @@ Bot ini dilengkapi dengan dashboard web untuk memantau aktivitas:
    - Username: `admin`
    - Password: `Grid@Trading123`
 
+### Fitur Dashboard
+- Memantau status bot dan harga terkini
+- Grafik pergerakan harga real-time
+- Riwayat trading
+- Level grid yang aktif
+- Toggle mode simulasi langsung dari dashboard
+
 ## Mengatasi Masalah Umum
 
 ### "Invalid API-key, IP, or permissions"

@@ -217,9 +217,50 @@ def get_status():
         "status": safe_emoji(bot_status),
         "latest_price": latest_price,
         "profit": bot_profit,
-        "grid_levels": grid_levels
+        "grid_levels": grid_levels,
+        "simulation_mode": config.SIMULATION_MODE
     }
     return jsonify(status_data)
+
+@app.route('/api/toggle_simulation', methods=['POST'])
+@login_required
+def toggle_simulation():
+    """API endpoint untuk mengaktifkan/menonaktifkan mode simulasi"""
+    try:
+        config.SIMULATION_MODE = not config.SIMULATION_MODE
+        status = "enabled" if config.SIMULATION_MODE else "disabled"
+        logger.info(f"Simulation mode {status} by user via dashboard")
+        
+        # Simpan pengaturan ke file konfigurasi
+        save_simulation_setting(config.SIMULATION_MODE)
+        
+        return jsonify({"success": True, "simulation_mode": config.SIMULATION_MODE})
+    except Exception as e:
+        logger.error(f"Error toggling simulation mode: {e}")
+        return jsonify({"success": False, "error": str(e)}), 500
+
+def save_simulation_setting(simulation_mode):
+    """Simpan pengaturan mode simulasi ke file config"""
+    try:
+        # Baca file config.py
+        with open('config.py', 'r') as f:
+            lines = f.readlines()
+        
+        # Ubah baris yang berisi SIMULATION_MODE
+        for i, line in enumerate(lines):
+            if line.strip().startswith('SIMULATION_MODE'):
+                lines[i] = f"SIMULATION_MODE = {str(simulation_mode)}  # Set ke False jika ingin membuat order sungguhan\n"
+                break
+        
+        # Tulis kembali ke file
+        with open('config.py', 'w') as f:
+            f.writelines(lines)
+            
+        logger.info(f"Simulation mode setting saved to config file: {simulation_mode}")
+        return True
+    except Exception as e:
+        logger.error(f"Error saving simulation setting to config file: {e}")
+        return False
 
 def load_bot_data():
     """Load data dari file state bot"""
@@ -492,6 +533,22 @@ def create_templates():
             </div>
         </div>
         
+        <div class="row mt-3 mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-0">Mode Simulasi: <span id="simulationStatus" class="badge"></span></h5>
+                            <small class="text-muted">Mode simulasi memungkinkan trading tanpa dana nyata</small>
+                        </div>
+                        <button id="toggleSimulationBtn" class="btn btn-warning">
+                            Toggle Mode Simulasi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="card mt-4">
             <div class="card-header">
                 Grafik Harga (Update Real-time)
@@ -572,6 +629,13 @@ def create_templates():
                     $('#totalProfit').addClass('profit').removeClass('loss');
                 } else if (data.profit < 0) {
                     $('#totalProfit').addClass('loss').removeClass('profit');
+                }
+                
+                // Update simulation mode status
+                if (data.simulation_mode) {
+                    $('#simulationStatus').text('AKTIF').removeClass('bg-danger').addClass('bg-success');
+                } else {
+                    $('#simulationStatus').text('NONAKTIF').removeClass('bg-success').addClass('bg-danger');
                 }
                 
                 // Update grid levels
@@ -674,6 +738,31 @@ def create_templates():
                 gridContainer.append('<div class="col-12 text-center">Belum ada level grid yang tersedia</div>');
             }
         }
+    </script>
+    
+    <script>
+        // Toggle simulation mode
+        $(document).ready(function() {
+            $('#toggleSimulationBtn').click(function() {
+                if (confirm('Apakah Anda yakin ingin mengubah mode simulasi? Bot mungkin perlu di-restart untuk penerapan lengkap.')) {
+                    $.ajax({
+                        url: '/api/toggle_simulation',
+                        type: 'POST',
+                        success: function(response) {
+                            if (response.success) {
+                                alert('Mode simulasi berhasil diubah!');
+                                refreshData();
+                            } else {
+                                alert('Gagal mengubah mode simulasi: ' + response.error);
+                            }
+                        },
+                        error: function() {
+                            alert('Terjadi kesalahan saat menghubungi server');
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
