@@ -13,14 +13,10 @@ __pycache__/
 *$py.class
 *.so
 .Python
-bot.log
 *.log
 
 # Environment files with sensitive data
 .env
-
-# State files
-grid_state_*.json
 
 # IDE files
 .idea/

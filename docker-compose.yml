@@ -8,10 +8,11 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./grid_state:/app/grid_state
-      - ./logs:/app/logs
+      - ./:/app
     env_file:
       - .env
     environment:
       - BINANCE_TESTNET=False  # Set ke True untuk mode testing
+      # Konfigurasi ini memastikan bahwa data grid state dan log tetap ada
+      # Tidak perlu menyalin .env karena kita mount seluruh direktori
       # Tambahkan environment variables lain jika diperlukan 

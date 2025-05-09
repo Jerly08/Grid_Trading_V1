@@ -1,26 +1,17 @@
-# Panduan Deployment Bot Trading ke VPS Menggunakan Docker
+# Panduan Deployment Bot Trading ADAUSDT ke VPS Menggunakan Docker
 
-Panduan ini menjelaskan cara mendeploy Binance Grid Trading Bot ke VPS menggunakan Docker.
+Panduan ini menjelaskan cara mendeploy Binance Grid Trading Bot untuk ADAUSDT ke VPS menggunakan Docker.
 
-## 1. Persiapan Repository GitHub
+## 1. Persiapan Deployment
 
-### Buat repository GitHub baru
-1. Kunjungi https://github.com/new
-2. Buat repository baru (sebaiknya private)
-3. Jangan tambahkan README, .gitignore, atau license
-
-### Upload kode ke GitHub
+### Mengupload Kode ke GitHub
 ```bash
 git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/username/nama-repository.git
-git push -u origin main
+git commit -m "Add Docker support for Grid Trading Bot"
+git push
 ```
 
-Ganti `username/nama-repository` dengan username GitHub dan nama repository Anda.
-
-## 2. Siapkan VPS
+## 2. Setup VPS
 
 ### Login ke VPS
 ```bash
@@ -29,8 +20,11 @@ ssh username@alamat_ip_vps
 
 ### Install Docker dan Docker Compose
 ```bash
-# Install Docker
+# Update sistem
 sudo apt update
+sudo apt upgrade -y
+
+# Install Docker
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
@@ -41,88 +35,80 @@ sudo apt install -y docker-ce
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# Tambahkan user ke grup docker (agar bisa menjalankan docker tanpa sudo)
+# Tambahkan user ke grup docker
 sudo usermod -aG docker $USER
+newgrp docker
 ```
 
-### Clone repository dari GitHub
+### Clone Repository
 ```bash
 git clone https://github.com/username/nama-repository.git
 cd nama-repository
 ```
 
-## 3. Konfigurasi Bot
+## 3. Menjalankan Bot
 
-### Setup file .env
+### Konfigurasi API Keys (Jika belum ada file .env)
+Bot akan otomatis membuat file .env dari template, atau Anda bisa membuat secara manual:
 ```bash
-cp env.template .env
+# Buat file .env
 nano .env
 ```
 
-Edit file dengan informasi API key Binance Anda:
+Isi dengan API key Binance Anda:
 ```
 API_KEY=your_binance_api_key_here
 API_SECRET=your_binance_api_secret_here
 BINANCE_TESTNET=False
-DASHBOARD_USERNAME=your_secure_username
+DASHBOARD_USERNAME=your_username
 DASHBOARD_PASSWORD=your_secure_password
 DASHBOARD_SECRET_KEY=generated_secret_key
 ```
 
-Generate secret key dengan:
-```bash
-docker run --rm python:3.10-slim python -c "import secrets; print(secrets.token_hex(32))"
-```
-
-### Buat direktori untuk data persistent
-```bash
-mkdir -p grid_state logs
-```
-
-## 4. Build dan Jalankan dengan Docker Compose
-
-### Build dan jalankan container
+### Build dan Jalankan Container
 ```bash
 docker-compose up -d --build
 ```
 
-### Cek status container
+### Cek Status Container
 ```bash
 docker-compose ps
 ```
 
-### Lihat log secara real-time
+### Lihat Logs
 ```bash
 docker-compose logs -f
 ```
 
-## 5. Akses Dashboard
+## 4. Monitoring dan Pengelolaan Bot
 
-Setelah container berjalan, Anda dapat mengakses dashboard bot di:
-
+### Akses Dashboard
+Buka browser dan akses:
 ```
 http://ip_vps:5000
 ```
 
-Gunakan username dan password yang telah dikonfigurasi di file .env.
+### Melihat Profit dan Status
+Profit dan status trading di-track secara otomatis pada file grid_state_ADAUSDT.json dan bisa dilihat pada dashboard.
 
-## 6. Setup Reverse Proxy dengan Nginx (Opsional)
-
-### Install Nginx
+### Melihat Log Secara Real-time
 ```bash
-sudo apt install nginx -y
+docker-compose logs -f
 ```
 
-### Konfigurasi Nginx
+## 5. Keamanan (Direkomendasikan)
+
+### Setup Reverse Proxy dengan Nginx
 ```bash
+sudo apt install nginx -y
 sudo nano /etc/nginx/sites-available/grid-trading-bot
 ```
 
-Tambahkan konfigurasi berikut:
+Konfigurasi Nginx:
 ```
 server {
     listen 80;
-    server_name your_domain_or_ip;
+    server_name your_ip_or_domain;
 
     location / {
         proxy_pass http://localhost:5000;
@@ -135,60 +121,18 @@ server {
 }
 ```
 
-### Aktifkan konfigurasi
+Aktifkan dan restart:
 ```bash
 sudo ln -s /etc/nginx/sites-available/grid-trading-bot /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-### Setup SSL (Opsional)
+### Tambahkan SSL (Opsional tapi direkomendasikan)
 ```bash
 sudo apt install certbot python3-certbot-nginx -y
-sudo certbot --nginx -d your_domain.com
+sudo certbot --nginx -d yourdomain.com
 ```
-
-## 7. Memperbarui Bot
-
-Jika ada update kode baru di GitHub:
-
-```bash
-# Pull kode terbaru
-git pull
-
-# Rebuild dan restart container
-docker-compose down
-docker-compose up -d --build
-```
-
-## 8. Perintah Docker yang Berguna
-
-### Menghentikan bot
-```bash
-docker-compose down
-```
-
-### Melihat logs
-```bash
-docker-compose logs -f
-```
-
-### Masuk ke shell container
-```bash
-docker exec -it binance-grid-bot bash
-```
-
-### Melihat status container
-```bash
-docker ps
-```
-
-### Lihat penggunaan resource
-```bash
-docker stats
-```
-
-## 9. Keamanan
 
 ### Konfigurasi Firewall
 ```bash
@@ -199,44 +143,44 @@ sudo ufw allow https
 sudo ufw enable
 ```
 
-### Nonaktifkan akses langsung ke port 5000 (jika menggunakan Nginx)
+## 6. Memperbarui Bot
+
+### Update dari GitHub
 ```bash
-sudo ufw delete allow 5000
+git pull
+docker-compose down
+docker-compose up -d --build
 ```
 
-## 10. Backup Data
-
-### Backup data grid state
-```bash
-# Pastikan Anda berada di direktori project
-cd /path/to/nama-repository
-cp -r grid_state grid_state_backup_$(date +%Y%m%d)
-```
-
-### Backup konfigurasi
-```bash
-cp .env .env.backup_$(date +%Y%m%d)
-```
-
-## 11. Pemecahan Masalah
-
-### Container tidak berjalan
-```bash
-docker-compose ps
-docker-compose logs
-```
-
-### Memeriksa error dalam logs
+### Pantau Log Setelah Update
 ```bash
 docker-compose logs -f
 ```
 
-### Restart container
+## 7. Troubleshooting
+
+### Bot Tidak Bisa Melakukan Trading
+Cek log untuk pesan error:
+```bash
+docker-compose logs -f
+```
+
+Jika muncul "Insufficient balance error", pastikan:
+1. Anda memiliki saldo USDT yang cukup di akun Binance
+2. API key memiliki permission untuk trading
+
+### Restart Bot
 ```bash
 docker-compose restart
 ```
 
-### Rebuild jika ada perubahan pada Dockerfile
+### Restart dengan Konfigurasi Baru
 ```bash
+docker-compose down
 docker-compose up -d --build
+```
+
+### Akses Shell Container
+```bash
+docker exec -it binance-grid-bot bash
 ``` 
