@@ -139,4 +139,202 @@ MIT
 
 ## Kontribusi
 
+Kontribusi, isu, dan permintaan fitur sangat diterima. Silakan buat issue atau pull request untuk berkontribusi.
+
+## Deployment ke VPS Menggunakan GitHub
+
+### 1. Persiapan Repository GitHub
+
+1. Buat repository GitHub baru (private untuk keamanan lebih baik):
+   ```
+   https://github.com/new
+   ```
+
+2. Push code bot trading ke repository GitHub:
+   ```
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/username/nama-repository.git
+   git push -u origin main
+   ```
+
+### 2. Persiapan VPS
+
+1. Login ke VPS menggunakan SSH:
+   ```
+   ssh username@alamat_ip_vps
+   ```
+
+2. Install dependensi yang diperlukan:
+   ```
+   sudo apt update
+   sudo apt install git python3 python3-pip python3-venv -y
+   ```
+
+3. Clone repository dari GitHub:
+   ```
+   git clone https://github.com/username/nama-repository.git
+   cd nama-repository
+   ```
+
+4. Buat virtual environment dan install dependensi:
+   ```
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+5. Setup file .env:
+   ```
+   cp env.template .env
+   nano .env
+   ```
+   
+   Isi dengan API key Binance dan setting yang sesuai:
+   ```
+   API_KEY=your_binance_api_key_here
+   API_SECRET=your_binance_api_secret_here
+   BINANCE_TESTNET=False
+   DASHBOARD_USERNAME=your_secure_username
+   DASHBOARD_PASSWORD=your_secure_password
+   DASHBOARD_SECRET_KEY=generated_secret_key
+   ```
+   
+   Generate secret key dengan:
+   ```
+   python3 -c "import secrets; print(secrets.token_hex(32))"
+   ```
+
+### 3. Menjalankan Bot di Background dengan systemd
+
+1. Buat file service systemd:
+   ```
+   sudo nano /etc/systemd/system/grid-trading-bot.service
+   ```
+
+2. Tambahkan konfigurasi berikut:
+   ```
+   [Unit]
+   Description=Binance Grid Trading Bot
+   After=network.target
+
+   [Service]
+   User=username
+   WorkingDirectory=/home/username/nama-repository
+   ExecStart=/home/username/nama-repository/venv/bin/python run.py --production
+   Restart=always
+   RestartSec=10
+   StandardOutput=syslog
+   StandardError=syslog
+   SyslogIdentifier=grid-trading-bot
+   Environment=PYTHONUNBUFFERED=1
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+   
+   Ganti `username` dan `nama-repository` sesuai dengan setup VPS Anda.
+
+3. Aktifkan dan jalankan service:
+   ```
+   sudo systemctl daemon-reload
+   sudo systemctl enable grid-trading-bot
+   sudo systemctl start grid-trading-bot
+   ```
+
+4. Cek status service:
+   ```
+   sudo systemctl status grid-trading-bot
+   ```
+
+5. Untuk melihat log:
+   ```
+   sudo journalctl -u grid-trading-bot -f
+   ```
+
+### 4. Mengamankan Dashboard Web
+
+1. Gunakan Nginx sebagai reverse proxy (opsional tapi direkomendasikan):
+   ```
+   sudo apt install nginx -y
+   sudo nano /etc/nginx/sites-available/grid-trading-bot
+   ```
+
+2. Konfigurasi Nginx:
+   ```
+   server {
+     listen 80;
+     server_name your_domain_or_ip;
+
+     location / {
+       proxy_pass http://localhost:5000;
+       proxy_http_version 1.1;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection 'upgrade';
+       proxy_set_header Host $host;
+       proxy_cache_bypass $http_upgrade;
+     }
+   }
+   ```
+
+3. Aktifkan site dan restart Nginx:
+   ```
+   sudo ln -s /etc/nginx/sites-available/grid-trading-bot /etc/nginx/sites-enabled/
+   sudo nginx -t
+   sudo systemctl restart nginx
+   ```
+
+4. (Opsional) Tambahkan SSL dengan Certbot:
+   ```
+   sudo apt install certbot python3-certbot-nginx -y
+   sudo certbot --nginx -d your_domain.com
+   ```
+
+### 5. Update Bot dari GitHub
+
+Jika ada pembaruan di repository, gunakan perintah berikut untuk memperbarui bot di VPS:
+
+1. Login ke VPS dan masuk ke direktori bot:
+   ```
+   cd nama-repository
+   ```
+
+2. Pull perubahan terbaru:
+   ```
+   git pull
+   ```
+
+3. Update dependensi jika diperlukan:
+   ```
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+4. Restart service bot:
+   ```
+   sudo systemctl restart grid-trading-bot
+   ```
+
+## Keamanan untuk Deployment
+
+Jika men-deploy bot di VPS, pastikan untuk:
+1. Ubah password dashboard default di file `.env`
+2. Generate secret key baru dengan: `python -c "import secrets; print(secrets.token_hex(32))"`
+3. Gunakan HTTPS jika mengakses dashboard dari internet
+4. Aktifkan firewall dan batasi akses port 5000
+
+## Catatan Penting
+
+- **Risiko Trading**: Trading cryptocurrency melibatkan risiko keuangan. Gunakan bot ini dengan risiko Anda sendiri.
+- **API Keys**: Jangan pernah membagikan API key Binance Anda dengan siapa pun. Sebaiknya gunakan API key dengan izin hanya untuk trading.
+- **Testnet**: Sangat disarankan untuk menguji bot di testnet Binance terlebih dahulu sebelum trading dengan dana sungguhan.
+
+## Lisensi
+
+MIT
+
+## Kontribusi
+
 Kontribusi, isu, dan permintaan fitur sangat diterima. Silakan buat issue atau pull request untuk berkontribusi. 
