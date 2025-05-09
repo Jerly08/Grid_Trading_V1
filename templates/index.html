@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Bot Trading Grid</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            padding-top: 20px;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .card-header {
+            background-color: #252525;
+            color: #e0e0e0;
+            font-weight: bold;
+            border-bottom: 1px solid #333;
+        }
+        .profit {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .loss {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .table {
+            color: #e0e0e0;
+        }
+        .table thead th {
+            border-color: #333;
+        }
+        .table tbody td {
+            border-color: #333;
+        }
+        .badge-success {
+            background-color: #4caf50;
+        }
+        .badge-danger {
+            background-color: #f44336;
+        }
+        .badge-warning {
+            background-color: #ff9800;
+        }
+        #priceChart {
+            width: 100%;
+            height: 400px;
+        }
+        .status-card {
+            text-align: center;
+            padding: 15px;
+        }
+        .status-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .refresh-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-actions">
+            <h1>Dashboard Bot Trading Grid</h1>
+            <a href="/logout" class="btn btn-outline-danger">Logout</a>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card status-card">
+                    <div class="card-body">
+                        <div class="status-icon">
+                            <span id="statusIcon">BOT</span>
+                        </div>
+                        <h5>Status Bot</h5>
+                        <h3><span id="botStatus" class="badge"></span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card status-card">
+                    <div class="card-body">
+                        <div class="status-icon">IDR</div>
+                        <h5>Total Profit</h5>
+                        <h3><span id="totalProfit"></span> USDT</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card status-card">
+                    <div class="card-body">
+                        <div class="status-icon">ADA</div>
+                        <h5>Harga ADA Terkini</h5>
+                        <h3><span id="currentPrice"></span> USDT</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                Grafik Harga (Update Real-time)
+            </div>
+            <div class="card-body">
+                <div id="priceChart"></div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                Riwayat Trading Terakhir
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="tradesTable">
+                        <thead>
+                            <tr>
+                                <th>Waktu</th>
+                                <th>Tipe</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
+                                <th>Profit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tradesBody">
+                            <!-- Data akan diisi melalui JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                Level Grid
+            </div>
+            <div class="card-body">
+                <div class="row" id="gridLevels">
+                    <!-- Grid levels akan diisi melalui JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="btn btn-primary refresh-btn" onclick="refreshData()">
+        Refresh Data
+    </button>
+
+    <script>
+        // Update data secara periodik
+        $(document).ready(function() {
+            refreshData();
+            // Auto refresh setiap 10 detik
+            setInterval(refreshData, 10000);
+            
+            // Set session keepalive
+            setInterval(function() {
+                $.get('/api/status');
+            }, 300000); // 5 minutes
+        });
+        
+        function refreshData() {
+            // Update status bot
+            $.getJSON('/api/status', function(data) {
+                $('#botStatus').text(data.status);
+                if (data.status.includes('Aktif')) {
+                    $('#botStatus').removeClass('badge-danger badge-warning').addClass('badge-success');
+                    $('#statusIcon').text('AKTIF');
+                } else {
+                    $('#botStatus').removeClass('badge-success badge-warning').addClass('badge-danger');
+                    $('#statusIcon').text('NONAKTIF');
+                }
+                
+                $('#currentPrice').text(data.latest_price ? data.latest_price.toFixed(4) : 'N/A');
+                $('#totalProfit').text(data.profit ? data.profit.toFixed(4) : '0.0000');
+                if (data.profit > 0) {
+                    $('#totalProfit').addClass('profit').removeClass('loss');
+                } else if (data.profit < 0) {
+                    $('#totalProfit').addClass('loss').removeClass('profit');
+                }
+                
+                // Update grid levels
+                updateGridLevels(data.grid_levels);
+            }).fail(function() {
+                // Redirect to login if authentication fails
+                window.location.href = '/login';
+            });
+            
+            // Update grafik harga
+            $.getJSON('/api/price_chart', function(data) {
+                Plotly.react('priceChart', JSON.parse(data.chart));
+            }).fail(function() {
+                // Redirect to login if authentication fails
+                window.location.href = '/login';
+            });
+            
+            // Update riwayat trading
+            $.getJSON('/api/trades', function(data) {
+                updateTradesTable(data.trades);
+            }).fail(function() {
+                // Redirect to login if authentication fails
+                window.location.href = '/login';
+            });
+        }
+        
+        function updateTradesTable(trades) {
+            let tableBody = $('#tradesBody');
+            tableBody.empty();
+            
+            if (trades && trades.length > 0) {
+                // Ambil 10 trades terakhir
+                const recentTrades = trades.slice(-10).reverse();
+                
+                recentTrades.forEach(function(trade) {
+                    let time = new Date(trade.time).toLocaleString();
+                    let profitClass = trade.profit > 0 ? 'profit' : (trade.profit < 0 ? 'loss' : '');
+                    let profitText = trade.profit ? trade.profit.toFixed(4) + ' USDT' : '-';
+                    
+                    let row = `<tr>
+                        <td>${time}</td>
+                        <td>${trade.type}</td>
+                        <td>${trade.price.toFixed(4)}</td>
+                        <td>${trade.quantity}</td>
+                        <td class="${profitClass}">${profitText}</td>
+                    </tr>`;
+                    
+                    tableBody.append(row);
+                });
+            } else {
+                tableBody.append('<tr><td colspan="5" class="text-center">Belum ada riwayat trading</td></tr>');
+            }
+        }
+        
+        function updateGridLevels(levels) {
+            let gridContainer = $('#gridLevels');
+            gridContainer.empty();
+            
+            if (levels && levels.length > 0) {
+                // Jika hanya batas atas dan bawah yang tersedia
+                if (levels.length === 2) {
+                    let lowerPrice = levels[0];
+                    let upperPrice = levels[1];
+                    
+                    // Buat grid level estimasi
+                    let gridCount = 5; // Asumsi 5 level grid
+                    let gridSize = (upperPrice - lowerPrice) / gridCount;
+                    
+                    for (let i = 0; i <= gridCount; i++) {
+                        let level = lowerPrice + (i * gridSize);
+                        let card = `
+                            <div class="col-md-2 mb-2">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5>${level.toFixed(4)}</h5>
+                                        <small>Level ${i+1}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        gridContainer.append(card);
+                    }
+                } else {
+                    // Jika semua level grid tersedia
+                    levels.forEach((level, index) => {
+                        let card = `
+                            <div class="col-md-2 mb-2">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5>${level.toFixed(4)}</h5>
+                                        <small>Level ${index+1}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        gridContainer.append(card);
+                    });
+                }
+            } else {
+                gridContainer.append('<div class="col-12 text-center">Belum ada level grid yang tersedia</div>');
+            }
+        }
+    </script>
+</body>
+</html>
+        

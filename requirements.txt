@@ -1,0 +1,8 @@
+python-binance==1.0.17
+pandas==2.2.0
+numpy==1.26.3
+python-dotenv==1.0.0
+ccxt==3.1.54
+flask==2.3.3
+matplotlib==3.8.0
+plotly==5.18.0 

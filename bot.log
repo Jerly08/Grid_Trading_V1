@@ -1,0 +1,608 @@
+2025-05-09 23:05:47,359 - binance_client - ERROR - Failed to connect to Binance API: APIError(code=-2014): API-key format invalid.
+2025-05-09 23:08:10,893 - binance_client - ERROR - Failed to connect to Binance API: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:08:33,411 - binance_client - ERROR - Failed to connect to Binance API: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:23,903 - binance_client - INFO - Successfully connected to Binance
+2025-05-09 23:09:23,903 - binance_client - INFO - Account status: SPOT
+2025-05-09 23:09:23,910 - __main__ - INFO - Grid bot initialized for BTCUSDT
+2025-05-09 23:09:23,910 - __main__ - INFO - Price range: 62000 - 68000
+2025-05-09 23:09:23,910 - __main__ - INFO - Grid number: 10, Grid size: 600.0
+2025-05-09 23:09:23,910 - __main__ - INFO - Order quantity: 0.001
+2025-05-09 23:09:23,918 - __main__ - INFO - Setting up grid orders...
+2025-05-09 23:09:24,049 - __main__ - INFO - Current BTCUSDT price: 102520.0
+2025-05-09 23:09:24,348 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:24,498 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:24,632 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:24,755 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:24,927 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:25,060 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:25,193 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:25,320 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:25,445 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:25,577 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:25,766 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:09:25,768 - __main__ - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-09 23:09:25,768 - __main__ - INFO - Grid trading bot is running...
+2025-05-09 23:14:09,070 - __main__ - INFO - Bot stopped by user
+2025-05-09 23:14:09,270 - __main__ - INFO - Grid trading bot stopped
+2025-05-09 23:14:13,655 - binance_client - INFO - Successfully connected to Binance
+2025-05-09 23:14:13,657 - binance_client - INFO - Account status: SPOT
+2025-05-09 23:14:13,658 - __main__ - INFO - Grid bot initialized for BTCUSDT
+2025-05-09 23:14:13,658 - __main__ - INFO - Price range: 98000 - 107000
+2025-05-09 23:14:13,658 - __main__ - INFO - Grid number: 10, Grid size: 900.0
+2025-05-09 23:14:13,659 - __main__ - INFO - Order quantity: 0.001
+2025-05-09 23:14:13,659 - __main__ - INFO - Setting up grid orders...
+2025-05-09 23:14:13,785 - __main__ - INFO - Current BTCUSDT price: 102827.64
+2025-05-09 23:14:14,105 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:14,229 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:14,413 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:14,536 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:14,676 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:14,805 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:14,931 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:15,110 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:15,292 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:15,432 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:15,609 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2015): Invalid API-key, IP, or permissions for action.
+2025-05-09 23:14:15,609 - __main__ - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-09 23:14:15,609 - __main__ - INFO - Grid trading bot is running...
+2025-05-09 23:15:13,243 - __main__ - INFO - Bot stopped by user
+2025-05-09 23:15:13,649 - __main__ - INFO - Grid trading bot stopped
+2025-05-09 23:15:17,900 - binance_client - INFO - Successfully connected to Binance
+2025-05-09 23:15:17,900 - binance_client - INFO - Account status: SPOT
+2025-05-09 23:15:17,900 - __main__ - INFO - Grid bot initialized for BTCUSDT
+2025-05-09 23:15:17,900 - __main__ - INFO - Price range: 98000 - 107000
+2025-05-09 23:15:17,900 - __main__ - INFO - Grid number: 10, Grid size: 900.0
+2025-05-09 23:15:17,900 - __main__ - INFO - Order quantity: 0.001
+2025-05-09 23:15:17,900 - __main__ - INFO - Setting up grid orders...
+2025-05-09 23:15:18,024 - __main__ - INFO - Current BTCUSDT price: 102812.2
+2025-05-09 23:15:18,314 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:18,510 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:18,684 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:18,879 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:19,028 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:19,223 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:19,364 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:19,568 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:19,758 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:19,948 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:20,137 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:15:20,137 - __main__ - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-09 23:15:20,137 - __main__ - INFO - Grid trading bot is running...
+2025-05-09 23:18:35,349 - __main__ - INFO - Bot stopped by user
+2025-05-09 23:18:35,484 - __main__ - INFO - Grid trading bot stopped
+2025-05-09 23:18:41,040 - binance_client - INFO - Successfully connected to Binance
+2025-05-09 23:18:41,045 - binance_client - INFO - Account status: SPOT
+2025-05-09 23:18:41,045 - __main__ - INFO - Grid bot initialized for BTCUSDT
+2025-05-09 23:18:41,045 - __main__ - INFO - Price range: 98000 - 107000
+2025-05-09 23:18:41,045 - __main__ - INFO - Grid number: 5, Grid size: 1800.0
+2025-05-09 23:18:41,045 - __main__ - INFO - Order quantity: 0.0001
+2025-05-09 23:18:41,046 - __main__ - INFO - Setting up grid orders...
+2025-05-09 23:18:41,307 - __main__ - INFO - Current BTCUSDT price: 102809.53
+2025-05-09 23:18:41,675 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:18:41,815 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:18:41,982 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:18:42,192 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:18:42,324 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:18:42,498 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:18:42,498 - __main__ - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-09 23:18:42,498 - __main__ - INFO - Grid trading bot is running...
+2025-05-09 23:18:42,682 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102825.97 | Change: 0.02% | Time: 23:18:42
+2025-05-09 23:18:53,217 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102839.92 | Change: 0.01% | Time: 23:18:53
+2025-05-09 23:19:03,539 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102836.25 | Change: -0.00% | Time: 23:19:03
+2025-05-09 23:19:14,141 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102837.71 | Change: 0.00% | Time: 23:19:14
+2025-05-09 23:19:24,935 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102852.8 | Change: 0.01% | Time: 23:19:24
+2025-05-09 23:19:35,192 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102857.14 | Change: 0.00% | Time: 23:19:35
+2025-05-09 23:19:45,451 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102877.33 | Change: 0.02% | Time: 23:19:45
+2025-05-09 23:19:55,745 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102827.69 | Change: -0.05% | Time: 23:19:55
+2025-05-09 23:20:06,101 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102841.26 | Change: 0.01% | Time: 23:20:06
+2025-05-09 23:20:16,417 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102841.28 | Change: 0.00% | Time: 23:20:16
+2025-05-09 23:20:26,683 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102863.65 | Change: 0.02% | Time: 23:20:26
+2025-05-09 23:20:36,997 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102879.99 | Change: 0.02% | Time: 23:20:36
+2025-05-09 23:20:47,299 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102841.26 | Change: -0.04% | Time: 23:20:47
+2025-05-09 23:20:57,725 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102841.27 | Change: 0.00% | Time: 23:20:57
+2025-05-09 23:21:07,995 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102846.41 | Change: 0.00% | Time: 23:21:07
+2025-05-09 23:21:18,282 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102846.41 | Change: 0.00% | Time: 23:21:18
+2025-05-09 23:21:28,539 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102821.3 | Change: -0.02% | Time: 23:21:28
+2025-05-09 23:21:38,808 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102846.4 | Change: 0.02% | Time: 23:21:38
+2025-05-09 23:21:49,226 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102851.55 | Change: 0.01% | Time: 23:21:49
+2025-05-09 23:21:59,809 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102851.55 | Change: 0.00% | Time: 23:21:59
+2025-05-09 23:22:10,170 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102873.01 | Change: 0.02% | Time: 23:22:10
+2025-05-09 23:22:20,546 - __main__ - INFO - [PRICE UPDATE] BTCUSDT: 102867.27 | Change: -0.01% | Time: 23:22:20
+2025-05-09 23:22:31,147 - __main__ - INFO - Bot stopped by user
+2025-05-09 23:22:32,058 - __main__ - INFO - Grid trading bot stopped
+2025-05-09 23:22:38,055 - binance_client - INFO - Successfully connected to Binance
+2025-05-09 23:22:38,055 - binance_client - INFO - Account status: SPOT
+2025-05-09 23:22:38,055 - __main__ - INFO - Grid bot initialized for ADAUSDT
+2025-05-09 23:22:38,055 - __main__ - INFO - Price range: 0.35 - 0.45
+2025-05-09 23:22:38,055 - __main__ - INFO - Grid number: 7, Grid size: 0.01428571428571429
+2025-05-09 23:22:38,059 - __main__ - INFO - Order quantity: 20
+2025-05-09 23:22:38,059 - __main__ - INFO - Setting up grid orders...
+2025-05-09 23:22:38,206 - __main__ - INFO - Current ADAUSDT price: 0.7796
+2025-05-09 23:22:38,460 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:22:38,642 - binance_client - ERROR - Failed to place BUY order: APIError(code=-1111): Parameter 'price' has too much precision.
+2025-05-09 23:22:38,819 - binance_client - ERROR - Failed to place BUY order: APIError(code=-1111): Parameter 'price' has too much precision.
+2025-05-09 23:22:38,948 - binance_client - ERROR - Failed to place BUY order: APIError(code=-1111): Parameter 'price' has too much precision.
+2025-05-09 23:22:39,076 - binance_client - ERROR - Failed to place BUY order: APIError(code=-1111): Parameter 'price' has too much precision.
+2025-05-09 23:22:39,265 - binance_client - ERROR - Failed to place BUY order: APIError(code=-1111): Parameter 'price' has too much precision.
+2025-05-09 23:22:39,447 - binance_client - ERROR - Failed to place BUY order: APIError(code=-1111): Parameter 'price' has too much precision.
+2025-05-09 23:22:39,573 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:22:39,576 - __main__ - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-09 23:22:39,576 - __main__ - INFO - Grid trading bot is running...
+2025-05-09 23:22:39,710 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7796 | Change: 0.00% | Time: 23:22:39
+2025-05-09 23:22:49,972 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: 0.06% | Time: 23:22:49
+2025-05-09 23:23:00,232 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: 0.00% | Time: 23:23:00
+2025-05-09 23:23:10,495 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7812 | Change: 0.14% | Time: 23:23:10
+2025-05-09 23:23:21,297 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7809 | Change: -0.04% | Time: 23:23:21
+2025-05-09 23:23:32,205 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7816 | Change: 0.09% | Time: 23:23:32
+2025-05-09 23:23:42,896 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7817 | Change: 0.01% | Time: 23:23:42
+2025-05-09 23:23:53,409 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7817 | Change: 0.00% | Time: 23:23:53
+2025-05-09 23:24:04,133 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7818 | Change: 0.01% | Time: 23:24:04
+2025-05-09 23:24:14,432 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.782 | Change: 0.03% | Time: 23:24:14
+2025-05-09 23:24:24,686 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.782 | Change: 0.00% | Time: 23:24:24
+2025-05-09 23:24:35,146 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7823 | Change: 0.04% | Time: 23:24:35
+2025-05-09 23:24:45,458 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7821 | Change: -0.03% | Time: 23:24:45
+2025-05-09 23:24:55,707 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7821 | Change: 0.00% | Time: 23:24:55
+2025-05-09 23:25:05,976 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: -0.08% | Time: 23:25:05
+2025-05-09 23:25:16,230 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: 0.00% | Time: 23:25:16
+2025-05-09 23:25:26,521 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7818 | Change: 0.04% | Time: 23:25:26
+2025-05-09 23:25:36,840 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7818 | Change: 0.00% | Time: 23:25:36
+2025-05-09 23:25:47,275 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7816 | Change: -0.03% | Time: 23:25:47
+2025-05-09 23:25:57,615 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: -0.01% | Time: 23:25:57
+2025-05-09 23:26:07,893 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7811 | Change: -0.05% | Time: 23:26:07
+2025-05-09 23:26:18,143 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7807 | Change: -0.05% | Time: 23:26:18
+2025-05-09 23:26:28,403 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: -0.08% | Time: 23:26:28
+2025-05-09 23:26:38,660 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: -0.09% | Time: 23:26:38
+2025-05-09 23:26:48,958 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: 0.12% | Time: 23:26:48
+2025-05-09 23:26:59,222 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7802 | Change: -0.01% | Time: 23:26:59
+2025-05-09 23:27:09,487 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7805 | Change: 0.04% | Time: 23:27:09
+2025-05-09 23:27:19,748 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.781 | Change: 0.06% | Time: 23:27:19
+2025-05-09 23:27:30,037 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7814 | Change: 0.05% | Time: 23:27:30
+2025-05-09 23:27:40,319 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7813 | Change: -0.01% | Time: 23:27:40
+2025-05-09 23:27:50,714 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: 0.03% | Time: 23:27:50
+2025-05-09 23:28:01,303 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7814 | Change: -0.01% | Time: 23:28:01
+2025-05-09 23:28:11,839 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7806 | Change: -0.10% | Time: 23:28:11
+2025-05-09 23:28:22,110 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.78 | Change: -0.08% | Time: 23:28:22
+2025-05-09 23:28:32,362 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.78 | Change: 0.00% | Time: 23:28:32
+2025-05-09 23:28:42,668 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7796 | Change: -0.05% | Time: 23:28:42
+2025-05-09 23:28:52,917 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7797 | Change: 0.01% | Time: 23:28:52
+2025-05-09 23:29:03,314 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: -0.04% | Time: 23:29:03
+2025-05-09 23:29:14,099 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7798 | Change: 0.05% | Time: 23:29:14
+2025-05-09 23:29:24,383 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7799 | Change: 0.01% | Time: 23:29:24
+2025-05-09 23:29:34,658 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7799 | Change: 0.00% | Time: 23:29:34
+2025-05-09 23:29:44,996 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7799 | Change: 0.00% | Time: 23:29:44
+2025-05-09 23:29:55,705 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7793 | Change: -0.08% | Time: 23:29:55
+2025-05-09 23:30:05,983 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7795 | Change: 0.03% | Time: 23:30:05
+2025-05-09 23:30:16,229 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7799 | Change: 0.05% | Time: 23:30:16
+2025-05-09 23:30:26,580 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7799 | Change: 0.00% | Time: 23:30:26
+2025-05-09 23:30:37,091 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: 0.05% | Time: 23:30:37
+2025-05-09 23:30:47,471 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: -0.03% | Time: 23:30:47
+2025-05-09 23:30:57,797 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7805 | Change: 0.05% | Time: 23:30:57
+2025-05-09 23:31:08,113 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.781 | Change: 0.06% | Time: 23:31:08
+2025-05-09 23:31:18,372 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.781 | Change: 0.00% | Time: 23:31:18
+2025-05-09 23:31:28,633 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: -0.09% | Time: 23:31:28
+2025-05-09 23:31:38,894 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7809 | Change: 0.08% | Time: 23:31:38
+2025-05-09 23:31:49,465 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.781 | Change: 0.01% | Time: 23:31:49
+2025-05-09 23:31:59,889 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: 0.06% | Time: 23:31:59
+2025-05-09 23:32:10,360 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7811 | Change: -0.05% | Time: 23:32:10
+2025-05-09 23:32:20,671 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7807 | Change: -0.05% | Time: 23:32:20
+2025-05-09 23:32:30,945 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7806 | Change: -0.01% | Time: 23:32:30
+2025-05-09 23:32:41,244 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7811 | Change: 0.06% | Time: 23:32:41
+2025-05-09 23:32:51,727 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7802 | Change: -0.12% | Time: 23:32:51
+2025-05-09 23:33:02,030 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7812 | Change: 0.13% | Time: 23:33:02
+2025-05-09 23:33:02,996 - __main__ - INFO - Bot stopped by user
+2025-05-09 23:33:03,146 - __main__ - INFO - Grid trading bot stopped
+2025-05-09 23:33:08,582 - binance_client - INFO - Successfully connected to Binance
+2025-05-09 23:33:08,582 - binance_client - INFO - Account status: SPOT
+2025-05-09 23:33:09,483 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-09 23:33:09,500 - __main__ - INFO - Grid bot initialized for ADAUSDT
+2025-05-09 23:33:09,500 - __main__ - INFO - Price range: 0.765 - 0.795
+2025-05-09 23:33:09,500 - __main__ - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-09 23:33:09,506 - __main__ - INFO - Order quantity: 20
+2025-05-09 23:33:09,506 - __main__ - INFO - Setting up grid orders...
+2025-05-09 23:33:09,631 - __main__ - INFO - Current ADAUSDT price: 0.7812
+2025-05-09 23:33:09,934 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:33:10,068 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:33:10,246 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:33:10,658 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:33:10,847 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:33:11,069 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:33:11,069 - __main__ - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-09 23:33:11,069 - __main__ - INFO - Grid trading bot is running...
+2025-05-09 23:33:11,069 - __main__ - INFO - Price will be updated every 10 seconds
+2025-05-09 23:33:11,069 - __main__ - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-09 23:33:11,243 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7813 | Change: 0.01% | Time: 23:33:11
+2025-05-09 23:33:21,564 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7813 | Change: 0.00% | Time: 23:33:21
+2025-05-09 23:33:31,823 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7809 | Change: -0.05% | Time: 23:33:31
+2025-05-09 23:33:42,070 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7809 | Change: 0.00% | Time: 23:33:42
+2025-05-09 23:33:52,391 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: -0.08% | Time: 23:33:52
+2025-05-09 23:34:02,639 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7797 | Change: -0.08% | Time: 23:34:02
+2025-05-09 23:34:13,293 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7796 | Change: -0.01% | Time: 23:34:13
+2025-05-09 23:34:23,600 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7795 | Change: -0.01% | Time: 23:34:23
+2025-05-09 23:34:33,860 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7796 | Change: 0.01% | Time: 23:34:33
+2025-05-09 23:34:44,112 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7785 | Change: -0.14% | Time: 23:34:44
+2025-05-09 23:34:54,358 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: 0.12% | Time: 23:34:54
+2025-05-09 23:35:04,930 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7795 | Change: 0.01% | Time: 23:35:04
+2025-05-09 23:35:15,645 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: 0.10% | Time: 23:35:15
+2025-05-09 23:35:26,392 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.781 | Change: 0.09% | Time: 23:35:26
+2025-05-09 23:35:37,228 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7813 | Change: 0.04% | Time: 23:35:37
+2025-05-09 23:35:47,692 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7814 | Change: 0.01% | Time: 23:35:47
+2025-05-09 23:35:58,117 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7814 | Change: 0.00% | Time: 23:35:58
+2025-05-09 23:36:08,473 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7829 | Change: 0.19% | Time: 23:36:08
+2025-05-09 23:36:19,209 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7826 | Change: -0.04% | Time: 23:36:19
+2025-05-09 23:36:29,692 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7829 | Change: 0.04% | Time: 23:36:29
+2025-05-09 23:36:39,958 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.783 | Change: 0.01% | Time: 23:36:39
+2025-05-09 23:36:50,209 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.783 | Change: 0.00% | Time: 23:36:50
+2025-05-09 23:37:00,455 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7821 | Change: -0.11% | Time: 23:37:00
+2025-05-09 23:37:10,782 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7825 | Change: 0.05% | Time: 23:37:10
+2025-05-09 23:37:21,306 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7827 | Change: 0.03% | Time: 23:37:21
+2025-05-09 23:37:31,680 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7824 | Change: -0.04% | Time: 23:37:31
+2025-05-09 23:37:42,014 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7821 | Change: -0.04% | Time: 23:37:42
+2025-05-09 23:37:52,438 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7826 | Change: 0.06% | Time: 23:37:52
+2025-05-09 23:38:02,748 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.783 | Change: 0.05% | Time: 23:38:02
+2025-05-09 23:38:13,020 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7826 | Change: -0.05% | Time: 23:38:13
+2025-05-09 23:38:23,279 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7826 | Change: 0.00% | Time: 23:38:23
+2025-05-09 23:38:33,557 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7825 | Change: -0.01% | Time: 23:38:33
+2025-05-09 23:38:43,814 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7825 | Change: 0.00% | Time: 23:38:43
+2025-05-09 23:38:54,092 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7825 | Change: 0.00% | Time: 23:38:54
+2025-05-09 23:39:04,365 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: -0.13% | Time: 23:39:04
+2025-05-09 23:39:14,623 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: 0.00% | Time: 23:39:14
+2025-05-09 23:39:24,957 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: 0.00% | Time: 23:39:24
+2025-05-09 23:39:35,225 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7806 | Change: -0.12% | Time: 23:39:35
+2025-05-09 23:39:45,482 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: -0.06% | Time: 23:39:45
+2025-05-09 23:39:55,745 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: 0.00% | Time: 23:39:55
+2025-05-09 23:40:05,996 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.78 | Change: -0.01% | Time: 23:40:05
+2025-05-09 23:40:16,539 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7804 | Change: 0.05% | Time: 23:40:16
+2025-05-09 23:40:27,059 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: -0.04% | Time: 23:40:27
+2025-05-09 23:40:32,551 - __main__ - INFO - Bot stopped by user
+2025-05-09 23:40:32,726 - __main__ - INFO - Grid trading bot stopped
+2025-05-09 23:42:14,480 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-09 23:42:14,480 - __main__ - INFO - Dashboard berhasil dimulai di http://localhost:5000
+2025-05-09 23:42:14,480 - __main__ - ERROR - Error dalam dashboard: 'charmap' codec can't encode character '\U0001f916' in position 2490: character maps to <undefined>
+2025-05-09 23:42:18,464 - binance_client - INFO - Successfully connected to Binance
+2025-05-09 23:42:18,464 - binance_client - INFO - Account status: SPOT
+2025-05-09 23:42:19,943 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-09 23:42:19,953 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-09 23:42:19,953 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-09 23:42:19,953 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-09 23:42:19,960 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-09 23:42:19,960 - grid_bot - INFO - Order quantity: 20
+2025-05-09 23:42:19,960 - grid_bot - INFO - Setting up grid orders...
+2025-05-09 23:42:20,133 - grid_bot - INFO - Current ADAUSDT price: 0.7805
+2025-05-09 23:42:20,485 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:42:20,635 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:42:20,782 - binance_client - ERROR - Failed to place BUY order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:42:20,966 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:42:21,117 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:42:21,368 - binance_client - ERROR - Failed to place SELL order: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-09 23:42:21,401 - grid_bot - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-09 23:42:21,401 - grid_bot - INFO - Grid trading bot is running...
+2025-05-09 23:42:21,403 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-09 23:42:21,403 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-09 23:42:21,524 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7807 | Change: 0.03% | Time: 23:42:21
+2025-05-09 23:42:31,831 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7809 | Change: 0.03% | Time: 23:42:31
+2025-05-09 23:42:42,122 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7811 | Change: 0.03% | Time: 23:42:42
+2025-05-09 23:42:52,403 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: 0.05% | Time: 23:42:52
+2025-05-09 23:43:02,713 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7813 | Change: -0.03% | Time: 23:43:02
+2025-05-09 23:43:12,994 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7812 | Change: -0.01% | Time: 23:43:12
+2025-05-09 23:43:23,291 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7817 | Change: 0.06% | Time: 23:43:23
+2025-05-09 23:43:33,625 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.782 | Change: 0.04% | Time: 23:43:33
+2025-05-09 23:43:44,191 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7814 | Change: -0.08% | Time: 23:43:44
+2025-05-09 23:43:54,614 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7806 | Change: -0.10% | Time: 23:43:54
+2025-05-09 23:44:05,174 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7808 | Change: 0.03% | Time: 23:44:05
+2025-05-09 23:44:15,623 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7814 | Change: 0.08% | Time: 23:44:15
+2025-05-09 23:44:26,143 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7821 | Change: 0.09% | Time: 23:44:26
+2025-05-09 23:44:36,436 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7818 | Change: -0.04% | Time: 23:44:36
+2025-05-09 23:44:46,721 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7816 | Change: -0.03% | Time: 23:44:46
+2025-05-09 23:44:56,995 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7816 | Change: 0.00% | Time: 23:44:56
+2025-05-09 23:45:07,346 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: -0.01% | Time: 23:45:07
+2025-05-09 23:45:11,268 - grid_bot - INFO - Bot stopped by user
+2025-05-09 23:45:11,392 - grid_bot - INFO - Grid trading bot stopped
+2025-05-09 23:45:17,105 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-09 23:45:17,105 - __main__ - INFO - Dashboard berhasil dimulai di http://localhost:5000
+2025-05-09 23:45:19,994 - binance_client - INFO - Successfully connected to Binance
+2025-05-09 23:45:19,994 - binance_client - INFO - Account status: SPOT
+2025-05-09 23:45:20,833 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-09 23:45:20,852 - binance_client - INFO - Running in SIMULATION MODE - No real orders will be placed
+2025-05-09 23:45:20,852 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-09 23:45:20,852 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-09 23:45:20,852 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-09 23:45:20,852 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-09 23:45:20,852 - grid_bot - INFO - Order quantity: 20
+2025-05-09 23:45:20,852 - grid_bot - INFO - Setting up grid orders...
+2025-05-09 23:45:20,979 - grid_bot - INFO - Current ADAUSDT price: 0.7808
+2025-05-09 23:45:20,979 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7650
+2025-05-09 23:45:20,979 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7710
+2025-05-09 23:45:20,984 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7770
+2025-05-09 23:45:20,984 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7830
+2025-05-09 23:45:20,985 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7890
+2025-05-09 23:45:20,985 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7950
+2025-05-09 23:45:20,985 - grid_bot - INFO - Grid setup complete. 3 buy orders and 3 sell orders placed.
+2025-05-09 23:45:20,985 - grid_bot - INFO - Grid trading bot is running...
+2025-05-09 23:45:20,985 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-09 23:45:20,985 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-09 23:45:21,126 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7809 | Change: 0.01% | Time: 23:45:21
+2025-05-09 23:45:22,190 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.0.2:5000
+2025-05-09 23:45:22,196 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 23:45:29,859 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:29] "GET / HTTP/1.1" 200 -
+2025-05-09 23:45:31,288 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7806 | Change: -0.04% | Time: 23:45:31
+2025-05-09 23:45:31,830 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:31] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:45:32,150 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:32] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:45:32,150 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:32] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-09 23:45:32,164 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:32] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:45:41,411 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7807 | Change: 0.01% | Time: 23:45:41
+2025-05-09 23:45:42,818 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:42] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:45:42,819 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:42] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:45:42,840 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:42] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:45:51,555 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: 0.10% | Time: 23:45:51
+2025-05-09 23:45:52,827 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:52] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:45:52,827 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:52] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:45:52,842 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:52] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:45:58,945 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:58] "GET / HTTP/1.1" 200 -
+2025-05-09 23:45:59,817 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:45:59,831 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:45:59] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:00,127 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:00] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:01,825 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7824 | Change: 0.12% | Time: 23:46:01
+2025-05-09 23:46:02,845 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:02] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:02,867 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:02] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:02,870 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:02] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:10,156 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:10] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:10,168 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:10] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:10,192 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:10] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:11,957 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7827 | Change: 0.04% | Time: 23:46:11
+2025-05-09 23:46:12,516 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:12] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:12,854 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:12] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:12,863 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:12] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:14,502 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:14] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:14,535 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:14] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:14,538 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:14] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:14,862 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:14] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:15,200 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:15] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:15,200 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:15] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:20,134 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:20] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:20,181 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:20] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:20,181 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:20] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:22,091 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7822 | Change: -0.06% | Time: 23:46:22
+2025-05-09 23:46:22,527 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:22] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:22,865 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:22] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:22,872 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:22] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:28,096 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:28] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:28,122 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:28] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:28,130 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:28] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:28,490 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:28] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:28,803 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:28] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:28,833 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:28] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:29,571 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:29] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:29,601 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:29] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:29,602 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:29,832 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:29] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:30,172 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:30] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:30,172 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:30] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:32,267 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.782 | Change: -0.03% | Time: 23:46:32
+2025-05-09 23:46:32,836 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:32] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:32,843 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:32] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:32,909 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:32] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:40,834 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:40] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:40,874 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:40] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:40,875 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:40] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:42,696 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7821 | Change: 0.01% | Time: 23:46:42
+2025-05-09 23:46:50,830 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:50,831 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:50] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:46:50,851 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:50] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:52,832 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: -0.08% | Time: 23:46:52
+2025-05-09 23:46:59,845 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:59] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:46:59,845 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:46:59,847 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:46:59] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:47:00,518 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:00] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:47:00,839 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:00] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:47:00,839 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:00] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:47:02,978 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7819 | Change: 0.05% | Time: 23:47:02
+2025-05-09 23:47:10,154 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:10] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:47:10,154 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:10] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:47:10,179 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:10] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:47:13,107 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7814 | Change: -0.06% | Time: 23:47:13
+2025-05-09 23:47:20,123 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:20] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:47:20,156 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:20] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:47:20,159 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:20] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:47:23,294 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7816 | Change: 0.03% | Time: 23:47:23
+2025-05-09 23:47:30,193 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:30] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:47:30,225 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:30] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:47:30,273 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:30] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:47:33,434 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7808 | Change: -0.10% | Time: 23:47:33
+2025-05-09 23:47:40,836 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:40] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:47:40,869 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:40] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:47:40,869 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:40] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:47:43,611 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7812 | Change: 0.05% | Time: 23:47:43
+2025-05-09 23:47:50,840 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:47:50,851 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:50] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:47:50,856 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:50] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:47:53,736 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7817 | Change: 0.06% | Time: 23:47:53
+2025-05-09 23:47:59,842 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:47:59,842 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:59] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:47:59,865 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:47:59] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:48:00,520 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:00] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:48:00,837 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:00] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:48:00,859 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:00] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:48:03,872 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7821 | Change: 0.05% | Time: 23:48:03
+2025-05-09 23:48:10,133 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:10] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:48:10,149 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:10] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:48:10,153 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:10] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:48:14,296 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7818 | Change: -0.04% | Time: 23:48:14
+2025-05-09 23:48:20,159 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:20] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:48:20,171 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:20] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:48:20,196 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:20] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:48:24,483 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7808 | Change: -0.13% | Time: 23:48:24
+2025-05-09 23:48:30,869 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:30] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:48:30,924 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:30] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:48:30,933 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:30] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:48:34,627 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.781 | Change: 0.03% | Time: 23:48:34
+2025-05-09 23:48:40,817 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:40] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:48:40,834 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:40] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:48:40,834 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:40] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:48:44,772 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7799 | Change: -0.14% | Time: 23:48:44
+2025-05-09 23:48:50,833 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:48:50,836 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:50] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:48:50,853 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:50] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:48:54,898 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7795 | Change: -0.05% | Time: 23:48:54
+2025-05-09 23:48:59,842 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:48:59,854 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:59] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:48:59,854 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:48:59] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:49:00,513 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:00] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:49:00,826 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:00] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:49:00,854 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:00] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:49:05,029 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.779 | Change: -0.06% | Time: 23:49:05
+2025-05-09 23:49:10,835 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:10] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:49:10,853 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:10] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:49:10,853 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:10] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:49:15,148 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7797 | Change: 0.09% | Time: 23:49:15
+2025-05-09 23:49:20,838 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:20] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:49:20,853 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:20] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:49:20,860 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:20] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:49:25,292 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7788 | Change: -0.12% | Time: 23:49:25
+2025-05-09 23:49:35,435 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7784 | Change: -0.05% | Time: 23:49:35
+2025-05-09 23:49:42,445 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:42] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:49:42,453 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:42] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:49:42,486 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:42] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:49:45,580 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7796 | Change: 0.15% | Time: 23:49:45
+2025-05-09 23:49:50,140 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:49:50,163 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:50] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:49:50,187 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:50] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:49:55,704 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7786 | Change: -0.13% | Time: 23:49:55
+2025-05-09 23:49:59,839 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:49:59,839 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:59] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:49:59,864 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:49:59] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:50:00,520 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:00] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:50:00,833 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:00] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:50:00,841 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:00] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:50:05,830 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7784 | Change: -0.03% | Time: 23:50:05
+2025-05-09 23:50:10,825 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:10] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:50:10,840 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:10] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:50:10,847 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:10] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:50:15,995 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7777 | Change: -0.09% | Time: 23:50:15
+2025-05-09 23:50:20,825 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:20] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:50:20,840 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:20] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:50:20,847 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:20] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:50:26,156 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7781 | Change: 0.05% | Time: 23:50:26
+2025-05-09 23:50:30,831 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:30] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:50:30,848 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:30] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:50:30,848 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:30] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:50:36,352 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7781 | Change: 0.00% | Time: 23:50:36
+2025-05-09 23:50:40,834 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:40] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:50:40,834 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:40] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:50:40,850 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:40] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:50:46,481 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7778 | Change: -0.04% | Time: 23:50:46
+2025-05-09 23:50:50,821 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:50] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:50:50,839 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:50] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:50:50,839 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:50] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:50:56,611 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7778 | Change: 0.00% | Time: 23:50:56
+2025-05-09 23:50:59,829 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:59] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:50:59,849 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:59] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:50:59,851 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:50:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:51:06,745 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7786 | Change: 0.10% | Time: 23:51:06
+2025-05-09 23:51:16,877 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7781 | Change: -0.06% | Time: 23:51:16
+2025-05-09 23:51:27,039 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7778 | Change: -0.04% | Time: 23:51:27
+2025-05-09 23:51:30,392 - grid_bot - INFO - Bot stopped by user
+2025-05-09 23:51:30,394 - binance_client - INFO - [SIMULATION] Cancelled order 9c42d3a2-0479-4180-af5d-21aff8740dc5 for ADAUSDT
+2025-05-09 23:51:30,395 - binance_client - INFO - [SIMULATION] Cancelled order 45639a66-e9b6-4325-a170-a839fdf1078e for ADAUSDT
+2025-05-09 23:51:30,396 - binance_client - INFO - [SIMULATION] Cancelled order a9514ec9-c086-4e9c-bf21-fc63ca979dee for ADAUSDT
+2025-05-09 23:51:30,396 - binance_client - INFO - [SIMULATION] Cancelled order 4722d6db-f4eb-43a6-900c-7920ba52c7d3 for ADAUSDT
+2025-05-09 23:51:30,397 - binance_client - INFO - [SIMULATION] Cancelled order 4d224ede-9b9d-4e42-b25d-2d998c989a8f for ADAUSDT
+2025-05-09 23:51:30,397 - binance_client - INFO - [SIMULATION] Cancelled order 3137d92d-e6d5-47f4-900e-f1a86f1799d9 for ADAUSDT
+2025-05-09 23:51:30,398 - grid_bot - INFO - Cancelled all open orders
+2025-05-09 23:51:30,398 - grid_bot - INFO - Grid trading bot stopped
+2025-05-09 23:52:54,159 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-09 23:52:54,159 - __main__ - INFO - Dashboard berhasil dimulai di http://localhost:5000
+2025-05-09 23:52:58,619 - binance_client - INFO - Successfully connected to Binance
+2025-05-09 23:52:58,621 - binance_client - INFO - Account status: SPOT
+2025-05-09 23:52:59,280 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.0.2:5000
+2025-05-09 23:52:59,280 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-09 23:52:59,520 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:52:59] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-09 23:52:59,528 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:52:59] "[32mGET /api/status HTTP/1.1[0m" 302 -
+2025-05-09 23:52:59,749 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:52:59] "GET /login HTTP/1.1" 200 -
+2025-05-09 23:52:59,929 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-09 23:52:59,942 - binance_client - INFO - Running in SIMULATION MODE - No real orders will be placed
+2025-05-09 23:52:59,943 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:52:59] "[32mGET /api/price_chart HTTP/1.1[0m" 302 -
+2025-05-09 23:52:59,945 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:52:59] "[32mGET /api/trades HTTP/1.1[0m" 302 -
+2025-05-09 23:52:59,946 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-09 23:52:59,947 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-09 23:52:59,948 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-09 23:52:59,948 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-09 23:52:59,949 - grid_bot - INFO - Order quantity: 20
+2025-05-09 23:52:59,950 - grid_bot - INFO - Setting up grid orders...
+2025-05-09 23:53:00,060 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:00] "GET /login HTTP/1.1" 200 -
+2025-05-09 23:53:00,083 - grid_bot - INFO - Current ADAUSDT price: 0.7757
+2025-05-09 23:53:00,083 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7650
+2025-05-09 23:53:00,115 - binance_client - INFO - [SIMULATION] Order a17ba2a6-c6dc-4237-be35-0c43a305a105 filled at price 0.765
+2025-05-09 23:53:00,115 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7710
+2025-05-09 23:53:00,115 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7770
+2025-05-09 23:53:00,115 - binance_client - INFO - [SIMULATION] Order 2ed3a487-caf1-4674-9ca7-fad1d23c6129 filled at price 0.777
+2025-05-09 23:53:00,115 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7830
+2025-05-09 23:53:00,115 - binance_client - INFO - [SIMULATION] Order a16809fb-7935-40e4-ba8e-ed766241dfc5 filled at price 0.783
+2025-05-09 23:53:00,115 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7890
+2025-05-09 23:53:00,115 - binance_client - WARNING - [SIMULATION] Insufficient ADA balance for SELL order. Required: 20, Available: 0.0
+2025-05-09 23:53:00,115 - grid_bot - INFO - Grid setup complete. 2 buy orders and 3 sell orders placed.
+2025-05-09 23:53:00,115 - grid_bot - INFO - Grid trading bot is running...
+2025-05-09 23:53:00,115 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-09 23:53:00,115 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-09 23:53:00,301 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7757 | Change: 0.00% | Time: 23:53:00
+2025-05-09 23:53:00,328 - grid_bot - INFO - Buy order at 0.765 was filled. Placing sell order at 0.771
+2025-05-09 23:53:00,329 - grid_bot - INFO - Potential profit if sell order fills: 0.1200 USDT
+2025-05-09 23:53:00,332 - binance_client - WARNING - [SIMULATION] Insufficient ADA balance for SELL order. Required: 20, Available: 0.0
+2025-05-09 23:53:00,332 - grid_bot - INFO - Sell order at 0.777 was filled. Placing buy order at 0.771
+2025-05-09 23:53:00,332 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-09 23:53:00,332 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7710
+2025-05-09 23:53:00,335 - grid_bot - INFO - Sell order at 0.783 was filled. Placing buy order at 0.777
+2025-05-09 23:53:00,335 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-09 23:53:00,335 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7770
+2025-05-09 23:53:00,335 - binance_client - INFO - [SIMULATION] Order 614aee19-ab12-4d54-b5ee-ad4923434983 filled at price 0.777
+2025-05-09 23:53:00,377 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:00] "GET /login HTTP/1.1" 200 -
+2025-05-09 23:53:00,627 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:00] "GET /login HTTP/1.1" 200 -
+2025-05-09 23:53:10,634 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7768 | Change: 0.14% | Time: 23:53:10
+2025-05-09 23:53:10,634 - grid_bot - INFO - Buy order at 0.777 was filled. Placing sell order at 0.783
+2025-05-09 23:53:10,634 - grid_bot - INFO - Potential profit if sell order fills: 0.1200 USDT
+2025-05-09 23:53:10,634 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7830
+2025-05-09 23:53:10,634 - binance_client - INFO - [SIMULATION] Order fb6d1fff-8e56-4feb-a73f-5f0c483a9f8a filled at price 0.783
+2025-05-09 23:53:10,634 - grid_bot - INFO - Sell order at 0.783 was filled. Placing buy order at 0.777
+2025-05-09 23:53:10,634 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-09 23:53:10,634 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7770
+2025-05-09 23:53:20,848 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7765 | Change: -0.04% | Time: 23:53:20
+2025-05-09 23:53:31,006 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7769 | Change: 0.05% | Time: 23:53:31
+2025-05-09 23:53:41,328 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7771 | Change: 0.03% | Time: 23:53:41
+2025-05-09 23:53:51,467 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7767 | Change: -0.05% | Time: 23:53:51
+2025-05-09 23:53:56,059 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:56] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-05-09 23:53:56,076 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:56] "GET / HTTP/1.1" 200 -
+2025-05-09 23:53:56,294 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:56] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:53:56,574 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:56] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:53:56,932 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:56] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:53:59,833 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:53:59,862 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:59] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:53:59,862 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:53:59] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:54:01,636 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7768 | Change: 0.01% | Time: 23:54:01
+2025-05-09 23:54:06,232 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:06] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:54:06,557 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:06] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:54:06,557 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:06] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:54:11,797 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7774 | Change: 0.08% | Time: 23:54:11
+2025-05-09 23:54:16,533 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:16] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:54:16,564 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:16] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:54:16,572 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:16] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:54:21,926 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7781 | Change: 0.09% | Time: 23:54:21
+2025-05-09 23:54:26,544 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:26] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:54:26,545 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:26] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:54:26,577 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:26] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:54:32,065 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7785 | Change: 0.05% | Time: 23:54:32
+2025-05-09 23:54:36,541 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:36] "GET /api/status HTTP/1.1" 200 -
+2025-05-09 23:54:36,861 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:36] "GET /api/trades HTTP/1.1" 200 -
+2025-05-09 23:54:36,875 - werkzeug - INFO - 127.0.0.1 - - [09/May/2025 23:54:36] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-09 23:54:42,223 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.779 | Change: 0.06% | Time: 23:54:42
+2025-05-09 23:54:44,957 - grid_bot - INFO - Bot stopped by user
+2025-05-09 23:54:44,957 - binance_client - INFO - [SIMULATION] Cancelled order 3b6937ed-8e41-4a75-ae7a-5e2228a7af45 for ADAUSDT
+2025-05-09 23:54:44,957 - binance_client - INFO - [SIMULATION] Cancelled order 132f5b11-f794-4c40-a535-95c0f5f21185 for ADAUSDT
+2025-05-09 23:54:44,957 - binance_client - INFO - [SIMULATION] Cancelled order a64a16d5-b103-4730-af1c-b8334c1262e8 for ADAUSDT
+2025-05-09 23:54:44,957 - binance_client - INFO - [SIMULATION] Cancelled order 81c27d14-4beb-4e86-b462-57bd38656929 for ADAUSDT
+2025-05-09 23:54:44,962 - grid_bot - INFO - Cancelled all open orders
+2025-05-09 23:54:44,963 - grid_bot - INFO - Grid trading bot stopped

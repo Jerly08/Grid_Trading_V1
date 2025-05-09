@@ -1,0 +1,49 @@
+{
+  "total_profit": 0.0,
+  "trades": [
+    {
+      "time": "2025-05-09T23:53:00.330992",
+      "type": "BUY",
+      "price": 0.765,
+      "quantity": 20,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "time": "2025-05-09T23:53:00.332008",
+      "type": "SELL",
+      "price": 0.777,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-09T23:53:00.335069",
+      "type": "SELL",
+      "price": 0.783,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-09T23:53:10.634144",
+      "type": "BUY",
+      "price": 0.777,
+      "quantity": 20,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "time": "2025-05-09T23:53:10.634144",
+      "type": "SELL",
+      "price": 0.783,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    }
+  ],
+  "last_update": "2025-05-09T23:54:44.957663",
+  "price_range": [
+    0.765,
+    0.795
+  ],
+  "grid_number": 5
+}
