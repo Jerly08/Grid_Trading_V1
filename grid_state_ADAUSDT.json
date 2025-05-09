@@ -38,12 +38,134 @@
       "quantity": 20,
       "symbol": "ADAUSDT",
       "profit": 0.0
+    },
+    {
+      "time": "2025-05-10T00:04:43.450639",
+      "type": "SELL",
+      "price": 0.789,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-10T00:04:53.594841",
+      "type": "BUY",
+      "price": 0.783,
+      "quantity": 20,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "time": "2025-05-10T00:04:53.595867",
+      "type": "SELL",
+      "price": 0.789,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-10T00:05:03.739191",
+      "type": "BUY",
+      "price": 0.783,
+      "quantity": 20,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "time": "2025-05-10T00:05:03.747249",
+      "type": "SELL",
+      "price": 0.789,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-10T00:05:14.034187",
+      "type": "BUY",
+      "price": 0.765,
+      "quantity": 20,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "time": "2025-05-10T00:05:14.163884",
+      "type": "BUY",
+      "price": 0.771,
+      "quantity": 20,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "time": "2025-05-10T00:05:14.171183",
+      "type": "SELL",
+      "price": 0.783,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-10T00:05:14.173601",
+      "type": "SELL",
+      "price": 0.771,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-10T00:05:14.181869",
+      "type": "SELL",
+      "price": 0.777,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-10T00:05:24.399297",
+      "type": "BUY",
+      "price": 0.777,
+      "quantity": 20,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "time": "2025-05-10T00:05:24.403088",
+      "type": "BUY",
+      "price": 0.765,
+      "quantity": 20,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "time": "2025-05-10T00:05:24.403088",
+      "type": "BUY",
+      "price": 0.771,
+      "quantity": 20,
+      "symbol": "ADAUSDT"
+    },
+    {
+      "time": "2025-05-10T00:05:24.413777",
+      "type": "SELL",
+      "price": 0.783,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-10T00:05:24.418373",
+      "type": "SELL",
+      "price": 0.771,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
+    },
+    {
+      "time": "2025-05-10T00:05:24.418882",
+      "type": "SELL",
+      "price": 0.777,
+      "quantity": 20,
+      "symbol": "ADAUSDT",
+      "profit": 0.0
     }
   ],
-  "last_update": "2025-05-09T23:54:44.957663",
+  "last_update": "2025-05-10T00:32:13.792970",
   "price_range": [
     0.765,
     0.795
   ],
-  "grid_number": 5
+  "grid_number": 5,
+  "last_price": 0.7843
 }

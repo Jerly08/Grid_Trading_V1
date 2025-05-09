@@ -9,9 +9,6 @@ API_KEY = os.getenv('API_KEY')
 API_SECRET = os.getenv('API_SECRET')
 TESTNET = os.getenv('BINANCE_TESTNET', 'True').lower() in ('true', 'yes', '1')
 
-# Mode simulasi (tidak membuat order sungguhan)
-SIMULATION_MODE = True  # Set ke False jika ingin membuat order sungguhan
-
 # Grid trading parameters (Optimized for ADA/USDT with 500.000 IDR budget)
 SYMBOL = 'ADAUSDT'  # Trading pair
 UPPER_PRICE = 0.795  # Upper price boundary for grid (~2% above current price)

@@ -20,8 +20,14 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class GridTradingBot:
+    # Simpan instance untuk diakses oleh dashboard
+    instance = None
+    
     def __init__(self):
         """Initialize the grid trading bot"""
+        # Set instance untuk referensi global
+        GridTradingBot.instance = self
+        
         self.client = BinanceClient()
         self.symbol = config.SYMBOL
         self.upper_price = config.UPPER_PRICE
@@ -70,7 +76,9 @@ class GridTradingBot:
                     state = json.load(f)
                     self.total_profit = state.get('total_profit', 0)
                     self.trades = state.get('trades', [])
+                    self.last_price = state.get('last_price', None)
                     logger.info(f"Loaded previous state from {state_file}")
+                    logger.info(f"Loaded previous profit: {self.total_profit:.4f} USDT")
             except Exception as e:
                 logger.error(f"Failed to load previous state: {e}")
 
@@ -83,7 +91,8 @@ class GridTradingBot:
                 'trades': self.trades,
                 'last_update': datetime.datetime.now().isoformat(),
                 'price_range': [self.lower_price, self.upper_price],
-                'grid_number': self.grid_number
+                'grid_number': self.grid_number,
+                'last_price': self.last_price  # Simpan harga terakhir dalam state
             }
             with open(state_file, 'w') as f:
                 json.dump(state, f, indent=2)
@@ -170,8 +179,8 @@ class GridTradingBot:
             if self.last_price:
                 price_change = ((current_price - self.last_price) / self.last_price) * 100
             
-            # Log price with change percentage
-            logger.info(f"[PRICE UPDATE] {self.symbol}: {current_price} | Change: {price_change:.2f}% | Time: {now.strftime('%H:%M:%S')}")
+            # Log price with change percentage and total profit
+            logger.info(f"[PRICE UPDATE] {self.symbol}: {current_price} | Change: {price_change:.2f}% | Profit: {self.total_profit:.4f} USDT | Time: {now.strftime('%H:%M:%S')}")
             
             # Check if price is outside grid range (with 10% buffer)
             if current_price < self.lower_price * 0.9 or current_price > self.upper_price * 1.1:
@@ -181,6 +190,9 @@ class GridTradingBot:
             
             # Update last price
             self.last_price = current_price
+            
+            # Save state untuk memastikan dashboard selalu memiliki harga terbaru
+            self._save_state()
         
         # Get current open orders
         open_orders = self.client.get_open_orders(self.symbol)
@@ -330,42 +342,29 @@ class GridTradingBot:
 
     def run(self):
         """Run the grid trading bot"""
-        if not self.setup_grid():
-            logger.error("Failed to setup grid. Exiting.")
-            return
-        
-        logger.info("Grid trading bot is running...")
-        logger.info(f"Price will be updated every 10 seconds")
-        logger.info(f"Grid will be adjusted as needed (max once per 12 hours)")
-        
-        # Initial state save
-        self._save_state()
-        
         try:
+            logger.info("Grid trading bot is running...")
+            logger.info("Price will be updated every 10 seconds")
+            logger.info("Grid will be adjusted as needed (max once per 12 hours)")
+            
+            # Log current profit at startup
+            logger.info(f"Current total profit: {self.total_profit:.4f} USDT")
+            
+            self.setup_grid()
+            
             while True:
                 self.check_filled_orders()
+                time.sleep(10)
                 
-                # Periodically adjust grid if needed
-                if datetime.datetime.now().minute % 30 == 0:  # Check every 30 minutes
-                    self.adjust_grid()
-                
-                # Wait for some time before checking again
-                time.sleep(10)  # Check every 10 seconds for price updates
         except KeyboardInterrupt:
-            logger.info("Bot stopped by user")
+            logger.info(f"Bot stopped by user. Final profit: {self.total_profit:.4f} USDT")
         except Exception as e:
-            logger.error(f"An error occurred: {e}")
+            logger.error(f"Unexpected error: {e}")
         finally:
-            # Save final state
-            self._save_state()
-            
-            # Cancel all open orders when shutting down
-            open_orders = self.client.get_open_orders(self.symbol)
-            if open_orders:
-                for order in open_orders:
-                    self.client.cancel_order(order['orderId'], self.symbol)
-                logger.info("Cancelled all open orders")
-            logger.info("Grid trading bot stopped")
+            # Hapus instance referensi ketika bot berhenti
+            if GridTradingBot.instance == self:
+                GridTradingBot.instance = None
+            logger.info(f"Grid trading bot stopped. Total profit: {self.total_profit:.4f} USDT")
 
 if __name__ == "__main__":
     bot = GridTradingBot()

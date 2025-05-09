@@ -14,11 +14,9 @@ Bot ini menerapkan strategi trading grid pada platform Binance. Strategi trading
 - Logging komprehensif untuk semua aktivitas bot
 - Penanganan kesalahan dan mekanisme retry
 - Auto-rebalancing setelah order terpenuhi
-- Mode simulasi untuk pengujian tanpa dana nyata
 - Dashboard web untuk monitoring bot
 - Pengelolaan risiko terintegrasi
 - Keamanan dashboard dengan login & penanganan IP
-- Auto-switching ke mode simulasi jika saldo tidak cukup
 
 ## Instalasi
 
@@ -55,7 +53,7 @@ GRID_NUMBER = 5      # Focus on 5 level grid for limited capital
 QUANTITY = 20  # Quantity of crypto to buy/sell at each grid level
 ```
 
-## Penggunaan Biasa
+## Cara Penggunaan
 
 Jalankan bot dengan perintah:
 
@@ -63,15 +61,33 @@ Jalankan bot dengan perintah:
 python run.py
 ```
 
-## Penggunaan Mode Simulasi
-
-Untuk menjalankan bot dalam mode simulasi (tanpa order sungguhan):
-
+Untuk menjalankan hanya bot tanpa dashboard:
 ```
-python run_simulation.py
+python run.py bot
 ```
 
-Mode simulasi memungkinkan Anda menguji strategi grid tanpa dana nyata.
+Untuk menjalankan hanya dashboard tanpa bot:
+```
+python run.py dashboard
+```
+
+### Mode Production Server
+
+Untuk menjalankan dashboard dengan production server (direkomendasikan untuk deployment):
+```
+python run.py --production
+```
+
+Atau hanya dashboard production tanpa bot:
+```
+python run.py dashboard --production
+```
+
+Mode production menggunakan:
+- **Windows**: Waitress sebagai WSGI server
+- **Linux/Mac**: Gunicorn sebagai WSGI server
+
+Kedua server ini lebih aman dan efisien untuk lingkungan produksi dibandingkan server development Flask.
 
 ## Dashboard Monitoring
 
@@ -87,7 +103,6 @@ Bot ini dilengkapi dengan dashboard web untuk memantau aktivitas:
 - Grafik pergerakan harga real-time
 - Riwayat trading
 - Level grid yang aktif
-- Toggle mode simulasi langsung dari dashboard
 
 ## Mengatasi Masalah Umum
 
@@ -98,8 +113,7 @@ Bot ini dilengkapi dengan dashboard web untuk memantau aktivitas:
 
 ### "Account has insufficient balance"
 1. Pastikan Anda memiliki saldo yang cukup di akun Binance
-2. Gunakan mode simulasi untuk testing: `python run_simulation.py`
-3. Kurangi `QUANTITY` di file `config.py` untuk mengurangi kebutuhan saldo
+2. Kurangi `QUANTITY` di file `config.py` untuk mengurangi kebutuhan saldo
 
 ### Masalah Emoji di Dashboard
 Jika mengalami masalah tampilan emoji di dashboard:

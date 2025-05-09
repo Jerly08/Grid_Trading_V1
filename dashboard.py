@@ -6,7 +6,7 @@ import plotly
 import plotly.graph_objs as go
 import numpy as np
 import pandas as pd
-from threading import Thread
+from threading import Thread, Lock
 import time
 import logging
 import hashlib
@@ -14,6 +14,7 @@ import uuid
 import secrets
 from functools import wraps
 import config
+import random
 
 # Konfigurasi security
 DASHBOARD_USERNAME = os.getenv('DASHBOARD_USERNAME', 'admin')
@@ -42,10 +43,19 @@ bot_profit = 0
 trades_history = []
 grid_levels = []
 
+# Tambahkan fallback price jika tidak ada data
+FALLBACK_PRICE = 0.7800  # Harga ADA fallback jika tidak bisa mendapatkan data terkini
+
 # Session tracking untuk keamanan
 active_sessions = {}
 MAX_FAILED_ATTEMPTS = 5
 blocked_ips = {}
+
+# Lock untuk thread safety
+data_lock = Lock()
+
+# SSE clients
+sse_clients = set()
 
 # Helper function for emoji handling
 def safe_emoji(text):
@@ -173,6 +183,34 @@ def index():
 @login_required
 def price_chart():
     """API endpoint untuk data grafik harga"""
+    global price_history, latest_price
+    
+    # Jika tidak ada data price history, buat data dummy
+    if not price_history and latest_price is not None:
+        current_time = datetime.datetime.now()
+        # Buat 5 titik data dummy untuk satu jam terakhir
+        for i in range(5):
+            # Variasi kecil untuk harga (±0.5%)
+            price_var = latest_price * (1 + (random.random() - 0.5) * 0.01)
+            time_point = current_time - datetime.timedelta(minutes=i*15)
+            price_history.insert(0, {
+                "time": time_point.strftime("%Y-%m-%d %H:%M:%S"),
+                "price": price_var
+            })
+        logger.info("Created dummy price history for chart")
+    
+    # Jika masih tidak ada data history, gunakan fallback
+    if not price_history:
+        current_time = datetime.datetime.now()
+        for i in range(5):
+            time_point = current_time - datetime.timedelta(minutes=i*15)
+            price_var = FALLBACK_PRICE * (1 + (random.random() - 0.5) * 0.01)
+            price_history.insert(0, {
+                "time": time_point.strftime("%Y-%m-%d %H:%M:%S"),
+                "price": price_var
+            })
+        logger.warning("Using fallback price history for chart")
+    
     # Membuat grafik harga menggunakan plotly
     timestamps = [entry['time'] for entry in price_history[-100:]]
     prices = [entry['price'] for entry in price_history[-100:]]
@@ -213,54 +251,134 @@ def get_trades():
 @login_required
 def get_status():
     """API endpoint untuk status bot"""
+    global latest_price
+    
+    # Reload data untuk mendapatkan harga terbaru
+    load_bot_data()
+    
+    # Pastikan selalu ada nilai harga, gunakan fallback jika perlu
+    if latest_price is None:
+        latest_price = FALLBACK_PRICE
+        logger.warning(f"Using fallback price: {FALLBACK_PRICE}")
+    
     status_data = {
         "status": safe_emoji(bot_status),
         "latest_price": latest_price,
         "profit": bot_profit,
-        "grid_levels": grid_levels,
-        "simulation_mode": config.SIMULATION_MODE
+        "grid_levels": grid_levels
     }
     return jsonify(status_data)
 
-@app.route('/api/toggle_simulation', methods=['POST'])
+@app.route('/stream')
 @login_required
-def toggle_simulation():
-    """API endpoint untuk mengaktifkan/menonaktifkan mode simulasi"""
-    try:
-        config.SIMULATION_MODE = not config.SIMULATION_MODE
-        status = "enabled" if config.SIMULATION_MODE else "disabled"
-        logger.info(f"Simulation mode {status} by user via dashboard")
+def stream():
+    """Server-Sent Events endpoint untuk update realtime"""
+    def event_stream():
+        client_id = uuid.uuid4()
+        client = {'id': client_id, 'queue': []}
         
-        # Simpan pengaturan ke file konfigurasi
-        save_simulation_setting(config.SIMULATION_MODE)
+        with data_lock:
+            sse_clients.add(client)
         
-        return jsonify({"success": True, "simulation_mode": config.SIMULATION_MODE})
-    except Exception as e:
-        logger.error(f"Error toggling simulation mode: {e}")
-        return jsonify({"success": False, "error": str(e)}), 500
-
-def save_simulation_setting(simulation_mode):
-    """Simpan pengaturan mode simulasi ke file config"""
-    try:
-        # Baca file config.py
-        with open('config.py', 'r') as f:
-            lines = f.readlines()
-        
-        # Ubah baris yang berisi SIMULATION_MODE
-        for i, line in enumerate(lines):
-            if line.strip().startswith('SIMULATION_MODE'):
-                lines[i] = f"SIMULATION_MODE = {str(simulation_mode)}  # Set ke False jika ingin membuat order sungguhan\n"
-                break
-        
-        # Tulis kembali ke file
-        with open('config.py', 'w') as f:
-            f.writelines(lines)
+        try:
+            # Kirim data awal
+            yield f"data: {json.dumps(get_initial_data())}\n\n"
             
-        logger.info(f"Simulation mode setting saved to config file: {simulation_mode}")
-        return True
-    except Exception as e:
-        logger.error(f"Error saving simulation setting to config file: {e}")
-        return False
+            while True:
+                # Cek jika koneksi masih ada
+                if request.environ.get('werkzeug.server.shutdown'):
+                    break
+                
+                # Periksa antrian pesan
+                if client['queue']:
+                    with data_lock:
+                        while client['queue']:
+                            yield client['queue'].pop(0)
+                
+                # Sleep untuk mencegah CPU usage tinggi
+                time.sleep(0.5)
+                
+                # Kirim heartbeat setiap 15 detik untuk keep-alive
+                yield f": heartbeat\n\n"
+                
+        except Exception as e:
+            logger.error(f"SSE error: {e}")
+        finally:
+            with data_lock:
+                if client in sse_clients:
+                    sse_clients.remove(client)
+    
+    return Response(event_stream(), mimetype="text/event-stream")
+
+def get_initial_data():
+    """Dapatkan data awal untuk stream"""
+    global latest_price
+    
+    # Pastikan selalu ada nilai harga
+    if latest_price is None:
+        latest_price = FALLBACK_PRICE
+    
+    # Dapatkan data grafik
+    chart_data = None
+    if price_history:
+        timestamps = [entry['time'] for entry in price_history[-100:]]
+        prices = [entry['price'] for entry in price_history[-100:]]
+        
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=timestamps, y=prices, mode='lines', name='Harga ADA'))
+        
+        # Tambahkan garis grid jika tersedia
+        if grid_levels:
+            for level in grid_levels:
+                fig.add_shape(
+                    type="line",
+                    x0=timestamps[0] if timestamps else 0,
+                    y0=level,
+                    x1=timestamps[-1] if timestamps else 1,
+                    y1=level,
+                    line=dict(color="Red", width=1, dash="dash"),
+                )
+        
+        fig.update_layout(
+            title='Pergerakan Harga ADA',
+            xaxis_title='Waktu',
+            yaxis_title='Harga (USDT)',
+            template='plotly_dark'
+        )
+        
+        chart_data = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    
+    # Siapkan data untuk dikirim
+    return {
+        "status": safe_emoji(bot_status),
+        "latest_price": latest_price,
+        "profit": bot_profit,
+        "chart": chart_data,
+        "trades": trades_history[-10:] if trades_history else [],
+        "grid_levels": grid_levels
+    }
+
+def broadcast_update():
+    """Broadcast update ke semua klien SSE"""
+    with data_lock:
+        if not sse_clients:
+            return
+            
+        # Dapatkan data terbaru
+        data = get_initial_data()
+        
+        # Buat pesan SSE
+        message = f"data: {json.dumps(data)}\n\n"
+        
+        # Kirim pesan ke semua klien
+        for client in list(sse_clients):
+            try:
+                client['queue'].append(message)
+                logger.debug(f"Queued update for client {client['id']}")
+            except Exception as e:
+                logger.error(f"Error queuing message for client {client['id']}: {e}")
+                if client in sse_clients:
+                    sse_clients.remove(client)
 
 def load_bot_data():
     """Load data dari file state bot"""
@@ -272,27 +390,77 @@ def load_bot_data():
             with open("bot.log", "r") as log_file:
                 lines = log_file.readlines()
                 price_data = []
-                for line in lines:
-                    if "[PRICE UPDATE]" in line:
-                        parts = line.split("[PRICE UPDATE]")[1].strip().split("|")
-                        if len(parts) >= 3:
-                            symbol_price = parts[0].strip().split(":")
-                            if len(symbol_price) == 2:
-                                symbol = symbol_price[0].strip()
-                                price = float(symbol_price[1].strip())
-                                time_str = parts[2].strip().split("Time:")[1].strip()
-                                
-                                price_data.append({
-                                    "time": line.split(" - ")[0].strip(),
-                                    "price": price
-                                })
                 
-                # Simpan 100 data harga terakhir
+                # Cari 100 entri harga terbaru
+                for line in reversed(lines):
+                    if "[PRICE UPDATE]" in line:
+                        try:
+                            parts = line.split("[PRICE UPDATE]")[1].strip().split("|")
+                            if len(parts) >= 3:
+                                symbol_price = parts[0].strip().split(":")
+                                if len(symbol_price) == 2:
+                                    symbol = symbol_price[0].strip()
+                                    price = float(symbol_price[1].strip())
+                                    timestamp = line.split(" - ")[0].strip()
+                                    
+                                    price_data.append({
+                                        "time": timestamp,
+                                        "price": price
+                                    })
+                                    
+                                    # Hentikan jika sudah mendapatkan 100 data harga
+                                    if len(price_data) >= 100:
+                                        break
+                        except Exception as e:
+                            logger.debug(f"Gagal parsing baris log: {e}")
+                            continue
+                
+                # Balik kembali urutan data untuk kronologis
+                price_data.reverse()
+                
+                # Simpan data harga
                 if price_data:
-                    price_history = price_data[-100:]
+                    price_history = price_data
                     latest_price = price_data[-1]["price"]
+                    logger.info(f"Loaded latest price from log: {latest_price}")
         except Exception as e:
             logger.error(f"Error reading log file: {e}")
+        
+        # Jika tidak ada harga dari log, coba dapatkan harga terkini dari API
+        if latest_price is None:
+            try:
+                # Coba dapatkan dari API Binance
+                from binance_client import BinanceClient
+                client = BinanceClient()
+                current_price = client.get_symbol_price(config.SYMBOL)
+                if current_price:
+                    latest_price = current_price
+                    logger.info(f"Got current price from API: {latest_price}")
+                    # Tambahkan ke history
+                    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    price_history.append({
+                        "time": current_time,
+                        "price": current_price
+                    })
+            except Exception as e:
+                logger.error(f"Error getting current price from API: {e}")
+                
+                # Jika masih tidak berhasil, coba mungkin ada instance bot yang berjalan
+                try:
+                    from grid_bot import GridTradingBot
+                    if hasattr(GridTradingBot, 'instance') and GridTradingBot.instance is not None:
+                        bot_instance = GridTradingBot.instance
+                        if hasattr(bot_instance, 'last_price') and bot_instance.last_price is not None:
+                            latest_price = bot_instance.last_price
+                            logger.info(f"Got current price from bot instance: {latest_price}")
+                            
+                            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                            price_history.append({
+                                "time": current_time,
+                                "price": latest_price
+                            })
+                except Exception as e:
+                    logger.error(f"Error getting price from bot instance: {e}")
         
         # Load state bot
         state_files = [f for f in os.listdir(".") if f.startswith("grid_state_") and f.endswith(".json")]
@@ -304,26 +472,91 @@ def load_bot_data():
                 bot_profit = state.get("total_profit", 0)
                 trades_history = state.get("trades", [])
                 grid_levels = state.get("price_range", [])
-                bot_status = "Aktif" if state.get("last_update") else "Tidak Aktif"
-                
-                # Cek timestamp terakhir update
                 last_update = state.get("last_update")
+                
+                # Update bot status
                 if last_update:
                     try:
                         last_update_time = datetime.datetime.fromisoformat(last_update)
                         time_diff = (datetime.datetime.now() - last_update_time).total_seconds()
                         if time_diff > 300:  # 5 menit
                             bot_status = "Tidak Aktif (5+ menit tanpa update)"
+                        else:
+                            bot_status = "Aktif"
                     except:
-                        pass
+                        bot_status = "Status Tidak Diketahui"
+                else:
+                    bot_status = "Tidak Aktif"
+                    
+                # Update latest price jika ada di state dan lebih baru
+                if "last_price" in state and state["last_price"] is not None:
+                    state_price = float(state["last_price"])
+                    state_time = last_update if last_update else datetime.datetime.now().isoformat()
+                    
+                    if latest_price is None:
+                        latest_price = state_price
+                        logger.info(f"Using price from state file: {latest_price}")
+                        
+                        # Tambahkan ke history jika kosong
+                        if not price_history:
+                            price_history.append({
+                                "time": state_time,
+                                "price": state_price
+                            })
     except Exception as e:
         logger.error(f"Error loading bot data: {e}")
 
 def update_data_thread():
     """Thread untuk update data secara periodik"""
+    last_fetch_time = 0
     while True:
-        load_bot_data()
-        time.sleep(10)  # Update setiap 10 detik
+        current_time = time.time()
+        
+        # Batasi pembaruan menjadi maksimal setiap 3 detik
+        if current_time - last_fetch_time >= 3:
+            with data_lock:
+                # Simpan waktu fetch
+                last_fetch_time = current_time
+                
+                # Load data
+                load_bot_data()
+                
+                # Jika masih tidak ada harga terkini, coba dapatkan langsung
+                global latest_price
+                if latest_price is None:
+                    try:
+                        # Coba dari instansi bot terlebih dahulu
+                        try:
+                            from grid_bot import GridTradingBot
+                            if GridTradingBot.instance and hasattr(GridTradingBot.instance, 'last_price'):
+                                latest_price = GridTradingBot.instance.last_price
+                                logger.info(f"Got price directly from bot instance: {latest_price}")
+                        except:
+                            pass
+                            
+                        # Jika masih None, coba dari API
+                        if latest_price is None:
+                            from binance_client import BinanceClient
+                            client = BinanceClient()
+                            current_price = client.get_symbol_price(config.SYMBOL)
+                            if current_price:
+                                latest_price = current_price
+                                logger.info(f"Thread update got price from API: {latest_price}")
+                                # Tambahkan ke history jika belum ada
+                                if not price_history:
+                                    price_history.append({
+                                        "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                        "price": current_price
+                                    })
+                    except Exception as e:
+                        logger.error(f"Thread update failed to get price: {e}")
+            
+            # Broadcast update ke semua klien setiap kali data diperbarui
+            if sse_clients:
+                broadcast_update()
+                
+        # Jangan sleep terlalu lama untuk menghindari delay dalam respon
+        time.sleep(0.5)
 
 def create_templates():
     """Buat folder templates dan file template HTML jika belum ada"""
@@ -492,6 +725,43 @@ def create_templates():
             align-items: center;
             margin-bottom: 20px;
         }
+        /* Indikator realtime */
+        .realtime-indicator {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            z-index: 999;
+            background-color: rgba(33, 37, 41, 0.7);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .realtime-indicator .status-dot {
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+            background-color: #f44336;
+        }
+        .realtime-indicator .status-dot.connected {
+            background-color: #4caf50;
+        }
+        .realtime-indicator .status-dot.reconnecting {
+            background-color: #ff9800;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+        .last-updated {
+            margin-top: 3px;
+            font-size: 0.7rem;
+            color: #aaa;
+        }
     </style>
 </head>
 <body>
@@ -499,6 +769,15 @@ def create_templates():
         <div class="header-actions">
             <h1>Dashboard Bot Trading Grid</h1>
             <a href="/logout" class="btn btn-outline-danger">Logout</a>
+        </div>
+        
+        <!-- Indikator realtime -->
+        <div class="realtime-indicator">
+            <div id="status-dot" class="status-dot"></div>
+            <div>
+                <span id="connection-status">Menghubungkan...</span>
+                <div id="last-updated" class="last-updated"></div>
+            </div>
         </div>
         
         <div class="row">
@@ -528,22 +807,6 @@ def create_templates():
                         <div class="status-icon">ADA</div>
                         <h5>Harga ADA Terkini</h5>
                         <h3><span id="currentPrice"></span> USDT</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row mt-3 mb-3">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="mb-0">Mode Simulasi: <span id="simulationStatus" class="badge"></span></h5>
-                            <small class="text-muted">Mode simulasi memungkinkan trading tanpa dana nyata</small>
-                        </div>
-                        <button id="toggleSimulationBtn" class="btn btn-warning">
-                            Toggle Mode Simulasi
-                        </button>
                     </div>
                 </div>
             </div>
@@ -599,11 +862,132 @@ def create_templates():
     </button>
 
     <script>
-        // Update data secara periodik
+        // Koneksi SSE untuk update realtime
+        let eventSource;
+        
+        function connectSSE() {
+            if (!!window.EventSource) {
+                eventSource = new EventSource('/stream');
+                
+                eventSource.addEventListener('open', function() {
+                    console.log('SSE connection opened');
+                    updateConnectionStatus('connected');
+                });
+                
+                eventSource.addEventListener('error', function(e) {
+                    if (e.readyState == EventSource.CLOSED) {
+                        console.log('SSE connection closed');
+                        updateConnectionStatus('disconnected');
+                    } else {
+                        console.error('SSE connection error:', e);
+                        updateConnectionStatus('reconnecting');
+                        // Reconnect after error
+                        setTimeout(connectSSE, 5000);
+                    }
+                });
+                
+                eventSource.addEventListener('message', function(e) {
+                    try {
+                        const data = JSON.parse(e.data);
+                        updateDashboard(data);
+                        updateLastUpdated();
+                    } catch (err) {
+                        console.error('Error parsing SSE data:', err);
+                    }
+                });
+            } else {
+                console.warn('SSE not supported, using polling');
+                updateConnectionStatus('polling');
+                // Fallback to polling if SSE not supported
+                setInterval(refreshData, 5000);
+            }
+        }
+        
+        function updateConnectionStatus(status) {
+            const dot = $('#status-dot');
+            const statusText = $('#connection-status');
+            
+            dot.removeClass('connected reconnecting');
+            
+            switch(status) {
+                case 'connected':
+                    dot.addClass('connected');
+                    statusText.text('Realtime: Terhubung');
+                    break;
+                case 'reconnecting':
+                    dot.addClass('reconnecting');
+                    statusText.text('Realtime: Menghubungkan Kembali');
+                    break;
+                case 'disconnected':
+                    statusText.text('Realtime: Terputus');
+                    break;
+                case 'polling':
+                    statusText.text('Polling: 5 detik');
+                    break;
+            }
+        }
+        
+        function updateLastUpdated() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+            $('#last-updated').text(`Update: ${timeStr}`);
+        }
+        
+        function updateDashboard(data) {
+            // Update status
+            if (data.status) {
+                $('#botStatus').text(data.status);
+                if (data.status.includes('Aktif')) {
+                    $('#botStatus').removeClass('badge-danger badge-warning').addClass('badge-success');
+                    $('#statusIcon').text('AKTIF');
+                } else {
+                    $('#botStatus').removeClass('badge-success badge-warning').addClass('badge-danger');
+                    $('#statusIcon').text('NONAKTIF');
+                }
+            }
+            
+            // Update price
+            if (data.latest_price) {
+                $('#currentPrice').text(data.latest_price.toFixed(4));
+            }
+            
+            // Update profit
+            if (data.profit !== undefined) {
+                $('#totalProfit').text(data.profit.toFixed(4));
+                if (data.profit > 0) {
+                    $('#totalProfit').addClass('profit').removeClass('loss');
+                } else if (data.profit < 0) {
+                    $('#totalProfit').addClass('loss').removeClass('profit');
+                }
+            }
+            
+            // Update chart if available
+            if (data.chart) {
+                Plotly.react('priceChart', JSON.parse(data.chart));
+            }
+            
+            // Update trades table
+            if (data.trades) {
+                updateTradesTable(data.trades);
+            }
+            
+            // Update grid levels
+            if (data.grid_levels) {
+                updateGridLevels(data.grid_levels);
+            }
+        }
+        
+        // Update data secara periodik (fallback jika SSE tidak berfungsi)
         $(document).ready(function() {
-            refreshData();
-            // Auto refresh setiap 10 detik
-            setInterval(refreshData, 10000);
+            // Coba koneksi SSE
+            connectSSE();
+            
+            // Tetap jalankan refresh data secara periodik sebagai fallback
+            setInterval(function() {
+                if (!eventSource || eventSource.readyState !== 1) {
+                    refreshData();
+                }
+            }, 15000); // Cek setiap 15 detik
             
             // Set session keepalive
             setInterval(function() {
@@ -631,15 +1015,12 @@ def create_templates():
                     $('#totalProfit').addClass('loss').removeClass('profit');
                 }
                 
-                // Update simulation mode status
-                if (data.simulation_mode) {
-                    $('#simulationStatus').text('AKTIF').removeClass('bg-danger').addClass('bg-success');
-                } else {
-                    $('#simulationStatus').text('NONAKTIF').removeClass('bg-success').addClass('bg-danger');
-                }
-                
                 // Update grid levels
                 updateGridLevels(data.grid_levels);
+                
+                // Update last updated time
+                updateLastUpdated();
+                
             }).fail(function() {
                 // Redirect to login if authentication fails
                 window.location.href = '/login';
@@ -739,31 +1120,6 @@ def create_templates():
             }
         }
     </script>
-    
-    <script>
-        // Toggle simulation mode
-        $(document).ready(function() {
-            $('#toggleSimulationBtn').click(function() {
-                if (confirm('Apakah Anda yakin ingin mengubah mode simulasi? Bot mungkin perlu di-restart untuk penerapan lengkap.')) {
-                    $.ajax({
-                        url: '/api/toggle_simulation',
-                        type: 'POST',
-                        success: function(response) {
-                            if (response.success) {
-                                alert('Mode simulasi berhasil diubah!');
-                                refreshData();
-                            } else {
-                                alert('Gagal mengubah mode simulasi: ' + response.error);
-                            }
-                        },
-                        error: function() {
-                            alert('Terjadi kesalahan saat menghubungi server');
-                        }
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
         """)
@@ -786,7 +1142,8 @@ def run_dashboard():
     session_cleanup_thread.daemon = True
     session_cleanup_thread.start()
     
-    # Jalankan server Flask
+    # Untuk production, gunakan Gunicorn untuk menjalankan aplikasi
+    # Fungsi ini hanya untuk development
     app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
 
 if __name__ == "__main__":

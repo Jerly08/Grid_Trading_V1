@@ -606,3 +606,597 @@
 2025-05-09 23:54:44,957 - binance_client - INFO - [SIMULATION] Cancelled order 81c27d14-4beb-4e86-b462-57bd38656929 for ADAUSDT
 2025-05-09 23:54:44,962 - grid_bot - INFO - Cancelled all open orders
 2025-05-09 23:54:44,963 - grid_bot - INFO - Grid trading bot stopped
+2025-05-10 00:04:39,530 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-10 00:04:39,530 - __main__ - INFO - Dashboard berhasil dimulai di http://localhost:5000
+2025-05-10 00:04:42,399 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 00:04:42,403 - binance_client - INFO - Account status: SPOT
+2025-05-10 00:04:43,159 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 00:04:43,168 - binance_client - INFO - Running in SIMULATION MODE - No real orders will be placed
+2025-05-10 00:04:43,168 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-10 00:04:43,176 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-10 00:04:43,176 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-10 00:04:43,176 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-10 00:04:43,176 - grid_bot - INFO - Order quantity: 20
+2025-05-10 00:04:43,178 - grid_bot - INFO - Setting up grid orders...
+2025-05-10 00:04:43,308 - grid_bot - INFO - Current ADAUSDT price: 0.7775
+2025-05-10 00:04:43,308 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7650
+2025-05-10 00:04:43,308 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7710
+2025-05-10 00:04:43,308 - binance_client - WARNING - [SIMULATION] Insufficient USDT balance for BUY order. Required: 15.540000000000001, Available: 1.2799999999999994
+2025-05-10 00:04:43,308 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7830
+2025-05-10 00:04:43,308 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7890
+2025-05-10 00:04:43,308 - binance_client - INFO - [SIMULATION] Order bfa68fe6-92af-4154-9be2-143eb3adfc0f filled at price 0.789
+2025-05-10 00:04:43,316 - binance_client - WARNING - [SIMULATION] Insufficient ADA balance for SELL order. Required: 20, Available: 0.0
+2025-05-10 00:04:43,316 - grid_bot - INFO - Grid setup complete. 2 buy orders and 2 sell orders placed.
+2025-05-10 00:04:43,316 - grid_bot - INFO - Grid trading bot is running...
+2025-05-10 00:04:43,316 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-10 00:04:43,316 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-10 00:04:43,448 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7774 | Change: -0.01% | Time: 00:04:43
+2025-05-10 00:04:43,448 - grid_bot - INFO - Sell order at 0.789 was filled. Placing buy order at 0.783
+2025-05-10 00:04:43,448 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-10 00:04:43,450 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7830
+2025-05-10 00:04:43,450 - binance_client - INFO - [SIMULATION] Order 3f94eedd-ec62-4ea8-a46b-77203d23a460 filled at price 0.783
+2025-05-10 00:04:44,624 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.0.2:5000
+2025-05-10 00:04:44,630 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-10 00:04:45,751 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:04:45] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-10 00:04:45,768 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:04:45] "GET /login HTTP/1.1" 200 -
+2025-05-10 00:04:53,591 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7776 | Change: 0.03% | Time: 00:04:53
+2025-05-10 00:04:53,592 - grid_bot - INFO - Buy order at 0.783 was filled. Placing sell order at 0.789
+2025-05-10 00:04:53,593 - grid_bot - INFO - Potential profit if sell order fills: 0.1200 USDT
+2025-05-10 00:04:53,595 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7890
+2025-05-10 00:04:53,595 - binance_client - INFO - [SIMULATION] Order b0eaacab-03aa-4e75-94fa-516903da3a9d filled at price 0.789
+2025-05-10 00:04:53,595 - grid_bot - INFO - Sell order at 0.789 was filled. Placing buy order at 0.783
+2025-05-10 00:04:53,595 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-10 00:04:53,600 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7830
+2025-05-10 00:04:53,606 - binance_client - INFO - [SIMULATION] Order ae444c2f-be28-47df-adfd-f867a2488cde filled at price 0.783
+2025-05-10 00:04:54,521 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:04:54] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-05-10 00:04:54,532 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:04:54] "GET / HTTP/1.1" 200 -
+2025-05-10 00:04:54,823 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:04:54] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:04:55,000 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:04:55] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:04:55,715 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:04:55] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:05:03,739 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7778 | Change: 0.03% | Time: 00:05:03
+2025-05-10 00:05:03,739 - grid_bot - INFO - Buy order at 0.783 was filled. Placing sell order at 0.789
+2025-05-10 00:05:03,739 - grid_bot - INFO - Potential profit if sell order fills: 0.1200 USDT
+2025-05-10 00:05:03,739 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7890
+2025-05-10 00:05:03,739 - grid_bot - INFO - Sell order at 0.789 was filled. Placing buy order at 0.783
+2025-05-10 00:05:03,747 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-10 00:05:03,747 - binance_client - WARNING - [SIMULATION] Insufficient USDT balance for BUY order. Required: 15.66, Available: 1.5200000000000031
+2025-05-10 00:05:08,382 - dashboard - INFO - Simulation mode disabled by user via dashboard
+2025-05-10 00:05:08,382 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:08] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:05:08,382 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:08] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:08,415 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:08] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:05:08,420 - dashboard - INFO - Simulation mode setting saved to config file: False
+2025-05-10 00:05:08,427 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:08] "POST /api/toggle_simulation HTTP/1.1" 200 -
+2025-05-10 00:05:12,193 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:12] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:12,235 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:12] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:05:12,238 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:12] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:05:13,890 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7772 | Change: -0.08% | Time: 00:05:13
+2025-05-10 00:05:14,027 - grid_bot - INFO - Buy order at 0.765 was filled. Placing sell order at 0.771
+2025-05-10 00:05:14,034 - grid_bot - INFO - Potential profit if sell order fills: 0.1200 USDT
+2025-05-10 00:05:14,153 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:05:14,161 - binance_client - INFO - Consider using SIMULATION_MODE=True if you want to test without funds
+2025-05-10 00:05:14,162 - binance_client - INFO - Auto-switching to simulation mode due to insufficient balance
+2025-05-10 00:05:14,162 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7710
+2025-05-10 00:05:14,163 - binance_client - INFO - [SIMULATION] Order c9973071-0bf8-44b6-9db3-6c886bcf60a1 filled at price 0.771
+2025-05-10 00:05:14,163 - grid_bot - INFO - Buy order at 0.771 was filled. Placing sell order at 0.777
+2025-05-10 00:05:14,163 - grid_bot - INFO - Potential profit if sell order fills: 0.1200 USDT
+2025-05-10 00:05:14,163 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7770
+2025-05-10 00:05:14,163 - binance_client - INFO - [SIMULATION] Order b526b8fb-370d-4e36-9a0c-5f49072dde3f filled at price 0.777
+2025-05-10 00:05:14,163 - grid_bot - INFO - Sell order at 0.783 was filled. Placing buy order at 0.777
+2025-05-10 00:05:14,170 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-10 00:05:14,173 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7770
+2025-05-10 00:05:14,173 - binance_client - INFO - [SIMULATION] Order 4c0ef649-4f0f-4bde-a6e8-d960921dd025 filled at price 0.777
+2025-05-10 00:05:14,173 - grid_bot - INFO - Sell order at 0.771 was filled. Placing buy order at 0.765
+2025-05-10 00:05:14,173 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-10 00:05:14,177 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7650
+2025-05-10 00:05:14,178 - binance_client - INFO - [SIMULATION] Order 7e35e6be-079d-410a-8a76-a827b5bbca86 filled at price 0.765
+2025-05-10 00:05:14,181 - grid_bot - INFO - Sell order at 0.777 was filled. Placing buy order at 0.771
+2025-05-10 00:05:14,181 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-10 00:05:14,181 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7710
+2025-05-10 00:05:14,181 - binance_client - INFO - [SIMULATION] Order 7fda1d47-8972-4522-9aa9-60b2c7ca325e filled at price 0.771
+2025-05-10 00:05:14,708 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:14] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:15,050 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:15] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:05:15,054 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:15] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:05:24,366 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:24] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:05:24,395 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7769 | Change: -0.04% | Time: 00:05:24
+2025-05-10 00:05:24,397 - grid_bot - INFO - Buy order at 0.777 was filled. Placing sell order at 0.783
+2025-05-10 00:05:24,397 - grid_bot - INFO - Potential profit if sell order fills: 0.1200 USDT
+2025-05-10 00:05:24,400 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7830
+2025-05-10 00:05:24,402 - grid_bot - INFO - Buy order at 0.765 was filled. Placing sell order at 0.771
+2025-05-10 00:05:24,403 - grid_bot - INFO - Potential profit if sell order fills: 0.1200 USDT
+2025-05-10 00:05:24,403 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7710
+2025-05-10 00:05:24,403 - grid_bot - INFO - Buy order at 0.771 was filled. Placing sell order at 0.777
+2025-05-10 00:05:24,403 - grid_bot - INFO - Potential profit if sell order fills: 0.1200 USDT
+2025-05-10 00:05:24,403 - binance_client - INFO - [SIMULATION] Placed SELL order for 20 ADAUSDT at 0.7770
+2025-05-10 00:05:24,410 - binance_client - INFO - [SIMULATION] Order 645db3d3-1a6c-451e-b9fa-9b9c46483c42 filled at price 0.777
+2025-05-10 00:05:24,410 - grid_bot - INFO - Sell order at 0.783 was filled. Placing buy order at 0.777
+2025-05-10 00:05:24,410 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-10 00:05:24,413 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7770
+2025-05-10 00:05:24,413 - grid_bot - INFO - Sell order at 0.771 was filled. Placing buy order at 0.765
+2025-05-10 00:05:24,413 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-10 00:05:24,418 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7650
+2025-05-10 00:05:24,418 - grid_bot - INFO - Sell order at 0.777 was filled. Placing buy order at 0.771
+2025-05-10 00:05:24,418 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-10 00:05:24,418 - binance_client - WARNING - [SIMULATION] Insufficient USDT balance for BUY order. Required: 15.42, Available: 1.4000000000000021
+2025-05-10 00:05:24,418 - binance_client - INFO - [SIMULATION] Placed BUY order for 20 ADAUSDT at 0.7710
+2025-05-10 00:05:24,651 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:24] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:05:24,651 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:24] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:24,699 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:24] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:25,037 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:25] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:05:25,044 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:25] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:05:34,545 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7769 | Change: 0.00% | Time: 00:05:34
+2025-05-10 00:05:35,835 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:35] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:35,837 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:35] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:05:35,861 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:35] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:05:44,672 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7768 | Change: -0.01% | Time: 00:05:44
+2025-05-10 00:05:45,845 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:45] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:45,867 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:45] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:05:45,877 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:45] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:05:54,948 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7774 | Change: 0.08% | Time: 00:05:54
+2025-05-10 00:05:55,836 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:55] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:05:55,856 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:55] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:05:55,856 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:05:55] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:06:05,016 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:05] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:06:05,032 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:05] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:06:05,042 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:05] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:06:05,089 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7781 | Change: 0.09% | Time: 00:06:05
+2025-05-10 00:06:15,374 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7787 | Change: 0.08% | Time: 00:06:15
+2025-05-10 00:06:15,832 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:15] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:06:15,851 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:15] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:06:15,853 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:15] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:06:25,533 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7786 | Change: -0.01% | Time: 00:06:25
+2025-05-10 00:06:25,825 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:25] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:06:25,856 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:25] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:06:25,856 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:25] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:06:35,689 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7788 | Change: 0.03% | Time: 00:06:35
+2025-05-10 00:06:35,836 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:35] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:06:35,836 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:35] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:06:35,860 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:35] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:06:45,812 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7787 | Change: -0.01% | Time: 00:06:45
+2025-05-10 00:06:45,823 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:45] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:06:45,825 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:45] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:06:45,838 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:45] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:06:55,846 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:55] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:06:55,846 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:55] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:06:55,860 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:06:55] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:06:55,926 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7784 | Change: -0.04% | Time: 00:06:55
+2025-05-10 00:07:05,828 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:07:05] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:07:05,841 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:07:05] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:07:05,844 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:07:05] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:07:06,291 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: 0.13% | Time: 00:07:06
+2025-05-10 00:07:16,434 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7791 | Change: -0.04% | Time: 00:07:16
+2025-05-10 00:07:26,562 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7789 | Change: -0.03% | Time: 00:07:26
+2025-05-10 00:07:36,752 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: 0.06% | Time: 00:07:36
+2025-05-10 00:07:46,925 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.78 | Change: 0.08% | Time: 00:07:46
+2025-05-10 00:07:57,070 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7799 | Change: -0.01% | Time: 00:07:57
+2025-05-10 00:07:59,838 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:07:59] "GET /api/status HTTP/1.1" 200 -
+2025-05-10 00:07:59,855 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:07:59] "GET /api/trades HTTP/1.1" 200 -
+2025-05-10 00:07:59,855 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:07:59] "GET /api/price_chart HTTP/1.1" 200 -
+2025-05-10 00:08:07,206 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7798 | Change: -0.01% | Time: 00:08:07
+2025-05-10 00:08:17,332 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7797 | Change: -0.01% | Time: 00:08:17
+2025-05-10 00:08:27,468 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: -0.04% | Time: 00:08:27
+2025-05-10 00:08:37,591 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7797 | Change: 0.04% | Time: 00:08:37
+2025-05-10 00:08:47,067 - grid_bot - INFO - Bot stopped by user
+2025-05-10 00:08:47,072 - binance_client - INFO - [SIMULATION] Cancelled order 6e0fa2c1-1f05-4b58-a070-8d19a7c1c327 for ADAUSDT
+2025-05-10 00:08:47,072 - binance_client - INFO - [SIMULATION] Cancelled order a33b0ca5-f295-4b25-bfac-2df657f6a7e5 for ADAUSDT
+2025-05-10 00:08:47,072 - binance_client - INFO - [SIMULATION] Cancelled order 25de0c79-924e-4f87-b662-e060053b3ed3 for ADAUSDT
+2025-05-10 00:08:47,072 - binance_client - INFO - [SIMULATION] Cancelled order 500be1da-0c02-44b5-9c87-9b6b99f3b788 for ADAUSDT
+2025-05-10 00:08:47,075 - binance_client - INFO - [SIMULATION] Cancelled order f744aff9-827d-46c2-aafd-14eecdf5fa77 for ADAUSDT
+2025-05-10 00:08:47,075 - grid_bot - INFO - Cancelled all open orders
+2025-05-10 00:08:47,075 - grid_bot - INFO - Grid trading bot stopped
+2025-05-10 00:08:51,429 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-10 00:08:51,429 - __main__ - INFO - Dashboard berhasil dimulai di http://localhost:5000
+2025-05-10 00:08:51,439 - __main__ - INFO - Username: admin
+2025-05-10 00:08:51,439 - __main__ - INFO - Password: Grid@Trading123
+2025-05-10 00:08:54,733 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 00:08:54,733 - binance_client - INFO - Account status: SPOT
+2025-05-10 00:08:55,740 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 00:08:55,760 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-10 00:08:55,764 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-10 00:08:55,765 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-10 00:08:55,765 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-10 00:08:55,765 - grid_bot - INFO - Order quantity: 20
+2025-05-10 00:08:55,765 - grid_bot - INFO - Setting up grid orders...
+2025-05-10 00:08:55,888 - grid_bot - INFO - Current ADAUSDT price: 0.7811
+2025-05-10 00:08:56,130 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:08:56,130 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:08:56,259 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:08:56,259 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:08:56,435 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:08:56,435 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:08:56,551 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.0.2:5000
+2025-05-10 00:08:56,551 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-10 00:08:56,558 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:08:56,558 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:08:56,735 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:08:56,735 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:08:56,867 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:08:56,867 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:08:56,867 - grid_bot - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-10 00:08:56,867 - grid_bot - INFO - Grid trading bot is running...
+2025-05-10 00:08:56,867 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-10 00:08:56,867 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-10 00:08:56,998 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7811 | Change: 0.00% | Time: 00:08:56
+2025-05-10 00:08:59,836 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:08:59] "[32mGET /api/status HTTP/1.1[0m" 302 -
+2025-05-10 00:08:59,836 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:08:59] "[32mGET /api/trades HTTP/1.1[0m" 302 -
+2025-05-10 00:08:59,836 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:08:59] "[32mGET /api/price_chart HTTP/1.1[0m" 302 -
+2025-05-10 00:09:00,084 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:09:00] "GET /login HTTP/1.1" 200 -
+2025-05-10 00:09:00,150 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:09:00] "GET /login HTTP/1.1" 200 -
+2025-05-10 00:09:00,406 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:09:00] "GET /login HTTP/1.1" 200 -
+2025-05-10 00:09:00,455 - werkzeug - INFO - 127.0.0.1 - - [10/May/2025 00:09:00] "GET /login HTTP/1.1" 200 -
+2025-05-10 00:09:07,599 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7805 | Change: -0.08% | Time: 00:09:07
+2025-05-10 00:09:18,209 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: -0.03% | Time: 00:09:18
+2025-05-10 00:09:28,464 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7802 | Change: -0.01% | Time: 00:09:28
+2025-05-10 00:09:38,714 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7798 | Change: -0.05% | Time: 00:09:38
+2025-05-10 00:09:48,973 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: 0.04% | Time: 00:09:48
+2025-05-10 00:09:59,220 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7804 | Change: 0.04% | Time: 00:09:59
+2025-05-10 00:10:09,491 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7806 | Change: 0.03% | Time: 00:10:09
+2025-05-10 00:10:19,775 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7805 | Change: -0.01% | Time: 00:10:19
+2025-05-10 00:10:30,105 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.78 | Change: -0.06% | Time: 00:10:30
+2025-05-10 00:10:40,411 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7804 | Change: 0.05% | Time: 00:10:40
+2025-05-10 00:10:50,724 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7806 | Change: 0.03% | Time: 00:10:50
+2025-05-10 00:11:01,009 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: -0.04% | Time: 00:11:01
+2025-05-10 00:11:11,322 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7797 | Change: -0.08% | Time: 00:11:11
+2025-05-10 00:11:21,602 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.78 | Change: 0.04% | Time: 00:11:21
+2025-05-10 00:11:31,876 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7799 | Change: -0.01% | Time: 00:11:31
+2025-05-10 00:11:42,234 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7804 | Change: 0.06% | Time: 00:11:42
+2025-05-10 00:11:52,540 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7804 | Change: 0.00% | Time: 00:11:52
+2025-05-10 00:12:02,805 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7809 | Change: 0.06% | Time: 00:12:02
+2025-05-10 00:12:13,058 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: -0.08% | Time: 00:12:13
+2025-05-10 00:12:23,330 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: 0.00% | Time: 00:12:23
+2025-05-10 00:12:33,597 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7802 | Change: -0.01% | Time: 00:12:33
+2025-05-10 00:12:43,842 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: 0.01% | Time: 00:12:43
+2025-05-10 00:12:54,137 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: 0.00% | Time: 00:12:54
+2025-05-10 00:13:04,509 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: -0.03% | Time: 00:13:04
+2025-05-10 00:13:14,945 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: -0.09% | Time: 00:13:14
+2025-05-10 00:13:16,173 - grid_bot - INFO - Bot stopped by user
+2025-05-10 00:13:16,376 - grid_bot - INFO - Grid trading bot stopped
+2025-05-10 00:13:21,935 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-10 00:13:21,938 - __main__ - INFO - Menggunakan Gunicorn production server
+2025-05-10 00:13:21,938 - __main__ - INFO - Menjalankan dashboard dengan command: python -m gunicorn.app.wsgiapp --bind 0.0.0.0:5000 --workers 4 --timeout 120 wsgi:app
+2025-05-10 00:13:21,941 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-10 00:13:21,941 - __main__ - INFO - Username: admin
+2025-05-10 00:13:21,941 - __main__ - INFO - Password: Grid@Trading123
+2025-05-10 00:13:25,138 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 00:13:25,138 - binance_client - INFO - Account status: SPOT
+2025-05-10 00:13:26,005 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 00:13:26,022 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-10 00:13:26,022 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-10 00:13:26,022 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-10 00:13:26,022 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-10 00:13:26,022 - grid_bot - INFO - Order quantity: 20
+2025-05-10 00:13:26,022 - grid_bot - INFO - Setting up grid orders...
+2025-05-10 00:13:26,159 - grid_bot - INFO - Current ADAUSDT price: 0.7797
+2025-05-10 00:13:26,536 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:13:26,536 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:13:26,671 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:13:26,672 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:13:26,868 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:13:26,870 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:13:26,997 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:13:26,997 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:13:27,193 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:13:27,193 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:13:27,345 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:13:27,345 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:13:27,346 - grid_bot - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-10 00:13:27,346 - grid_bot - INFO - Grid trading bot is running...
+2025-05-10 00:13:27,346 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-10 00:13:27,347 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-10 00:13:27,474 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7798 | Change: 0.01% | Time: 00:13:27
+2025-05-10 00:13:37,751 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7796 | Change: -0.03% | Time: 00:13:37
+2025-05-10 00:13:48,071 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7797 | Change: 0.01% | Time: 00:13:48
+2025-05-10 00:13:58,430 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.78 | Change: 0.04% | Time: 00:13:58
+2025-05-10 00:14:08,687 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7801 | Change: 0.01% | Time: 00:14:08
+2025-05-10 00:14:18,960 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7798 | Change: -0.04% | Time: 00:14:18
+2025-05-10 00:14:29,212 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: -0.05% | Time: 00:14:29
+2025-05-10 00:14:39,527 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7793 | Change: -0.01% | Time: 00:14:39
+2025-05-10 00:14:49,821 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: 0.01% | Time: 00:14:49
+2025-05-10 00:15:00,100 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7794 | Change: 0.00% | Time: 00:15:00
+2025-05-10 00:15:25,925 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-10 00:15:25,961 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-10 00:15:25,965 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-10 00:15:25,965 - __main__ - INFO - Username: admin
+2025-05-10 00:15:25,965 - __main__ - INFO - Password: Grid@Trading123
+2025-05-10 00:15:29,114 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 00:15:29,119 - binance_client - INFO - Account status: SPOT
+2025-05-10 00:15:30,590 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 00:15:30,598 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-10 00:15:30,598 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-10 00:15:30,602 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-10 00:15:30,602 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-10 00:15:30,602 - grid_bot - INFO - Order quantity: 20
+2025-05-10 00:15:30,602 - grid_bot - INFO - Setting up grid orders...
+2025-05-10 00:15:30,876 - grid_bot - INFO - Current ADAUSDT price: 0.7801
+2025-05-10 00:15:31,435 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:15:31,436 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:15:31,620 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:15:31,620 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:15:31,749 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:15:31,749 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:15:31,962 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:15:31,963 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:15:32,103 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:15:32,103 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:15:32,235 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:15:32,235 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:15:32,235 - grid_bot - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-10 00:15:32,235 - grid_bot - INFO - Grid trading bot is running...
+2025-05-10 00:15:32,235 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-10 00:15:32,242 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-10 00:15:32,374 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7803 | Change: 0.03% | Time: 00:15:32
+2025-05-10 00:15:42,686 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7805 | Change: 0.03% | Time: 00:15:42
+2025-05-10 00:15:53,019 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7809 | Change: 0.05% | Time: 00:15:53
+2025-05-10 00:16:03,333 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7808 | Change: -0.01% | Time: 00:16:03
+2025-05-10 00:16:13,590 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7815 | Change: 0.09% | Time: 00:16:13
+2025-05-10 00:16:23,851 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7818 | Change: 0.04% | Time: 00:16:23
+2025-05-10 00:16:34,114 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7816 | Change: -0.03% | Time: 00:16:34
+2025-05-10 00:16:44,384 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7818 | Change: 0.03% | Time: 00:16:44
+2025-05-10 00:16:54,667 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7818 | Change: 0.00% | Time: 00:16:54
+2025-05-10 00:17:04,941 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7827 | Change: 0.12% | Time: 00:17:04
+2025-05-10 00:17:15,210 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.783 | Change: 0.04% | Time: 00:17:15
+2025-05-10 00:17:25,474 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7831 | Change: 0.01% | Time: 00:17:25
+2025-05-10 00:17:35,720 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7833 | Change: 0.03% | Time: 00:17:35
+2025-05-10 00:17:45,993 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7828 | Change: -0.06% | Time: 00:17:45
+2025-05-10 00:17:56,259 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7834 | Change: 0.08% | Time: 00:17:56
+2025-05-10 00:18:06,501 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7834 | Change: 0.00% | Time: 00:18:06
+2025-05-10 00:18:16,761 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7839 | Change: 0.06% | Time: 00:18:16
+2025-05-10 00:18:27,136 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7837 | Change: -0.03% | Time: 00:18:27
+2025-05-10 00:18:27,516 - grid_bot - INFO - Bot stopped by user
+2025-05-10 00:18:28,552 - grid_bot - INFO - Grid trading bot stopped
+2025-05-10 00:18:32,323 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-10 00:18:32,340 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-10 00:18:32,340 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-10 00:18:32,340 - __main__ - INFO - Username: admin
+2025-05-10 00:18:32,340 - __main__ - INFO - Password: Grid@Trading123
+2025-05-10 00:18:35,145 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 00:18:35,147 - binance_client - INFO - Account status: SPOT
+2025-05-10 00:18:35,962 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 00:18:35,977 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-10 00:18:35,977 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-10 00:18:35,977 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-10 00:18:35,977 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-10 00:18:35,977 - grid_bot - INFO - Order quantity: 20
+2025-05-10 00:18:35,977 - grid_bot - INFO - Setting up grid orders...
+2025-05-10 00:18:36,118 - grid_bot - INFO - Current ADAUSDT price: 0.7836
+2025-05-10 00:18:36,419 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:18:36,419 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:18:36,556 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:18:36,556 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:18:36,760 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:18:36,760 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:18:36,888 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:18:36,888 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:18:37,106 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:18:37,106 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:18:37,312 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:18:37,312 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:18:37,312 - grid_bot - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-10 00:18:37,312 - grid_bot - INFO - Grid trading bot is running...
+2025-05-10 00:18:37,315 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-10 00:18:37,315 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-10 00:18:37,637 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7834 | Change: -0.03% | Time: 00:18:37
+2025-05-10 00:18:45,944 - dashboard - WARNING - Using fallback price: 0.78
+2025-05-10 00:18:45,945 - dashboard - INFO - Created dummy price history for chart
+2025-05-10 00:18:47,918 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7835 | Change: 0.01% | Time: 00:18:47
+2025-05-10 00:18:58,255 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7838 | Change: 0.04% | Time: 00:18:58
+2025-05-10 00:19:08,628 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7837 | Change: -0.01% | Time: 00:19:08
+2025-05-10 00:19:19,253 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7837 | Change: 0.00% | Time: 00:19:19
+2025-05-10 00:19:30,181 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7837 | Change: 0.00% | Time: 00:19:30
+2025-05-10 00:19:40,451 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7832 | Change: -0.06% | Time: 00:19:40
+2025-05-10 00:19:51,004 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7835 | Change: 0.04% | Time: 00:19:51
+2025-05-10 00:20:01,583 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7843 | Change: 0.10% | Time: 00:20:01
+2025-05-10 00:20:12,048 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7844 | Change: 0.01% | Time: 00:20:12
+2025-05-10 00:20:22,426 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7845 | Change: 0.01% | Time: 00:20:22
+2025-05-10 00:20:32,876 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7846 | Change: 0.01% | Time: 00:20:32
+2025-05-10 00:20:43,347 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7844 | Change: -0.03% | Time: 00:20:43
+2025-05-10 00:20:53,882 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7845 | Change: 0.01% | Time: 00:20:53
+2025-05-10 00:20:59,732 - grid_bot - INFO - Bot stopped by user
+2025-05-10 00:20:59,870 - grid_bot - INFO - Grid trading bot stopped
+2025-05-10 00:21:04,920 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-10 00:21:04,932 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-10 00:21:04,932 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-10 00:21:04,932 - __main__ - INFO - Username: admin
+2025-05-10 00:21:04,936 - __main__ - INFO - Password: Grid@Trading123
+2025-05-10 00:21:08,070 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 00:21:08,070 - binance_client - INFO - Account status: SPOT
+2025-05-10 00:21:09,082 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 00:21:09,089 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-10 00:21:09,102 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-10 00:21:09,102 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-10 00:21:09,102 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-10 00:21:09,103 - grid_bot - INFO - Order quantity: 20
+2025-05-10 00:21:09,103 - grid_bot - INFO - Setting up grid orders...
+2025-05-10 00:21:09,340 - grid_bot - INFO - Current ADAUSDT price: 0.7846
+2025-05-10 00:21:09,736 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:21:09,736 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:21:09,942 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:21:09,942 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:21:10,100 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:21:10,100 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:21:10,367 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:21:10,367 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:21:10,541 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:21:10,548 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:21:10,672 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:21:10,672 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:21:10,672 - grid_bot - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-10 00:21:10,672 - grid_bot - INFO - Grid trading bot is running...
+2025-05-10 00:21:10,679 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-10 00:21:10,679 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-10 00:21:10,805 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7847 | Change: 0.01% | Time: 00:21:10
+2025-05-10 00:21:19,518 - dashboard - WARNING - Using fallback price: 0.78
+2025-05-10 00:21:19,526 - dashboard - INFO - Created dummy price history for chart
+2025-05-10 00:21:21,271 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7845 | Change: -0.03% | Time: 00:21:21
+2025-05-10 00:21:31,679 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7842 | Change: -0.04% | Time: 00:21:31
+2025-05-10 00:21:41,947 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7842 | Change: 0.00% | Time: 00:21:41
+2025-05-10 00:21:52,217 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7848 | Change: 0.08% | Time: 00:21:52
+2025-05-10 00:22:02,671 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7845 | Change: -0.04% | Time: 00:22:02
+2025-05-10 00:22:13,508 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.785 | Change: 0.06% | Time: 00:22:13
+2025-05-10 00:22:23,778 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7851 | Change: 0.01% | Time: 00:22:23
+2025-05-10 00:22:34,045 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7838 | Change: -0.17% | Time: 00:22:34
+2025-05-10 00:22:44,526 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7837 | Change: -0.01% | Time: 00:22:44
+2025-05-10 00:22:55,161 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7834 | Change: -0.04% | Time: 00:22:55
+2025-05-10 00:23:05,557 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7832 | Change: -0.03% | Time: 00:23:05
+2025-05-10 00:23:16,026 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7843 | Change: 0.14% | Time: 00:23:16
+2025-05-10 00:23:26,604 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7854 | Change: 0.14% | Time: 00:23:26
+2025-05-10 00:23:37,053 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7842 | Change: -0.15% | Time: 00:23:37
+2025-05-10 00:23:47,432 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7844 | Change: 0.03% | Time: 00:23:47
+2025-05-10 00:23:57,693 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7841 | Change: -0.04% | Time: 00:23:57
+2025-05-10 00:24:07,945 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7838 | Change: -0.04% | Time: 00:24:07
+2025-05-10 00:24:18,205 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7839 | Change: 0.01% | Time: 00:24:18
+2025-05-10 00:24:20,489 - grid_bot - INFO - Bot stopped by user
+2025-05-10 00:24:20,621 - grid_bot - INFO - Grid trading bot stopped
+2025-05-10 00:24:25,347 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-10 00:24:25,363 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-10 00:24:25,366 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-10 00:24:25,366 - __main__ - INFO - Username: admin
+2025-05-10 00:24:25,369 - __main__ - INFO - Password: Grid@Trading123
+2025-05-10 00:24:28,279 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 00:24:28,279 - binance_client - INFO - Account status: SPOT
+2025-05-10 00:24:29,148 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 00:24:29,166 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-10 00:24:29,166 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-10 00:24:29,166 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-10 00:24:29,166 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-10 00:24:29,168 - grid_bot - INFO - Order quantity: 20
+2025-05-10 00:24:29,168 - grid_bot - INFO - Grid trading bot is running...
+2025-05-10 00:24:29,169 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-10 00:24:29,169 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-10 00:24:29,169 - grid_bot - INFO - Setting up grid orders...
+2025-05-10 00:24:29,306 - grid_bot - INFO - Current ADAUSDT price: 0.7846
+2025-05-10 00:24:29,612 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:24:29,612 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:24:29,800 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:24:29,808 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:24:29,978 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:24:29,995 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:24:30,124 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:24:30,124 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:24:30,331 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:24:30,331 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:24:30,549 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:24:30,549 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:24:30,549 - grid_bot - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-10 00:24:30,822 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7848 | Change: 0.03% | Time: 00:24:30
+2025-05-10 00:24:41,113 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7845 | Change: -0.04% | Time: 00:24:41
+2025-05-10 00:24:50,238 - dashboard - INFO - Loaded latest price from log: 0.7845
+2025-05-10 00:24:51,554 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7847 | Change: 0.03% | Time: 00:24:51
+2025-05-10 00:25:00,585 - dashboard - INFO - Loaded latest price from log: 0.7847
+2025-05-10 00:25:02,298 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7847 | Change: 0.00% | Time: 00:25:02
+2025-05-10 00:25:10,871 - dashboard - INFO - Loaded latest price from log: 0.7847
+2025-05-10 00:25:12,620 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7852 | Change: 0.06% | Time: 00:25:12
+2025-05-10 00:25:19,559 - dashboard - INFO - Loaded latest price from log: 0.7852
+2025-05-10 00:25:20,321 - dashboard - INFO - Loaded latest price from log: 0.7852
+2025-05-10 00:25:20,330 - dashboard - INFO - Loaded latest price from log: 0.7852
+2025-05-10 00:25:20,633 - dashboard - INFO - Loaded latest price from log: 0.7852
+2025-05-10 00:25:20,962 - dashboard - INFO - Loaded latest price from log: 0.7852
+2025-05-10 00:25:23,142 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7845 | Change: -0.09% | Time: 00:25:23
+2025-05-10 00:25:30,866 - dashboard - INFO - Loaded latest price from log: 0.7845
+2025-05-10 00:25:33,610 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7843 | Change: -0.03% | Time: 00:25:33
+2025-05-10 00:25:40,531 - dashboard - INFO - Loaded latest price from log: 0.7843
+2025-05-10 00:25:43,939 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.784 | Change: -0.04% | Time: 00:25:43
+2025-05-10 00:25:50,321 - dashboard - INFO - Loaded latest price from log: 0.784
+2025-05-10 00:25:54,626 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7842 | Change: 0.03% | Time: 00:25:54
+2025-05-10 00:26:00,252 - dashboard - INFO - Loaded latest price from log: 0.7842
+2025-05-10 00:26:05,508 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7842 | Change: 0.00% | Time: 00:26:05
+2025-05-10 00:26:10,562 - dashboard - INFO - Loaded latest price from log: 0.7842
+2025-05-10 00:26:15,996 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7836 | Change: -0.08% | Time: 00:26:15
+2025-05-10 00:26:20,539 - dashboard - INFO - Loaded latest price from log: 0.7836
+2025-05-10 00:26:26,568 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7833 | Change: -0.04% | Time: 00:26:26
+2025-05-10 00:26:30,570 - dashboard - INFO - Loaded latest price from log: 0.7833
+2025-05-10 00:26:37,590 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7837 | Change: 0.05% | Time: 00:26:37
+2025-05-10 00:26:40,561 - dashboard - INFO - Loaded latest price from log: 0.7837
+2025-05-10 00:26:47,993 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7838 | Change: 0.01% | Time: 00:26:47
+2025-05-10 00:26:50,870 - dashboard - INFO - Loaded latest price from log: 0.7838
+2025-05-10 00:26:58,372 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7836 | Change: -0.03% | Time: 00:26:58
+2025-05-10 00:27:00,517 - dashboard - INFO - Loaded latest price from log: 0.7836
+2025-05-10 00:27:08,809 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7838 | Change: 0.03% | Time: 00:27:08
+2025-05-10 00:27:10,524 - dashboard - INFO - Loaded latest price from log: 0.7838
+2025-05-10 00:27:19,271 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7833 | Change: -0.06% | Time: 00:27:19
+2025-05-10 00:27:20,546 - dashboard - INFO - Loaded latest price from log: 0.7833
+2025-05-10 00:27:29,639 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7832 | Change: -0.01% | Time: 00:27:29
+2025-05-10 00:27:30,854 - dashboard - INFO - Loaded latest price from log: 0.7832
+2025-05-10 00:27:39,966 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7824 | Change: -0.10% | Time: 00:27:39
+2025-05-10 00:27:40,561 - dashboard - INFO - Loaded latest price from log: 0.7824
+2025-05-10 00:27:50,334 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7826 | Change: 0.03% | Time: 00:27:50
+2025-05-10 00:27:50,574 - dashboard - INFO - Loaded latest price from log: 0.7826
+2025-05-10 00:27:50,709 - dashboard - INFO - Loaded latest price from log: 0.7826
+2025-05-10 00:27:53,548 - grid_bot - INFO - Bot stopped by user
+2025-05-10 00:27:53,548 - grid_bot - INFO - Grid trading bot stopped
+2025-05-10 00:27:57,545 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-10 00:27:57,554 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-10 00:27:57,562 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-10 00:27:57,562 - __main__ - INFO - Username: admin
+2025-05-10 00:27:57,562 - __main__ - INFO - Password: Grid@Trading123
+2025-05-10 00:28:00,673 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 00:28:00,673 - binance_client - INFO - Account status: SPOT
+2025-05-10 00:28:01,691 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 00:28:01,707 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-10 00:28:01,707 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-10 00:28:01,707 - grid_bot - INFO - Price range: 0.765 - 0.795
+2025-05-10 00:28:01,707 - grid_bot - INFO - Grid number: 5, Grid size: 0.006000000000000005
+2025-05-10 00:28:01,707 - grid_bot - INFO - Order quantity: 20
+2025-05-10 00:28:01,707 - grid_bot - INFO - Grid trading bot is running...
+2025-05-10 00:28:01,707 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-10 00:28:01,707 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-10 00:28:01,707 - grid_bot - INFO - Setting up grid orders...
+2025-05-10 00:28:01,884 - grid_bot - INFO - Current ADAUSDT price: 0.7829
+2025-05-10 00:28:02,152 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:28:02,152 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:28:02,289 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:28:02,293 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:28:02,464 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:28:02,464 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:28:02,625 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:28:02,626 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:28:02,814 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:28:02,822 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:28:03,139 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 00:28:03,143 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 00:28:03,143 - grid_bot - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-10 00:28:03,309 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.783 | Change: 0.01% | Time: 00:28:03
+2025-05-10 00:28:13,658 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7831 | Change: 0.01% | Time: 00:28:13
+2025-05-10 00:28:18,369 - dashboard - INFO - Loaded latest price from log: 0.7831
+2025-05-10 00:28:23,947 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7831 | Change: 0.00% | Time: 00:28:23
+2025-05-10 00:28:28,871 - dashboard - INFO - Loaded latest price from log: 0.7831
+2025-05-10 00:28:34,641 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7833 | Change: 0.03% | Time: 00:28:34
+2025-05-10 00:28:38,865 - dashboard - INFO - Loaded latest price from log: 0.7833
+2025-05-10 00:28:45,065 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7831 | Change: -0.03% | Time: 00:28:45
+2025-05-10 00:28:48,841 - dashboard - INFO - Loaded latest price from log: 0.7831
+2025-05-10 00:28:55,520 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7833 | Change: 0.03% | Time: 00:28:55
+2025-05-10 00:28:58,542 - dashboard - INFO - Loaded latest price from log: 0.7833
+2025-05-10 00:29:06,263 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7836 | Change: 0.04% | Time: 00:29:06
+2025-05-10 00:29:08,855 - dashboard - INFO - Loaded latest price from log: 0.7836
+2025-05-10 00:29:16,750 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7843 | Change: 0.09% | Time: 00:29:16
+2025-05-10 00:29:18,708 - dashboard - INFO - Loaded latest price from log: 0.7843
+2025-05-10 00:29:27,135 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7839 | Change: -0.05% | Time: 00:29:27
+2025-05-10 00:29:28,875 - dashboard - INFO - Loaded latest price from log: 0.7839
+2025-05-10 00:29:37,848 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7841 | Change: 0.03% | Time: 00:29:37
+2025-05-10 00:29:38,859 - dashboard - INFO - Loaded latest price from log: 0.7841
+2025-05-10 00:29:48,310 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.784 | Change: -0.01% | Time: 00:29:48
+2025-05-10 00:29:48,526 - dashboard - INFO - Loaded latest price from log: 0.784
+2025-05-10 00:29:58,836 - dashboard - INFO - Loaded latest price from log: 0.784
+2025-05-10 00:29:59,269 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7845 | Change: 0.06% | Time: 00:29:59
+2025-05-10 00:30:08,854 - dashboard - INFO - Loaded latest price from log: 0.7845
+2025-05-10 00:30:09,855 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7849 | Change: 0.05% | Time: 00:30:09
+2025-05-10 00:30:18,843 - dashboard - INFO - Loaded latest price from log: 0.7849
+2025-05-10 00:30:20,142 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7851 | Change: 0.03% | Time: 00:30:20
+2025-05-10 00:30:30,458 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7848 | Change: -0.04% | Time: 00:30:30
+2025-05-10 00:30:40,704 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7843 | Change: -0.06% | Time: 00:30:40
+2025-05-10 00:30:50,965 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7841 | Change: -0.03% | Time: 00:30:50
+2025-05-10 00:30:59,850 - dashboard - INFO - Loaded latest price from log: 0.7841
+2025-05-10 00:31:01,244 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7839 | Change: -0.03% | Time: 00:31:01
+2025-05-10 00:31:11,694 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7835 | Change: -0.05% | Time: 00:31:11
+2025-05-10 00:31:21,996 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7836 | Change: 0.01% | Time: 00:31:21
+2025-05-10 00:31:32,303 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7842 | Change: 0.08% | Time: 00:31:32
+2025-05-10 00:31:42,861 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7843 | Change: 0.01% | Time: 00:31:42
+2025-05-10 00:31:53,226 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7846 | Change: 0.04% | Time: 00:31:53
+2025-05-10 00:31:59,869 - dashboard - INFO - Loaded latest price from log: 0.7846
+2025-05-10 00:32:03,544 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7844 | Change: -0.03% | Time: 00:32:03
+2025-05-10 00:32:13,792 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7843 | Change: -0.01% | Time: 00:32:13
