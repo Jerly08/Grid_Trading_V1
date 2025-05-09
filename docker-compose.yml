@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  grid-trading-bot:
+    build: .
+    container_name: binance-grid-bot
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./grid_state:/app/grid_state
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    environment:
+      - BINANCE_TESTNET=False  # Set ke True untuk mode testing
+      # Tambahkan environment variables lain jika diperlukan 

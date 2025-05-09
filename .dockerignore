@@ -1,0 +1,33 @@
+# Git files
+.git/
+.gitignore
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Cache and logs
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+bot.log
+*.log
+
+# Environment files with sensitive data
+.env
+
+# State files
+grid_state_*.json
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db 
