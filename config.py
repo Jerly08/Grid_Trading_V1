@@ -9,20 +9,20 @@ API_KEY = os.getenv('API_KEY')
 API_SECRET = os.getenv('API_SECRET')
 TESTNET = os.getenv('BINANCE_TESTNET', 'True').lower() in ('true', 'yes', '1')
 
-# Grid trading parameters (Optimized for ADA/USDT with 500.000 IDR budget)
+# Grid trading parameters (Optimized for ADA/USDT with 27 USDT budget)
 SYMBOL = 'ADAUSDT'  # Trading pair
-UPPER_PRICE = 0.795  # Upper price boundary for grid (~2% above current price)
-LOWER_PRICE = 0.765  # Lower price boundary for grid (~2% below current price)
-GRID_NUMBER = 5      # Focus on 5 level grid for limited capital
+UPPER_PRICE = 0.815  # Upper price boundary for grid
+LOWER_PRICE = 0.785  # Lower price boundary for grid
+GRID_NUMBER = 3      # Jumlah grid optimal untuk modal kecil
 GRID_SIZE = (UPPER_PRICE - LOWER_PRICE) / GRID_NUMBER  # Size of each grid
 
 # Order parameters
-QUANTITY = 20  # Quantity of crypto to buy/sell at each grid level
+QUANTITY = 13  # Ditingkatkan dari 8 menjadi 13 untuk memenuhi batas minimal 10 USDT per order
 ORDER_TYPE = 'LIMIT'  # Order type: LIMIT or MARKET
 
 # Risk management
-MAX_INVESTMENT = 32  # Maximum investment in USDT (≈ 500.000 IDR)
-STOP_LOSS_PERCENTAGE = 5  # Stop loss percentage 
+MAX_INVESTMENT = 27  # Maximum investment in USDT
+STOP_LOSS_PERCENTAGE = 5  # Stop loss percentage
 
 # Dashboard settings
 DASHBOARD_USERNAME = os.getenv('DASHBOARD_USERNAME', 'admin')

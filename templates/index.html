@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Bot Trading Grid</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -52,20 +50,35 @@
         .badge-danger {
             background-color: #f44336;
         }
-        .badge-warning {
-            background-color: #ff9800;
-        }
-        #priceChart {
-            width: 100%;
-            height: 400px;
-        }
-        .status-card {
+        .price-box {
+            font-size: 28px;
             text-align: center;
-            padding: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
-        .status-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .price-value {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .balance-box {
+            padding: 15px;
+            text-align: center;
+        }
+        .balance-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .grid-box {
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .grid-item {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 4px;
+            background-color: #252525;
+            text-align: center;
         }
         .refresh-btn {
             position: fixed;
@@ -79,83 +92,102 @@
             align-items: center;
             margin-bottom: 20px;
         }
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .status-active {
+            background-color: #4caf50;
+        }
+        .status-inactive {
+            background-color: #f44336;
+        }
+        .last-updated {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .nav-tabs {
+            border-bottom: 1px solid #333;
+        }
+        .nav-tabs .nav-link {
+            color: #aaa;
+            border: none;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-tabs .nav-link.active {
+            color: #fff;
+            background-color: transparent;
+            border-bottom: 2px solid #0d6efd;
+        }
+        .nav-tabs .nav-link:hover {
+            border-color: transparent;
+            color: #fff;
+        }
+        .tab-pane {
+            padding-top: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header-actions">
-            <h1>Dashboard Bot Trading Grid</h1>
-            <a href="/logout" class="btn btn-outline-danger">Logout</a>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card status-card">
-                    <div class="card-body">
-                        <div class="status-icon">
-                            <span id="statusIcon">BOT</span>
-                        </div>
-                        <h5>Status Bot</h5>
-                        <h3><span id="botStatus" class="badge"></span></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card status-card">
-                    <div class="card-body">
-                        <div class="status-icon">IDR</div>
-                        <h5>Total Profit</h5>
-                        <h3><span id="totalProfit"></span> USDT</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card status-card">
-                    <div class="card-body">
-                        <div class="status-icon">ADA</div>
-                        <h5>Harga ADA Terkini</h5>
-                        <h3><span id="currentPrice"></span> USDT</h3>
-                    </div>
-                </div>
+            <h2>Bot Trading Grid - Binance</h2>
+            <div>
+                <span class="status-dot" id="statusDot"></span>
+                <span id="botStatus">Memuat status...</span>
+                <a href="/logout" class="btn btn-sm btn-outline-danger ms-3">Logout</a>
             </div>
         </div>
         
-        <div class="card mt-4">
-            <div class="card-header">
-                Grafik Harga (Update Real-time)
-            </div>
-            <div class="card-body">
-                <div id="priceChart"></div>
-            </div>
+        <!-- Harga ADA -->
+        <div class="card price-box">
+            <div>ADA/USDT</div>
+            <div class="price-value" id="currentPrice">--</div>
+            <div class="last-updated" id="lastUpdated">--</div>
         </div>
         
+        <!-- Informasi Saldo -->
         <div class="card">
             <div class="card-header">
-                Riwayat Trading Terakhir
+                Saldo Akun Binance
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover" id="tradesTable">
-                        <thead>
-                            <tr>
-                                <th>Waktu</th>
-                                <th>Tipe</th>
-                                <th>Harga</th>
-                                <th>Jumlah</th>
-                                <th>Profit</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tradesBody">
-                            <!-- Data akan diisi melalui JavaScript -->
-                        </tbody>
-                    </table>
+            <div class="card-body balance-box">
+                <div class="balance-item">
+                    <span>USDT (Free):</span>
+                    <span id="usdtFree">--</span>
+                </div>
+                <div class="balance-item">
+                    <span>USDT (Locked):</span>
+                    <span id="usdtLocked">--</span>
+                </div>
+                <div class="balance-item">
+                    <span>ADA (Free):</span>
+                    <span id="adaFree">--</span>
+                </div>
+                <div class="balance-item">
+                    <span>ADA (Locked):</span>
+                    <span id="adaLocked">--</span>
+                </div>
+                <div class="balance-item">
+                    <span>Total (USDT):</span>
+                    <span id="totalUsdt">--</span>
+                </div>
+                <div class="balance-item">
+                    <span>Profit:</span>
+                    <span id="totalProfit">--</span>
                 </div>
             </div>
         </div>
         
+        <!-- Grid Levels -->
         <div class="card">
             <div class="card-header">
-                Level Grid
+                Data Grid
             </div>
             <div class="card-body">
                 <div class="row" id="gridLevels">
@@ -163,67 +195,204 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Order & Riwayat Transaksi Tabs -->
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="orderTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="active-orders-tab" data-bs-toggle="tab" data-bs-target="#active-orders" type="button" role="tab" aria-controls="active-orders" aria-selected="true">Order Spot Aktif</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="trade-history-tab" data-bs-toggle="tab" data-bs-target="#trade-history" type="button" role="tab" aria-controls="trade-history" aria-selected="false">Riwayat Transaksi</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="orderTabsContent">
+                    <!-- Tab Order Aktif -->
+                    <div class="tab-pane fade show active" id="active-orders" role="tabpanel" aria-labelledby="active-orders-tab">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="ordersTable">
+                                <thead>
+                                    <tr>
+                                        <th>Side</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersBody">
+                                    <!-- Data akan diisi melalui JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab Riwayat Transaksi -->
+                    <div class="tab-pane fade" id="trade-history" role="tabpanel" aria-labelledby="trade-history-tab">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="tradesTable">
+                                <thead>
+                                    <tr>
+                                        <th>Waktu</th>
+                                        <th>Tipe</th>
+                                        <th>Harga</th>
+                                        <th>Jumlah</th>
+                                        <th>Profit</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tradesBody">
+                                    <!-- Data akan diisi melalui JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <button class="btn btn-primary refresh-btn" onclick="refreshData()">
-        Refresh Data
+        Refresh
     </button>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Update data secara periodik
-        $(document).ready(function() {
-            refreshData();
-            // Auto refresh setiap 10 detik
-            setInterval(refreshData, 10000);
-            
-            // Set session keepalive
-            setInterval(function() {
-                $.get('/api/status');
-            }, 300000); // 5 minutes
-        });
-        
         function refreshData() {
-            // Update status bot
+            // Update timestamp
+            updateLastUpdated();
+            
+            // Get current status, price, and balance
             $.getJSON('/api/status', function(data) {
-                $('#botStatus').text(data.status);
-                if (data.status.includes('Aktif')) {
-                    $('#botStatus').removeClass('badge-danger badge-warning').addClass('badge-success');
-                    $('#statusIcon').text('AKTIF');
-                } else {
-                    $('#botStatus').removeClass('badge-success badge-warning').addClass('badge-danger');
-                    $('#statusIcon').text('NONAKTIF');
+                // Status bot
+                if (data.status) {
+                    $('#botStatus').text(data.status);
+                    if (data.status.includes('Aktif')) {
+                        $('#statusDot').addClass('status-active').removeClass('status-inactive');
+                    } else {
+                        $('#statusDot').addClass('status-inactive').removeClass('status-active');
+                    }
                 }
                 
-                $('#currentPrice').text(data.latest_price ? data.latest_price.toFixed(4) : 'N/A');
-                $('#totalProfit').text(data.profit ? data.profit.toFixed(4) : '0.0000');
-                if (data.profit > 0) {
-                    $('#totalProfit').addClass('profit').removeClass('loss');
-                } else if (data.profit < 0) {
-                    $('#totalProfit').addClass('loss').removeClass('profit');
+                // Price
+                if (data.latest_price) {
+                    $('#currentPrice').text(data.latest_price.toFixed(4));
                 }
                 
-                // Update grid levels
+                // Profit
+                if (data.profit !== undefined) {
+                    $('#totalProfit').text(data.profit.toFixed(4) + ' USDT');
+                    if (data.profit > 0) {
+                        $('#totalProfit').addClass('profit').removeClass('loss');
+                    } else if (data.profit < 0) {
+                        $('#totalProfit').addClass('loss').removeClass('profit');
+                    }
+                }
+                
+                // Balance
+                if (data.balance) {
+                    $('#usdtFree').text(data.balance.usdt_free.toFixed(4));
+                    $('#usdtLocked').text(data.balance.usdt_locked.toFixed(4));
+                    $('#adaFree').text(data.balance.ada_free.toFixed(4));
+                    $('#adaLocked').text(data.balance.ada_locked.toFixed(4));
+                    $('#totalUsdt').text(data.balance.total_usdt_value.toFixed(4));
+                }
+                
+                // Grid levels
                 updateGridLevels(data.grid_levels);
+                
             }).fail(function() {
-                // Redirect to login if authentication fails
                 window.location.href = '/login';
             });
             
-            // Update grafik harga
-            $.getJSON('/api/price_chart', function(data) {
-                Plotly.react('priceChart', JSON.parse(data.chart));
+            // Get active orders
+            $.getJSON('/api/orders', function(data) {
+                updateOrdersTable(data.orders);
             }).fail(function() {
-                // Redirect to login if authentication fails
-                window.location.href = '/login';
+                console.log('Failed to get orders data');
             });
             
-            // Update riwayat trading
+            // Get trade history
             $.getJSON('/api/trades', function(data) {
                 updateTradesTable(data.trades);
             }).fail(function() {
-                // Redirect to login if authentication fails
-                window.location.href = '/login';
+                console.log('Failed to get trade history');
             });
+        }
+        
+        function updateLastUpdated() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+            $('#lastUpdated').text(`Update: ${timeStr}`);
+        }
+        
+        function updateGridLevels(levels) {
+            let gridContainer = $('#gridLevels');
+            gridContainer.empty();
+            
+            if (levels && levels.length > 0) {
+                // Jika hanya batas atas dan bawah yang tersedia
+                if (levels.length === 2) {
+                    let lowerPrice = levels[0];
+                    let upperPrice = levels[1];
+                    
+                    // Buat grid level berdasarkan config di server
+                    let gridConfig = 3; // Default 3 grid sesuai config.py
+                    let gridSize = (upperPrice - lowerPrice) / gridConfig;
+                    
+                    for (let i = 0; i <= gridConfig; i++) {
+                        let level = lowerPrice + (i * gridSize);
+                        let card = `
+                            <div class="col-4 mb-2">
+                                <div class="grid-item">
+                                    <h5>${level.toFixed(4)}</h5>
+                                    <small>Level ${i+1}</small>
+                                </div>
+                            </div>
+                        `;
+                        gridContainer.append(card);
+                    }
+                } else {
+                    // Jika semua level grid tersedia
+                    levels.forEach((level, index) => {
+                        let card = `
+                            <div class="col-4 mb-2">
+                                <div class="grid-item">
+                                    <h5>${level.toFixed(4)}</h5>
+                                    <small>Level ${index+1}</small>
+                                </div>
+                            </div>
+                        `;
+                        gridContainer.append(card);
+                    });
+                }
+            } else {
+                gridContainer.append('<div class="col-12 text-center">Belum ada level grid yang tersedia.</div>');
+            }
+        }
+        
+        function updateOrdersTable(orders) {
+            let tableBody = $('#ordersBody');
+            tableBody.empty();
+            
+            if (orders && orders.length > 0) {
+                orders.forEach(function(order) {
+                    let statusClass = order.status === 'NEW' ? 'text-success' : 'text-warning';
+                    let sideClass = order.side === 'BUY' ? 'text-info' : 'text-danger';
+                    
+                    let row = `<tr>
+                        <td class="${sideClass}">${order.side}</td>
+                        <td>${parseFloat(order.price).toFixed(4)}</td>
+                        <td>${parseFloat(order.origQty).toFixed(4)}</td>
+                        <td class="${statusClass}">${order.status}</td>
+                    </tr>`;
+                    
+                    tableBody.append(row);
+                });
+            } else {
+                tableBody.append('<tr><td colspan="4" class="text-center">Tidak ada order aktif</td></tr>');
+            }
         }
         
         function updateTradesTable(trades) {
@@ -231,8 +400,8 @@
             tableBody.empty();
             
             if (trades && trades.length > 0) {
-                // Ambil 10 trades terakhir
-                const recentTrades = trades.slice(-10).reverse();
+                // Tampilkan 20 transaksi terakhir
+                const recentTrades = trades.slice(-20).reverse();
                 
                 recentTrades.forEach(function(trade) {
                     let time = new Date(trade.time).toLocaleString();
@@ -250,58 +419,20 @@
                     tableBody.append(row);
                 });
             } else {
-                tableBody.append('<tr><td colspan="5" class="text-center">Belum ada riwayat trading</td></tr>');
+                tableBody.append('<tr><td colspan="5" class="text-center">Belum ada riwayat transaksi</td></tr>');
             }
         }
         
-        function updateGridLevels(levels) {
-            let gridContainer = $('#gridLevels');
-            gridContainer.empty();
+        // Auto refresh setiap 15 detik
+        $(document).ready(function() {
+            refreshData();
+            setInterval(refreshData, 15000);
             
-            if (levels && levels.length > 0) {
-                // Jika hanya batas atas dan bawah yang tersedia
-                if (levels.length === 2) {
-                    let lowerPrice = levels[0];
-                    let upperPrice = levels[1];
-                    
-                    // Buat grid level estimasi
-                    let gridCount = 5; // Asumsi 5 level grid
-                    let gridSize = (upperPrice - lowerPrice) / gridCount;
-                    
-                    for (let i = 0; i <= gridCount; i++) {
-                        let level = lowerPrice + (i * gridSize);
-                        let card = `
-                            <div class="col-md-2 mb-2">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <h5>${level.toFixed(4)}</h5>
-                                        <small>Level ${i+1}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        gridContainer.append(card);
-                    }
-                } else {
-                    // Jika semua level grid tersedia
-                    levels.forEach((level, index) => {
-                        let card = `
-                            <div class="col-md-2 mb-2">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <h5>${level.toFixed(4)}</h5>
-                                        <small>Level ${index+1}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        gridContainer.append(card);
-                    });
-                }
-            } else {
-                gridContainer.append('<div class="col-12 text-center">Belum ada level grid yang tersedia</div>');
-            }
-        }
+            // Session keepalive
+            setInterval(function() {
+                $.get('/api/status');
+            }, 300000); // 5 menit
+        });
     </script>
 </body>
 </html>

@@ -4,6 +4,7 @@ import config
 import logging
 import math
 import time
+import requests
 
 # Configure logging
 logging.basicConfig(
@@ -141,6 +142,43 @@ class BinanceClient:
         except BinanceAPIException as e:
             logger.error(f"Failed to get open orders: {e}")
             return None
+
+    def get_usdt_idr_rate(self):
+        """Mendapatkan harga USDT/IDR dari API publik untuk memastikan data realtime"""
+        try:
+            # Coba dapatkan dari API Indodax (Bursa crypto Indonesia)
+            # API Indodax untuk USDT/IDR
+            response = requests.get('https://indodax.com/api/ticker/usdtidr', timeout=5)
+            
+            if response.status_code == 200:
+                data = response.json()
+                # Ambil harga terakhir (last) dari ticker
+                if 'ticker' in data and 'last' in data['ticker']:
+                    usdt_idr_rate = float(data['ticker']['last'])
+                    logger.info(f"Realtime USDT/IDR dari Indodax: {usdt_idr_rate}")
+                    return usdt_idr_rate
+            
+            # Fallback ke Binance P2P rate (estimasi)
+            # Coba dapatkan dari API lain
+            response = requests.get('https://api.binance.com/api/v3/ticker/price?symbol=USDTBIDR', timeout=5)
+            if response.status_code == 200:
+                data = response.json()
+                if 'price' in data:
+                    # BIDR digunakan sebagai proxy untuk IDR di Binance (1000 BIDR = 1000 IDR)
+                    usdt_bidr_rate = float(data['price'])
+                    logger.info(f"Realtime USDT/BIDR dari Binance: {usdt_bidr_rate}")
+                    return usdt_bidr_rate
+                    
+            # Fallback ke nilai yang lebih akurat berdasarkan kurs pasar terkini
+            return 16350.0  # Update dari nilai statis 15700 ke nilai yang lebih akurat per Mei 2025
+            
+        except Exception as e:
+            # Log error hanya sekali setiap jam untuk menghindari spam log
+            current_time = int(time.time())
+            if not hasattr(self, 'last_idr_error_time') or current_time - self.last_idr_error_time > 3600:
+                logger.warning(f"Gagal mendapatkan harga USDT/IDR realtime: {e}")
+                self.last_idr_error_time = current_time
+            return 16350.0  # Nilai fallback yang lebih akurat
 
     def cancel_order(self, order_id, symbol=config.SYMBOL):
         """Cancel an order by its ID"""

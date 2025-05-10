@@ -15,6 +15,8 @@ import secrets
 from functools import wraps
 import config
 import random
+import psutil
+import re
 
 # Konfigurasi security
 DASHBOARD_USERNAME = os.getenv('DASHBOARD_USERNAME', 'admin')
@@ -42,6 +44,14 @@ price_history = []
 bot_profit = 0
 trades_history = []
 grid_levels = []
+usdt_idr_rate = None  # Nilai tukar USDT/IDR
+balance_info = {       # Informasi saldo
+    "usdt_free": 0,
+    "usdt_locked": 0,
+    "ada_free": 0,
+    "ada_locked": 0,
+    "last_update": None
+}
 
 # Tambahkan fallback price jika tidak ada data
 FALLBACK_PRICE = 0.7800  # Harga ADA fallback jika tidak bisa mendapatkan data terkini
@@ -54,8 +64,11 @@ blocked_ips = {}
 # Lock untuk thread safety
 data_lock = Lock()
 
+# Cek jika SSE dinonaktifkan
+SSE_DISABLED = os.getenv('DISABLE_SSE', 'false').lower() == 'true'
+
 # SSE clients
-sse_clients = set()
+sse_clients = [] if not SSE_DISABLED else None  # Gunakan None jika SSE dinonaktifkan
 
 # Helper function for emoji handling
 def safe_emoji(text):
@@ -128,7 +141,7 @@ def login():
         
         # Check if IP is blocked
         client_ip = request.remote_addr
-        if client_ip in blocked_ips and blocked_ips[client_ip]['until'] > datetime.datetime.now():
+        if client_ip in blocked_ips and blocked_ips[client_ip]['until'] is not None and blocked_ips[client_ip]['until'] > datetime.datetime.now():
             return render_template('login.html', error="IP blocked due to too many failed attempts")
         
         # Authenticate
@@ -183,75 +196,180 @@ def index():
 @login_required
 def price_chart():
     """API endpoint untuk data grafik harga"""
-    global price_history, latest_price
+    global price_history, latest_price, grid_levels
+    
+    # Refresh data to ensure we have the latest
+    load_bot_data()
     
     # Jika tidak ada data price history, buat data dummy
     if not price_history and latest_price is not None:
-        current_time = datetime.datetime.now()
-        # Buat 5 titik data dummy untuk satu jam terakhir
-        for i in range(5):
-            # Variasi kecil untuk harga (±0.5%)
-            price_var = latest_price * (1 + (random.random() - 0.5) * 0.01)
-            time_point = current_time - datetime.timedelta(minutes=i*15)
-            price_history.insert(0, {
-                "time": time_point.strftime("%Y-%m-%d %H:%M:%S"),
-                "price": price_var
-            })
-        logger.info("Created dummy price history for chart")
+        # Create dummy data point based on latest price
+        now = datetime.datetime.now()
+        five_min_ago = now - datetime.timedelta(minutes=5)
+        price_history = [
+            {"time": five_min_ago.strftime("%Y-%m-%d %H:%M:%S"), "price": latest_price},
+            {"time": now.strftime("%Y-%m-%d %H:%M:%S"), "price": latest_price}
+        ]
     
-    # Jika masih tidak ada data history, gunakan fallback
-    if not price_history:
-        current_time = datetime.datetime.now()
-        for i in range(5):
-            time_point = current_time - datetime.timedelta(minutes=i*15)
-            price_var = FALLBACK_PRICE * (1 + (random.random() - 0.5) * 0.01)
-            price_history.insert(0, {
-                "time": time_point.strftime("%Y-%m-%d %H:%M:%S"),
-                "price": price_var
-            })
-        logger.warning("Using fallback price history for chart")
-    
-    # Membuat grafik harga menggunakan plotly
-    timestamps = [entry['time'] for entry in price_history[-100:]]
-    prices = [entry['price'] for entry in price_history[-100:]]
-    
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=timestamps, y=prices, mode='lines', name='Harga ADA'))
-    
-    # Tambahkan garis grid jika tersedia
-    if grid_levels:
-        for level in grid_levels:
-            fig.add_shape(
-                type="line",
-                x0=timestamps[0] if timestamps else 0,
-                y0=level,
-                x1=timestamps[-1] if timestamps else 1,
-                y1=level,
-                line=dict(color="Red", width=1, dash="dash"),
-            )
-    
-    fig.update_layout(
-        title='Pergerakan Harga ADA',
-        xaxis_title='Waktu',
-        yaxis_title='Harga (USDT)',
-        template='plotly_dark'
-    )
-    
-    # Konversi plotly figure ke JSON untuk dirender di browser
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    return jsonify(chart=graphJSON)
+    if price_history:
+        # Limited to last 100 data points to improve performance
+        timestamps = [entry['time'] for entry in price_history[-100:]]
+        prices = [entry['price'] for entry in price_history[-100:]]
+        
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=timestamps, y=prices, mode='lines', name='Harga ADA'))
+        
+        # Tambahkan garis grid
+        if grid_levels and len(grid_levels) >= 2:
+            for level in grid_levels:
+                fig.add_shape(
+                    type="line",
+                    x0=timestamps[0] if timestamps else 0,
+                    y0=level,
+                    x1=timestamps[-1] if timestamps else 1,
+                    y1=level,
+                    line=dict(color="Red", width=1, dash="dash"),
+                )
+        
+        fig.update_layout(
+            title='Pergerakan Harga ADA/USDT',
+            xaxis_title='Waktu',
+            yaxis_title='Harga (USDT)',
+            template='plotly_dark',
+            autosize=True,
+            height=500,
+            margin=dict(l=50, r=50, t=50, b=50),
+        )
+        
+        chart_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        return jsonify({"status": "success", "chart": chart_json})
+    else:
+        # Return empty chart if no data
+        fig = go.Figure()
+        fig.update_layout(
+            title='Tidak Ada Data Harga',
+            xaxis_title='Waktu',
+            yaxis_title='Harga (USDT)',
+            template='plotly_dark',
+            autosize=True,
+            height=500,
+            annotations=[dict(
+                text="Belum ada data harga tersedia",
+                xref="paper",
+                yref="paper",
+                x=0.5,
+                y=0.5,
+                showarrow=False,
+                font=dict(size=20)
+            )],
+        )
+        chart_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        return jsonify({"status": "no_data", "chart": chart_json})
 
 @app.route('/api/trades')
 @login_required
 def get_trades():
     """API endpoint untuk data history trading"""
-    return jsonify(trades=trades_history)
+    try:
+        trades_data = []
+        
+        # Coba dapatkan dari instance bot aktif
+        try:
+            from grid_bot import GridTradingBot
+            if hasattr(GridTradingBot, 'instance') and GridTradingBot.instance is not None:
+                bot = GridTradingBot.instance
+                if hasattr(bot, 'trades'):
+                    trades_data = bot.trades
+        except Exception as e:
+            logger.error(f"Error getting trades from bot instance: {e}")
+        
+        # Jika tidak dapat dari instance bot, coba load dari file state
+        if not trades_data:
+            state_files = [f for f in os.listdir(".") if f.startswith("grid_state_") and f.endswith(".json")]
+            if state_files:
+                latest_state_file = state_files[0]
+                try:
+                    with open(latest_state_file, "r") as f:
+                        state = json.load(f)
+                        trades_data = state.get("trades", [])
+                        logger.info(f"Loaded {len(trades_data)} trades from state file {latest_state_file}")
+                except Exception as e:
+                    logger.error(f"Error reading trades from state file: {e}")
+        
+        # Jika masih belum ada data, coba parse dari log
+        if not trades_data:
+            try:
+                trades_data = parse_trades_from_log()
+            except Exception as e:
+                logger.error(f"Error parsing trades from log: {e}")
+        
+        return jsonify(trades=trades_data)
+    except Exception as e:
+        logger.error(f"Error in trades API: {e}")
+        return jsonify(trades=[])
+
+def parse_trades_from_log():
+    """Parse riwayat transaksi dari file log"""
+    trades = []
+    try:
+        with open("bot.log", "r", encoding="utf-8") as log_file:
+            lines = log_file.readlines()
+            
+            for line in lines:
+                # Cari baris log yang berisi informasi transaksi
+                if "TRADE FILLED" in line or "Order filled" in line:
+                    try:
+                        # Contoh format: "BUY order filled at 0.7850"
+                        parts = line.split(" - ")
+                        if len(parts) >= 2:
+                            timestamp = parts[0].strip()
+                            message = parts[1]
+                            
+                            # Ekstrak informasi
+                            if "BUY" in message:
+                                type_order = "BUY"
+                            elif "SELL" in message:
+                                type_order = "SELL"
+                            else:
+                                continue
+                            
+                            # Coba ekstrak harga
+                            price_match = re.search(r'at\s+(\d+\.\d+)', message)
+                            if price_match:
+                                price = float(price_match.group(1))
+                            else:
+                                continue
+                            
+                            # Parse quantity (jumlah)
+                            # Contoh: "Order filled: BUY 13.0 ADA at 0.7850"
+                            qty_match = re.search(r'(\d+\.?\d*)\s+ADA', message)
+                            quantity = float(qty_match.group(1)) if qty_match else config.QUANTITY
+                            
+                            # Coba ekstrak profit jika ada
+                            profit_match = re.search(r'Profit:\s+(\-?\d+\.?\d*)', message)
+                            profit = float(profit_match.group(1)) if profit_match else 0.0
+                            
+                            trade = {
+                                "time": timestamp,
+                                "type": type_order,
+                                "price": price,
+                                "quantity": quantity,
+                                "profit": profit
+                            }
+                            trades.append(trade)
+                    except Exception as e:
+                        logger.debug(f"Failed to parse trade from log line: {e}")
+    
+    except Exception as e:
+        logger.error(f"Error reading log file for trades: {e}")
+    
+    return trades
 
 @app.route('/api/status')
 @login_required
 def get_status():
     """API endpoint untuk status bot"""
-    global latest_price
+    global latest_price, usdt_idr_rate, balance_info
     
     # Reload data untuk mendapatkan harga terbaru
     load_bot_data()
@@ -261,11 +379,35 @@ def get_status():
         latest_price = FALLBACK_PRICE
         logger.warning(f"Using fallback price: {FALLBACK_PRICE}")
     
+    # Pastikan selalu ada nilai USDT/IDR
+    if usdt_idr_rate is None:
+        usdt_idr_rate = 16350.0
+    
+    # Hitung nilai ADA dalam IDR
+    ada_idr_value = latest_price * usdt_idr_rate
+    
+    # Hitung total nilai aset dalam USDT dan IDR
+    total_ada = balance_info["ada_free"] + balance_info["ada_locked"]
+    total_usdt = balance_info["usdt_free"] + balance_info["usdt_locked"]
+    total_usdt_value = total_usdt + (total_ada * latest_price)
+    total_idr_value = total_usdt_value * usdt_idr_rate
+    
     status_data = {
         "status": safe_emoji(bot_status),
         "latest_price": latest_price,
         "profit": bot_profit,
-        "grid_levels": grid_levels
+        "grid_levels": grid_levels,
+        "usdt_idr_rate": usdt_idr_rate,
+        "ada_idr_value": ada_idr_value,
+        "balance": {
+            "usdt_free": balance_info["usdt_free"],
+            "usdt_locked": balance_info["usdt_locked"],
+            "ada_free": balance_info["ada_free"],
+            "ada_locked": balance_info["ada_locked"],
+            "total_usdt_value": total_usdt_value,
+            "total_idr_value": total_idr_value,
+            "last_update": balance_info["last_update"]
+        }
     }
     return jsonify(status_data)
 
@@ -273,33 +415,35 @@ def get_status():
 @login_required
 def stream():
     """Server-Sent Events endpoint untuk update realtime"""
+    # Return empty response if SSE is disabled
+    if SSE_DISABLED:
+        return Response("SSE disabled", status=503)
+        
     def event_stream():
-        client_id = uuid.uuid4()
-        client = {'id': client_id, 'queue': []}
+        client_id = str(uuid.uuid4())
+        client = {'id': client_id, 'queue': [], 'request_context': request}
         
         with data_lock:
-            sse_clients.add(client)
+            sse_clients.append(client)
         
         try:
-            # Kirim data awal
-            yield f"data: {json.dumps(get_initial_data())}\n\n"
+            # Send initial data
+            initial_data = get_initial_data()
+            if initial_data:
+                yield f"data: {json.dumps(initial_data)}\n\n"
             
             while True:
-                # Cek jika koneksi masih ada
-                if request.environ.get('werkzeug.server.shutdown'):
-                    break
-                
-                # Periksa antrian pesan
-                if client['queue']:
-                    with data_lock:
+                # Check message queue
+                with data_lock:
+                    if client['queue']:
                         while client['queue']:
                             yield client['queue'].pop(0)
                 
-                # Sleep untuk mencegah CPU usage tinggi
-                time.sleep(0.5)
-                
-                # Kirim heartbeat setiap 15 detik untuk keep-alive
+                # Heartbeat to keep connection alive
                 yield f": heartbeat\n\n"
+                
+                # Sleep to reduce CPU usage
+                time.sleep(1)
                 
         except Exception as e:
             logger.error(f"SSE error: {e}")
@@ -307,16 +451,33 @@ def stream():
             with data_lock:
                 if client in sse_clients:
                     sse_clients.remove(client)
+                    logger.info(f"Removed SSE client {client_id}")
     
-    return Response(event_stream(), mimetype="text/event-stream")
+    response = Response(event_stream(), mimetype="text/event-stream")
+    response.headers['Cache-Control'] = 'no-cache'
+    response.headers['X-Accel-Buffering'] = 'no'  # For NGINX
+    return response
 
 def get_initial_data():
     """Dapatkan data awal untuk stream"""
-    global latest_price
+    global latest_price, usdt_idr_rate, balance_info
     
     # Pastikan selalu ada nilai harga
     if latest_price is None:
         latest_price = FALLBACK_PRICE
+    
+    # Pastikan selalu ada nilai USDT/IDR
+    if usdt_idr_rate is None:
+        usdt_idr_rate = 16350.0
+    
+    # Hitung nilai ADA dalam IDR
+    ada_idr_value = latest_price * usdt_idr_rate
+    
+    # Hitung total nilai aset dalam USDT dan IDR
+    total_ada = balance_info["ada_free"] + balance_info["ada_locked"]
+    total_usdt = balance_info["usdt_free"] + balance_info["usdt_locked"]
+    total_usdt_value = total_usdt + (total_ada * latest_price)
+    total_idr_value = total_usdt_value * usdt_idr_rate
     
     # Dapatkan data grafik
     chart_data = None
@@ -355,64 +516,206 @@ def get_initial_data():
         "profit": bot_profit,
         "chart": chart_data,
         "trades": trades_history[-10:] if trades_history else [],
-        "grid_levels": grid_levels
+        "grid_levels": grid_levels,
+        "usdt_idr_rate": usdt_idr_rate,
+        "ada_idr_value": ada_idr_value,
+        "balance": {
+            "usdt_free": balance_info["usdt_free"],
+            "usdt_locked": balance_info["usdt_locked"],
+            "ada_free": balance_info["ada_free"],
+            "ada_locked": balance_info["ada_locked"],
+            "total_usdt_value": total_usdt_value,
+            "total_idr_value": total_idr_value,
+            "last_update": balance_info["last_update"]
+        }
     }
 
 def broadcast_update():
     """Broadcast update ke semua klien SSE"""
-    with data_lock:
-        if not sse_clients:
+    # Skip if SSE is disabled
+    if SSE_DISABLED or not sse_clients:
+        return
+        
+    try:
+        # Get current data
+        data = get_initial_data()
+        if not data:
             return
             
-        # Dapatkan data terbaru
-        data = get_initial_data()
-        
-        # Buat pesan SSE
+        # Create SSE message
         message = f"data: {json.dumps(data)}\n\n"
         
-        # Kirim pesan ke semua klien
-        for client in list(sse_clients):
-            try:
-                client['queue'].append(message)
-                logger.debug(f"Queued update for client {client['id']}")
-            except Exception as e:
-                logger.error(f"Error queuing message for client {client['id']}: {e}")
-                if client in sse_clients:
-                    sse_clients.remove(client)
+        # Send to all clients
+        with data_lock:
+            for client in list(sse_clients):
+                try:
+                    client['queue'].append(message)
+                except Exception as e:
+                    logger.error(f"Error queuing message: {e}")
+                    if client in sse_clients:
+                        sse_clients.remove(client)
+    except Exception as e:
+        logger.error(f"Error in broadcast_update: {e}")
 
 def load_bot_data():
     """Load data dari file state bot"""
-    global bot_status, latest_price, bot_profit, trades_history, grid_levels, price_history
+    global bot_status, latest_price, bot_profit, trades_history, grid_levels, price_history, usdt_idr_rate, balance_info
     
     try:
-        # Update price history dari log
+        # Check if bot process is running
+        bot_is_running = False
+        for process in psutil.process_iter():
+            try:
+                if process.name() == "python.exe" and len(process.cmdline()) > 1:
+                    cmd = ' '.join(process.cmdline())
+                    if "run.py" in cmd and "bot" in cmd and "--dashboard" not in cmd:
+                        bot_is_running = True
+                        break
+            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                pass
+                
+        # Force status to Aktif if grid_bot is actively logging
         try:
-            with open("bot.log", "r") as log_file:
+            log_modified_time = os.path.getmtime("bot.log")
+            current_time = time.time()
+            time_diff = current_time - log_modified_time
+            
+            if time_diff < 30:  # Log modified in last 30 seconds
+                bot_status = "Aktif"
+            elif time_diff < 300:  # Log modified in last 5 minutes
+                bot_status = "Mungkin Aktif"
+            else:
+                bot_status = "Tidak Aktif (Tidak ada update log)" 
+        except:
+            if bot_is_running:
+                bot_status = "Proses Berjalan"
+            else:
+                bot_status = "Tidak Aktif"
+        
+        # Variabel untuk menyimpan informasi saldo dari log
+        usdt_free = 0
+        usdt_locked = 0
+        ada_free = 0
+        ada_locked = 0
+        last_balance_update = None
+        
+        # Update price history dan balance dari log
+        try:
+            with open("bot.log", "r", encoding="utf-8") as log_file:
                 lines = log_file.readlines()
                 price_data = []
                 
                 # Cari 100 entri harga terbaru
                 for line in reversed(lines):
+                    # Cek informasi saldo terbaru
+                    if "[BALANCE]" in line:
+                        try:
+                            # Contoh format: "[BALANCE] USDT: 2.9447 (Free) + 10.2050 (Locked) | ADA: 4.9790 (Free) + 13.0000 (Locked)"
+                            balance_parts = line.split("[BALANCE]")[1].strip().split("|")
+                            if len(balance_parts) >= 2:
+                                # Parse USDT balance
+                                usdt_part = balance_parts[0].strip()
+                                if "USDT:" in usdt_part:
+                                    usdt_values = usdt_part.split(":")
+                                    if len(usdt_values) >= 2:
+                                        usdt_amounts = usdt_values[1].strip().split("+")
+                                        if len(usdt_amounts) >= 2:
+                                            usdt_free = float(usdt_amounts[0].split("(")[0].strip())
+                                            usdt_locked = float(usdt_amounts[1].split("(")[0].strip())
+                                
+                                # Parse ADA balance
+                                ada_part = balance_parts[1].strip()
+                                if "ADA:" in ada_part:
+                                    ada_values = ada_part.split(":")
+                                    if len(ada_values) >= 2:
+                                        ada_amounts = ada_values[1].strip().split("+")
+                                        if len(ada_amounts) >= 2:
+                                            ada_free = float(ada_amounts[0].split("(")[0].strip())
+                                            ada_locked = float(ada_amounts[1].split("(")[0].strip())
+                                
+                                # Update global balance info
+                                balance_info["usdt_free"] = usdt_free
+                                balance_info["usdt_locked"] = usdt_locked
+                                balance_info["ada_free"] = ada_free
+                                balance_info["ada_locked"] = ada_locked
+                                balance_info["last_update"] = line.split(" - ")[0].strip()
+                                
+                                # Set bot status to active if we found a recent balance update
+                                time_str = line.split(" - ")[0].strip()
+                                try:
+                                    log_time = datetime.datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S,%f")
+                                    time_diff = (datetime.datetime.now() - log_time).total_seconds()
+                                    if time_diff < 60:  # Less than 1 minute
+                                        bot_status = "Aktif"
+                                except:
+                                    pass
+                                
+                                break  # Only need the most recent balance info
+                        except Exception as e:
+                            logger.debug(f"Gagal parsing info saldo: {e}")
+                    
+                    # Cek informasi harga
                     if "[PRICE UPDATE]" in line:
                         try:
+                            # Contoh format: "[PRICE UPDATE] ADAUSDT: 0.7973 | USDT/IDR: 16527.00 | ADA/IDR: 13176.98 | Change: 0.01% | Profit: 0.0000 USDT | Time: 18:27:37"
                             parts = line.split("[PRICE UPDATE]")[1].strip().split("|")
-                            if len(parts) >= 3:
+                            
+                            if len(parts) >= 1:  # Minimal price part
                                 symbol_price = parts[0].strip().split(":")
                                 if len(symbol_price) == 2:
                                     symbol = symbol_price[0].strip()
                                     price = float(symbol_price[1].strip())
                                     timestamp = line.split(" - ")[0].strip()
                                     
+                                    # Update latest_price immediately
+                                    latest_price = price
+                                    logger.info(f"Found price in log: {price}")
+                                    
+                                    # Update bot status based on price update timeliness
+                                    try:
+                                        log_time = datetime.datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S,%f")
+                                        time_diff = (datetime.datetime.now() - log_time).total_seconds()
+                                        if time_diff < 60:  # Less than 1 minute
+                                            bot_status = "Aktif"
+                                    except:
+                                        pass
+                                    
+                                    # Cek apakah ada info USDT/IDR dalam log
+                                    usdt_idr_info = None
+                                    for part in parts:
+                                        if "USDT/IDR:" in part:
+                                            usdt_idr_rate_str = part.split(":")[1].strip()
+                                            usdt_idr_info = float(usdt_idr_rate_str)
+                                            break
+                                    
+                                    # Cek jika ada informasi profit
+                                    profit_info = None
+                                    for part in parts:
+                                        if "Profit:" in part:
+                                            profit_str = part.split(":")[1].strip().split()[0]  # Get value before USDT
+                                            try:
+                                                profit_info = float(profit_str)
+                                                bot_profit = profit_info  # Update global profit
+                                            except:
+                                                pass
+                                            break
+                                    
                                     price_data.append({
                                         "time": timestamp,
-                                        "price": price
+                                        "price": price,
+                                        "usdt_idr": usdt_idr_info,
+                                        "profit": profit_info
                                     })
+                                    
+                                    # Ambil nilai USDT/IDR dari entri terbaru
+                                    if usdt_idr_info and usdt_idr_rate is None:
+                                        usdt_idr_rate = usdt_idr_info
                                     
                                     # Hentikan jika sudah mendapatkan 100 data harga
                                     if len(price_data) >= 100:
                                         break
                         except Exception as e:
-                            logger.debug(f"Gagal parsing baris log: {e}")
+                            logger.debug(f"Gagal parsing baris log price update: {e}")
                             continue
                 
                 # Balik kembali urutan data untuk kronologis
@@ -423,8 +726,49 @@ def load_bot_data():
                     price_history = price_data
                     latest_price = price_data[-1]["price"]
                     logger.info(f"Loaded latest price from log: {latest_price}")
+                    
+                    # Update profit if available in the latest price data
+                    if "profit" in price_data[-1] and price_data[-1]["profit"] is not None:
+                        bot_profit = price_data[-1]["profit"]
         except Exception as e:
             logger.error(f"Error reading log file: {e}")
+        
+        # Cari grid info dari log juga
+        try:
+            with open("bot.log", "r", encoding="utf-8") as log_file:
+                lines = log_file.readlines()
+                
+                # Look for grid setup information
+                for line in reversed(lines):
+                    if "Price range:" in line:
+                        try:
+                            # Format: "Price range: 0.785 - 0.815"
+                            range_info = line.split("Price range:")[1].strip()
+                            range_parts = range_info.split("-")
+                            if len(range_parts) == 2:
+                                lower_price = float(range_parts[0].strip())
+                                upper_price = float(range_parts[1].strip())
+                                grid_levels = [lower_price, upper_price]
+                                logger.info(f"Found grid levels in log: {lower_price} - {upper_price}")
+                                break
+                        except Exception as e:
+                            logger.debug(f"Failed to parse grid range info: {e}")
+        except Exception as e:
+            logger.error(f"Error reading log file for grid info: {e}")
+        
+        # Jika masih tidak ada grid levels, coba dari state file
+        if not grid_levels:
+            # Load state bot
+            state_files = [f for f in os.listdir(".") if f.startswith("grid_state_") and f.endswith(".json")]
+            if state_files:
+                latest_state_file = state_files[0]  # Ambil file pertama jika ada beberapa
+                
+                with open(latest_state_file, "r") as f:
+                    state = json.load(f)
+                    # Get grid levels from state file if not already found
+                    if "price_range" in state:
+                        grid_levels = state.get("price_range", [])
+                        logger.info(f"Found grid levels in state file: {grid_levels}")
         
         # Jika tidak ada harga dari log, coba dapatkan harga terkini dari API
         if latest_price is None:
@@ -436,11 +780,18 @@ def load_bot_data():
                 if current_price:
                     latest_price = current_price
                     logger.info(f"Got current price from API: {latest_price}")
+                    
+                    # Dapatkan nilai USDT/IDR
+                    if usdt_idr_rate is None:
+                        usdt_idr_rate = client.get_usdt_idr_rate()
+                        logger.info(f"Got USDT/IDR rate from API: {usdt_idr_rate}")
+                    
                     # Tambahkan ke history
                     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     price_history.append({
                         "time": current_time,
-                        "price": current_price
+                        "price": current_price,
+                        "usdt_idr": usdt_idr_rate
                     })
             except Exception as e:
                 logger.error(f"Error getting current price from API: {e}")
@@ -462,36 +813,24 @@ def load_bot_data():
                 except Exception as e:
                     logger.error(f"Error getting price from bot instance: {e}")
         
-        # Load state bot
+        # Jika masih belum ada nilai USDT/IDR, gunakan fallback
+        if usdt_idr_rate is None:
+            usdt_idr_rate = 16350.0  # Nilai fallback terbaru
+        
+        # Load state file for trades history if not already loaded
         state_files = [f for f in os.listdir(".") if f.startswith("grid_state_") and f.endswith(".json")]
-        if state_files:
+        if state_files and not trades_history:
             latest_state_file = state_files[0]  # Ambil file pertama jika ada beberapa
             
             with open(latest_state_file, "r") as f:
                 state = json.load(f)
                 bot_profit = state.get("total_profit", 0)
                 trades_history = state.get("trades", [])
-                grid_levels = state.get("price_range", [])
                 last_update = state.get("last_update")
                 
-                # Update bot status
-                if last_update:
-                    try:
-                        last_update_time = datetime.datetime.fromisoformat(last_update)
-                        time_diff = (datetime.datetime.now() - last_update_time).total_seconds()
-                        if time_diff > 300:  # 5 menit
-                            bot_status = "Tidak Aktif (5+ menit tanpa update)"
-                        else:
-                            bot_status = "Aktif"
-                    except:
-                        bot_status = "Status Tidak Diketahui"
-                else:
-                    bot_status = "Tidak Aktif"
-                    
                 # Update latest price jika ada di state dan lebih baru
                 if "last_price" in state and state["last_price"] is not None:
                     state_price = float(state["last_price"])
-                    state_time = last_update if last_update else datetime.datetime.now().isoformat()
                     
                     if latest_price is None:
                         latest_price = state_price
@@ -500,63 +839,93 @@ def load_bot_data():
                         # Tambahkan ke history jika kosong
                         if not price_history:
                             price_history.append({
-                                "time": state_time,
+                                "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                 "price": state_price
                             })
     except Exception as e:
         logger.error(f"Error loading bot data: {e}")
+        
+    # Make sure we never use fallback unless necessary
+    if latest_price is None:
+        latest_price = FALLBACK_PRICE
+        logger.warning(f"Using fallback price as last resort: {FALLBACK_PRICE}")
+        
+    # Log final state of data
+    logger.info(f"Final data state - Status: {bot_status}, Price: {latest_price}, Grid Levels: {grid_levels}")
 
 def update_data_thread():
     """Thread untuk update data secara periodik"""
     last_fetch_time = 0
-    while True:
-        current_time = time.time()
-        
-        # Batasi pembaruan menjadi maksimal setiap 3 detik
-        if current_time - last_fetch_time >= 3:
-            with data_lock:
-                # Simpan waktu fetch
-                last_fetch_time = current_time
-                
-                # Load data
-                load_bot_data()
-                
-                # Jika masih tidak ada harga terkini, coba dapatkan langsung
-                global latest_price
-                if latest_price is None:
-                    try:
-                        # Coba dari instansi bot terlebih dahulu
-                        try:
-                            from grid_bot import GridTradingBot
-                            if GridTradingBot.instance and hasattr(GridTradingBot.instance, 'last_price'):
-                                latest_price = GridTradingBot.instance.last_price
-                                logger.info(f"Got price directly from bot instance: {latest_price}")
-                        except:
-                            pass
-                            
-                        # Jika masih None, coba dari API
-                        if latest_price is None:
-                            from binance_client import BinanceClient
-                            client = BinanceClient()
-                            current_price = client.get_symbol_price(config.SYMBOL)
-                            if current_price:
-                                latest_price = current_price
-                                logger.info(f"Thread update got price from API: {latest_price}")
-                                # Tambahkan ke history jika belum ada
-                                if not price_history:
-                                    price_history.append({
-                                        "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                        "price": current_price
-                                    })
-                    except Exception as e:
-                        logger.error(f"Thread update failed to get price: {e}")
+    
+    # Create application context for this thread
+    with app.app_context():
+        while True:
+            current_time = time.time()
             
-            # Broadcast update ke semua klien setiap kali data diperbarui
-            if sse_clients:
-                broadcast_update()
+            # Batasi pembaruan menjadi maksimal setiap 2 detik
+            if current_time - last_fetch_time >= 2:
+                with data_lock:
+                    # Simpan waktu fetch
+                    last_fetch_time = current_time
+                    
+                    # Load data
+                    load_bot_data()
+                    
+                    # Jika masih tidak ada harga terkini, coba dapatkan langsung
+                    global latest_price, bot_status
+                    if latest_price is None:
+                        try:
+                            # Coba dari instansi bot terlebih dahulu
+                            try:
+                                from grid_bot import GridTradingBot
+                                if hasattr(GridTradingBot, 'instance') and GridTradingBot.instance:
+                                    if hasattr(GridTradingBot.instance, 'last_price'):
+                                        latest_price = GridTradingBot.instance.last_price
+                                        logger.info(f"Got price directly from bot instance: {latest_price}")
+                                    
+                                    # Set bot status to active since we have a running bot instance
+                                    bot_status = "Aktif"
+                            except:
+                                pass
+                                
+                            # Jika masih None, coba dari API
+                            if latest_price is None:
+                                from binance_client import BinanceClient
+                                client = BinanceClient()
+                                current_price = client.get_symbol_price(config.SYMBOL)
+                                if current_price:
+                                    latest_price = current_price
+                                    logger.info(f"Thread update got price from API: {latest_price}")
+                                    # Tambahkan ke history jika belum ada
+                                    current_time_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                                    if not price_history:
+                                        price_history.append({
+                                            "time": current_time_str,
+                                            "price": current_price,
+                                            "usdt_idr": client.get_usdt_idr_rate()
+                                        })
+                                    else:
+                                        # Only add if more than 5 seconds from last entry to avoid too many entries
+                                        last_entry_time = datetime.datetime.strptime(price_history[-1]["time"], "%Y-%m-%d %H:%M:%S,%f" if "," in price_history[-1]["time"] else "%Y-%m-%d %H:%M:%S")
+                                        current_dt = datetime.datetime.strptime(current_time_str, "%Y-%m-%d %H:%M:%S")
+                                        if (current_dt - last_entry_time).total_seconds() > 5:
+                                            price_history.append({
+                                                "time": current_time_str,
+                                                "price": current_price,
+                                                "usdt_idr": client.get_usdt_idr_rate()
+                                            })
+                        except Exception as e:
+                            logger.error(f"Thread update failed to get price: {e}")
                 
-        # Jangan sleep terlalu lama untuk menghindari delay dalam respon
-        time.sleep(0.5)
+                # Broadcast update ke semua klien setiap kali data diperbarui
+                if sse_clients and not SSE_DISABLED:
+                    try:
+                        broadcast_update()
+                    except Exception as e:
+                        logger.error(f"Error broadcasting update: {e}")
+                    
+            # Jangan sleep terlalu lama untuk menghindari delay dalam respon
+            time.sleep(0.5)
 
 def create_templates():
     """Buat folder templates dan file template HTML jika belum ada"""
@@ -1081,11 +1450,11 @@ def create_templates():
                     let lowerPrice = levels[0];
                     let upperPrice = levels[1];
                     
-                    // Buat grid level estimasi
-                    let gridCount = 5; // Asumsi 5 level grid
-                    let gridSize = (upperPrice - lowerPrice) / gridCount;
+                    // Buat grid level berdasarkan config di server
+                    let gridConfig = 3; // Default 3 grid sesuai config.py
+                    let gridSize = (upperPrice - lowerPrice) / gridConfig;
                     
-                    for (let i = 0; i <= gridCount; i++) {
+                    for (let i = 0; i <= gridConfig; i++) {
                         let level = lowerPrice + (i * gridSize);
                         let card = `
                             <div class="col-md-2 mb-2">
@@ -1116,13 +1485,72 @@ def create_templates():
                     });
                 }
             } else {
-                gridContainer.append('<div class="col-12 text-center">Belum ada level grid yang tersedia</div>');
+                // Tampilkan pesan jika tidak ada grid levels
+                // Selain itu, coba dapatkan dari file log secara manual
+                $.getJSON('/api/status', function(data) {
+                    if (data.grid_levels && data.grid_levels.length > 0) {
+                        updateGridLevels(data.grid_levels);
+                    } else {
+                        gridContainer.append('<div class="col-12 text-center">Belum ada level grid yang tersedia. Periksa log bot untuk informasi.</div>');
+                    }
+                }).fail(function() {
+                    gridContainer.append('<div class="col-12 text-center">Gagal mendapatkan informasi grid.</div>');
+                });
             }
         }
     </script>
 </body>
 </html>
         """)
+
+@app.route('/api/orders')
+@login_required
+def get_orders():
+    """API endpoint untuk mendapatkan data order spot aktif"""
+    try:
+        # Coba dapatkan dari instance bot aktif
+        from grid_bot import GridTradingBot
+        orders = []
+        
+        if hasattr(GridTradingBot, 'instance') and GridTradingBot.instance is not None:
+            bot = GridTradingBot.instance
+            
+            # Dapatkan info order dari instance bot
+            if hasattr(bot, 'buy_orders'):
+                for price, order_id in bot.buy_orders.items():
+                    orders.append({
+                        'orderId': order_id,
+                        'side': 'BUY',
+                        'price': price,
+                        'origQty': bot.quantity,
+                        'status': 'NEW'
+                    })
+            
+            if hasattr(bot, 'sell_orders'):
+                for price, order_id in bot.sell_orders.items():
+                    orders.append({
+                        'orderId': order_id,
+                        'side': 'SELL',
+                        'price': price,
+                        'origQty': bot.quantity,
+                        'status': 'NEW'
+                    })
+        
+        # Jika tidak ada data dari bot instance, coba dapatkan dari API
+        if not orders:
+            try:
+                from binance_client import BinanceClient
+                client = BinanceClient()
+                open_orders = client.get_open_orders(config.SYMBOL)
+                if open_orders:
+                    orders = open_orders
+            except Exception as e:
+                logger.error(f"Error getting orders from Binance API: {e}")
+        
+        return jsonify({'orders': orders})
+    except Exception as e:
+        logger.error(f"Error getting order data: {e}")
+        return jsonify({'orders': []})
 
 def run_dashboard():
     """Jalankan dashboard web"""
@@ -1131,6 +1559,11 @@ def run_dashboard():
     
     # Muat data bot
     load_bot_data()
+    
+    # Initialize sse_clients if not disabled
+    global sse_clients
+    if sse_clients is None and not SSE_DISABLED:
+        sse_clients = []
     
     # Jalankan thread untuk update data
     update_thread = Thread(target=update_data_thread)

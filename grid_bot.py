@@ -45,7 +45,7 @@ class GridTradingBot:
         
         # Price tracking
         self.last_price = None
-        self.price_history = []  # Store recent price history
+        self.price_history = []  # Store recent price history, format: {"time": ISO-string, "price": float, "usdt_idr": float}
         self.price_update_time = datetime.datetime.now()
         self.last_grid_adjustment = datetime.datetime.now()
         
@@ -103,6 +103,25 @@ class GridTradingBot:
         """Setup the initial grid orders"""
         logger.info("Setting up grid orders...")
         
+        # Check account balance
+        quote_asset = self.symbol[len(self.symbol)-4:]  # USDT for ADAUSDT
+        base_asset = self.symbol[:len(self.symbol)-4]   # ADA for ADAUSDT
+        
+        usdt_balance = self.client.get_account_balance(quote_asset)
+        ada_balance = self.client.get_account_balance(base_asset)
+        
+        usdt_free = usdt_balance['free'] if usdt_balance else 0
+        usdt_locked = usdt_balance['locked'] if usdt_balance else 0
+        ada_free = ada_balance['free'] if ada_balance else 0
+        ada_locked = ada_balance['locked'] if ada_balance else 0
+        
+        # Log balance before grid setup
+        logger.info(f"[BALANCE] {quote_asset}: {usdt_free:.4f} (Free) + {usdt_locked:.4f} (Locked) | {base_asset}: {ada_free:.4f} (Free) + {ada_locked:.4f} (Locked)")
+        
+        # Calculate minimum balance required
+        grid_below_current = 0
+        grid_above_current = 0
+        
         # Get current price
         current_price = self.client.get_symbol_price(self.symbol)
         if not current_price:
@@ -110,7 +129,33 @@ class GridTradingBot:
             return False
         
         self.last_price = current_price
-        self.price_history.append((datetime.datetime.now(), current_price))
+        self.price_history.append({
+            "time": datetime.datetime.now().isoformat(),
+            "price": current_price,
+            "usdt_idr": self.client.get_usdt_idr_rate()
+        })
+        
+        # Count grid levels above and below current price
+        for price in self.grid_prices:
+            if price < current_price:
+                grid_below_current += 1
+            elif price > current_price:
+                grid_above_current += 1
+        
+        # Calculate required balances
+        required_usdt = grid_below_current * self.quantity * current_price
+        required_ada = grid_above_current * self.quantity
+        
+        # Log required balances
+        logger.info(f"[REQUIREMENT] Need {required_usdt:.4f} {quote_asset} for {grid_below_current} buy orders")
+        logger.info(f"[REQUIREMENT] Need {required_ada:.4f} {base_asset} for {grid_above_current} sell orders")
+        
+        # Check if balance is sufficient
+        if usdt_free < required_usdt:
+            logger.warning(f"Insufficient {quote_asset} balance. Have: {usdt_free:.4f}, Need: {required_usdt:.4f}")
+        
+        if ada_free < required_ada:
+            logger.warning(f"Insufficient {base_asset} balance. Have: {ada_free:.4f}, Need: {required_ada:.4f}")
         
         # Adjust grid around current price if needed
         if current_price < self.lower_price or current_price > self.upper_price:
@@ -164,35 +209,52 @@ class GridTradingBot:
 
     def check_filled_orders(self):
         """Check for filled orders and place new orders accordingly"""
-        # Get current price and log it
+        # Get current price
         current_price = self.client.get_symbol_price(self.symbol)
-        if current_price:
-            now = datetime.datetime.now()
-            self.price_history.append((now, current_price))
+        if not current_price:
+            logger.error("Failed to get current price")
+            return
+        
+        # Log current balance
+        self._log_current_balance()
+        
+        # Get USDT/IDR rate
+        usdt_idr_rate = self.client.get_usdt_idr_rate()
+        
+        # Update price history
+        now = datetime.datetime.now()
+        self.price_history.append({
+            "time": now.isoformat(),
+            "price": current_price,
+            "usdt_idr": usdt_idr_rate
+        })
             
-            # Limit price history to last 100 entries
-            if len(self.price_history) > 100:
-                self.price_history.pop(0)
-            
-            # Calculate price change since last check
-            price_change = 0
-            if self.last_price:
-                price_change = ((current_price - self.last_price) / self.last_price) * 100
-            
-            # Log price with change percentage and total profit
-            logger.info(f"[PRICE UPDATE] {self.symbol}: {current_price} | Change: {price_change:.2f}% | Profit: {self.total_profit:.4f} USDT | Time: {now.strftime('%H:%M:%S')}")
-            
-            # Check if price is outside grid range (with 10% buffer)
-            if current_price < self.lower_price * 0.9 or current_price > self.upper_price * 1.1:
-                hours_since_adjustment = (now - self.last_grid_adjustment).total_seconds() / 3600
-                if hours_since_adjustment >= 1:  # Wait at least 1 hour between adjustments
-                    logger.warning(f"Price {current_price} is far outside grid range. Consider manual adjustment.")
-            
-            # Update last price
-            self.last_price = current_price
-            
-            # Save state untuk memastikan dashboard selalu memiliki harga terbaru
-            self._save_state()
+        # Limit price history to last 100 entries
+        if len(self.price_history) > 100:
+            self.price_history.pop(0)
+        
+        # Calculate price change since last check
+        price_change = 0
+        if self.last_price:
+            price_change = ((current_price - self.last_price) / self.last_price) * 100
+        
+        # Calculate ADA value in IDR
+        ada_idr_value = current_price * usdt_idr_rate
+        
+        # Log price with change percentage, total profit, and IDR value
+        logger.info(f"[PRICE UPDATE] {self.symbol}: {current_price} | USDT/IDR: {usdt_idr_rate:.2f} | ADA/IDR: {ada_idr_value:.2f} | Change: {price_change:.2f}% | Profit: {self.total_profit:.4f} USDT | Time: {now.strftime('%H:%M:%S')}")
+        
+        # Check if price is outside grid range (with 10% buffer)
+        if current_price < self.lower_price * 0.9 or current_price > self.upper_price * 1.1:
+            hours_since_adjustment = (now - self.last_grid_adjustment).total_seconds() / 3600
+            if hours_since_adjustment >= 1:  # Wait at least 1 hour between adjustments
+                logger.warning(f"Price {current_price} is far outside grid range. Consider manual adjustment.")
+        
+        # Update last price
+        self.last_price = current_price
+        
+        # Save state untuk memastikan dashboard selalu memiliki harga terbaru
+        self._save_state()
         
         # Get current open orders
         open_orders = self.client.get_open_orders(self.symbol)
@@ -235,6 +297,9 @@ class GridTradingBot:
                 
                 # Remove the filled buy order from our tracking
                 del self.buy_orders[price]
+                
+                # Log updated balance after order filled
+                self._log_current_balance()
         
         # Check sell orders
         for price, order_id in list(self.sell_orders.items()):
@@ -270,6 +335,25 @@ class GridTradingBot:
                 
                 # Remove the filled sell order from our tracking
                 del self.sell_orders[price]
+                
+                # Log updated balance after order filled
+                self._log_current_balance()
+
+    def _log_current_balance(self):
+        """Log current account balance"""
+        quote_asset = self.symbol[len(self.symbol)-4:]  # USDT for ADAUSDT
+        base_asset = self.symbol[:len(self.symbol)-4]   # ADA for ADAUSDT
+        
+        usdt_balance = self.client.get_account_balance(quote_asset)
+        ada_balance = self.client.get_account_balance(base_asset)
+        
+        usdt_free = usdt_balance['free'] if usdt_balance else 0
+        usdt_locked = usdt_balance['locked'] if usdt_balance else 0
+        ada_free = ada_balance['free'] if ada_balance else 0
+        ada_locked = ada_balance['locked'] if ada_balance else 0
+        
+        # Log balance information
+        logger.info(f"[BALANCE] {quote_asset}: {usdt_free:.4f} (Free) + {usdt_locked:.4f} (Locked) | {base_asset}: {ada_free:.4f} (Free) + {ada_locked:.4f} (Locked)")
 
     def adjust_grid(self):
         """Adjust grid parameters based on market conditions"""
@@ -285,6 +369,10 @@ class GridTradingBot:
         if not current_price:
             logger.error("Failed to get current price for grid adjustment")
             return
+        
+        # Log current balance before adjustment
+        logger.info("Checking if grid adjustment is needed...")
+        self._log_current_balance()
         
         # Calculate grid width as percentage of price
         current_width_percent = ((self.upper_price - self.lower_price) / current_price) * 100
@@ -349,6 +437,9 @@ class GridTradingBot:
             
             # Log current profit at startup
             logger.info(f"Current total profit: {self.total_profit:.4f} USDT")
+            
+            # Log current balance
+            self._log_current_balance()
             
             self.setup_grid()
             

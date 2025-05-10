@@ -102,6 +102,7 @@ def main():
     # Parse command line arguments
     mode = "both"
     production = False
+    disable_sse = False
     
     # Parse arguments
     for arg in sys.argv[1:]:
@@ -109,6 +110,13 @@ def main():
             mode = arg.lower()
         elif arg.lower() in ["--production", "-p"]:
             production = True
+        elif arg.lower() == "--disable-sse":
+            disable_sse = True
+    
+    # Set environment variable untuk disable SSE jika diminta
+    if disable_sse:
+        os.environ["DISABLE_SSE"] = "true"
+        logger.info("Server-Sent Events (SSE) dinonaktifkan, menggunakan polling")
     
     if mode == "bot":
         # Hanya jalankan bot
@@ -131,7 +139,7 @@ def main():
             dashboard_success = run_dashboard_production()
         
         # Jika production dashboard gagal atau mode dev, gunakan thread
-        if not dashboard_success and not production:
+        if not production or not dashboard_success:
             dashboard_thread = threading.Thread(target=run_dashboard_thread)
             dashboard_thread.daemon = True
             dashboard_thread.start()
