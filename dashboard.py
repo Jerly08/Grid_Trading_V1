@@ -101,90 +101,30 @@ def check_password(hashed_password, user_password):
     return password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest()
 
 def login_required(f):
-    """Decorator untuk halaman yang memerlukan login"""
+    """Decorator untuk halaman yang memerlukan login (dinonaktifkan)"""
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if 'user_id' not in session:
-            return redirect(url_for('login'))
-        
-        # Verifikasi session ID
-        user_id = session.get('user_id')
-        if user_id not in active_sessions:
-            session.clear()
-            return redirect(url_for('login'))
-        
-        # Refresh session timestamp
-        active_sessions[user_id]['last_activity'] = datetime.datetime.now()
+        # Bypass authentication - langsung berikan akses
         return f(*args, **kwargs)
     return decorated_function
 
 def check_for_session_timeout():
-    """Periksa session yang tidak aktif dan hapus"""
+    """Fungsi ini tidak lagi diperlukan karena autentikasi dihapus, tapi tetap ada untuk kompatibilitas."""
     while True:
-        try:
-            now = datetime.datetime.now()
-            for user_id in list(active_sessions.keys()):
-                last_activity = active_sessions[user_id]['last_activity']
-                if (now - last_activity).total_seconds() > 3600:  # 1 jam timeout
-                    del active_sessions[user_id]
-                    logger.info(f"Session {user_id} expired due to inactivity")
-        except Exception as e:
-            logger.error(f"Error in session cleanup: {e}")
-        time.sleep(300)  # Periksa setiap 5 menit
+        time.sleep(300)  # Tidur saja, tidak perlu melakukan apa-apa
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error = None
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        
-        # Check if IP is blocked
-        client_ip = request.remote_addr
-        if client_ip in blocked_ips and blocked_ips[client_ip]['until'] is not None and blocked_ips[client_ip]['until'] > datetime.datetime.now():
-            return render_template('login.html', error="IP blocked due to too many failed attempts")
-        
-        # Authenticate
-        if username == DASHBOARD_USERNAME and password == DASHBOARD_PASSWORD:
-            # Reset failed attempts
-            if client_ip in blocked_ips:
-                del blocked_ips[client_ip]
-            
-            # Create new session
-            user_id = str(uuid.uuid4())
-            session['user_id'] = user_id
-            active_sessions[user_id] = {
-                'username': username,
-                'last_activity': datetime.datetime.now()
-            }
-            return redirect(url_for('index'))
-        else:
-            # Track failed attempts
-            if client_ip not in blocked_ips:
-                blocked_ips[client_ip] = {'attempts': 1, 'until': None}
-            else:
-                blocked_ips[client_ip]['attempts'] += 1
-            
-            # Block IP if too many failed attempts
-            if blocked_ips[client_ip]['attempts'] >= MAX_FAILED_ATTEMPTS:
-                blocked_ips[client_ip]['until'] = datetime.datetime.now() + datetime.timedelta(minutes=30)
-                logger.warning(f"IP {client_ip} blocked for 30 minutes due to too many failed login attempts")
-                error = "Too many failed attempts. IP blocked for 30 minutes."
-            else:
-                error = "Invalid username or password"
-    
-    return render_template('login.html', error=error)
+    # Bypass login, langsung redirect ke index
+    return redirect(url_for('index'))
 
 @app.route('/logout')
 def logout():
-    user_id = session.get('user_id')
-    if user_id and user_id in active_sessions:
-        del active_sessions[user_id]
-    session.clear()
-    return redirect(url_for('login'))
+    # Tetap ada untuk kompatibilitas, tapi tidak melakukan apa-apa
+    return redirect(url_for('index'))
 
 @app.route('/')
-@login_required
+# @login_required (tidak perlu lagi)
 def index():
     """Halaman utama dashboard"""
     return render_template('index.html', 
@@ -193,7 +133,7 @@ def index():
                            bot_profit=bot_profit)
 
 @app.route('/api/price_chart')
-@login_required
+# @login_required (dinonaktifkan)
 def price_chart():
     """API endpoint untuk data grafik harga"""
     global price_history, latest_price, grid_levels
@@ -267,7 +207,7 @@ def price_chart():
         return jsonify({"status": "no_data", "chart": chart_json})
 
 @app.route('/api/trades')
-@login_required
+# @login_required (dinonaktifkan)
 def get_trades():
     """API endpoint untuk data history trading"""
     try:
@@ -366,7 +306,7 @@ def parse_trades_from_log():
     return trades
 
 @app.route('/api/status')
-@login_required
+# @login_required (dinonaktifkan)
 def get_status():
     """API endpoint untuk status bot"""
     global latest_price, usdt_idr_rate, balance_info
@@ -412,7 +352,7 @@ def get_status():
     return jsonify(status_data)
 
 @app.route('/stream')
-@login_required
+# @login_required (dinonaktifkan)
 def stream():
     """Server-Sent Events endpoint untuk update realtime"""
     # Return empty response if SSE is disabled
@@ -1137,7 +1077,6 @@ def create_templates():
     <div class="container">
         <div class="header-actions">
             <h1>Dashboard Bot Trading Grid</h1>
-            <a href="/logout" class="btn btn-outline-danger">Logout</a>
         </div>
         
         <!-- Indikator realtime -->
@@ -1391,24 +1330,22 @@ def create_templates():
                 updateLastUpdated();
                 
             }).fail(function() {
-                // Redirect to login if authentication fails
-                window.location.href = '/login';
+                // Just try again later without redirecting
+                console.error('Failed to fetch status data');
             });
             
             // Update grafik harga
             $.getJSON('/api/price_chart', function(data) {
                 Plotly.react('priceChart', JSON.parse(data.chart));
             }).fail(function() {
-                // Redirect to login if authentication fails
-                window.location.href = '/login';
+                console.error('Failed to fetch chart data');
             });
             
             // Update riwayat trading
             $.getJSON('/api/trades', function(data) {
                 updateTradesTable(data.trades);
             }).fail(function() {
-                // Redirect to login if authentication fails
-                window.location.href = '/login';
+                console.error('Failed to fetch trades data');
             });
         }
         
@@ -1504,7 +1441,7 @@ def create_templates():
         """)
 
 @app.route('/api/orders')
-@login_required
+# @login_required (dinonaktifkan)
 def get_orders():
     """API endpoint untuk mendapatkan data order spot aktif"""
     try:
