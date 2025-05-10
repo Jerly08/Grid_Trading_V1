@@ -26,7 +26,7 @@ DASHBOARD_SECRET_KEY = os.getenv('DASHBOARD_SECRET_KEY', secrets.token_hex(32))
 app = Flask(__name__)
 app.secret_key = DASHBOARD_SECRET_KEY
 app.config['SESSION_COOKIE_HTTPONLY'] = True
-app.config['SESSION_COOKIE_SECURE'] = True  # Aktifkan jika menggunakan HTTPS
+app.config['SESSION_COOKIE_SECURE'] = False  # Nonaktifkan karena menggunakan HTTP, bukan HTTPS
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(hours=8)
 app.config['JSON_AS_ASCII'] = False  # Allow non-ASCII characters in JSON response
 
