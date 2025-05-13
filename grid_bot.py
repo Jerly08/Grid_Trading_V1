@@ -3,6 +3,7 @@ import logging
 import numpy as np
 from binance.exceptions import BinanceAPIException
 from binance_client import BinanceClient
+from risk_management import RiskManager
 import config
 import datetime
 import json
@@ -29,6 +30,7 @@ class GridTradingBot:
         GridTradingBot.instance = self
         
         self.client = BinanceClient()
+        self.risk_manager = RiskManager(self.client)
         self.symbol = config.SYMBOL
         self.upper_price = config.UPPER_PRICE
         self.lower_price = config.LOWER_PRICE
@@ -52,6 +54,12 @@ class GridTradingBot:
         # Profit tracking
         self.total_profit = 0
         self.trades = []
+        
+        # Track entry prices for stop loss calculation
+        self.entry_prices = {}  # Key: price, Value: entry_timestamp
+        
+        # Initial price for overall stop loss
+        self.initial_price = None
         
         # Load previous state if exists
         self._load_state()
@@ -103,6 +111,11 @@ class GridTradingBot:
         """Setup the initial grid orders"""
         logger.info("Setting up grid orders...")
         
+        # Check investment limit before starting
+        if not self.risk_manager.check_investment_limit():
+            logger.warning("Investment limit would be exceeded. Adjusting grid parameters...")
+            # Implementasi logika untuk mengurangi ukuran grid atau kuantitas order bisa ditambahkan di sini
+        
         # Check account balance
         quote_asset = self.symbol[len(self.symbol)-4:]  # USDT for ADAUSDT
         base_asset = self.symbol[:len(self.symbol)-4]   # ADA for ADAUSDT
@@ -129,11 +142,19 @@ class GridTradingBot:
             return False
         
         self.last_price = current_price
+        # Set initial price for overall stop loss
+        self.initial_price = current_price
+        
         self.price_history.append({
             "time": datetime.datetime.now().isoformat(),
             "price": current_price,
             "usdt_idr": self.client.get_usdt_idr_rate()
         })
+        
+        # Check market volatility
+        if self.risk_manager.monitor_market_volatility(time_window=3600, threshold=5.0):
+            logger.warning("High market volatility detected. Consider adjusting grid parameters.")
+            # Implementasi penyesuaian parameter grid berdasarkan volatilitas bisa ditambahkan di sini
         
         # Count grid levels above and below current price
         for price in self.grid_prices:
@@ -209,135 +230,143 @@ class GridTradingBot:
 
     def check_filled_orders(self):
         """Check for filled orders and place new orders accordingly"""
-        # Get current price
-        current_price = self.client.get_symbol_price(self.symbol)
-        if not current_price:
-            logger.error("Failed to get current price")
-            return
-        
-        # Log current balance
-        self._log_current_balance()
-        
-        # Get USDT/IDR rate
-        usdt_idr_rate = self.client.get_usdt_idr_rate()
-        
-        # Update price history
-        now = datetime.datetime.now()
-        self.price_history.append({
-            "time": now.isoformat(),
-            "price": current_price,
-            "usdt_idr": usdt_idr_rate
-        })
+        try:
+            # Get current open orders
+            open_orders = self.client.get_open_orders(self.symbol)
+            if open_orders is None:
+                logger.error("Failed to get open orders")
+                return
             
-        # Limit price history to last 100 entries
-        if len(self.price_history) > 100:
-            self.price_history.pop(0)
-        
-        # Calculate price change since last check
-        price_change = 0
-        if self.last_price:
-            price_change = ((current_price - self.last_price) / self.last_price) * 100
-        
-        # Calculate ADA value in IDR
-        ada_idr_value = current_price * usdt_idr_rate
-        
-        # Log price with change percentage, total profit, and IDR value
-        logger.info(f"[PRICE UPDATE] {self.symbol}: {current_price} | USDT/IDR: {usdt_idr_rate:.2f} | ADA/IDR: {ada_idr_value:.2f} | Change: {price_change:.2f}% | Profit: {self.total_profit:.4f} USDT | Time: {now.strftime('%H:%M:%S')}")
-        
-        # Check if price is outside grid range (with 10% buffer)
-        if current_price < self.lower_price * 0.9 or current_price > self.upper_price * 1.1:
-            hours_since_adjustment = (now - self.last_grid_adjustment).total_seconds() / 3600
-            if hours_since_adjustment >= 1:  # Wait at least 1 hour between adjustments
-                logger.warning(f"Price {current_price} is far outside grid range. Consider manual adjustment.")
-        
-        # Update last price
-        self.last_price = current_price
-        
-        # Save state untuk memastikan dashboard selalu memiliki harga terbaru
-        self._save_state()
-        
-        # Get current open orders
-        open_orders = self.client.get_open_orders(self.symbol)
-        if open_orders is None:
-            logger.error("Failed to get open orders")
-            return
-        
-        # Convert to dict of order_id: order
-        open_order_ids = {order['orderId']: order for order in open_orders}
-        
-        # Check buy orders
-        for price, order_id in list(self.buy_orders.items()):
-            if order_id not in open_order_ids:
-                # Buy order was filled, place sell order at next grid level up
-                sell_price = price + self.grid_size
-                logger.info(f"Buy order at {price} was filled. Placing sell order at {sell_price}")
-                
-                # Track potential profit
-                potential_profit = (sell_price - price) * self.quantity
-                logger.info(f"Potential profit if sell order fills: {potential_profit:.4f} USDT")
-                
-                # Record trade
-                self.trades.append({
-                    'time': datetime.datetime.now().isoformat(),
-                    'type': 'BUY',
-                    'price': price,
-                    'quantity': self.quantity,
-                    'symbol': self.symbol
+            # Convert to set of order IDs for easier lookup
+            open_order_ids = {order['orderId'] for order in open_orders}
+            
+            # Get current price for price tracking and risk assessment
+            current_price = self.client.get_symbol_price(self.symbol)
+            if current_price:
+                self.last_price = current_price
+                self.price_history.append({
+                    "time": datetime.datetime.now().isoformat(), 
+                    "price": current_price,
+                    "usdt_idr": self.client.get_usdt_idr_rate()
                 })
-                self._save_state()
+                self.price_update_time = datetime.datetime.now()
                 
-                order = self.client.place_limit_order(
-                    symbol=self.symbol,
-                    side="SELL",
-                    quantity=self.quantity,
-                    price=sell_price
-                )
-                if order:
-                    self.sell_orders[sell_price] = order['orderId']
-                
-                # Remove the filled buy order from our tracking
-                del self.buy_orders[price]
-                
-                # Log updated balance after order filled
-                self._log_current_balance()
+                # Keep only recent price history to save memory
+                if len(self.price_history) > 1000:
+                    self.price_history = self.price_history[-1000:]
+            
+            # Check overall stop loss
+            if self.initial_price and self.risk_manager.check_stop_loss(self.initial_price):
+                logger.warning("Overall stop loss triggered!")
+                self.risk_manager.execute_emergency_exit()
+                return
+            
+            # Check if any buy orders have been filled
+            for price, order_id in list(self.buy_orders.items()):
+                if order_id not in open_order_ids:
+                    # Buy order was filled, place a sell order at the next price level
+                    sell_price = price + self.grid_size
+                    
+                    # Record entry price for this position
+                    self.entry_prices[price] = time.time()
+                    
+                    # Calculate profit for this grid level
+                    profit = self.grid_size * self.quantity
+                    self.total_profit += profit
+                    profit_percentage = (self.grid_size / price) * 100
+                    
+                    # Log the filled buy order
+                    logger.info(f"Buy order at {price} filled. Potential profit at sell price {sell_price}: {profit:.4f} USDT ({profit_percentage:.2f}%)")
+                    
+                    # Check investment limit before placing new order
+                    if not self.risk_manager.check_investment_limit():
+                        logger.warning("Investment limit reached. Not placing sell order.")
+                        continue
+                    
+                    # Place a new sell order at the next price level
+                    order = self.client.place_limit_order(
+                        symbol=self.symbol,
+                        side="SELL",
+                        quantity=self.quantity,
+                        price=sell_price
+                    )
+                    
+                    if order:
+                        self.sell_orders[sell_price] = order['orderId']
+                        
+                        # Record the trade
+                        trade = {
+                            'time': datetime.datetime.now().isoformat(),
+                            'side': 'BUY',
+                            'price': price,
+                            'quantity': self.quantity,
+                            'value': price * self.quantity,
+                            'next_target': sell_price,
+                            'potential_profit': profit
+                        }
+                        self.trades.append(trade)
+                        
+                        # Save updated state
+                        self._save_state()
+                    
+                    # Remove the filled buy order from our tracking
+                    del self.buy_orders[price]
+            
+            # Check if any sell orders have been filled
+            for price, order_id in list(self.sell_orders.items()):
+                if order_id not in open_order_ids:
+                    # Sell order was filled, place a buy order at the next price level
+                    buy_price = price - self.grid_size
+                    
+                    # Calculate profit for this grid level
+                    profit = self.grid_size * self.quantity
+                    self.total_profit += profit
+                    profit_percentage = (self.grid_size / buy_price) * 100
+                    
+                    # Log the filled sell order
+                    logger.info(f"Sell order at {price} filled. Profit: {profit:.4f} USDT ({profit_percentage:.2f}%). Total profit: {self.total_profit:.4f} USDT")
+                    
+                    # Check investment limit before placing new order
+                    if not self.risk_manager.check_investment_limit():
+                        logger.warning("Investment limit reached. Not placing buy order.")
+                        continue
+                    
+                    # Place a new buy order at the next price level
+                    order = self.client.place_limit_order(
+                        symbol=self.symbol,
+                        side="BUY",
+                        quantity=self.quantity,
+                        price=buy_price
+                    )
+                    
+                    if order:
+                        self.buy_orders[buy_price] = order['orderId']
+                        
+                        # Record the trade
+                        trade = {
+                            'time': datetime.datetime.now().isoformat(),
+                            'side': 'SELL',
+                            'price': price,
+                            'quantity': self.quantity,
+                            'value': price * self.quantity,
+                            'next_target': buy_price,
+                            'actual_profit': profit,
+                            'total_profit': self.total_profit
+                        }
+                        self.trades.append(trade)
+                        
+                        # Save updated state
+                        self._save_state()
+                    
+                    # Remove the filled sell order from our tracking
+                    del self.sell_orders[price]
+                    
+                    # Remove corresponding entry price
+                    if buy_price in self.entry_prices:
+                        del self.entry_prices[buy_price]
         
-        # Check sell orders
-        for price, order_id in list(self.sell_orders.items()):
-            if order_id not in open_order_ids:
-                # Sell order was filled, place buy order at next grid level down
-                buy_price = price - self.grid_size
-                logger.info(f"Sell order at {price} was filled. Placing buy order at {buy_price}")
-                
-                # Calculate and log actual profit from this grid level
-                profit = (price - (buy_price + self.grid_size)) * self.quantity
-                self.total_profit += profit
-                logger.info(f"Profit from this trade: {profit:.4f} USDT. Total profit: {self.total_profit:.4f} USDT")
-                
-                # Record trade
-                self.trades.append({
-                    'time': datetime.datetime.now().isoformat(),
-                    'type': 'SELL',
-                    'price': price,
-                    'quantity': self.quantity,
-                    'symbol': self.symbol,
-                    'profit': profit
-                })
-                self._save_state()
-                
-                order = self.client.place_limit_order(
-                    symbol=self.symbol,
-                    side="BUY",
-                    quantity=self.quantity,
-                    price=buy_price
-                )
-                if order:
-                    self.buy_orders[buy_price] = order['orderId']
-                
-                # Remove the filled sell order from our tracking
-                del self.sell_orders[price]
-                
-                # Log updated balance after order filled
-                self._log_current_balance()
+        except Exception as e:
+            logger.error(f"Error checking filled orders: {e}")
 
     def _log_current_balance(self):
         """Log current account balance"""
@@ -357,100 +386,91 @@ class GridTradingBot:
 
     def adjust_grid(self):
         """Adjust grid parameters based on market conditions"""
-        # Only adjust grid if significant time has passed since last adjustment
-        now = datetime.datetime.now()
-        hours_since_last = (now - self.last_grid_adjustment).total_seconds() / 3600
-        
-        if hours_since_last < 12:  # Limit adjustments to once per 12 hours
-            return
+        try:
+            # Get current price
+            current_price = self.client.get_symbol_price(self.symbol)
+            if not current_price:
+                logger.error("Failed to get current price for grid adjustment")
+                return
             
-        # Get current price
-        current_price = self.client.get_symbol_price(self.symbol)
-        if not current_price:
-            logger.error("Failed to get current price for grid adjustment")
-            return
-        
-        # Log current balance before adjustment
-        logger.info("Checking if grid adjustment is needed...")
-        self._log_current_balance()
-        
-        # Calculate grid width as percentage of price
-        current_width_percent = ((self.upper_price - self.lower_price) / current_price) * 100
-        
-        # If price is near grid edges or grid is too wide/narrow, adjust it
-        if (current_price < self.lower_price * 1.1 or
-            current_price > self.upper_price * 0.9 or
-            current_width_percent < 3 or 
-            current_width_percent > 10):
-            
-            logger.info(f"Adjusting grid. Current price: {current_price}, Current grid: {self.lower_price} - {self.upper_price}")
-            
-            # Cancel all existing orders
-            open_orders = self.client.get_open_orders(self.symbol)
-            if open_orders:
-                for order in open_orders:
-                    self.client.cancel_order(order['orderId'], self.symbol)
-                logger.info("Cancelled all orders for grid adjustment")
+            # Check if price is outside grid range
+            if current_price < self.lower_price * 0.95 or current_price > self.upper_price * 1.05:
+                logger.info(f"Price ({current_price}) has moved significantly outside grid range ({self.lower_price} - {self.upper_price}). Adjusting grid...")
                 
-            # Reset order tracking
-            self.buy_orders = {}
-            self.sell_orders = {}
-            
-            # Center grid around current price with ~4% width
-            self.lower_price = current_price * 0.98
-            self.upper_price = current_price * 1.02
-            self.grid_size = (self.upper_price - self.lower_price) / self.grid_number
-            self.grid_prices = self._calculate_grid_prices()
-            
-            # Place new orders
-            for price in self.grid_prices:
-                if price < current_price:
-                    order = self.client.place_limit_order(
-                        symbol=self.symbol,
-                        side="BUY",
-                        quantity=self.quantity,
-                        price=price
-                    )
-                    if order:
-                        self.buy_orders[price] = order['orderId']
-                else:
-                    order = self.client.place_limit_order(
-                        symbol=self.symbol,
-                        side="SELL",
-                        quantity=self.quantity,
-                        price=price
-                    )
-                    if order:
-                        self.sell_orders[price] = order['orderId']
-            
-            logger.info(f"Grid adjusted. New range: {self.lower_price} - {self.upper_price}")
-            logger.info(f"New grid lines: {', '.join([str(p) for p in self.grid_prices])}")
-            self.last_grid_adjustment = now
-            self._save_state()
+                # Check market volatility before adjusting
+                if self.risk_manager.monitor_market_volatility():
+                    logger.warning("High market volatility detected during grid adjustment")
+                
+                # Cancel all existing orders
+                open_orders = self.client.get_open_orders(self.symbol)
+                if open_orders:
+                    for order in open_orders:
+                        self.client.cancel_order(order['orderId'], self.symbol)
+                    logger.info("Cancelled all existing orders for grid adjustment")
+                
+                # Reset order tracking
+                self.buy_orders = {}
+                self.sell_orders = {}
+                
+                # Set new grid around current price
+                self.lower_price = current_price * 0.98
+                self.upper_price = current_price * 1.02
+                self.grid_size = (self.upper_price - self.lower_price) / self.grid_number
+                self.grid_prices = self._calculate_grid_prices()
+                
+                logger.info(f"New grid range: {self.lower_price} - {self.upper_price}")
+                
+                # Set up new grid
+                self.setup_grid()
+                
+                # Update last grid adjustment time
+                self.last_grid_adjustment = datetime.datetime.now()
+                
+            # Log current grid status
+            logger.info(f"Current grid status: {len(self.buy_orders)} buy orders, {len(self.sell_orders)} sell orders")
+            logger.info(f"Grid range: {self.lower_price} - {self.upper_price}, Current price: {current_price}")
+        
+        except Exception as e:
+            logger.error(f"Error adjusting grid: {e}")
 
     def run(self):
         """Run the grid trading bot"""
+        logger.info("Starting grid trading bot...")
+        
+        # Set up the initial grid
+        if not self.setup_grid():
+            logger.error("Failed to set up grid. Exiting.")
+            return
+        
         try:
-            logger.info("Grid trading bot is running...")
-            logger.info("Price will be updated every 10 seconds")
-            logger.info("Grid will be adjusted as needed (max once per 12 hours)")
-            
-            # Log current profit at startup
-            logger.info(f"Current total profit: {self.total_profit:.4f} USDT")
-            
-            # Log current balance
-            self._log_current_balance()
-            
-            self.setup_grid()
-            
+            # Main bot loop
             while True:
-                self.check_filled_orders()
-                time.sleep(10)
-                
-        except KeyboardInterrupt:
-            logger.info(f"Bot stopped by user. Final profit: {self.total_profit:.4f} USDT")
-        except Exception as e:
-            logger.error(f"Unexpected error: {e}")
+                try:
+                    # Check for filled orders
+                    self.check_filled_orders()
+                    
+                    # Check if we need to adjust the grid (every 15 minutes)
+                    now = datetime.datetime.now()
+                    if (now - self.last_grid_adjustment).total_seconds() > 900:  # 15 minutes
+                        self.adjust_grid()
+                        self.last_grid_adjustment = now
+                    
+                    # Log current balance occasionally (every hour)
+                    if not hasattr(self, 'last_balance_log') or (now - self.last_balance_log).total_seconds() > 3600:
+                        self._log_current_balance()
+                        self.last_balance_log = now
+                    
+                    # Save state occasionally
+                    if not hasattr(self, 'last_state_save') or (now - self.last_state_save).total_seconds() > 300:
+                        self._save_state()
+                        self.last_state_save = now
+                    
+                    # Sleep to avoid API rate limits
+                    time.sleep(10)
+                    
+                except Exception as e:
+                    logger.error(f"Error in bot main loop: {e}")
+                    time.sleep(30)  # Sleep longer on error
         finally:
             # Hapus instance referensi ketika bot berhenti
             if GridTradingBot.instance == self:

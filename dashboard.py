@@ -243,10 +243,36 @@ def get_trades():
             except Exception as e:
                 logger.error(f"Error parsing trades from log: {e}")
         
-        return jsonify(trades=trades_data)
+        # Normalisasi format data perdagangan
+        for trade in trades_data:
+            # Pastikan semua trade memiliki field 'side' untuk dashboard baru
+            if 'side' not in trade and 'type' in trade:
+                trade['side'] = trade['type']
+            elif 'side' not in trade:
+                # Default side jika tidak ada
+                trade['side'] = 'BUY'
+            
+            # Pastikan format nilai konsisten
+            if 'price' in trade and trade['price'] is not None:
+                trade['price'] = float(trade['price'])
+            
+            if 'quantity' in trade and trade['quantity'] is not None:
+                trade['quantity'] = float(trade['quantity'])
+            
+            # Hitung nilai total jika belum ada
+            if 'value' not in trade and 'price' in trade and 'quantity' in trade:
+                trade['value'] = trade['price'] * trade['quantity']
+            
+            # Pastikan informasi profit tersedia
+            if 'profit' not in trade and 'actual_profit' in trade:
+                trade['profit'] = trade['actual_profit']
+            elif 'profit' not in trade and 'potential_profit' in trade:
+                trade['profit'] = trade['potential_profit']
+            
+        return jsonify({"status": "success", "trades": trades_data})
     except Exception as e:
         logger.error(f"Error in trades API: {e}")
-        return jsonify(trades=[])
+        return jsonify({"status": "error", "trades": [], "message": str(e)})
 
 def parse_trades_from_log():
     """Parse riwayat transaksi dari file log"""
@@ -257,7 +283,7 @@ def parse_trades_from_log():
             
             for line in lines:
                 # Cari baris log yang berisi informasi transaksi
-                if "TRADE FILLED" in line or "Order filled" in line:
+                if "TRADE FILLED" in line or "Order filled" in line or "Buy order at" in line or "Sell order at" in line:
                     try:
                         # Contoh format: "BUY order filled at 0.7850"
                         parts = line.split(" - ")
@@ -266,15 +292,18 @@ def parse_trades_from_log():
                             message = parts[1]
                             
                             # Ekstrak informasi
-                            if "BUY" in message:
+                            if "BUY" in message or "Buy order at" in message:
                                 type_order = "BUY"
-                            elif "SELL" in message:
+                            elif "SELL" in message or "Sell order at" in message:
                                 type_order = "SELL"
                             else:
                                 continue
                             
                             # Coba ekstrak harga
                             price_match = re.search(r'at\s+(\d+\.\d+)', message)
+                            if not price_match:
+                                price_match = re.search(r'order at (\d+\.\d+)', message)
+                            
                             if price_match:
                                 price = float(price_match.group(1))
                             else:
@@ -287,13 +316,21 @@ def parse_trades_from_log():
                             
                             # Coba ekstrak profit jika ada
                             profit_match = re.search(r'Profit:\s+(\-?\d+\.?\d*)', message)
+                            if not profit_match:
+                                profit_match = re.search(r'profit:\s+(\-?\d+\.?\d*)', message)
+                            
                             profit = float(profit_match.group(1)) if profit_match else 0.0
+                            
+                            # Nilai transaksi
+                            value = price * quantity
                             
                             trade = {
                                 "time": timestamp,
-                                "type": type_order,
+                                "side": type_order,
+                                "type": type_order,  # Untuk kompatibilitas dengan format lama
                                 "price": price,
                                 "quantity": quantity,
+                                "value": value,
                                 "profit": profit
                             }
                             trades.append(trade)
@@ -309,7 +346,7 @@ def parse_trades_from_log():
 # @login_required (dinonaktifkan)
 def get_status():
     """API endpoint untuk status bot"""
-    global latest_price, usdt_idr_rate, balance_info
+    global latest_price, usdt_idr_rate, balance_info, grid_levels, bot_profit, bot_status, price_history
     
     # Reload data untuk mendapatkan harga terbaru
     load_bot_data()
@@ -332,14 +369,40 @@ def get_status():
     total_usdt_value = total_usdt + (total_ada * latest_price)
     total_idr_value = total_usdt_value * usdt_idr_rate
     
+    # Dapatkan data grid
+    grid_info = {
+        "upper_price": None,
+        "lower_price": None,
+        "grid_number": config.GRID_NUMBER,
+        "quantity": config.QUANTITY
+    }
+    
+    # Coba dapatkan data grid dari instance bot
+    try:
+        from grid_bot import GridTradingBot
+        if GridTradingBot.instance:
+            grid_info["upper_price"] = GridTradingBot.instance.upper_price
+            grid_info["lower_price"] = GridTradingBot.instance.lower_price
+            grid_info["grid_number"] = GridTradingBot.instance.grid_number
+            grid_info["quantity"] = GridTradingBot.instance.quantity
+    except Exception as e:
+        logger.warning(f"Failed to get grid info from bot instance: {e}")
+    
+    # Jika data grid masih kosong, ambil dari konfigurasi
+    if grid_info["upper_price"] is None:
+        grid_info["upper_price"] = config.UPPER_PRICE
+        grid_info["lower_price"] = config.LOWER_PRICE
+    
     status_data = {
-        "status": safe_emoji(bot_status),
+        "status": "success",
+        "bot_status": safe_emoji(bot_status),
         "latest_price": latest_price,
-        "profit": bot_profit,
+        "bot_profit": bot_profit,
         "grid_levels": grid_levels,
         "usdt_idr_rate": usdt_idr_rate,
         "ada_idr_value": ada_idr_value,
-        "balance": {
+        "grid_info": grid_info,
+        "balance_info": {
             "usdt_free": balance_info["usdt_free"],
             "usdt_locked": balance_info["usdt_locked"],
             "ada_free": balance_info["ada_free"],
@@ -347,7 +410,8 @@ def get_status():
             "total_usdt_value": total_usdt_value,
             "total_idr_value": total_idr_value,
             "last_update": balance_info["last_update"]
-        }
+        },
+        "price_history": price_history[-100:] if price_history else []
     }
     return jsonify(status_data)
 
@@ -504,294 +568,104 @@ def load_bot_data():
     try:
         # Check if bot process is running
         bot_is_running = False
-        for process in psutil.process_iter():
-            try:
-                if process.name() == "python.exe" and len(process.cmdline()) > 1:
-                    cmd = ' '.join(process.cmdline())
-                    if "run.py" in cmd and "bot" in cmd and "--dashboard" not in cmd:
-                        bot_is_running = True
-                        break
-            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-                pass
-                
-        # Force status to Aktif if grid_bot is actively logging
+        
         try:
-            log_modified_time = os.path.getmtime("bot.log")
-            current_time = time.time()
-            time_diff = current_time - log_modified_time
-            
-            if time_diff < 30:  # Log modified in last 30 seconds
+            from grid_bot import GridTradingBot
+            if hasattr(GridTradingBot, 'instance') and GridTradingBot.instance:
+                bot_is_running = True
                 bot_status = "Aktif"
-            elif time_diff < 300:  # Log modified in last 5 minutes
-                bot_status = "Mungkin Aktif"
-            else:
-                bot_status = "Tidak Aktif (Tidak ada update log)" 
-        except:
-            if bot_is_running:
-                bot_status = "Proses Berjalan"
-            else:
-                bot_status = "Tidak Aktif"
-        
-        # Variabel untuk menyimpan informasi saldo dari log
-        usdt_free = 0
-        usdt_locked = 0
-        ada_free = 0
-        ada_locked = 0
-        last_balance_update = None
-        
-        # Update price history dan balance dari log
-        try:
-            with open("bot.log", "r", encoding="utf-8") as log_file:
-                lines = log_file.readlines()
-                price_data = []
                 
-                # Cari 100 entri harga terbaru
-                for line in reversed(lines):
-                    # Cek informasi saldo terbaru
-                    if "[BALANCE]" in line:
-                        try:
-                            # Contoh format: "[BALANCE] USDT: 2.9447 (Free) + 10.2050 (Locked) | ADA: 4.9790 (Free) + 13.0000 (Locked)"
-                            balance_parts = line.split("[BALANCE]")[1].strip().split("|")
-                            if len(balance_parts) >= 2:
-                                # Parse USDT balance
-                                usdt_part = balance_parts[0].strip()
-                                if "USDT:" in usdt_part:
-                                    usdt_values = usdt_part.split(":")
-                                    if len(usdt_values) >= 2:
-                                        usdt_amounts = usdt_values[1].strip().split("+")
-                                        if len(usdt_amounts) >= 2:
-                                            usdt_free = float(usdt_amounts[0].split("(")[0].strip())
-                                            usdt_locked = float(usdt_amounts[1].split("(")[0].strip())
-                                
-                                # Parse ADA balance
-                                ada_part = balance_parts[1].strip()
-                                if "ADA:" in ada_part:
-                                    ada_values = ada_part.split(":")
-                                    if len(ada_values) >= 2:
-                                        ada_amounts = ada_values[1].strip().split("+")
-                                        if len(ada_amounts) >= 2:
-                                            ada_free = float(ada_amounts[0].split("(")[0].strip())
-                                            ada_locked = float(ada_amounts[1].split("(")[0].strip())
-                                
-                                # Update global balance info
-                                balance_info["usdt_free"] = usdt_free
-                                balance_info["usdt_locked"] = usdt_locked
-                                balance_info["ada_free"] = ada_free
-                                balance_info["ada_locked"] = ada_locked
-                                balance_info["last_update"] = line.split(" - ")[0].strip()
-                                
-                                # Set bot status to active if we found a recent balance update
-                                time_str = line.split(" - ")[0].strip()
-                                try:
-                                    log_time = datetime.datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S,%f")
-                                    time_diff = (datetime.datetime.now() - log_time).total_seconds()
-                                    if time_diff < 60:  # Less than 1 minute
-                                        bot_status = "Aktif"
-                                except:
-                                    pass
-                                
-                                break  # Only need the most recent balance info
-                        except Exception as e:
-                            logger.debug(f"Gagal parsing info saldo: {e}")
-                    
-                    # Cek informasi harga
-                    if "[PRICE UPDATE]" in line:
-                        try:
-                            # Contoh format: "[PRICE UPDATE] ADAUSDT: 0.7973 | USDT/IDR: 16527.00 | ADA/IDR: 13176.98 | Change: 0.01% | Profit: 0.0000 USDT | Time: 18:27:37"
-                            parts = line.split("[PRICE UPDATE]")[1].strip().split("|")
-                            
-                            if len(parts) >= 1:  # Minimal price part
-                                symbol_price = parts[0].strip().split(":")
-                                if len(symbol_price) == 2:
-                                    symbol = symbol_price[0].strip()
-                                    price = float(symbol_price[1].strip())
-                                    timestamp = line.split(" - ")[0].strip()
-                                    
-                                    # Update latest_price immediately
-                                    latest_price = price
-                                    logger.info(f"Found price in log: {price}")
-                                    
-                                    # Update bot status based on price update timeliness
-                                    try:
-                                        log_time = datetime.datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S,%f")
-                                        time_diff = (datetime.datetime.now() - log_time).total_seconds()
-                                        if time_diff < 60:  # Less than 1 minute
-                                            bot_status = "Aktif"
-                                    except:
-                                        pass
-                                    
-                                    # Cek apakah ada info USDT/IDR dalam log
-                                    usdt_idr_info = None
-                                    for part in parts:
-                                        if "USDT/IDR:" in part:
-                                            usdt_idr_rate_str = part.split(":")[1].strip()
-                                            usdt_idr_info = float(usdt_idr_rate_str)
-                                            break
-                                    
-                                    # Cek jika ada informasi profit
-                                    profit_info = None
-                                    for part in parts:
-                                        if "Profit:" in part:
-                                            profit_str = part.split(":")[1].strip().split()[0]  # Get value before USDT
-                                            try:
-                                                profit_info = float(profit_str)
-                                                bot_profit = profit_info  # Update global profit
-                                            except:
-                                                pass
-                                            break
-                                    
-                                    price_data.append({
-                                        "time": timestamp,
-                                        "price": price,
-                                        "usdt_idr": usdt_idr_info,
-                                        "profit": profit_info
-                                    })
-                                    
-                                    # Ambil nilai USDT/IDR dari entri terbaru
-                                    if usdt_idr_info and usdt_idr_rate is None:
-                                        usdt_idr_rate = usdt_idr_info
-                                    
-                                    # Hentikan jika sudah mendapatkan 100 data harga
-                                    if len(price_data) >= 100:
-                                        break
-                        except Exception as e:
-                            logger.debug(f"Gagal parsing baris log price update: {e}")
-                            continue
+                # Get data directly from bot instance
+                if hasattr(GridTradingBot.instance, 'last_price'):
+                    latest_price = GridTradingBot.instance.last_price
                 
-                # Balik kembali urutan data untuk kronologis
-                price_data.reverse()
+                if hasattr(GridTradingBot.instance, 'total_profit'):
+                    bot_profit = GridTradingBot.instance.total_profit
                 
-                # Simpan data harga
-                if price_data:
-                    price_history = price_data
-                    latest_price = price_data[-1]["price"]
-                    logger.info(f"Loaded latest price from log: {latest_price}")
-                    
-                    # Update profit if available in the latest price data
-                    if "profit" in price_data[-1] and price_data[-1]["profit"] is not None:
-                        bot_profit = price_data[-1]["profit"]
-        except Exception as e:
-            logger.error(f"Error reading log file: {e}")
-        
-        # Cari grid info dari log juga
-        try:
-            with open("bot.log", "r", encoding="utf-8") as log_file:
-                lines = log_file.readlines()
+                if hasattr(GridTradingBot.instance, 'trades'):
+                    trades_history = GridTradingBot.instance.trades
                 
-                # Look for grid setup information
-                for line in reversed(lines):
-                    if "Price range:" in line:
-                        try:
-                            # Format: "Price range: 0.785 - 0.815"
-                            range_info = line.split("Price range:")[1].strip()
-                            range_parts = range_info.split("-")
-                            if len(range_parts) == 2:
-                                lower_price = float(range_parts[0].strip())
-                                upper_price = float(range_parts[1].strip())
-                                grid_levels = [lower_price, upper_price]
-                                logger.info(f"Found grid levels in log: {lower_price} - {upper_price}")
-                                break
-                        except Exception as e:
-                            logger.debug(f"Failed to parse grid range info: {e}")
-        except Exception as e:
-            logger.error(f"Error reading log file for grid info: {e}")
-        
-        # Jika masih tidak ada grid levels, coba dari state file
-        if not grid_levels:
-            # Load state bot
-            state_files = [f for f in os.listdir(".") if f.startswith("grid_state_") and f.endswith(".json")]
-            if state_files:
-                latest_state_file = state_files[0]  # Ambil file pertama jika ada beberapa
+                if hasattr(GridTradingBot.instance, 'grid_prices'):
+                    grid_levels = GridTradingBot.instance.grid_prices.tolist()
                 
-                with open(latest_state_file, "r") as f:
-                    state = json.load(f)
-                    # Get grid levels from state file if not already found
-                    if "price_range" in state:
-                        grid_levels = state.get("price_range", [])
-                        logger.info(f"Found grid levels in state file: {grid_levels}")
-        
-        # Jika tidak ada harga dari log, coba dapatkan harga terkini dari API
-        if latest_price is None:
-            try:
-                # Coba dapatkan dari API Binance
-                from binance_client import BinanceClient
-                client = BinanceClient()
-                current_price = client.get_symbol_price(config.SYMBOL)
-                if current_price:
-                    latest_price = current_price
-                    logger.info(f"Got current price from API: {latest_price}")
-                    
-                    # Dapatkan nilai USDT/IDR
-                    if usdt_idr_rate is None:
-                        usdt_idr_rate = client.get_usdt_idr_rate()
-                        logger.info(f"Got USDT/IDR rate from API: {usdt_idr_rate}")
-                    
-                    # Tambahkan ke history
-                    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    price_history.append({
-                        "time": current_time,
-                        "price": current_price,
-                        "usdt_idr": usdt_idr_rate
-                    })
-            except Exception as e:
-                logger.error(f"Error getting current price from API: {e}")
+                if hasattr(GridTradingBot.instance, 'price_history'):
+                    price_history = GridTradingBot.instance.price_history
                 
-                # Jika masih tidak berhasil, coba mungkin ada instance bot yang berjalan
+                # Get balance info
                 try:
-                    from grid_bot import GridTradingBot
-                    if hasattr(GridTradingBot, 'instance') and GridTradingBot.instance is not None:
-                        bot_instance = GridTradingBot.instance
-                        if hasattr(bot_instance, 'last_price') and bot_instance.last_price is not None:
-                            latest_price = bot_instance.last_price
-                            logger.info(f"Got current price from bot instance: {latest_price}")
-                            
-                            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                            price_history.append({
-                                "time": current_time,
-                                "price": latest_price
-                            })
-                except Exception as e:
-                    logger.error(f"Error getting price from bot instance: {e}")
-        
-        # Jika masih belum ada nilai USDT/IDR, gunakan fallback
-        if usdt_idr_rate is None:
-            usdt_idr_rate = 16350.0  # Nilai fallback terbaru
-        
-        # Load state file for trades history if not already loaded
-        state_files = [f for f in os.listdir(".") if f.startswith("grid_state_") and f.endswith(".json")]
-        if state_files and not trades_history:
-            latest_state_file = state_files[0]  # Ambil file pertama jika ada beberapa
-            
-            with open(latest_state_file, "r") as f:
-                state = json.load(f)
-                bot_profit = state.get("total_profit", 0)
-                trades_history = state.get("trades", [])
-                last_update = state.get("last_update")
-                
-                # Update latest price jika ada di state dan lebih baru
-                if "last_price" in state and state["last_price"] is not None:
-                    state_price = float(state["last_price"])
-                    
-                    if latest_price is None:
-                        latest_price = state_price
-                        logger.info(f"Using price from state file: {latest_price}")
+                    # Coba dapatkan saldo langsung dari client
+                    if hasattr(GridTradingBot.instance, 'client'):
+                        quote_asset = 'USDT'
+                        base_asset = 'ADA'
                         
-                        # Tambahkan ke history jika kosong
-                        if not price_history:
-                            price_history.append({
-                                "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                "price": state_price
-                            })
+                        usdt_balance = GridTradingBot.instance.client.get_account_balance(quote_asset)
+                        ada_balance = GridTradingBot.instance.client.get_account_balance(base_asset)
+                        
+                        if usdt_balance:
+                            balance_info["usdt_free"] = usdt_balance['free']
+                            balance_info["usdt_locked"] = usdt_balance['locked']
+                        
+                        if ada_balance:
+                            balance_info["ada_free"] = ada_balance['free']
+                            balance_info["ada_locked"] = ada_balance['locked']
+                        
+                        balance_info["last_update"] = datetime.datetime.now().isoformat()
+                        
+                        # Dapatkan kurs USDT/IDR
+                        usdt_idr_rate = GridTradingBot.instance.client.get_usdt_idr_rate()
+                except Exception as e:
+                    logger.warning(f"Failed to get balance info from bot instance: {e}")
+        except Exception as e:
+            logger.warning(f"Failed to get data from bot instance: {e}")
+        
+        # If bot is not running, load data from state file
+        if not bot_is_running:
+            bot_status = "Tidak Aktif"
+            state_file = f"grid_state_{config.SYMBOL}.json"
+            
+            if os.path.exists(state_file):
+                try:
+                    with open(state_file, 'r') as f:
+                        state = json.load(f)
+                        
+                        if 'total_profit' in state:
+                            bot_profit = state['total_profit']
+                        
+                        if 'trades' in state:
+                            trades_history = state['trades']
+                        
+                        if 'last_price' in state:
+                            latest_price = state['last_price']
+                        
+                        if 'price_range' in state and len(state['price_range']) == 2:
+                            lower_price = state['price_range'][0]
+                            upper_price = state['price_range'][1]
+                            grid_number = state.get('grid_number', config.GRID_NUMBER)
+                            
+                            # Calculate grid levels
+                            grid_levels = np.linspace(lower_price, upper_price, grid_number + 1).tolist()
+                except Exception as e:
+                    logger.error(f"Failed to load grid state: {e}")
+            
+            # Fallback for grid levels if none available
+            if not grid_levels:
+                grid_levels = np.linspace(config.LOWER_PRICE, config.UPPER_PRICE, config.GRID_NUMBER + 1).tolist()
+        
+        # Fallback for price history if none available
+        if not price_history and latest_price:
+            now = datetime.datetime.now().isoformat()
+            five_min_ago = (datetime.datetime.now() - datetime.timedelta(minutes=5)).isoformat()
+            price_history = [
+                {"time": five_min_ago, "price": latest_price, "usdt_idr": usdt_idr_rate or 16350.0},
+                {"time": now, "price": latest_price, "usdt_idr": usdt_idr_rate or 16350.0}
+            ]
+        
+        # Parse trades from log if no trades available
+        if not trades_history:
+            trades_history = parse_trades_from_log()
+    
     except Exception as e:
         logger.error(f"Error loading bot data: {e}")
-        
-    # Make sure we never use fallback unless necessary
-    if latest_price is None:
-        latest_price = FALLBACK_PRICE
-        logger.warning(f"Using fallback price as last resort: {FALLBACK_PRICE}")
-        
-    # Log final state of data
-    logger.info(f"Final data state - Status: {bot_status}, Price: {latest_price}, Grid Levels: {grid_levels}")
 
 def update_data_thread():
     """Thread untuk update data secara periodik"""
@@ -951,7 +825,7 @@ def create_templates():
 </html>
         """)
     
-    # Buat file template HTML utama (dashboard)
+    # Buat file template HTML utama (dashboard sederhana)
     with open("templates/index.html", "w", encoding="utf-8") as f:
         f.write("""
 <!DOCTYPE html>
@@ -971,6 +845,7 @@ def create_templates():
         }
         .container {
             padding-top: 20px;
+            max-width: 1200px;
         }
         .card {
             background-color: #1e1e1e;
@@ -984,6 +859,19 @@ def create_templates():
             font-weight: bold;
             border-bottom: 1px solid #333;
         }
+        .price-card {
+            text-align: center;
+            padding: 20px;
+        }
+        .current-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        .price-change {
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
         .profit {
             color: #4caf50;
             font-weight: bold;
@@ -992,449 +880,357 @@ def create_templates():
             color: #f44336;
             font-weight: bold;
         }
+        .neutral {
+            color: #bdbdbd;
+        }
         .table {
             color: #e0e0e0;
         }
         .table thead th {
             border-color: #333;
+            background-color: #252525;
         }
-        .table tbody td {
+        .table td, .table th {
             border-color: #333;
         }
-        .badge-success {
-            background-color: #4caf50;
-        }
-        .badge-danger {
-            background-color: #f44336;
-        }
-        .badge-warning {
-            background-color: #ff9800;
-        }
-        #priceChart {
-            width: 100%;
-            height: 400px;
-        }
-        .status-card {
-            text-align: center;
-            padding: 15px;
-        }
-        .status-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        .refresh-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 999;
-        }
-        .header-actions {
+        .balance-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
-        /* Indikator realtime */
-        .realtime-indicator {
-            position: fixed;
-            top: 10px;
-            right: 20px;
-            z-index: 999;
-            background-color: rgba(33, 37, 41, 0.7);
+        .status-badge {
             padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
+            border-radius: 5px;
+            font-weight: bold;
         }
-        .realtime-indicator .status-dot {
-            height: 8px;
-            width: 8px;
-            border-radius: 50%;
-            margin-right: 8px;
-            background-color: #f44336;
-        }
-        .realtime-indicator .status-dot.connected {
+        .status-active {
             background-color: #4caf50;
+            color: #fff;
         }
-        .realtime-indicator .status-dot.reconnecting {
-            background-color: #ff9800;
-            animation: blink 1s infinite;
+        .status-inactive {
+            background-color: #f44336;
+            color: #fff;
         }
-        @keyframes blink {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
+        .total-profit {
+            font-size: 1.8rem;
+            text-align: center;
+            padding: 15px 0;
         }
-        .last-updated {
-            margin-top: 3px;
-            font-size: 0.7rem;
-            color: #aaa;
+        .grid-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+        .grid-item:last-child {
+            border-bottom: none;
+        }
+        .grid-price {
+            font-weight: bold;
+        }
+        .refresh-btn {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header-actions">
-            <h1>Dashboard Bot Trading Grid</h1>
-        </div>
-        
-        <!-- Indikator realtime -->
-        <div class="realtime-indicator">
-            <div id="status-dot" class="status-dot"></div>
-            <div>
-                <span id="connection-status">Menghubungkan...</span>
-                <div id="last-updated" class="last-updated"></div>
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="text-center mb-4">Bot Trading Grid Dashboard</h1>
+                <button id="refresh-data" class="btn btn-primary refresh-btn">Refresh Data</button>
             </div>
         </div>
-        
+
         <div class="row">
+            <!-- Status & Harga ADA/USDT -->
             <div class="col-md-4">
-                <div class="card status-card">
+                <div class="card">
+                    <div class="card-header">Status Bot & ADA/USDT</div>
                     <div class="card-body">
-                        <div class="status-icon">
-                            <span id="statusIcon">BOT</span>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <span>Status Bot:</span>
+                            <span id="bot-status" class="status-badge status-inactive">Tidak Aktif</span>
                         </div>
-                        <h5>Status Bot</h5>
-                        <h3><span id="botStatus" class="badge"></span></h3>
+                        <div class="price-card">
+                            <h5>Harga ADA/USDT</h5>
+                            <p class="current-price" id="current-price">0.0000</p>
+                            <p class="price-change" id="price-change"><span class="neutral">(0.00%)</span></p>
+                            <small class="text-muted" id="price-time">Terakhir diperbarui: --:--:--</small>
+                        </div>
+                        <div class="total-profit mt-3">
+                            <div>Total Profit:</div>
+                            <span id="total-profit" class="profit">0.00 USDT</span>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Saldo Akun -->
             <div class="col-md-4">
-                <div class="card status-card">
+                <div class="card">
+                    <div class="card-header">Saldo Akun Binance</div>
                     <div class="card-body">
-                        <div class="status-icon">IDR</div>
-                        <h5>Total Profit</h5>
-                        <h3><span id="totalProfit"></span> USDT</h3>
+                        <div class="balance-item">
+                            <span>ADA (Free):</span>
+                            <span id="ada-free">0.00</span>
+                        </div>
+                        <div class="balance-item">
+                            <span>ADA (Locked):</span>
+                            <span id="ada-locked">0.00</span>
+                        </div>
+                        <div class="balance-item">
+                            <span>USDT (Free):</span>
+                            <span id="usdt-free">0.00</span>
+                        </div>
+                        <div class="balance-item">
+                            <span>USDT (Locked):</span>
+                            <span id="usdt-locked">0.00</span>
+                        </div>
+                        <div class="balance-item mt-3">
+                            <span>ADA/IDR:</span>
+                            <span id="ada-idr">0</span>
+                        </div>
+                        <div class="balance-item">
+                            <span>USDT/IDR:</span>
+                            <span id="usdt-idr">0</span>
+                        </div>
+                        <div class="mt-3 text-muted text-center">
+                            <small id="balance-update-time">Terakhir diperbarui: --:--:--</small>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Data Grid -->
             <div class="col-md-4">
-                <div class="card status-card">
+                <div class="card">
+                    <div class="card-header">Data Grid</div>
                     <div class="card-body">
-                        <div class="status-icon">ADA</div>
-                        <h5>Harga ADA Terkini</h5>
-                        <h3><span id="currentPrice"></span> USDT</h3>
+                        <div class="mb-3">
+                            <div class="grid-item">
+                                <span>Batas Atas:</span>
+                                <span id="upper-price" class="grid-price">0.0000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span>Batas Bawah:</span>
+                                <span id="lower-price" class="grid-price">0.0000</span>
+                            </div>
+                            <div class="grid-item">
+                                <span>Jumlah Grid:</span>
+                                <span id="grid-number">0</span>
+                            </div>
+                            <div class="grid-item">
+                                <span>Ukuran Order:</span>
+                                <span id="order-quantity">0 ADA</span>
+                            </div>
+                        </div>
+                        <div id="grid-levels" class="mt-4">
+                            <div class="text-center text-muted">Loading data grid...</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="card mt-4">
-            <div class="card-header">
-                Grafik Harga (Update Real-time)
-            </div>
-            <div class="card-body">
-                <div id="priceChart"></div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                Riwayat Trading Terakhir
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover" id="tradesTable">
-                        <thead>
-                            <tr>
-                                <th>Waktu</th>
-                                <th>Tipe</th>
-                                <th>Harga</th>
-                                <th>Jumlah</th>
-                                <th>Profit</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tradesBody">
-                            <!-- Data akan diisi melalui JavaScript -->
-                        </tbody>
-                    </table>
+
+        <!-- Chart ADA/USDT -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">Grafik Harga ADA/USDT</div>
+                    <div class="card-body">
+                        <div id="price-chart" style="height: 400px;">
+                            <div class="d-flex justify-content-center align-items-center h-100">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="card">
-            <div class="card-header">
-                Level Grid
-            </div>
-            <div class="card-body">
-                <div class="row" id="gridLevels">
-                    <!-- Grid levels akan diisi melalui JavaScript -->
+
+        <!-- Riwayat Transaksi -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">Riwayat Transaksi</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Waktu</th>
+                                        <th>Tipe</th>
+                                        <th>Harga</th>
+                                        <th>Jumlah</th>
+                                        <th>Nilai USDT</th>
+                                        <th>Profit</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="trades-table">
+                                    <tr>
+                                        <td colspan="6" class="text-center">Belum ada riwayat transaksi</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <button class="btn btn-primary refresh-btn" onclick="refreshData()">
-        Refresh Data
-    </button>
 
     <script>
-        // Koneksi SSE untuk update realtime
-        let eventSource;
+        // Fungsi untuk memformat angka dengan 4 desimal
+        function formatNumber(num, decimals = 4) {
+            return num ? parseFloat(num).toFixed(decimals) : "0.0000";
+        }
         
-        function connectSSE() {
-            if (!!window.EventSource) {
-                eventSource = new EventSource('/stream');
-                
-                eventSource.addEventListener('open', function() {
-                    console.log('SSE connection opened');
-                    updateConnectionStatus('connected');
-                });
-                
-                eventSource.addEventListener('error', function(e) {
-                    if (e.readyState == EventSource.CLOSED) {
-                        console.log('SSE connection closed');
-                        updateConnectionStatus('disconnected');
+        // Fungsi untuk memformat angka sebagai mata uang IDR
+        function formatIDR(num) {
+            return new Intl.NumberFormat('id-ID', { 
+                style: 'currency', 
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(num);
+        }
+        
+        // Fungsi untuk memperbarui data dari server
+        function updateDashboard() {
+            // Ambil data status
+            $.get('/api/status', function(data) {
+                if(data.status === 'success') {
+                    // Update status bot
+                    $('#bot-status').text(data.bot_status);
+                    if(data.bot_status === 'Aktif') {
+                        $('#bot-status').removeClass('status-inactive').addClass('status-active');
                     } else {
-                        console.error('SSE connection error:', e);
-                        updateConnectionStatus('reconnecting');
-                        // Reconnect after error
-                        setTimeout(connectSSE, 5000);
+                        $('#bot-status').removeClass('status-active').addClass('status-inactive');
                     }
-                });
-                
-                eventSource.addEventListener('message', function(e) {
-                    try {
-                        const data = JSON.parse(e.data);
-                        updateDashboard(data);
-                        updateLastUpdated();
-                    } catch (err) {
-                        console.error('Error parsing SSE data:', err);
+                    
+                    // Update harga
+                    if(data.latest_price) {
+                        $('#current-price').text(formatNumber(data.latest_price));
+                        $('#price-time').text('Terakhir diperbarui: ' + new Date().toLocaleTimeString());
+                        
+                        // Hitung perubahan harga jika ada price history
+                        if(data.price_history && data.price_history.length > 1) {
+                            const oldPrice = data.price_history[0].price;
+                            const newPrice = data.latest_price;
+                            const change = ((newPrice - oldPrice) / oldPrice) * 100;
+                            const changeClass = change > 0 ? 'profit' : (change < 0 ? 'loss' : 'neutral');
+                            $('#price-change').html(`<span class="${changeClass}">(${change.toFixed(2)}%)</span>`);
+                        }
                     }
-                });
-            } else {
-                console.warn('SSE not supported, using polling');
-                updateConnectionStatus('polling');
-                // Fallback to polling if SSE not supported
-                setInterval(refreshData, 5000);
-            }
-        }
-        
-        function updateConnectionStatus(status) {
-            const dot = $('#status-dot');
-            const statusText = $('#connection-status');
-            
-            dot.removeClass('connected reconnecting');
-            
-            switch(status) {
-                case 'connected':
-                    dot.addClass('connected');
-                    statusText.text('Realtime: Terhubung');
-                    break;
-                case 'reconnecting':
-                    dot.addClass('reconnecting');
-                    statusText.text('Realtime: Menghubungkan Kembali');
-                    break;
-                case 'disconnected':
-                    statusText.text('Realtime: Terputus');
-                    break;
-                case 'polling':
-                    statusText.text('Polling: 5 detik');
-                    break;
-            }
-        }
-        
-        function updateLastUpdated() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString();
-            $('#last-updated').text(`Update: ${timeStr}`);
-        }
-        
-        function updateDashboard(data) {
-            // Update status
-            if (data.status) {
-                $('#botStatus').text(data.status);
-                if (data.status.includes('Aktif')) {
-                    $('#botStatus').removeClass('badge-danger badge-warning').addClass('badge-success');
-                    $('#statusIcon').text('AKTIF');
-                } else {
-                    $('#botStatus').removeClass('badge-success badge-warning').addClass('badge-danger');
-                    $('#statusIcon').text('NONAKTIF');
+                    
+                    // Update data saldo
+                    if(data.balance_info) {
+                        $('#ada-free').text(formatNumber(data.balance_info.ada_free));
+                        $('#ada-locked').text(formatNumber(data.balance_info.ada_locked));
+                        $('#usdt-free').text(formatNumber(data.balance_info.usdt_free, 2));
+                        $('#usdt-locked').text(formatNumber(data.balance_info.usdt_locked, 2));
+                        
+                        // Update kurs
+                        if(data.usdt_idr_rate) {
+                            $('#usdt-idr').text(formatIDR(data.usdt_idr_rate));
+                            
+                            // Hitung ADA/IDR
+                            if(data.latest_price) {
+                                const adaIdr = data.latest_price * data.usdt_idr_rate;
+                                $('#ada-idr').text(formatIDR(adaIdr));
+                            }
+                        }
+                        
+                        if(data.balance_info.last_update) {
+                            $('#balance-update-time').text('Terakhir diperbarui: ' + new Date(data.balance_info.last_update).toLocaleTimeString());
+                        }
+                    }
+                    
+                    // Update total profit
+                    if(data.bot_profit) {
+                        $('#total-profit').text(formatNumber(data.bot_profit, 2) + ' USDT');
+                    }
+                    
+                    // Update grid data
+                    if(data.grid_info) {
+                        $('#upper-price').text(formatNumber(data.grid_info.upper_price));
+                        $('#lower-price').text(formatNumber(data.grid_info.lower_price));
+                        $('#grid-number').text(data.grid_info.grid_number);
+                        $('#order-quantity').text(data.grid_info.quantity + ' ADA');
+                        
+                        // Update grid levels
+                        if(data.grid_levels && data.grid_levels.length > 0) {
+                            let gridHtml = '';
+                            data.grid_levels.forEach(level => {
+                                const levelClass = level > data.latest_price ? 'profit' : (level < data.latest_price ? 'loss' : 'neutral');
+                                gridHtml += `<div class="grid-item">
+                                    <span>Level:</span>
+                                    <span class="${levelClass}">${formatNumber(level)}</span>
+                                </div>`;
+                            });
+                            $('#grid-levels').html(gridHtml);
+                        }
+                    }
                 }
-            }
-            
-            // Update price
-            if (data.latest_price) {
-                $('#currentPrice').text(data.latest_price.toFixed(4));
-            }
-            
-            // Update profit
-            if (data.profit !== undefined) {
-                $('#totalProfit').text(data.profit.toFixed(4));
-                if (data.profit > 0) {
-                    $('#totalProfit').addClass('profit').removeClass('loss');
-                } else if (data.profit < 0) {
-                    $('#totalProfit').addClass('loss').removeClass('profit');
-                }
-            }
-            
-            // Update chart if available
-            if (data.chart) {
-                Plotly.react('priceChart', JSON.parse(data.chart));
-            }
-            
-            // Update trades table
-            if (data.trades) {
-                updateTradesTable(data.trades);
-            }
-            
-            // Update grid levels
-            if (data.grid_levels) {
-                updateGridLevels(data.grid_levels);
-            }
-        }
-        
-        // Update data secara periodik (fallback jika SSE tidak berfungsi)
-        $(document).ready(function() {
-            // Coba koneksi SSE
-            connectSSE();
-            
-            // Tetap jalankan refresh data secara periodik sebagai fallback
-            setInterval(function() {
-                if (!eventSource || eventSource.readyState !== 1) {
-                    refreshData();
-                }
-            }, 15000); // Cek setiap 15 detik
-            
-            // Set session keepalive
-            setInterval(function() {
-                $.get('/api/status');
-            }, 300000); // 5 minutes
-        });
-        
-        function refreshData() {
-            // Update status bot
-            $.getJSON('/api/status', function(data) {
-                $('#botStatus').text(data.status);
-                if (data.status.includes('Aktif')) {
-                    $('#botStatus').removeClass('badge-danger badge-warning').addClass('badge-success');
-                    $('#statusIcon').text('AKTIF');
-                } else {
-                    $('#botStatus').removeClass('badge-success badge-warning').addClass('badge-danger');
-                    $('#statusIcon').text('NONAKTIF');
-                }
-                
-                $('#currentPrice').text(data.latest_price ? data.latest_price.toFixed(4) : 'N/A');
-                $('#totalProfit').text(data.profit ? data.profit.toFixed(4) : '0.0000');
-                if (data.profit > 0) {
-                    $('#totalProfit').addClass('profit').removeClass('loss');
-                } else if (data.profit < 0) {
-                    $('#totalProfit').addClass('loss').removeClass('profit');
-                }
-                
-                // Update grid levels
-                updateGridLevels(data.grid_levels);
-                
-                // Update last updated time
-                updateLastUpdated();
-                
-            }).fail(function() {
-                // Just try again later without redirecting
-                console.error('Failed to fetch status data');
             });
             
             // Update grafik harga
-            $.getJSON('/api/price_chart', function(data) {
-                Plotly.react('priceChart', JSON.parse(data.chart));
-            }).fail(function() {
-                console.error('Failed to fetch chart data');
-            });
-            
-            // Update riwayat trading
-            $.getJSON('/api/trades', function(data) {
-                updateTradesTable(data.trades);
-            }).fail(function() {
-                console.error('Failed to fetch trades data');
-            });
-        }
-        
-        function updateTradesTable(trades) {
-            let tableBody = $('#tradesBody');
-            tableBody.empty();
-            
-            if (trades && trades.length > 0) {
-                // Ambil 10 trades terakhir
-                const recentTrades = trades.slice(-10).reverse();
-                
-                recentTrades.forEach(function(trade) {
-                    let time = new Date(trade.time).toLocaleString();
-                    let profitClass = trade.profit > 0 ? 'profit' : (trade.profit < 0 ? 'loss' : '');
-                    let profitText = trade.profit ? trade.profit.toFixed(4) + ' USDT' : '-';
-                    
-                    let row = `<tr>
-                        <td>${time}</td>
-                        <td>${trade.type}</td>
-                        <td>${trade.price.toFixed(4)}</td>
-                        <td>${trade.quantity}</td>
-                        <td class="${profitClass}">${profitText}</td>
-                    </tr>`;
-                    
-                    tableBody.append(row);
-                });
-            } else {
-                tableBody.append('<tr><td colspan="5" class="text-center">Belum ada riwayat trading</td></tr>');
-            }
-        }
-        
-        function updateGridLevels(levels) {
-            let gridContainer = $('#gridLevels');
-            gridContainer.empty();
-            
-            if (levels && levels.length > 0) {
-                // Jika hanya batas atas dan bawah yang tersedia
-                if (levels.length === 2) {
-                    let lowerPrice = levels[0];
-                    let upperPrice = levels[1];
-                    
-                    // Buat grid level berdasarkan config di server
-                    let gridConfig = 3; // Default 3 grid sesuai config.py
-                    let gridSize = (upperPrice - lowerPrice) / gridConfig;
-                    
-                    for (let i = 0; i <= gridConfig; i++) {
-                        let level = lowerPrice + (i * gridSize);
-                        let card = `
-                            <div class="col-md-2 mb-2">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <h5>${level.toFixed(4)}</h5>
-                                        <small>Level ${i+1}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        gridContainer.append(card);
-                    }
-                } else {
-                    // Jika semua level grid tersedia
-                    levels.forEach((level, index) => {
-                        let card = `
-                            <div class="col-md-2 mb-2">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <h5>${level.toFixed(4)}</h5>
-                                        <small>Level ${index+1}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        gridContainer.append(card);
-                    });
+            $.get('/api/price_chart', function(data) {
+                if(data.status === 'success' && data.chart) {
+                    Plotly.newPlot('price-chart', JSON.parse(data.chart));
                 }
-            } else {
-                // Tampilkan pesan jika tidak ada grid levels
-                // Selain itu, coba dapatkan dari file log secara manual
-                $.getJSON('/api/status', function(data) {
-                    if (data.grid_levels && data.grid_levels.length > 0) {
-                        updateGridLevels(data.grid_levels);
-                    } else {
-                        gridContainer.append('<div class="col-12 text-center">Belum ada level grid yang tersedia. Periksa log bot untuk informasi.</div>');
+            });
+            
+            // Update riwayat transaksi
+            $.get('/api/trades', function(data) {
+                if(data.status === 'success' && data.trades) {
+                    if(data.trades.length > 0) {
+                        let tradesHtml = '';
+                        
+                        // Tampilkan transaksi terbaru terlebih dahulu (reverse)
+                        data.trades.reverse().forEach(trade => {
+                            const tradeTime = new Date(trade.time).toLocaleString();
+                            const tradeType = trade.side || trade.type;
+                            const typeClass = tradeType === 'SELL' || tradeType === 'sell' ? 'profit' : 'neutral';
+                            const profit = trade.actual_profit || trade.profit;
+                            const profitClass = profit > 0 ? 'profit' : 'loss';
+                            
+                            tradesHtml += `<tr>
+                                <td>${tradeTime}</td>
+                                <td class="${typeClass}">${tradeType}</td>
+                                <td>${formatNumber(trade.price)}</td>
+                                <td>${trade.quantity}</td>
+                                <td>${formatNumber(trade.value || (trade.price * trade.quantity), 2)}</td>
+                                <td class="${profitClass}">${profit ? formatNumber(profit, 4) : '-'}</td>
+                            </tr>`;
+                        });
+                        
+                        $('#trades-table').html(tradesHtml);
                     }
-                }).fail(function() {
-                    gridContainer.append('<div class="col-12 text-center">Gagal mendapatkan informasi grid.</div>');
-                });
-            }
+                }
+            });
         }
+        
+        // Perbarui data saat halaman dimuat
+        $(document).ready(function() {
+            updateDashboard();
+            
+            // Perbarui data secara berkala setiap 10 detik
+            setInterval(updateDashboard, 10000);
+            
+            // Tombol refresh manual
+            $('#refresh-data').click(function() {
+                $(this).text('Memperbarui...');
+                updateDashboard();
+                setTimeout(() => {
+                    $(this).text('Refresh Data');
+                }, 1000);
+            });
+        });
     </script>
 </body>
 </html>

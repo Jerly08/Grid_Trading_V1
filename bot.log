@@ -11331,3 +11331,1651 @@ information about how to avoid this problem.
 2025-05-10 21:06:21,394 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.81 | USDT/IDR: 16509.00 | ADA/IDR: 13372.29 | Change: 0.09% | Profit: 0.0000 USDT | Time: 21:06:21
 2025-05-10 21:06:22,521 - grid_bot - INFO - Bot stopped by user. Final profit: 0.0000 USDT
 2025-05-10 21:06:22,523 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-10 21:33:25,604 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-10 21:33:25,622 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-10 21:33:25,626 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-10 21:33:25,627 - __main__ - INFO - Username: admin
+2025-05-10 21:33:25,627 - __main__ - INFO - Password: Grid@Trading123
+2025-05-10 21:33:30,196 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 21:33:30,197 - binance_client - INFO - Account status: SPOT
+2025-05-10 21:33:32,078 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 21:33:32,119 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-10 21:33:32,119 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-10 21:33:32,120 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-10 21:33:32,120 - grid_bot - INFO - Price range: 0.785 - 0.815
+2025-05-10 21:33:32,121 - grid_bot - INFO - Grid number: 3, Grid size: 0.009999999999999972
+2025-05-10 21:33:32,121 - grid_bot - INFO - Order quantity: 13
+2025-05-10 21:33:32,121 - grid_bot - INFO - Grid trading bot is running...
+2025-05-10 21:33:32,121 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-10 21:33:32,121 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-10 21:33:32,122 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-10 21:33:33,455 - grid_bot - INFO - [BALANCE] USDT: 3.0539 (Free) + 20.5400 (Locked) | ADA: 4.9660 (Free) + 0.0000 (Locked)
+2025-05-10 21:33:33,456 - grid_bot - INFO - Setting up grid orders...
+2025-05-10 21:33:34,515 - grid_bot - INFO - [BALANCE] USDT: 3.0539 (Free) + 20.5400 (Locked) | ADA: 4.9660 (Free) + 0.0000 (Locked)
+2025-05-10 21:33:38,078 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16512.0
+2025-05-10 21:33:38,081 - grid_bot - INFO - [REQUIREMENT] Need 31.4847 USDT for 3 buy orders
+2025-05-10 21:33:38,082 - grid_bot - INFO - [REQUIREMENT] Need 13.0000 ADA for 1 sell orders
+2025-05-10 21:33:38,083 - grid_bot - WARNING - Insufficient USDT balance. Have: 3.0539, Need: 31.4847
+2025-05-10 21:33:38,083 - grid_bot - WARNING - Insufficient ADA balance. Have: 4.9660, Need: 13.0000
+2025-05-10 21:33:38,084 - grid_bot - INFO - Current ADAUSDT price: 0.8073
+2025-05-10 21:33:39,310 - binance_client - INFO - Cancelled order 6956796324 for ADAUSDT
+2025-05-10 21:33:39,827 - binance_client - INFO - Cancelled order 6956796342 for ADAUSDT
+2025-05-10 21:33:39,828 - grid_bot - INFO - Cancelled all existing orders
+2025-05-10 21:33:40,418 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.7850
+2025-05-10 21:33:40,946 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.7950
+2025-05-10 21:33:41,467 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 21:33:41,468 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 21:33:42,075 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-10 21:33:42,075 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-10 21:33:42,077 - grid_bot - INFO - Grid setup complete. 2 buy orders and 0 sell orders placed.
+2025-05-10 21:33:44,001 - grid_bot - INFO - [BALANCE] USDT: 3.0539 (Free) + 20.5400 (Locked) | ADA: 4.9660 (Free) + 0.0000 (Locked)
+2025-05-10 21:33:44,840 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-10 21:33:46,209 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16512.0
+2025-05-10 21:33:46,211 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8069 | USDT/IDR: 16512.00 | ADA/IDR: 13323.53 | Change: -0.05% | Profit: 0.0000 USDT | Time: 21:33:46
+2025-05-10 21:33:46,829 - binance_client - INFO - Successfully connected to Binance
+2025-05-10 21:33:46,830 - binance_client - INFO - Account status: SPOT
+2025-05-10 21:33:48,861 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-10 21:33:49,290 - dashboard - INFO - Found price in log: 0.8069
+2025-05-10 21:33:49,291 - dashboard - INFO - Loaded latest price from log: 0.8069
+2025-05-10 21:33:49,315 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-10 21:33:49,333 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8069, Grid Levels: [0.785, 0.815]
+2025-05-10 21:33:49,407 - dashboard - INFO - Got current price from API: 0.8069
+2025-05-10 21:33:49,408 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8069, Grid Levels: [0.785, 0.815]
+2025-05-10 21:33:58,869 - grid_bot - INFO - [BALANCE] USDT: 3.0539 (Free) + 20.5400 (Locked) | ADA: 4.9660 (Free) + 0.0000 (Locked)
+2025-05-10 21:34:00,813 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16503.0
+2025-05-10 21:34:00,814 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8068 | USDT/IDR: 16503.00 | ADA/IDR: 13314.62 | Change: -0.01% | Profit: 0.0000 USDT | Time: 21:34:00
+2025-05-10 21:34:04,307 - dashboard - INFO - Found price in log: 0.8068
+2025-05-10 21:34:04,308 - dashboard - INFO - Loaded latest price from log: 0.8068
+2025-05-10 21:34:04,347 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-10 21:34:04,348 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8068, Grid Levels: [0.785, 0.815]
+2025-05-10 21:34:13,476 - grid_bot - INFO - [BALANCE] USDT: 3.0539 (Free) + 20.5400 (Locked) | ADA: 4.9660 (Free) + 0.0000 (Locked)
+2025-05-10 21:34:15,467 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16512.0
+2025-05-10 21:34:15,469 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.806 | USDT/IDR: 16512.00 | ADA/IDR: 13308.67 | Change: -0.10% | Profit: 0.0000 USDT | Time: 21:34:15
+2025-05-10 21:34:19,322 - dashboard - INFO - Found price in log: 0.806
+2025-05-10 21:34:19,323 - dashboard - INFO - Loaded latest price from log: 0.806
+2025-05-10 21:34:19,365 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-10 21:34:19,371 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.806, Grid Levels: [0.785, 0.815]
+2025-05-10 21:34:28,157 - grid_bot - INFO - [BALANCE] USDT: 3.0539 (Free) + 20.5400 (Locked) | ADA: 4.9660 (Free) + 0.0000 (Locked)
+2025-05-10 21:34:30,667 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16512.0
+2025-05-10 21:34:30,668 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8063 | USDT/IDR: 16512.00 | ADA/IDR: 13313.63 | Change: 0.04% | Profit: 0.0000 USDT | Time: 21:34:30
+2025-05-10 21:34:32,813 - grid_bot - INFO - Bot stopped by user. Final profit: 0.0000 USDT
+2025-05-10 21:34:32,814 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-12 17:20:14,791 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-12 17:20:14,811 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-12 17:20:14,812 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-12 17:20:14,813 - __main__ - INFO - Username: admin
+2025-05-12 17:20:14,813 - __main__ - INFO - Password: Grid@Trading123
+2025-05-12 17:20:18,454 - binance_client - INFO - Successfully connected to Binance_testnet
+2025-05-12 17:20:18,455 - binance_client - INFO - Account status: SPOT
+2025-05-12 17:20:19,202 - binance_client - INFO - Loaded exchange info for 1422 symbols
+2025-05-12 17:20:19,221 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-12 17:20:19,222 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-12 17:20:19,223 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-12 17:20:19,223 - grid_bot - INFO - Price range: 0.785 - 0.815
+2025-05-12 17:20:19,224 - grid_bot - INFO - Grid number: 3, Grid size: 0.009999999999999972
+2025-05-12 17:20:19,224 - grid_bot - INFO - Order quantity: 13
+2025-05-12 17:20:19,225 - grid_bot - INFO - Grid trading bot is running...
+2025-05-12 17:20:19,226 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-12 17:20:19,227 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-12 17:20:19,227 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-12 17:20:19,785 - grid_bot - INFO - [BALANCE] USDT: 10000.0000 (Free) + 0.0000 (Locked) | ADA: 734.0000 (Free) + 0.0000 (Locked)
+2025-05-12 17:20:19,786 - grid_bot - INFO - Setting up grid orders...
+2025-05-12 17:20:20,362 - grid_bot - INFO - [BALANCE] USDT: 10000.0000 (Free) + 0.0000 (Locked) | ADA: 734.0000 (Free) + 0.0000 (Locked)
+2025-05-12 17:20:21,218 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:20:21,220 - grid_bot - INFO - [REQUIREMENT] Need 42.7336 USDT for 4 buy orders
+2025-05-12 17:20:21,220 - grid_bot - INFO - [REQUIREMENT] Need 0.0000 ADA for 0 sell orders
+2025-05-12 17:20:21,220 - grid_bot - INFO - Current price 0.8218 is outside grid range. Adjusting grid...
+2025-05-12 17:20:21,221 - grid_bot - INFO - New grid range: 0.805364 - 0.838236
+2025-05-12 17:20:21,221 - grid_bot - INFO - Current ADAUSDT price: 0.8218
+2025-05-12 17:20:21,587 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.8054
+2025-05-12 17:20:21,973 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.8163
+2025-05-12 17:20:22,089 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8273
+2025-05-12 17:20:22,326 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8382
+2025-05-12 17:20:22,328 - grid_bot - INFO - Grid setup complete. 2 buy orders and 2 sell orders placed.
+2025-05-12 17:20:22,865 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:20:23,366 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:20:23,368 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8218 | USDT/IDR: 16488.00 | ADA/IDR: 13549.84 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:20:23
+2025-05-12 17:20:35,132 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:20:35,585 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:20:35,588 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8222 | USDT/IDR: 16488.00 | ADA/IDR: 13556.43 | Change: 0.05% | Profit: 0.0000 USDT | Time: 17:20:35
+2025-05-12 17:20:47,523 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:20:49,065 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:20:49,066 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8223 | USDT/IDR: 16488.00 | ADA/IDR: 13558.08 | Change: 0.01% | Profit: 0.0000 USDT | Time: 17:20:49
+2025-05-12 17:21:00,730 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:21:01,136 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:21:01,138 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8226 | USDT/IDR: 16488.00 | ADA/IDR: 13563.03 | Change: 0.04% | Profit: 0.0000 USDT | Time: 17:21:01
+2025-05-12 17:21:13,124 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:21:13,731 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:21:13,732 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8234 | USDT/IDR: 16487.00 | ADA/IDR: 13575.40 | Change: 0.10% | Profit: 0.0000 USDT | Time: 17:21:13
+2025-05-12 17:21:22,864 - dashboard - INFO - Found price in log: 0.8234
+2025-05-12 17:21:22,865 - dashboard - INFO - Loaded latest price from log: 0.8234
+2025-05-12 17:21:22,883 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:21:22,900 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8234, Grid Levels: [0.785, 0.815]
+2025-05-12 17:21:25,623 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:21:35,000 - binance_client - WARNING - Gagal mendapatkan harga USDT/IDR realtime: HTTPSConnectionPool(host='indodax.com', port=443): Read timed out. (read timeout=5)
+2025-05-12 17:21:35,001 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8234 | USDT/IDR: 16350.00 | ADA/IDR: 13462.59 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:21:35
+2025-05-12 17:21:37,762 - dashboard - INFO - Found price in log: 0.8234
+2025-05-12 17:21:37,764 - dashboard - INFO - Loaded latest price from log: 0.8234
+2025-05-12 17:21:37,799 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:21:37,802 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8234, Grid Levels: [0.785, 0.815]
+2025-05-12 17:21:45,025 - grid_bot - ERROR - Unexpected error: HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+2025-05-12 17:21:45,026 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-12 17:23:18,377 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-12 17:23:18,405 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-12 17:23:18,409 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-12 17:23:18,410 - __main__ - INFO - Username: admin
+2025-05-12 17:23:18,410 - __main__ - INFO - Password: Grid@Trading123
+2025-05-12 17:23:22,060 - binance_client - INFO - Successfully connected to Binance_testnet
+2025-05-12 17:23:22,061 - binance_client - INFO - Account status: SPOT
+2025-05-12 17:23:22,754 - binance_client - INFO - Loaded exchange info for 1422 symbols
+2025-05-12 17:23:22,775 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-12 17:23:22,776 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-12 17:23:22,777 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-12 17:23:22,778 - grid_bot - INFO - Price range: 0.785 - 0.815
+2025-05-12 17:23:22,780 - grid_bot - INFO - Grid number: 3, Grid size: 0.009999999999999972
+2025-05-12 17:23:22,781 - grid_bot - INFO - Order quantity: 13
+2025-05-12 17:23:22,781 - grid_bot - INFO - Grid trading bot is running...
+2025-05-12 17:23:22,782 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-12 17:23:22,783 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-12 17:23:22,783 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-12 17:23:23,486 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:23:23,486 - grid_bot - INFO - Setting up grid orders...
+2025-05-12 17:23:23,778 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:23:25,193 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:23:25,195 - grid_bot - INFO - [REQUIREMENT] Need 42.7336 USDT for 4 buy orders
+2025-05-12 17:23:25,195 - grid_bot - INFO - [REQUIREMENT] Need 0.0000 ADA for 0 sell orders
+2025-05-12 17:23:25,196 - grid_bot - INFO - Current price 0.8218 is outside grid range. Adjusting grid...
+2025-05-12 17:23:25,196 - grid_bot - INFO - New grid range: 0.805364 - 0.838236
+2025-05-12 17:23:25,196 - grid_bot - INFO - Current ADAUSDT price: 0.8218
+2025-05-12 17:23:26,074 - binance_client - INFO - Cancelled order 492469 for ADAUSDT
+2025-05-12 17:23:26,878 - binance_client - INFO - Cancelled order 492470 for ADAUSDT
+2025-05-12 17:23:27,095 - binance_client - INFO - Cancelled order 492471 for ADAUSDT
+2025-05-12 17:23:27,308 - binance_client - INFO - Cancelled order 492472 for ADAUSDT
+2025-05-12 17:23:27,309 - grid_bot - INFO - Cancelled all existing orders
+2025-05-12 17:23:27,522 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.8054
+2025-05-12 17:23:27,831 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.8163
+2025-05-12 17:23:28,268 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8273
+2025-05-12 17:23:28,477 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8382
+2025-05-12 17:23:28,478 - grid_bot - INFO - Grid setup complete. 2 buy orders and 2 sell orders placed.
+2025-05-12 17:23:29,321 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:23:30,711 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:23:30,712 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8218 | USDT/IDR: 16488.00 | ADA/IDR: 13549.84 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:23:30
+2025-05-12 17:23:44,411 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:23:45,303 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:23:45,305 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8215 | USDT/IDR: 16488.00 | ADA/IDR: 13544.89 | Change: -0.04% | Profit: 0.0000 USDT | Time: 17:23:45
+2025-05-12 17:23:56,970 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:23:58,797 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:23:58,799 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8215 | USDT/IDR: 16488.00 | ADA/IDR: 13544.89 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:23:58
+2025-05-12 17:24:10,521 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:24:12,107 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:24:12,109 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8215 | USDT/IDR: 16487.00 | ADA/IDR: 13544.07 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:24:12
+2025-05-12 17:24:16,784 - dashboard - INFO - Found price in log: 0.8215
+2025-05-12 17:24:16,785 - dashboard - INFO - Loaded latest price from log: 0.8215
+2025-05-12 17:24:16,805 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:24:16,824 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8215, Grid Levels: [0.785, 0.815]
+2025-05-12 17:24:23,988 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:24:25,025 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:24:25,027 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8215 | USDT/IDR: 16487.00 | ADA/IDR: 13544.07 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:24:25
+2025-05-12 17:24:31,518 - dashboard - INFO - Found price in log: 0.8215
+2025-05-12 17:24:31,520 - dashboard - INFO - Loaded latest price from log: 0.8215
+2025-05-12 17:24:31,566 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:24:31,569 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8215, Grid Levels: [0.785, 0.815]
+2025-05-12 17:24:36,584 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:24:38,473 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:24:38,475 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8213 | USDT/IDR: 16487.00 | ADA/IDR: 13540.77 | Change: -0.02% | Profit: 0.0000 USDT | Time: 17:24:38
+2025-05-12 17:24:46,512 - dashboard - INFO - Found price in log: 0.8213
+2025-05-12 17:24:46,512 - dashboard - INFO - Loaded latest price from log: 0.8213
+2025-05-12 17:24:46,533 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:24:46,534 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8213, Grid Levels: [0.785, 0.815]
+2025-05-12 17:24:50,120 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:24:51,741 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:24:51,743 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8212 | USDT/IDR: 16488.00 | ADA/IDR: 13539.95 | Change: -0.01% | Profit: 0.0000 USDT | Time: 17:24:51
+2025-05-12 17:25:01,514 - dashboard - INFO - Found price in log: 0.8212
+2025-05-12 17:25:01,514 - dashboard - INFO - Loaded latest price from log: 0.8212
+2025-05-12 17:25:01,538 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:25:01,539 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8212, Grid Levels: [0.785, 0.815]
+2025-05-12 17:25:03,043 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:25:03,904 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:25:03,905 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8208 | USDT/IDR: 16488.00 | ADA/IDR: 13533.35 | Change: -0.05% | Profit: 0.0000 USDT | Time: 17:25:03
+2025-05-12 17:25:16,487 - dashboard - INFO - Found price in log: 0.8208
+2025-05-12 17:25:16,489 - dashboard - INFO - Loaded latest price from log: 0.8208
+2025-05-12 17:25:16,514 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:25:16,516 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8208, Grid Levels: [0.785, 0.815]
+2025-05-12 17:25:17,448 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:25:19,188 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:25:19,190 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8208 | USDT/IDR: 16488.00 | ADA/IDR: 13533.35 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:25:19
+2025-05-12 17:25:31,504 - dashboard - INFO - Found price in log: 0.8208
+2025-05-12 17:25:31,505 - dashboard - INFO - Loaded latest price from log: 0.8208
+2025-05-12 17:25:31,525 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:25:31,526 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8208, Grid Levels: [0.785, 0.815]
+2025-05-12 17:25:32,411 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:25:39,492 - binance_client - WARNING - Gagal mendapatkan harga USDT/IDR realtime: HTTPSConnectionPool(host='indodax.com', port=443): Read timed out. (read timeout=5)
+2025-05-12 17:25:39,492 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8206 | USDT/IDR: 16350.00 | ADA/IDR: 13416.81 | Change: -0.02% | Profit: 0.0000 USDT | Time: 17:25:39
+2025-05-12 17:25:46,200 - dashboard - INFO - Found price in log: 0.8206
+2025-05-12 17:25:46,201 - dashboard - INFO - Loaded latest price from log: 0.8206
+2025-05-12 17:25:46,223 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:25:46,225 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8206, Grid Levels: [0.785, 0.815]
+2025-05-12 17:25:58,178 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:26:00,550 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:26:00,552 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8206 | USDT/IDR: 16488.00 | ADA/IDR: 13530.05 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:26:00
+2025-05-12 17:26:01,197 - dashboard - INFO - Found price in log: 0.8206
+2025-05-12 17:26:01,198 - dashboard - INFO - Loaded latest price from log: 0.8206
+2025-05-12 17:26:01,219 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:26:01,220 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8206, Grid Levels: [0.785, 0.815]
+2025-05-12 17:26:12,448 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:26:14,364 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:26:14,366 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8209 | USDT/IDR: 16487.00 | ADA/IDR: 13534.18 | Change: 0.04% | Profit: 0.0000 USDT | Time: 17:26:14
+2025-05-12 17:26:16,490 - dashboard - INFO - Found price in log: 0.8209
+2025-05-12 17:26:16,491 - dashboard - INFO - Loaded latest price from log: 0.8209
+2025-05-12 17:26:16,507 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:26:16,508 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8209, Grid Levels: [0.785, 0.815]
+2025-05-12 17:26:25,665 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:26:26,408 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:26:26,409 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8207 | USDT/IDR: 16488.00 | ADA/IDR: 13531.70 | Change: -0.02% | Profit: 0.0000 USDT | Time: 17:26:26
+2025-05-12 17:26:31,507 - dashboard - INFO - Found price in log: 0.8207
+2025-05-12 17:26:31,507 - dashboard - INFO - Loaded latest price from log: 0.8207
+2025-05-12 17:26:31,521 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:26:31,521 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8207, Grid Levels: [0.785, 0.815]
+2025-05-12 17:26:37,470 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:26:38,952 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:26:38,954 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8214 | USDT/IDR: 16487.00 | ADA/IDR: 13542.42 | Change: 0.09% | Profit: 0.0000 USDT | Time: 17:26:38
+2025-05-12 17:26:42,646 - dashboard - INFO - Found price in log: 0.8214
+2025-05-12 17:26:42,647 - dashboard - INFO - Loaded latest price from log: 0.8214
+2025-05-12 17:26:42,670 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:26:42,670 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8214, Grid Levels: [0.785, 0.815]
+2025-05-12 17:26:51,499 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:26:52,984 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:26:52,986 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8216 | USDT/IDR: 16487.00 | ADA/IDR: 13545.72 | Change: 0.02% | Profit: 0.0000 USDT | Time: 17:26:52
+2025-05-12 17:26:57,648 - dashboard - INFO - Found price in log: 0.8216
+2025-05-12 17:26:57,649 - dashboard - INFO - Loaded latest price from log: 0.8216
+2025-05-12 17:26:57,669 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:26:57,671 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8216, Grid Levels: [0.785, 0.815]
+2025-05-12 17:26:58,001 - dashboard - INFO - Found price in log: 0.8216
+2025-05-12 17:26:58,001 - dashboard - INFO - Loaded latest price from log: 0.8216
+2025-05-12 17:26:58,020 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:26:58,025 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8216, Grid Levels: [0.785, 0.815]
+2025-05-12 17:27:04,743 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:27:06,379 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:27:06,380 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16487.00 | ADA/IDR: 13553.96 | Change: 0.06% | Profit: 0.0000 USDT | Time: 17:27:06
+2025-05-12 17:27:13,319 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:27:13,320 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:27:13,343 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:27:13,345 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:27:17,901 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:27:20,243 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:27:20,245 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16487.00 | ADA/IDR: 13553.96 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:27:20
+2025-05-12 17:27:28,322 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:27:28,323 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:27:28,346 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:27:28,347 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:27:32,723 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:27:34,354 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:27:34,355 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8222 | USDT/IDR: 16488.00 | ADA/IDR: 13556.43 | Change: 0.01% | Profit: 0.0000 USDT | Time: 17:27:34
+2025-05-12 17:27:43,340 - dashboard - INFO - Found price in log: 0.8222
+2025-05-12 17:27:43,341 - dashboard - INFO - Loaded latest price from log: 0.8222
+2025-05-12 17:27:43,364 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:27:43,366 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8222, Grid Levels: [0.785, 0.815]
+2025-05-12 17:27:46,253 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:27:47,676 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:27:47,679 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8222 | USDT/IDR: 16488.00 | ADA/IDR: 13556.43 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:27:47
+2025-05-12 17:27:58,319 - dashboard - INFO - Found price in log: 0.8222
+2025-05-12 17:27:58,319 - dashboard - INFO - Loaded latest price from log: 0.8222
+2025-05-12 17:27:58,344 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:27:58,345 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8222, Grid Levels: [0.785, 0.815]
+2025-05-12 17:27:59,668 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:28:00,654 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:28:00,657 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16487.00 | ADA/IDR: 13553.96 | Change: -0.01% | Profit: 0.0000 USDT | Time: 17:28:00
+2025-05-12 17:28:12,469 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:28:13,329 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:28:13,329 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8222, Grid Levels: [0.785, 0.815]
+2025-05-12 17:28:14,193 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:28:14,194 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.822 | USDT/IDR: 16488.00 | ADA/IDR: 13553.14 | Change: -0.01% | Profit: 0.0000 USDT | Time: 17:28:14
+2025-05-12 17:28:25,371 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:28:26,494 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:28:26,496 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.822 | USDT/IDR: 16488.00 | ADA/IDR: 13553.14 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:28:26
+2025-05-12 17:28:28,329 - dashboard - INFO - Found price in log: 0.822
+2025-05-12 17:28:28,330 - dashboard - INFO - Loaded latest price from log: 0.822
+2025-05-12 17:28:28,340 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:28:28,340 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.822, Grid Levels: [0.785, 0.815]
+2025-05-12 17:28:38,163 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:28:39,898 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:28:39,899 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16487.00 | ADA/IDR: 13553.96 | Change: 0.01% | Profit: 0.0000 USDT | Time: 17:28:39
+2025-05-12 17:28:43,345 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:28:43,346 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:28:43,367 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:28:43,368 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:28:51,158 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:28:52,381 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:28:52,382 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16488.00 | ADA/IDR: 13554.78 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:28:52
+2025-05-12 17:28:58,331 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:28:58,332 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:28:58,358 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:28:58,359 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:29:03,796 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:29:05,277 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:29:05,278 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16488.00 | ADA/IDR: 13554.78 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:29:05
+2025-05-12 17:29:13,319 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:29:13,320 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:29:13,347 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:29:13,349 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:29:16,493 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:29:17,773 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:29:17,775 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8222 | USDT/IDR: 16488.00 | ADA/IDR: 13556.43 | Change: 0.01% | Profit: 0.0000 USDT | Time: 17:29:17
+2025-05-12 17:29:28,011 - dashboard - INFO - Found price in log: 0.8222
+2025-05-12 17:29:28,012 - dashboard - INFO - Loaded latest price from log: 0.8222
+2025-05-12 17:29:28,026 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:29:28,027 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8222, Grid Levels: [0.785, 0.815]
+2025-05-12 17:29:29,152 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:29:30,337 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:29:30,339 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8224 | USDT/IDR: 16487.00 | ADA/IDR: 13558.91 | Change: 0.02% | Profit: 0.0000 USDT | Time: 17:29:30
+2025-05-12 17:29:42,324 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:29:43,023 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:29:43,025 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8222, Grid Levels: [0.785, 0.815]
+2025-05-12 17:29:47,266 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:29:47,267 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8226 | USDT/IDR: 16487.00 | ADA/IDR: 13562.21 | Change: 0.02% | Profit: 0.0000 USDT | Time: 17:29:47
+2025-05-12 17:29:58,007 - dashboard - INFO - Found price in log: 0.8226
+2025-05-12 17:29:58,008 - dashboard - INFO - Loaded latest price from log: 0.8226
+2025-05-12 17:29:58,030 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:29:58,031 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8226, Grid Levels: [0.785, 0.815]
+2025-05-12 17:29:59,935 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:30:01,187 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:30:01,188 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8227 | USDT/IDR: 16488.00 | ADA/IDR: 13564.68 | Change: 0.01% | Profit: 0.0000 USDT | Time: 17:30:01
+2025-05-12 17:30:12,432 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:30:13,025 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:30:13,025 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8226, Grid Levels: [0.785, 0.815]
+2025-05-12 17:30:15,220 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:30:15,221 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8227 | USDT/IDR: 16487.00 | ADA/IDR: 13563.85 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:30:15
+2025-05-12 17:30:26,345 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:30:27,199 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:30:27,200 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8224 | USDT/IDR: 16488.00 | ADA/IDR: 13559.73 | Change: -0.04% | Profit: 0.0000 USDT | Time: 17:30:27
+2025-05-12 17:30:28,015 - dashboard - INFO - Found price in log: 0.8224
+2025-05-12 17:30:28,016 - dashboard - INFO - Loaded latest price from log: 0.8224
+2025-05-12 17:30:28,034 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:30:28,036 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8224, Grid Levels: [0.785, 0.815]
+2025-05-12 17:30:38,771 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:30:40,107 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:30:40,109 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8224 | USDT/IDR: 16488.00 | ADA/IDR: 13559.73 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:30:40
+2025-05-12 17:30:43,006 - dashboard - INFO - Found price in log: 0.8224
+2025-05-12 17:30:43,006 - dashboard - INFO - Loaded latest price from log: 0.8224
+2025-05-12 17:30:43,025 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:30:43,027 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8224, Grid Levels: [0.785, 0.815]
+2025-05-12 17:30:51,858 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:30:53,383 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:30:53,384 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8224 | USDT/IDR: 16488.00 | ADA/IDR: 13559.73 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:30:53
+2025-05-12 17:30:58,023 - dashboard - INFO - Found price in log: 0.8224
+2025-05-12 17:30:58,025 - dashboard - INFO - Loaded latest price from log: 0.8224
+2025-05-12 17:30:58,043 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:30:58,044 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8224, Grid Levels: [0.785, 0.815]
+2025-05-12 17:31:05,096 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:31:08,055 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:31:08,057 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8219 | USDT/IDR: 16488.00 | ADA/IDR: 13551.49 | Change: -0.06% | Profit: 0.0000 USDT | Time: 17:31:08
+2025-05-12 17:31:13,034 - dashboard - INFO - Found price in log: 0.8219
+2025-05-12 17:31:13,035 - dashboard - INFO - Loaded latest price from log: 0.8219
+2025-05-12 17:31:13,060 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:31:13,061 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8219, Grid Levels: [0.785, 0.815]
+2025-05-12 17:31:20,048 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:31:21,957 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:31:21,958 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16487.00 | ADA/IDR: 13553.96 | Change: 0.02% | Profit: 0.0000 USDT | Time: 17:31:21
+2025-05-12 17:31:28,331 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:31:28,332 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:31:28,360 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:31:28,360 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:31:34,243 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:31:36,021 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:31:36,023 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16487.00 | ADA/IDR: 13553.96 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:31:36
+2025-05-12 17:31:43,331 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:31:43,332 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:31:43,362 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:31:43,363 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:31:47,703 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:31:50,125 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:31:50,126 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8209 | USDT/IDR: 16488.00 | ADA/IDR: 13535.00 | Change: -0.15% | Profit: 0.0000 USDT | Time: 17:31:50
+2025-05-12 17:31:58,329 - dashboard - INFO - Found price in log: 0.8209
+2025-05-12 17:31:58,330 - dashboard - INFO - Loaded latest price from log: 0.8209
+2025-05-12 17:31:58,354 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:31:58,355 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8209, Grid Levels: [0.785, 0.815]
+2025-05-12 17:31:58,392 - dashboard - INFO - Found price in log: 0.8209
+2025-05-12 17:31:58,392 - dashboard - INFO - Loaded latest price from log: 0.8209
+2025-05-12 17:31:58,410 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:31:58,411 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8209, Grid Levels: [0.785, 0.815]
+2025-05-12 17:32:01,895 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:32:04,556 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:32:04,557 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8209 | USDT/IDR: 16488.00 | ADA/IDR: 13535.00 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:32:04
+2025-05-12 17:32:13,309 - dashboard - INFO - Found price in log: 0.8209
+2025-05-12 17:32:13,310 - dashboard - INFO - Loaded latest price from log: 0.8209
+2025-05-12 17:32:13,327 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:32:13,328 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8209, Grid Levels: [0.785, 0.815]
+2025-05-12 17:32:16,048 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:32:17,589 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:32:17,590 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8217 | USDT/IDR: 16487.00 | ADA/IDR: 13547.37 | Change: 0.10% | Profit: 0.0000 USDT | Time: 17:32:17
+2025-05-12 17:32:28,316 - dashboard - INFO - Found price in log: 0.8217
+2025-05-12 17:32:28,317 - dashboard - INFO - Loaded latest price from log: 0.8217
+2025-05-12 17:32:28,329 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:32:28,331 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8217, Grid Levels: [0.785, 0.815]
+2025-05-12 17:32:28,770 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:32:29,707 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16487.0
+2025-05-12 17:32:29,708 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8217 | USDT/IDR: 16487.00 | ADA/IDR: 13547.37 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:32:29
+2025-05-12 17:32:41,265 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:32:42,860 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16490.0
+2025-05-12 17:32:42,860 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16490.00 | ADA/IDR: 13556.43 | Change: 0.05% | Profit: 0.0000 USDT | Time: 17:32:42
+2025-05-12 17:32:43,329 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:32:43,329 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:32:43,343 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:32:43,344 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:32:54,026 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:32:54,959 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16490.0
+2025-05-12 17:32:54,960 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8224 | USDT/IDR: 16490.00 | ADA/IDR: 13561.38 | Change: 0.04% | Profit: 0.0000 USDT | Time: 17:32:54
+2025-05-12 17:32:58,317 - dashboard - INFO - Found price in log: 0.8224
+2025-05-12 17:32:58,318 - dashboard - INFO - Loaded latest price from log: 0.8224
+2025-05-12 17:32:58,345 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:32:58,346 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8224, Grid Levels: [0.785, 0.815]
+2025-05-12 17:33:06,121 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:33:07,521 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16490.0
+2025-05-12 17:33:07,522 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8224 | USDT/IDR: 16490.00 | ADA/IDR: 13561.38 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:33:07
+2025-05-12 17:33:13,320 - dashboard - INFO - Found price in log: 0.8224
+2025-05-12 17:33:13,322 - dashboard - INFO - Loaded latest price from log: 0.8224
+2025-05-12 17:33:13,341 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:33:13,342 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8224, Grid Levels: [0.785, 0.815]
+2025-05-12 17:33:19,251 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:33:20,654 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16490.0
+2025-05-12 17:33:20,656 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8224 | USDT/IDR: 16490.00 | ADA/IDR: 13561.38 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:33:20
+2025-05-12 17:33:28,341 - dashboard - INFO - Found price in log: 0.8224
+2025-05-12 17:33:28,342 - dashboard - INFO - Loaded latest price from log: 0.8224
+2025-05-12 17:33:28,358 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:33:28,359 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8224, Grid Levels: [0.785, 0.815]
+2025-05-12 17:33:32,540 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:33:33,874 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16488.0
+2025-05-12 17:33:33,875 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16488.00 | ADA/IDR: 13554.78 | Change: -0.04% | Profit: 0.0000 USDT | Time: 17:33:33
+2025-05-12 17:33:43,336 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:33:43,336 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:33:43,354 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:33:43,356 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:33:46,303 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:33:47,150 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16490.0
+2025-05-12 17:33:47,152 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8221 | USDT/IDR: 16490.00 | ADA/IDR: 13556.43 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:33:47
+2025-05-12 17:33:58,310 - dashboard - INFO - Found price in log: 0.8221
+2025-05-12 17:33:58,310 - dashboard - INFO - Loaded latest price from log: 0.8221
+2025-05-12 17:33:58,327 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:33:58,328 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8221, Grid Levels: [0.785, 0.815]
+2025-05-12 17:33:59,237 - grid_bot - INFO - [BALANCE] USDT: 9978.9179 (Free) + 21.0821 (Locked) | ADA: 708.0000 (Free) + 26.0000 (Locked)
+2025-05-12 17:34:03,595 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16489.0
+2025-05-12 17:34:03,595 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8225 | USDT/IDR: 16489.00 | ADA/IDR: 13562.20 | Change: 0.05% | Profit: 0.0000 USDT | Time: 17:34:03
+2025-05-12 17:34:04,295 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:34:04,296 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:34:04,319 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:34:04,321 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:34:20,467 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:34:20,468 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:34:20,487 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:34:20,488 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:34:30,005 - grid_bot - ERROR - Unexpected error: HTTPSConnectionPool(host='testnet.binance.vision', port=443): Read timed out. (read timeout=10)
+2025-05-12 17:34:30,006 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-12 17:34:52,903 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-12 17:34:52,904 - __main__ - INFO - Dashboard development server berhasil dimulai di http://localhost:5000
+2025-05-12 17:34:52,904 - __main__ - INFO - Username: admin
+2025-05-12 17:34:52,905 - __main__ - INFO - Password: Grid@Trading123
+2025-05-12 17:34:53,610 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:34:53,611 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:34:53,635 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:34:53,646 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:34:53,671 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:34:53,673 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:34:53,700 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:34:53,701 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:34:55,733 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:34:55,734 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:34:55,759 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:34:55,760 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:34:57,801 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:34:57,802 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:34:57,820 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:34:57,821 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:34:59,094 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.0.2:5000
+2025-05-12 17:34:59,096 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-12 17:34:59,845 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:34:59,845 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:34:59,865 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:34:59,865 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:35:01,892 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:35:01,893 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:35:01,916 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:35:01,918 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:35:03,701 - binance_client - INFO - Successfully connected to Binance_testnet
+2025-05-12 17:35:03,701 - binance_client - INFO - Account status: SPOT
+2025-05-12 17:35:03,949 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:35:03,949 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:35:03,967 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:35:03,968 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:35:05,994 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:35:05,995 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:35:06,016 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:35:06,017 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:35:08,050 - dashboard - INFO - Found price in log: 0.8225
+2025-05-12 17:35:08,051 - dashboard - INFO - Loaded latest price from log: 0.8225
+2025-05-12 17:35:08,074 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-12 17:35:08,075 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.8225, Grid Levels: [0.785, 0.815]
+2025-05-12 17:36:12,541 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-12 17:36:12,555 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-12 17:36:12,557 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-12 17:36:12,559 - __main__ - INFO - Username: admin
+2025-05-12 17:36:12,559 - __main__ - INFO - Password: Grid@Trading123
+2025-05-12 17:36:33,629 - binance_client - ERROR - Failed to connect to Binance API: APIError(code=-1021): Timestamp for this request is outside of the recvWindow.
+2025-05-12 17:36:33,630 - __main__ - ERROR - Error dalam bot trading: APIError(code=-1021): Timestamp for this request is outside of the recvWindow.
+2025-05-13 16:07:44,059 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 16:07:44,077 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 16:07:44,079 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 16:07:44,079 - __main__ - INFO - Username: admin
+2025-05-13 16:07:44,079 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 16:07:46,134 - __main__ - ERROR - Error dalam bot trading: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ping (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'api.binance.com'. (_ssl.c:1000)")))
+2025-05-13 16:08:22,490 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 16:08:22,514 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 16:08:22,519 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 16:08:22,523 - __main__ - INFO - Username: admin
+2025-05-13 16:08:22,524 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 16:08:27,151 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 16:08:27,152 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:08:28,685 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 16:08:28,702 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 16:08:28,702 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 16:08:28,702 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 16:08:28,702 - grid_bot - INFO - Price range: 0.785 - 0.815
+2025-05-13 16:08:28,702 - grid_bot - INFO - Grid number: 12, Grid size: 0.002499999999999993
+2025-05-13 16:08:28,702 - grid_bot - INFO - Order quantity: 20
+2025-05-13 16:08:28,702 - grid_bot - INFO - Grid trading bot is running...
+2025-05-13 16:08:28,702 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-13 16:08:28,702 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-13 16:08:28,702 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-13 16:08:29,633 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 4.7840 (Free) + 39.0000 (Locked)
+2025-05-13 16:08:29,633 - grid_bot - INFO - Setting up grid orders...
+2025-05-13 16:08:30,557 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 4.7840 (Free) + 39.0000 (Locked)
+2025-05-13 16:08:33,174 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 16:08:33,204 - grid_bot - INFO - [REQUIREMENT] Need 63.4400 USDT for 4 buy orders
+2025-05-13 16:08:33,204 - grid_bot - INFO - [REQUIREMENT] Need 180.0000 ADA for 9 sell orders
+2025-05-13 16:08:33,206 - grid_bot - WARNING - Insufficient USDT balance. Have: 7.0608, Need: 63.4400
+2025-05-13 16:08:33,206 - grid_bot - WARNING - Insufficient ADA balance. Have: 4.7840, Need: 180.0000
+2025-05-13 16:08:33,208 - grid_bot - INFO - Current ADAUSDT price: 0.793
+2025-05-13 16:08:34,184 - binance_client - INFO - Cancelled order 6979276758 for ADAUSDT
+2025-05-13 16:08:34,684 - binance_client - INFO - Cancelled order 6979282037 for ADAUSDT
+2025-05-13 16:08:35,205 - binance_client - INFO - Cancelled order 6979678644 for ADAUSDT
+2025-05-13 16:08:35,205 - grid_bot - INFO - Cancelled all existing orders
+2025-05-13 16:08:35,680 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:35,680 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:36,136 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:36,144 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:36,618 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:36,618 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:37,103 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:37,105 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:37,580 - binance_client - INFO - Placed SELL order for 20 ADAUSDT at 0.7950
+2025-05-13 16:08:38,047 - binance_client - INFO - Placed SELL order for 20 ADAUSDT at 0.7975
+2025-05-13 16:08:38,516 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:38,516 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:39,429 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:39,438 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:39,910 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:39,911 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:40,383 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:40,383 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:40,866 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:40,866 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:41,343 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:41,343 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:41,827 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:08:41,827 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:08:41,827 - grid_bot - INFO - Grid setup complete. 0 buy orders and 2 sell orders placed.
+2025-05-13 16:08:43,440 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:08:45,468 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 16:08:45,476 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7928 | USDT/IDR: 16570.00 | ADA/IDR: 13136.70 | Change: -0.03% | Profit: 0.0000 USDT | Time: 16:08:45
+2025-05-13 16:08:57,538 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:08:59,881 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 16:08:59,889 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.793 | USDT/IDR: 16570.00 | ADA/IDR: 13140.01 | Change: 0.03% | Profit: 0.0000 USDT | Time: 16:08:59
+2025-05-13 16:09:11,874 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:09:14,114 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 16:09:14,114 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.793 | USDT/IDR: 16570.00 | ADA/IDR: 13140.01 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:09:14
+2025-05-13 16:09:26,318 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:09:28,149 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 16:09:28,149 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.793 | USDT/IDR: 16570.00 | ADA/IDR: 13140.01 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:09:28
+2025-05-13 16:09:40,242 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:09:41,928 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:09:41,928 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7927 | USDT/IDR: 16579.00 | ADA/IDR: 13142.17 | Change: -0.04% | Profit: 0.0000 USDT | Time: 16:09:41
+2025-05-13 16:09:54,272 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:09:56,412 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:09:56,415 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7928 | USDT/IDR: 16579.00 | ADA/IDR: 13143.83 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:09:56
+2025-05-13 16:10:08,701 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:10:10,310 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16576.0
+2025-05-13 16:10:10,310 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7929 | USDT/IDR: 16576.00 | ADA/IDR: 13143.11 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:10:10
+2025-05-13 16:10:22,529 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:10:24,881 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16576.0
+2025-05-13 16:10:24,883 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7933 | USDT/IDR: 16576.00 | ADA/IDR: 13149.74 | Change: 0.05% | Profit: 0.0000 USDT | Time: 16:10:24
+2025-05-13 16:10:37,168 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:10:39,422 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:10:39,423 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7925 | USDT/IDR: 16571.00 | ADA/IDR: 13132.52 | Change: -0.10% | Profit: 0.0000 USDT | Time: 16:10:39
+2025-05-13 16:10:51,584 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:10:53,656 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16576.0
+2025-05-13 16:10:53,656 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7919 | USDT/IDR: 16576.00 | ADA/IDR: 13126.53 | Change: -0.08% | Profit: 0.0000 USDT | Time: 16:10:53
+2025-05-13 16:11:05,820 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:11:08,019 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:11:08,027 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7918 | USDT/IDR: 16571.00 | ADA/IDR: 13120.92 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:11:08
+2025-05-13 16:11:12,702 - dashboard - INFO - Found price in log: 0.7918
+2025-05-13 16:11:12,709 - dashboard - INFO - Loaded latest price from log: 0.7918
+2025-05-13 16:11:12,717 - dashboard - INFO - Found grid levels in log: 0.785 - 0.815
+2025-05-13 16:11:12,717 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.7918, Grid Levels: [0.785, 0.815]
+2025-05-13 16:11:20,282 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:11:21,678 - dashboard - INFO - Removed SSE client 02093241-d74c-477e-a583-7f9e086e5d19
+2025-05-13 16:11:21,678 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 16:11:22,204 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:11:22,204 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7921 | USDT/IDR: 16571.00 | ADA/IDR: 13125.89 | Change: 0.04% | Profit: 0.0000 USDT | Time: 16:11:22
+2025-05-13 16:11:34,394 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:11:36,112 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:11:36,112 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7926 | USDT/IDR: 16571.00 | ADA/IDR: 13134.17 | Change: 0.06% | Profit: 0.0000 USDT | Time: 16:11:36
+2025-05-13 16:11:48,402 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:11:50,449 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:11:50,449 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7924 | USDT/IDR: 16571.00 | ADA/IDR: 13130.86 | Change: -0.03% | Profit: 0.0000 USDT | Time: 16:11:50
+2025-05-13 16:12:02,876 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:12:04,924 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16580.0
+2025-05-13 16:12:04,924 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7924 | USDT/IDR: 16580.00 | ADA/IDR: 13137.99 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:12:04
+2025-05-13 16:12:17,190 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:12:19,465 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:12:19,465 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7923 | USDT/IDR: 16571.00 | ADA/IDR: 13129.20 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:12:19
+2025-05-13 16:12:31,754 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:12:33,946 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16575.0
+2025-05-13 16:12:33,955 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7921 | USDT/IDR: 16575.00 | ADA/IDR: 13129.06 | Change: -0.03% | Profit: 0.0000 USDT | Time: 16:12:33
+2025-05-13 16:12:46,381 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:12:48,760 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:12:48,761 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7921 | USDT/IDR: 16571.00 | ADA/IDR: 13125.89 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:12:48
+2025-05-13 16:13:01,045 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:13:02,888 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16575.0
+2025-05-13 16:13:02,888 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.792 | USDT/IDR: 16575.00 | ADA/IDR: 13127.40 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:13:02
+2025-05-13 16:13:15,076 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:13:17,176 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16575.0
+2025-05-13 16:13:17,176 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7917 | USDT/IDR: 16575.00 | ADA/IDR: 13122.43 | Change: -0.04% | Profit: 0.0000 USDT | Time: 16:13:17
+2025-05-13 16:13:26,476 - dashboard - INFO - Removed SSE client 00c6ea6c-f920-4254-944a-91e9bbbece46
+2025-05-13 16:13:26,476 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 16:13:29,408 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:13:31,763 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:13:31,763 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7916 | USDT/IDR: 16571.00 | ADA/IDR: 13117.60 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:13:31
+2025-05-13 16:13:44,034 - grid_bot - INFO - [BALANCE] USDT: 7.0608 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 40.0000 (Locked)
+2025-05-13 16:13:46,545 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:13:46,545 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7916 | USDT/IDR: 16571.00 | ADA/IDR: 13117.60 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:13:46
+2025-05-13 16:13:55,144 - grid_bot - INFO - Bot stopped by user. Final profit: 0.0000 USDT
+2025-05-13 16:13:55,151 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-13 16:21:45,329 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 16:21:45,354 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 16:21:45,355 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 16:21:45,355 - __main__ - INFO - Username: admin
+2025-05-13 16:21:45,355 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 16:21:45,623 - waitress.queue - WARNING - Task queue depth is 1
+2025-05-13 16:21:45,703 - waitress.queue - WARNING - Task queue depth is 2
+2025-05-13 16:21:50,054 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 16:21:50,054 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:21:51,797 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 16:21:51,852 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 16:21:51,852 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 16:21:51,852 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 16:21:51,852 - grid_bot - INFO - Price range: 0.785 - 0.815
+2025-05-13 16:21:51,852 - grid_bot - INFO - Grid number: 12, Grid size: 0.002499999999999993
+2025-05-13 16:21:51,852 - grid_bot - INFO - Order quantity: 20
+2025-05-13 16:21:51,860 - grid_bot - INFO - Grid trading bot is running...
+2025-05-13 16:21:51,860 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-13 16:21:51,860 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-13 16:21:51,861 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-13 16:21:53,039 - grid_bot - INFO - [BALANCE] USDT: 22.9449 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 20.0000 (Locked)
+2025-05-13 16:21:53,039 - grid_bot - INFO - Setting up grid orders...
+2025-05-13 16:21:54,191 - grid_bot - INFO - [BALANCE] USDT: 22.9449 (Free) + 0.0000 (Locked) | ADA: 3.7840 (Free) + 20.0000 (Locked)
+2025-05-13 16:21:57,424 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16575.0
+2025-05-13 16:21:57,433 - grid_bot - INFO - [REQUIREMENT] Need 79.5100 USDT for 5 buy orders
+2025-05-13 16:21:57,436 - grid_bot - INFO - [REQUIREMENT] Need 160.0000 ADA for 8 sell orders
+2025-05-13 16:21:57,437 - grid_bot - WARNING - Insufficient USDT balance. Have: 22.9449, Need: 79.5100
+2025-05-13 16:21:57,437 - grid_bot - WARNING - Insufficient ADA balance. Have: 3.7840, Need: 160.0000
+2025-05-13 16:21:57,437 - grid_bot - INFO - Current ADAUSDT price: 0.7951
+2025-05-13 16:21:58,445 - binance_client - INFO - Cancelled order 6982374686 for ADAUSDT
+2025-05-13 16:21:58,445 - grid_bot - INFO - Cancelled all existing orders
+2025-05-13 16:21:58,971 - binance_client - INFO - Placed BUY order for 20 ADAUSDT at 0.7850
+2025-05-13 16:21:59,457 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:21:59,458 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:21:59,945 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:21:59,945 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:00,452 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:00,461 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:00,928 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:00,928 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:01,429 - binance_client - INFO - Placed SELL order for 20 ADAUSDT at 0.7975
+2025-05-13 16:22:01,923 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:01,923 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:02,449 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:02,449 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:02,940 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:02,949 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:03,467 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:03,467 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:03,948 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:03,948 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:04,409 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:04,415 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:04,898 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:04,898 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:04,898 - grid_bot - INFO - Grid setup complete. 1 buy orders and 1 sell orders placed.
+2025-05-13 16:22:06,437 - grid_bot - INFO - [BALANCE] USDT: 7.2449 (Free) + 15.7000 (Locked) | ADA: 3.7840 (Free) + 20.0000 (Locked)
+2025-05-13 16:22:08,318 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16575.0
+2025-05-13 16:22:08,318 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7953 | USDT/IDR: 16575.00 | ADA/IDR: 13182.10 | Change: 0.03% | Profit: 0.0000 USDT | Time: 16:22:08
+2025-05-13 16:22:15,874 - grid_bot - INFO - Bot stopped by user. Final profit: 0.0000 USDT
+2025-05-13 16:22:15,881 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-13 16:22:19,304 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 16:22:19,313 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 16:22:19,313 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 16:22:19,313 - __main__ - INFO - Username: admin
+2025-05-13 16:22:19,313 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 16:22:19,683 - waitress.queue - WARNING - Task queue depth is 1
+2025-05-13 16:22:19,687 - waitress.queue - WARNING - Task queue depth is 2
+2025-05-13 16:22:23,242 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 16:22:23,249 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:22:24,713 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 16:22:24,739 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 16:22:24,739 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 16:22:24,739 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 16:22:24,739 - grid_bot - INFO - Price range: 0.785 - 0.815
+2025-05-13 16:22:24,739 - grid_bot - INFO - Grid number: 4, Grid size: 0.007499999999999979
+2025-05-13 16:22:24,739 - grid_bot - INFO - Order quantity: 13
+2025-05-13 16:22:24,739 - grid_bot - INFO - Grid trading bot is running...
+2025-05-13 16:22:24,739 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-13 16:22:24,746 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-13 16:22:24,746 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-13 16:22:25,902 - grid_bot - INFO - [BALANCE] USDT: 7.2449 (Free) + 15.7000 (Locked) | ADA: 3.7840 (Free) + 20.0000 (Locked)
+2025-05-13 16:22:25,902 - grid_bot - INFO - Setting up grid orders...
+2025-05-13 16:22:26,837 - grid_bot - INFO - [BALANCE] USDT: 7.2449 (Free) + 15.7000 (Locked) | ADA: 3.7840 (Free) + 20.0000 (Locked)
+2025-05-13 16:22:29,321 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16575.0
+2025-05-13 16:22:29,321 - grid_bot - INFO - [REQUIREMENT] Need 20.7272 USDT for 2 buy orders
+2025-05-13 16:22:29,321 - grid_bot - INFO - [REQUIREMENT] Need 39.0000 ADA for 3 sell orders
+2025-05-13 16:22:29,321 - grid_bot - WARNING - Insufficient USDT balance. Have: 7.2449, Need: 20.7272
+2025-05-13 16:22:29,321 - grid_bot - WARNING - Insufficient ADA balance. Have: 3.7840, Need: 39.0000
+2025-05-13 16:22:29,321 - grid_bot - INFO - Current ADAUSDT price: 0.7972
+2025-05-13 16:22:30,291 - binance_client - INFO - Cancelled order 6982431895 for ADAUSDT
+2025-05-13 16:22:30,808 - binance_client - INFO - Cancelled order 6982432003 for ADAUSDT
+2025-05-13 16:22:30,808 - grid_bot - INFO - Cancelled all existing orders
+2025-05-13 16:22:31,320 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.7850
+2025-05-13 16:22:31,827 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.7925
+2025-05-13 16:22:32,338 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8000
+2025-05-13 16:22:32,854 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:32,854 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:33,365 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:22:33,365 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:22:33,365 - grid_bot - INFO - Grid setup complete. 2 buy orders and 1 sell orders placed.
+2025-05-13 16:22:35,183 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:22:37,017 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:22:37,017 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7972 | USDT/IDR: 16579.00 | ADA/IDR: 13216.78 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:22:37
+2025-05-13 16:22:49,342 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:22:51,704 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:22:51,713 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.797 | USDT/IDR: 16579.00 | ADA/IDR: 13213.46 | Change: -0.03% | Profit: 0.0000 USDT | Time: 16:22:51
+2025-05-13 16:23:03,892 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:23:05,928 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16575.0
+2025-05-13 16:23:05,928 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7962 | USDT/IDR: 16575.00 | ADA/IDR: 13197.01 | Change: -0.10% | Profit: 0.0000 USDT | Time: 16:23:05
+2025-05-13 16:23:18,189 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:23:20,266 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:23:20,266 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7957 | USDT/IDR: 16579.00 | ADA/IDR: 13191.91 | Change: -0.06% | Profit: 0.0000 USDT | Time: 16:23:20
+2025-05-13 16:23:32,501 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:23:34,247 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:23:34,247 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7952 | USDT/IDR: 16579.00 | ADA/IDR: 13183.62 | Change: -0.06% | Profit: 0.0000 USDT | Time: 16:23:34
+2025-05-13 16:23:46,448 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:23:48,485 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:23:48,493 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7954 | USDT/IDR: 16579.00 | ADA/IDR: 13186.94 | Change: 0.03% | Profit: 0.0000 USDT | Time: 16:23:48
+2025-05-13 16:24:00,815 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:24:03,275 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:24:03,275 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7953 | USDT/IDR: 16572.00 | ADA/IDR: 13179.71 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:24:03
+2025-05-13 16:24:15,529 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:24:17,500 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:24:17,500 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7953 | USDT/IDR: 16579.00 | ADA/IDR: 13185.28 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:24:17
+2025-05-13 16:24:29,801 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:24:31,955 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:24:31,955 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.795 | USDT/IDR: 16579.00 | ADA/IDR: 13180.31 | Change: -0.04% | Profit: 0.0000 USDT | Time: 16:24:31
+2025-05-13 16:24:44,118 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:24:45,772 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 16:24:45,772 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7949 | USDT/IDR: 16573.00 | ADA/IDR: 13173.88 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:24:45
+2025-05-13 16:24:48,874 - dashboard - INFO - Removed SSE client e1247980-36d5-46a5-ac6b-b281793b2071
+2025-05-13 16:24:48,874 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 16:24:48,874 - dashboard - INFO - Removed SSE client 68363a92-0308-4055-b0c0-7f06454e3dfe
+2025-05-13 16:24:48,881 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 16:24:48,881 - dashboard - INFO - Removed SSE client 3026fa54-a1d9-47f4-ad09-161d529be776
+2025-05-13 16:24:48,881 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 16:24:48,966 - dashboard - INFO - Removed SSE client 79178ab0-5320-434b-b66e-52cfe92f3806
+2025-05-13 16:24:48,966 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 16:24:49,898 - dashboard - INFO - Removed SSE client 8014e856-f13e-4ee4-8dc0-ab55ebff27a1
+2025-05-13 16:24:49,898 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 16:24:49,908 - dashboard - INFO - Removed SSE client e788dc54-26cb-4259-9bfd-d844af3ce92d
+2025-05-13 16:24:49,908 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 16:24:57,921 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:25:00,030 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16580.0
+2025-05-13 16:25:00,037 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7949 | USDT/IDR: 16580.00 | ADA/IDR: 13179.44 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:25:00
+2025-05-13 16:25:12,295 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:25:14,543 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16580.0
+2025-05-13 16:25:14,543 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7952 | USDT/IDR: 16580.00 | ADA/IDR: 13184.42 | Change: 0.04% | Profit: 0.0000 USDT | Time: 16:25:14
+2025-05-13 16:25:26,808 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:25:28,534 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:25:28,534 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7953 | USDT/IDR: 16579.00 | ADA/IDR: 13185.28 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:25:28
+2025-05-13 16:25:40,966 - grid_bot - INFO - [BALANCE] USDT: 2.4374 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 13.0000 (Locked)
+2025-05-13 16:25:43,114 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:25:43,114 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7956 | USDT/IDR: 16579.00 | ADA/IDR: 13190.25 | Change: 0.04% | Profit: 0.0000 USDT | Time: 16:25:43
+2025-05-13 16:25:49,084 - grid_bot - INFO - Bot stopped by user. Final profit: 0.0000 USDT
+2025-05-13 16:25:49,084 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-13 16:26:39,649 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 16:26:39,664 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 16:26:39,668 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 16:26:39,668 - __main__ - INFO - Username: admin
+2025-05-13 16:26:39,668 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 16:26:44,680 - binance_client - INFO - Successfully connected to Binance_testnet
+2025-05-13 16:26:44,682 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:26:46,321 - binance_client - INFO - Loaded exchange info for 1422 symbols
+2025-05-13 16:26:46,338 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 16:26:46,338 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 16:26:46,338 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 16:26:46,338 - grid_bot - INFO - Price range: 0.785 - 0.815
+2025-05-13 16:26:46,338 - grid_bot - INFO - Grid number: 4, Grid size: 0.007499999999999979
+2025-05-13 16:26:46,338 - grid_bot - INFO - Order quantity: 13
+2025-05-13 16:26:46,338 - grid_bot - INFO - Grid trading bot is running...
+2025-05-13 16:26:46,338 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-13 16:26:46,346 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-13 16:26:46,347 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-13 16:26:48,227 - grid_bot - INFO - [BALANCE] USDT: 10000.5694 (Free) + 0.0000 (Locked) | ADA: 734.0000 (Free) + 0.0000 (Locked)
+2025-05-13 16:26:48,227 - grid_bot - INFO - Setting up grid orders...
+2025-05-13 16:26:49,885 - grid_bot - INFO - [BALANCE] USDT: 10000.5694 (Free) + 0.0000 (Locked) | ADA: 734.0000 (Free) + 0.0000 (Locked)
+2025-05-13 16:26:52,849 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:26:52,853 - grid_bot - INFO - [REQUIREMENT] Need 20.7038 USDT for 2 buy orders
+2025-05-13 16:26:52,853 - grid_bot - INFO - [REQUIREMENT] Need 39.0000 ADA for 3 sell orders
+2025-05-13 16:26:52,853 - grid_bot - INFO - Current ADAUSDT price: 0.7963
+2025-05-13 16:26:53,981 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.7850
+2025-05-13 16:26:54,956 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.7925
+2025-05-13 16:26:55,924 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8000
+2025-05-13 16:26:56,435 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8075
+2025-05-13 16:26:56,949 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8150
+2025-05-13 16:26:56,949 - grid_bot - INFO - Grid setup complete. 2 buy orders and 3 sell orders placed.
+2025-05-13 16:26:58,994 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:27:01,348 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:27:01,348 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.796 | USDT/IDR: 16572.00 | ADA/IDR: 13191.31 | Change: -0.04% | Profit: 0.0000 USDT | Time: 16:27:01
+2025-05-13 16:27:04,905 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 16:27:04,922 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 16:27:04,922 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 16:27:04,922 - __main__ - INFO - Username: admin
+2025-05-13 16:27:04,922 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 16:27:08,640 - binance_client - INFO - Successfully connected to Binance_testnet
+2025-05-13 16:27:08,640 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:27:10,260 - binance_client - INFO - Loaded exchange info for 1422 symbols
+2025-05-13 16:27:10,276 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 16:27:10,276 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 16:27:10,278 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 16:27:10,279 - grid_bot - INFO - Price range: 0.785 - 0.815
+2025-05-13 16:27:10,279 - grid_bot - INFO - Grid number: 4, Grid size: 0.007499999999999979
+2025-05-13 16:27:10,279 - grid_bot - INFO - Order quantity: 13
+2025-05-13 16:27:10,279 - grid_bot - INFO - Grid trading bot is running...
+2025-05-13 16:27:10,279 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-13 16:27:10,279 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-13 16:27:10,279 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-13 16:27:11,694 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:27:11,694 - grid_bot - INFO - Setting up grid orders...
+2025-05-13 16:27:13,537 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:27:16,095 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:27:16,095 - grid_bot - INFO - [REQUIREMENT] Need 20.6960 USDT for 2 buy orders
+2025-05-13 16:27:16,103 - grid_bot - INFO - [REQUIREMENT] Need 39.0000 ADA for 3 sell orders
+2025-05-13 16:27:16,104 - grid_bot - INFO - Current ADAUSDT price: 0.796
+2025-05-13 16:27:18,465 - binance_client - INFO - Cancelled order 594681 for ADAUSDT
+2025-05-13 16:27:18,931 - binance_client - INFO - Cancelled order 594682 for ADAUSDT
+2025-05-13 16:27:19,482 - binance_client - INFO - Cancelled order 594683 for ADAUSDT
+2025-05-13 16:27:19,943 - binance_client - INFO - Cancelled order 594684 for ADAUSDT
+2025-05-13 16:27:20,504 - binance_client - INFO - Cancelled order 594697 for ADAUSDT
+2025-05-13 16:27:20,504 - grid_bot - INFO - Cancelled all existing orders
+2025-05-13 16:27:21,527 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.7850
+2025-05-13 16:27:22,037 - binance_client - INFO - Placed BUY order for 13 ADAUSDT at 0.7925
+2025-05-13 16:27:22,970 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8000
+2025-05-13 16:27:23,472 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8075
+2025-05-13 16:27:23,997 - binance_client - INFO - Placed SELL order for 13 ADAUSDT at 0.8150
+2025-05-13 16:27:23,998 - grid_bot - INFO - Grid setup complete. 2 buy orders and 3 sell orders placed.
+2025-05-13 16:27:26,132 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:27:28,180 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:27:28,180 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7963 | USDT/IDR: 16572.00 | ADA/IDR: 13196.28 | Change: 0.04% | Profit: 0.0000 USDT | Time: 16:27:28
+2025-05-13 16:27:41,420 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:27:43,233 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16578.0
+2025-05-13 16:27:43,233 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7963 | USDT/IDR: 16578.00 | ADA/IDR: 13201.06 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:27:43
+2025-05-13 16:27:56,502 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:27:58,593 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:27:58,593 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7963 | USDT/IDR: 16571.00 | ADA/IDR: 13195.49 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:27:58
+2025-05-13 16:28:11,837 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:28:13,854 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:28:13,856 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7963 | USDT/IDR: 16571.00 | ADA/IDR: 13195.49 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:28:13
+2025-05-13 16:28:27,073 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:28:28,889 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:28:28,889 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7969 | USDT/IDR: 16572.00 | ADA/IDR: 13206.23 | Change: 0.08% | Profit: 0.0000 USDT | Time: 16:28:28
+2025-05-13 16:28:42,625 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:28:44,386 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:28:44,386 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7971 | USDT/IDR: 16571.00 | ADA/IDR: 13208.74 | Change: 0.03% | Profit: 0.0000 USDT | Time: 16:28:44
+2025-05-13 16:28:57,678 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:28:59,422 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:28:59,422 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7973 | USDT/IDR: 16572.00 | ADA/IDR: 13212.86 | Change: 0.03% | Profit: 0.0000 USDT | Time: 16:28:59
+2025-05-13 16:29:13,172 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:29:15,357 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:29:15,357 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7973 | USDT/IDR: 16572.00 | ADA/IDR: 13212.86 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:29:15
+2025-05-13 16:29:29,102 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:29:31,373 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:29:31,373 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7972 | USDT/IDR: 16571.00 | ADA/IDR: 13210.40 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:29:31
+2025-05-13 16:29:44,126 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:29:46,117 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:29:46,117 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7973 | USDT/IDR: 16572.00 | ADA/IDR: 13212.86 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:29:46
+2025-05-13 16:29:59,766 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:30:01,581 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:30:01,583 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.797 | USDT/IDR: 16572.00 | ADA/IDR: 13207.88 | Change: -0.04% | Profit: 0.0000 USDT | Time: 16:30:01
+2025-05-13 16:30:14,817 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:30:16,532 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:30:16,532 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7971 | USDT/IDR: 16572.00 | ADA/IDR: 13209.54 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:30:16
+2025-05-13 16:30:29,350 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:30:31,579 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:30:31,579 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7973 | USDT/IDR: 16571.00 | ADA/IDR: 13212.06 | Change: 0.03% | Profit: 0.0000 USDT | Time: 16:30:31
+2025-05-13 16:30:45,261 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:30:46,944 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:30:46,944 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7973 | USDT/IDR: 16572.00 | ADA/IDR: 13212.86 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:30:46
+2025-05-13 16:31:00,624 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:31:02,701 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:31:02,701 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7976 | USDT/IDR: 16571.00 | ADA/IDR: 13217.03 | Change: 0.04% | Profit: 0.0000 USDT | Time: 16:31:02
+2025-05-13 16:31:15,909 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:31:17,943 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:31:17,943 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7979 | USDT/IDR: 16571.00 | ADA/IDR: 13222.00 | Change: 0.04% | Profit: 0.0000 USDT | Time: 16:31:17
+2025-05-13 16:31:31,208 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:31:33,514 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:31:33,514 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7987 | USDT/IDR: 16572.00 | ADA/IDR: 13236.06 | Change: 0.10% | Profit: 0.0000 USDT | Time: 16:31:33
+2025-05-13 16:31:47,632 - grid_bot - INFO - [BALANCE] USDT: 9980.0619 (Free) + 20.5075 (Locked) | ADA: 695.0000 (Free) + 39.0000 (Locked)
+2025-05-13 16:31:50,021 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:31:50,024 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7992 | USDT/IDR: 16571.00 | ADA/IDR: 13243.54 | Change: 0.06% | Profit: 0.0000 USDT | Time: 16:31:50
+2025-05-13 16:31:56,231 - grid_bot - INFO - Bot stopped by user. Final profit: 0.0000 USDT
+2025-05-13 16:31:56,238 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-13 16:42:37,944 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 16:42:37,967 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 16:42:37,973 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 16:42:37,973 - __main__ - INFO - Username: admin
+2025-05-13 16:42:37,973 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 16:42:42,508 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 16:42:42,508 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:42:44,268 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 16:42:44,340 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 16:42:44,340 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 16:42:44,340 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 16:42:44,340 - grid_bot - INFO - Price range: 0.775 - 0.825
+2025-05-13 16:42:44,340 - grid_bot - INFO - Grid number: 10, Grid size: 0.004999999999999993
+2025-05-13 16:42:44,340 - grid_bot - INFO - Order quantity: 50
+2025-05-13 16:42:44,340 - grid_bot - INFO - Grid trading bot is running...
+2025-05-13 16:42:44,340 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-13 16:42:44,340 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-13 16:42:44,340 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-13 16:42:45,350 - grid_bot - INFO - [BALANCE] USDT: 12.8270 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:42:45,350 - grid_bot - INFO - Setting up grid orders...
+2025-05-13 16:42:46,370 - grid_bot - INFO - [BALANCE] USDT: 12.8270 (Free) + 20.5075 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:42:49,589 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:42:49,589 - grid_bot - INFO - [REQUIREMENT] Need 240.1200 USDT for 6 buy orders
+2025-05-13 16:42:49,596 - grid_bot - INFO - [REQUIREMENT] Need 250.0000 ADA for 5 sell orders
+2025-05-13 16:42:49,596 - grid_bot - WARNING - Insufficient USDT balance. Have: 12.8270, Need: 240.1200
+2025-05-13 16:42:49,596 - grid_bot - WARNING - Insufficient ADA balance. Have: 10.7840, Need: 250.0000
+2025-05-13 16:42:49,596 - grid_bot - INFO - Current ADAUSDT price: 0.8004
+2025-05-13 16:42:50,718 - binance_client - INFO - Cancelled order 6982436404 for ADAUSDT
+2025-05-13 16:42:51,337 - binance_client - INFO - Cancelled order 6982436457 for ADAUSDT
+2025-05-13 16:42:51,337 - grid_bot - INFO - Cancelled all existing orders
+2025-05-13 16:42:51,847 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:51,847 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:52,368 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:52,369 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:52,969 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:52,969 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:53,480 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:53,487 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:53,988 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:53,988 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:54,609 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:54,609 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:55,220 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:55,228 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:55,843 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:55,843 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:56,362 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:56,362 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:56,867 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:56,867 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:57,377 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:42:57,378 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:42:57,378 - grid_bot - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-13 16:42:59,323 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:43:01,469 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 16:43:01,469 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8002 | USDT/IDR: 16571.00 | ADA/IDR: 13260.11 | Change: -0.02% | Profit: 0.0000 USDT | Time: 16:43:01
+2025-05-13 16:43:14,071 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:43:16,832 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:43:16,832 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7995 | USDT/IDR: 16572.00 | ADA/IDR: 13249.31 | Change: -0.09% | Profit: 0.0000 USDT | Time: 16:43:16
+2025-05-13 16:43:29,347 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:43:31,592 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:43:31,592 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7995 | USDT/IDR: 16572.00 | ADA/IDR: 13249.31 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:43:31
+2025-05-13 16:43:44,041 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:43:46,057 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:43:46,057 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7986 | USDT/IDR: 16572.00 | ADA/IDR: 13234.40 | Change: -0.11% | Profit: 0.0000 USDT | Time: 16:43:46
+2025-05-13 16:43:58,427 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:44:00,408 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 16:44:00,413 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7987 | USDT/IDR: 16572.00 | ADA/IDR: 13236.06 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:44:00
+2025-05-13 16:44:12,770 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:44:15,207 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 16:44:15,210 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7987 | USDT/IDR: 16573.00 | ADA/IDR: 13236.86 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:44:15
+2025-05-13 16:44:27,508 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:44:29,329 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 16:44:29,329 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7987 | USDT/IDR: 16573.00 | ADA/IDR: 13236.86 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:44:29
+2025-05-13 16:44:41,847 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:44:43,982 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:44:43,982 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7987 | USDT/IDR: 16579.00 | ADA/IDR: 13241.65 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:44:43
+2025-05-13 16:44:56,466 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:44:59,027 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:44:59,027 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7986 | USDT/IDR: 16579.00 | ADA/IDR: 13239.99 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:44:59
+2025-05-13 16:45:11,422 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:45:13,990 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:45:13,992 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7987 | USDT/IDR: 16579.00 | ADA/IDR: 13241.65 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:45:13
+2025-05-13 16:45:26,470 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:45:28,828 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:45:28,828 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7986 | USDT/IDR: 16579.00 | ADA/IDR: 13239.99 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:45:28
+2025-05-13 16:45:41,220 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:45:43,474 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:45:43,475 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7987 | USDT/IDR: 16579.00 | ADA/IDR: 13241.65 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:45:43
+2025-05-13 16:45:51,985 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 16:45:51,985 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:45:53,822 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 16:45:53,845 - __main__ - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 16:45:53,845 - __main__ - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 16:45:53,845 - __main__ - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 16:45:53,845 - __main__ - INFO - Price range: 0.775 - 0.825
+2025-05-13 16:45:53,845 - __main__ - INFO - Grid number: 10, Grid size: 0.004999999999999993
+2025-05-13 16:45:53,845 - __main__ - INFO - Order quantity: 50
+2025-05-13 16:45:53,845 - __main__ - INFO - Grid trading bot is running...
+2025-05-13 16:45:53,845 - __main__ - INFO - Price will be updated every 10 seconds
+2025-05-13 16:45:53,845 - __main__ - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-13 16:45:53,845 - __main__ - INFO - Current total profit: 0.0000 USDT
+2025-05-13 16:45:55,103 - __main__ - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:45:55,103 - __main__ - INFO - Setting up grid orders...
+2025-05-13 16:45:55,858 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:45:56,173 - __main__ - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:45:57,701 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16578.0
+2025-05-13 16:45:57,701 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7991 | USDT/IDR: 16578.00 | ADA/IDR: 13247.48 | Change: 0.05% | Profit: 0.0000 USDT | Time: 16:45:57
+2025-05-13 16:45:58,317 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16578.0
+2025-05-13 16:45:58,317 - __main__ - INFO - [REQUIREMENT] Need 199.7750 USDT for 5 buy orders
+2025-05-13 16:45:58,317 - __main__ - INFO - [REQUIREMENT] Need 300.0000 ADA for 6 sell orders
+2025-05-13 16:45:58,317 - __main__ - WARNING - Insufficient USDT balance. Have: 33.3345, Need: 199.7750
+2025-05-13 16:45:58,317 - __main__ - WARNING - Insufficient ADA balance. Have: 10.7840, Need: 300.0000
+2025-05-13 16:45:58,317 - __main__ - INFO - Current ADAUSDT price: 0.7991
+2025-05-13 16:45:59,349 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:45:59,350 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:45:59,959 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:45:59,959 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:00,467 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:46:00,475 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:01,083 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:46:01,083 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:01,661 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:46:01,663 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:02,212 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:46:02,212 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:02,723 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:46:02,727 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:03,235 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:46:03,235 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:03,842 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:46:03,842 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:04,356 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:46:04,364 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:04,978 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:46:04,982 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:46:04,983 - __main__ - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-13 16:46:06,717 - __main__ - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:46:09,068 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16578.0
+2025-05-13 16:46:09,068 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7989 | USDT/IDR: 16578.00 | ADA/IDR: 13244.16 | Change: -0.03% | Profit: 0.0000 USDT | Time: 16:46:09
+2025-05-13 16:46:10,201 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:46:12,037 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16578.0
+2025-05-13 16:46:12,043 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7988 | USDT/IDR: 16578.00 | ADA/IDR: 13242.51 | Change: -0.04% | Profit: 0.0000 USDT | Time: 16:46:12
+2025-05-13 16:46:21,162 - __main__ - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:46:23,307 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:46:23,307 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7987 | USDT/IDR: 16579.00 | ADA/IDR: 13241.65 | Change: -0.03% | Profit: 0.0000 USDT | Time: 16:46:23
+2025-05-13 16:46:24,442 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:46:26,276 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:46:26,277 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7988 | USDT/IDR: 16579.00 | ADA/IDR: 13243.31 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:46:26
+2025-05-13 16:46:36,004 - __main__ - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:46:38,358 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:46:38,358 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7991 | USDT/IDR: 16579.00 | ADA/IDR: 13248.28 | Change: 0.05% | Profit: 0.0000 USDT | Time: 16:46:38
+2025-05-13 16:46:38,611 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:46:40,101 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:46:40,101 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7989 | USDT/IDR: 16579.00 | ADA/IDR: 13244.96 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:46:40
+2025-05-13 16:46:50,745 - __main__ - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:46:52,411 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:46:53,098 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:46:53,098 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7992 | USDT/IDR: 16579.00 | ADA/IDR: 13249.94 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:46:53
+2025-05-13 16:46:54,024 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:46:54,024 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7992 | USDT/IDR: 16579.00 | ADA/IDR: 13249.94 | Change: 0.04% | Profit: 0.0000 USDT | Time: 16:46:54
+2025-05-13 16:46:55,508 - grid_bot - INFO - Bot stopped by user. Final profit: 0.0000 USDT
+2025-05-13 16:46:55,508 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-13 16:47:05,365 - __main__ - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:47:07,442 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16580.0
+2025-05-13 16:47:07,442 - __main__ - INFO - [PRICE UPDATE] ADAUSDT: 0.7994 | USDT/IDR: 16580.00 | ADA/IDR: 13254.05 | Change: 0.03% | Profit: 0.0000 USDT | Time: 16:47:07
+2025-05-13 16:47:22,287 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 16:47:22,287 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:47:23,905 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 16:47:23,925 - risk_management - INFO - Risk manager initialized for ADAUSDT
+2025-05-13 16:47:23,925 - risk_management - INFO - Base asset: ADA, Quote asset: USDT
+2025-05-13 16:47:23,928 - risk_management - INFO - Max investment: 30 USDT
+2025-05-13 16:47:23,928 - risk_management - INFO - Stop loss percentage: 1%
+2025-05-13 16:47:23,928 - __main__ - INFO - Enhanced grid bot initialized for ADAUSDT
+2025-05-13 16:47:23,928 - __main__ - INFO - Price range: 0.79 - 0.81
+2025-05-13 16:47:23,928 - __main__ - INFO - Grid number: 4, Grid size: 0.0050000000000000044
+2025-05-13 16:47:23,928 - __main__ - INFO - Order quantity: 5
+2025-05-13 16:47:23,928 - __main__ - INFO - Setting up grid orders...
+2025-05-13 16:47:25,669 - risk_management - INFO - Current investment: 41.9638149 USDT
+2025-05-13 16:47:25,669 - __main__ - WARNING - Investment limit would be exceeded. Adjusting grid parameters...
+2025-05-13 16:47:26,179 - __main__ - INFO - Current ADAUSDT price: 0.8002
+2025-05-13 16:47:26,996 - risk_management - INFO - Market volatility over the last 60 minutes: 1.51%
+2025-05-13 16:47:28,128 - binance_client - ERROR - Failed to place BUY order: APIError(code=-1013): Filter failure: NOTIONAL
+2025-05-13 16:47:28,639 - binance_client - ERROR - Failed to place BUY order: APIError(code=-1013): Filter failure: NOTIONAL
+2025-05-13 16:47:29,255 - binance_client - ERROR - Failed to place BUY order: APIError(code=-1013): Filter failure: NOTIONAL
+2025-05-13 16:47:29,868 - binance_client - ERROR - Failed to place SELL order: APIError(code=-1013): Filter failure: NOTIONAL
+2025-05-13 16:47:30,376 - binance_client - ERROR - Failed to place SELL order: APIError(code=-1013): Filter failure: NOTIONAL
+2025-05-13 16:47:30,376 - __main__ - INFO - Grid setup complete. 0 buy orders and 0 sell orders placed.
+2025-05-13 16:47:30,376 - __main__ - INFO - Enhanced grid trading bot is running...
+2025-05-13 16:47:50,943 - __main__ - INFO - Bot stopped by user
+2025-05-13 16:47:51,475 - __main__ - INFO - Enhanced grid trading bot stopped
+2025-05-13 16:48:08,163 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 16:48:08,170 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:48:10,026 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 16:48:10,043 - risk_management - INFO - Risk manager initialized for ADAUSDT
+2025-05-13 16:48:10,050 - risk_management - INFO - Base asset: ADA, Quote asset: USDT
+2025-05-13 16:48:10,050 - risk_management - INFO - Max investment: 30 USDT
+2025-05-13 16:48:10,050 - risk_management - INFO - Stop loss percentage: 1%
+2025-05-13 16:48:10,050 - __main__ - INFO - Enhanced grid bot initialized for ADAUSDT
+2025-05-13 16:48:10,050 - __main__ - INFO - Price range: 0.79 - 0.81
+2025-05-13 16:48:10,050 - __main__ - INFO - Grid number: 4, Grid size: 0.0050000000000000044
+2025-05-13 16:48:10,050 - __main__ - INFO - Order quantity: 10
+2025-05-13 16:48:10,050 - __main__ - INFO - Setting up grid orders...
+2025-05-13 16:48:11,748 - risk_management - INFO - Current investment: 41.9648933 USDT
+2025-05-13 16:48:11,748 - __main__ - WARNING - Investment limit would be exceeded. Adjusting grid parameters...
+2025-05-13 16:48:12,272 - __main__ - INFO - Current ADAUSDT price: 0.8002
+2025-05-13 16:48:13,079 - risk_management - INFO - Market volatility over the last 60 minutes: 1.51%
+2025-05-13 16:48:14,105 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7900
+2025-05-13 16:48:14,716 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7950
+2025-05-13 16:48:15,230 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.8000
+2025-05-13 16:48:15,843 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8050
+2025-05-13 16:48:16,354 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:48:16,354 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:48:16,354 - __main__ - INFO - Grid setup complete. 3 buy orders and 1 sell orders placed.
+2025-05-13 16:48:16,354 - __main__ - INFO - Enhanced grid trading bot is running...
+2025-05-13 16:50:45,388 - __main__ - INFO - Bot stopped by user
+2025-05-13 16:50:46,392 - binance_client - INFO - Cancelled order 6982564998 for ADAUSDT
+2025-05-13 16:50:46,908 - binance_client - INFO - Cancelled order 6982565003 for ADAUSDT
+2025-05-13 16:50:47,419 - binance_client - INFO - Cancelled order 6982565025 for ADAUSDT
+2025-05-13 16:50:47,920 - binance_client - INFO - Cancelled order 6982565030 for ADAUSDT
+2025-05-13 16:50:47,920 - __main__ - INFO - Cancelled all open orders
+2025-05-13 16:50:47,920 - __main__ - INFO - Enhanced grid trading bot stopped
+2025-05-13 16:51:03,972 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 16:51:03,996 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 16:51:03,996 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 16:51:04,004 - __main__ - INFO - Username: admin
+2025-05-13 16:51:04,004 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 16:51:08,305 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 16:51:08,305 - binance_client - INFO - Account status: SPOT
+2025-05-13 16:51:10,003 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 16:51:10,026 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 16:51:10,026 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 16:51:10,026 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 16:51:10,026 - grid_bot - INFO - Price range: 0.79 - 0.81
+2025-05-13 16:51:10,026 - grid_bot - INFO - Grid number: 4, Grid size: 0.0050000000000000044
+2025-05-13 16:51:10,026 - grid_bot - INFO - Order quantity: 10
+2025-05-13 16:51:10,026 - grid_bot - INFO - Grid trading bot is running...
+2025-05-13 16:51:10,026 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-13 16:51:10,026 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-13 16:51:10,026 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-13 16:51:11,050 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:51:11,050 - grid_bot - INFO - Setting up grid orders...
+2025-05-13 16:51:12,046 - grid_bot - INFO - [BALANCE] USDT: 33.3345 (Free) + 0.0000 (Locked) | ADA: 10.7840 (Free) + 0.0000 (Locked)
+2025-05-13 16:51:13,140 - dashboard - INFO - Found grid levels in log: 0.79 - 0.81
+2025-05-13 16:51:13,140 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.78, Grid Levels: [0.79, 0.81]
+2025-05-13 16:51:15,209 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:51:15,209 - grid_bot - INFO - [REQUIREMENT] Need 24.0660 USDT for 3 buy orders
+2025-05-13 16:51:15,209 - grid_bot - INFO - [REQUIREMENT] Need 20.0000 ADA for 2 sell orders
+2025-05-13 16:51:15,216 - grid_bot - WARNING - Insufficient ADA balance. Have: 10.7840, Need: 20.0000
+2025-05-13 16:51:15,217 - grid_bot - INFO - Current ADAUSDT price: 0.8022
+2025-05-13 16:51:16,224 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7900
+2025-05-13 16:51:16,734 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7950
+2025-05-13 16:51:17,246 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.8000
+2025-05-13 16:51:17,761 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8050
+2025-05-13 16:51:18,278 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 16:51:18,278 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 16:51:18,279 - grid_bot - INFO - Grid setup complete. 3 buy orders and 1 sell orders placed.
+2025-05-13 16:51:20,470 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:51:22,627 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:51:22,627 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8024 | USDT/IDR: 16582.00 | ADA/IDR: 13305.40 | Change: 0.02% | Profit: 0.0000 USDT | Time: 16:51:22
+2025-05-13 16:51:31,545 - dashboard - INFO - Removed SSE client c21e101a-ccc1-4f03-91cb-8098cbef35b8
+2025-05-13 16:51:31,545 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 16:51:35,045 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:51:37,272 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16580.0
+2025-05-13 16:51:37,272 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8023 | USDT/IDR: 16580.00 | ADA/IDR: 13302.13 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:51:37
+2025-05-13 16:51:49,786 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:51:52,114 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16580.0
+2025-05-13 16:51:52,114 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8024 | USDT/IDR: 16580.00 | ADA/IDR: 13303.79 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:51:52
+2025-05-13 16:52:04,608 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:52:06,866 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:52:06,866 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8028 | USDT/IDR: 16582.00 | ADA/IDR: 13312.03 | Change: 0.05% | Profit: 0.0000 USDT | Time: 16:52:06
+2025-05-13 16:52:19,280 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:52:21,403 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16580.0
+2025-05-13 16:52:21,403 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8023 | USDT/IDR: 16580.00 | ADA/IDR: 13302.13 | Change: -0.06% | Profit: 0.0000 USDT | Time: 16:52:21
+2025-05-13 16:52:33,899 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:52:36,653 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16580.0
+2025-05-13 16:52:36,660 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8028 | USDT/IDR: 16580.00 | ADA/IDR: 13310.42 | Change: 0.06% | Profit: 0.0000 USDT | Time: 16:52:36
+2025-05-13 16:52:49,051 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:52:51,209 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:52:51,209 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8027 | USDT/IDR: 16579.00 | ADA/IDR: 13307.96 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:52:51
+2025-05-13 16:53:03,634 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:53:06,147 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:53:06,157 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8025 | USDT/IDR: 16579.00 | ADA/IDR: 13304.65 | Change: -0.02% | Profit: 0.0000 USDT | Time: 16:53:06
+2025-05-13 16:53:18,648 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:53:20,898 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16579.0
+2025-05-13 16:53:20,898 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8029 | USDT/IDR: 16579.00 | ADA/IDR: 13311.28 | Change: 0.05% | Profit: 0.0000 USDT | Time: 16:53:20
+2025-05-13 16:53:33,225 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:53:35,341 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:53:35,342 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8028 | USDT/IDR: 16582.00 | ADA/IDR: 13312.03 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:53:35
+2025-05-13 16:53:47,673 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:53:49,676 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:53:49,676 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8028 | USDT/IDR: 16582.00 | ADA/IDR: 13312.03 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:53:49
+2025-05-13 16:54:01,999 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:54:04,008 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16581.0
+2025-05-13 16:54:04,008 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8028 | USDT/IDR: 16581.00 | ADA/IDR: 13311.23 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:54:04
+2025-05-13 16:54:16,344 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:54:18,385 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16581.0
+2025-05-13 16:54:18,385 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8026 | USDT/IDR: 16581.00 | ADA/IDR: 13307.91 | Change: -0.02% | Profit: 0.0000 USDT | Time: 16:54:18
+2025-05-13 16:54:30,732 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:54:32,579 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:54:32,579 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8028 | USDT/IDR: 16582.00 | ADA/IDR: 13312.03 | Change: 0.02% | Profit: 0.0000 USDT | Time: 16:54:32
+2025-05-13 16:54:44,999 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:54:47,121 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:54:47,121 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8028 | USDT/IDR: 16582.00 | ADA/IDR: 13312.03 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:54:47
+2025-05-13 16:54:59,628 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:55:01,866 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:55:01,870 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8028 | USDT/IDR: 16582.00 | ADA/IDR: 13312.03 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:55:01
+2025-05-13 16:55:15,190 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:55:17,333 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16581.0
+2025-05-13 16:55:17,333 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8024 | USDT/IDR: 16581.00 | ADA/IDR: 13304.59 | Change: -0.05% | Profit: 0.0000 USDT | Time: 16:55:17
+2025-05-13 16:55:29,825 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:55:32,106 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16581.0
+2025-05-13 16:55:32,106 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8024 | USDT/IDR: 16581.00 | ADA/IDR: 13304.59 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:55:32
+2025-05-13 16:55:44,490 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:55:46,466 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16581.0
+2025-05-13 16:55:46,466 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8025 | USDT/IDR: 16581.00 | ADA/IDR: 13306.25 | Change: 0.01% | Profit: 0.0000 USDT | Time: 16:55:46
+2025-05-13 16:55:58,923 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:56:01,462 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:56:01,469 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8029 | USDT/IDR: 16582.00 | ADA/IDR: 13313.69 | Change: 0.05% | Profit: 0.0000 USDT | Time: 16:56:01
+2025-05-13 16:56:14,065 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:56:16,986 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:56:16,986 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8025 | USDT/IDR: 16582.00 | ADA/IDR: 13307.06 | Change: -0.05% | Profit: 0.0000 USDT | Time: 16:56:16
+2025-05-13 16:56:29,479 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:56:29,567 - dashboard - INFO - Found grid levels in log: 0.79 - 0.81
+2025-05-13 16:56:29,567 - dashboard - INFO - Final data state - Status: Aktif, Price: 0.78, Grid Levels: [0.79, 0.81]
+2025-05-13 16:56:31,774 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:56:31,774 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8025 | USDT/IDR: 16582.00 | ADA/IDR: 13307.06 | Change: 0.00% | Profit: 0.0000 USDT | Time: 16:56:31
+2025-05-13 16:56:44,164 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:56:45,972 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:56:45,972 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8018 | USDT/IDR: 16582.00 | ADA/IDR: 13295.45 | Change: -0.09% | Profit: 0.0000 USDT | Time: 16:56:45
+2025-05-13 16:56:58,498 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:57:00,350 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:57:00,350 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8017 | USDT/IDR: 16582.00 | ADA/IDR: 13293.79 | Change: -0.01% | Profit: 0.0000 USDT | Time: 16:57:00
+2025-05-13 16:57:12,742 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 16:57:14,798 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16582.0
+2025-05-13 16:57:14,798 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8015 | USDT/IDR: 16582.00 | ADA/IDR: 13290.47 | Change: -0.02% | Profit: 0.0000 USDT | Time: 16:57:14
+2025-05-13 17:00:13,385 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 17:00:13,402 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 17:00:13,402 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 17:00:13,402 - __main__ - INFO - Username: admin
+2025-05-13 17:00:13,402 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 17:00:13,678 - waitress.queue - WARNING - Task queue depth is 1
+2025-05-13 17:00:13,744 - waitress.queue - WARNING - Task queue depth is 2
+2025-05-13 17:00:17,787 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 17:00:17,787 - binance_client - INFO - Account status: SPOT
+2025-05-13 17:00:19,730 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 17:00:19,776 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 17:00:19,776 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 17:00:19,776 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 17:00:19,776 - grid_bot - INFO - Price range: 0.79 - 0.81
+2025-05-13 17:00:19,776 - grid_bot - INFO - Grid number: 4, Grid size: 0.0050000000000000044
+2025-05-13 17:00:19,776 - grid_bot - INFO - Order quantity: 10
+2025-05-13 17:00:19,776 - grid_bot - INFO - Grid trading bot is running...
+2025-05-13 17:00:19,776 - grid_bot - INFO - Price will be updated every 10 seconds
+2025-05-13 17:00:19,776 - grid_bot - INFO - Grid will be adjusted as needed (max once per 12 hours)
+2025-05-13 17:00:19,784 - grid_bot - INFO - Current total profit: 0.0000 USDT
+2025-05-13 17:00:21,052 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:00:21,052 - grid_bot - INFO - Setting up grid orders...
+2025-05-13 17:00:22,055 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:00:24,946 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:00:24,971 - grid_bot - INFO - [REQUIREMENT] Need 24.0660 USDT for 3 buy orders
+2025-05-13 17:00:24,976 - grid_bot - INFO - [REQUIREMENT] Need 20.0000 ADA for 2 sell orders
+2025-05-13 17:00:24,977 - grid_bot - WARNING - Insufficient USDT balance. Have: 9.4845, Need: 24.0660
+2025-05-13 17:00:24,978 - grid_bot - WARNING - Insufficient ADA balance. Have: 0.7840, Need: 20.0000
+2025-05-13 17:00:24,978 - grid_bot - INFO - Current ADAUSDT price: 0.8022
+2025-05-13 17:00:26,176 - binance_client - INFO - Cancelled order 6982579433 for ADAUSDT
+2025-05-13 17:00:26,789 - binance_client - INFO - Cancelled order 6982579499 for ADAUSDT
+2025-05-13 17:00:27,403 - binance_client - INFO - Cancelled order 6982579662 for ADAUSDT
+2025-05-13 17:00:27,911 - binance_client - INFO - Cancelled order 6982579725 for ADAUSDT
+2025-05-13 17:00:27,911 - grid_bot - INFO - Cancelled all existing orders
+2025-05-13 17:00:28,432 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7900
+2025-05-13 17:00:29,047 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7950
+2025-05-13 17:00:29,657 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.8000
+2025-05-13 17:00:30,168 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8050
+2025-05-13 17:00:30,677 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 17:00:30,683 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 17:00:30,683 - grid_bot - INFO - Grid setup complete. 3 buy orders and 1 sell orders placed.
+2025-05-13 17:00:32,426 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:00:34,364 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:00:34,364 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8022 | USDT/IDR: 16573.00 | ADA/IDR: 13294.86 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:00:34
+2025-05-13 17:00:46,555 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:00:48,703 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:00:48,703 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8022 | USDT/IDR: 16572.00 | ADA/IDR: 13294.06 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:00:48
+2025-05-13 17:01:00,904 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:01:03,139 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:01:03,139 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8025 | USDT/IDR: 16573.00 | ADA/IDR: 13299.83 | Change: 0.04% | Profit: 0.0000 USDT | Time: 17:01:03
+2025-05-13 17:01:15,332 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:01:18,008 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:01:18,008 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.802 | USDT/IDR: 16573.00 | ADA/IDR: 13291.55 | Change: -0.06% | Profit: 0.0000 USDT | Time: 17:01:18
+2025-05-13 17:01:30,078 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:01:32,223 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:01:32,223 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8021 | USDT/IDR: 16573.00 | ADA/IDR: 13293.20 | Change: 0.01% | Profit: 0.0000 USDT | Time: 17:01:32
+2025-05-13 17:01:44,715 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:01:46,968 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:01:46,968 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8023 | USDT/IDR: 16572.00 | ADA/IDR: 13295.72 | Change: 0.02% | Profit: 0.0000 USDT | Time: 17:01:46
+2025-05-13 17:01:59,275 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:02:01,510 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:02:01,510 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8026 | USDT/IDR: 16572.00 | ADA/IDR: 13300.69 | Change: 0.04% | Profit: 0.0000 USDT | Time: 17:02:01
+2025-05-13 17:02:14,009 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:02:16,361 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:02:16,362 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8027 | USDT/IDR: 16572.00 | ADA/IDR: 13302.34 | Change: 0.01% | Profit: 0.0000 USDT | Time: 17:02:16
+2025-05-13 17:02:28,461 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 23.8500 (Locked) | ADA: 0.7840 (Free) + 10.0000 (Locked)
+2025-05-13 17:02:30,591 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:02:30,591 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8014 | USDT/IDR: 16573.00 | ADA/IDR: 13281.60 | Change: -0.16% | Profit: 0.0000 USDT | Time: 17:02:30
+2025-05-13 17:02:42,986 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 15.8500 (Locked) | ADA: 10.7740 (Free) + 10.0000 (Locked)
+2025-05-13 17:02:45,228 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:02:45,236 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8002 | USDT/IDR: 16573.00 | ADA/IDR: 13261.71 | Change: -0.15% | Profit: 0.0000 USDT | Time: 17:02:45
+2025-05-13 17:02:45,965 - grid_bot - INFO - Buy order at 0.8 was filled. Placing sell order at 0.805
+2025-05-13 17:02:45,968 - grid_bot - INFO - Potential profit if sell order fills: 0.0500 USDT
+2025-05-13 17:02:46,566 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8050
+2025-05-13 17:02:48,309 - grid_bot - INFO - [BALANCE] USDT: 9.4845 (Free) + 15.8500 (Locked) | ADA: 0.7740 (Free) + 20.0000 (Locked)
+2025-05-13 17:02:48,309 - grid_bot - INFO - Sell order at 0.805 was filled. Placing buy order at 0.8
+2025-05-13 17:02:48,309 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-13 17:02:48,818 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.8000
+2025-05-13 17:02:50,456 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 23.8500 (Locked) | ADA: 0.7740 (Free) + 20.0000 (Locked)
+2025-05-13 17:03:02,642 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 10.7640 (Free) + 20.0000 (Locked)
+2025-05-13 17:03:05,108 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:03:05,110 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8001 | USDT/IDR: 16573.00 | ADA/IDR: 13260.06 | Change: -0.01% | Profit: 0.0000 USDT | Time: 17:03:05
+2025-05-13 17:03:05,682 - grid_bot - INFO - Buy order at 0.8 was filled. Placing sell order at 0.805
+2025-05-13 17:03:05,682 - grid_bot - INFO - Potential profit if sell order fills: 0.0500 USDT
+2025-05-13 17:03:06,227 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8050
+2025-05-13 17:03:07,871 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:03:07,872 - grid_bot - INFO - Sell order at 0.805 was filled. Placing buy order at 0.8
+2025-05-13 17:03:07,873 - grid_bot - INFO - Profit from this trade: 0.0000 USDT. Total profit: 0.0000 USDT
+2025-05-13 17:03:08,383 - binance_client - ERROR - Insufficient balance error: APIError(code=-2010): Account has insufficient balance for requested action.
+2025-05-13 17:03:08,394 - binance_client - INFO - Pastikan akun memiliki saldo yang cukup untuk trading
+2025-05-13 17:03:10,018 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:03:22,203 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:03:24,353 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:03:24,353 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8001 | USDT/IDR: 16573.00 | ADA/IDR: 13260.06 | Change: 0.00% | Profit: 0.0000 USDT | Time: 17:03:24
+2025-05-13 17:03:37,259 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:03:39,609 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:03:39,609 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7999 | USDT/IDR: 16572.00 | ADA/IDR: 13255.94 | Change: -0.02% | Profit: 0.0000 USDT | Time: 17:03:39
+2025-05-13 17:03:52,413 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:03:54,865 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:03:54,872 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8002 | USDT/IDR: 16572.00 | ADA/IDR: 13260.91 | Change: 0.04% | Profit: 0.0000 USDT | Time: 17:03:54
+2025-05-13 17:04:07,590 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:04:09,667 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:04:09,667 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7998 | USDT/IDR: 16573.00 | ADA/IDR: 13255.09 | Change: -0.05% | Profit: 0.0000 USDT | Time: 17:04:09
+2025-05-13 17:04:22,418 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:04:24,976 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:04:24,977 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7997 | USDT/IDR: 16572.00 | ADA/IDR: 13252.63 | Change: -0.01% | Profit: 0.0000 USDT | Time: 17:04:24
+2025-05-13 17:04:37,778 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:04:40,031 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:04:40,032 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7993 | USDT/IDR: 16572.00 | ADA/IDR: 13246.00 | Change: -0.05% | Profit: 0.0000 USDT | Time: 17:04:40
+2025-05-13 17:04:52,730 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:04:55,386 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:04:55,386 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7996 | USDT/IDR: 16573.00 | ADA/IDR: 13251.77 | Change: 0.04% | Profit: 0.0000 USDT | Time: 17:04:55
+2025-05-13 17:05:07,982 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:05:10,338 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:05:10,346 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.7998 | USDT/IDR: 16573.00 | ADA/IDR: 13255.09 | Change: 0.03% | Profit: 0.0000 USDT | Time: 17:05:10
+2025-05-13 17:05:23,162 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:05:25,726 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:05:25,726 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8015 | USDT/IDR: 16572.00 | ADA/IDR: 13282.46 | Change: 0.21% | Profit: 0.0000 USDT | Time: 17:05:25
+2025-05-13 17:05:38,501 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:05:41,264 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:05:41,264 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8014 | USDT/IDR: 16572.00 | ADA/IDR: 13280.80 | Change: -0.01% | Profit: 0.0000 USDT | Time: 17:05:41
+2025-05-13 17:05:54,067 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:05:56,020 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:05:56,020 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8002 | USDT/IDR: 16573.00 | ADA/IDR: 13261.71 | Change: -0.15% | Profit: 0.0000 USDT | Time: 17:05:56
+2025-05-13 17:06:08,813 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:06:10,648 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:06:10,655 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8006 | USDT/IDR: 16572.00 | ADA/IDR: 13267.54 | Change: 0.05% | Profit: 0.0000 USDT | Time: 17:06:10
+2025-05-13 17:06:23,663 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:06:26,217 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:06:26,217 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.801 | USDT/IDR: 16572.00 | ADA/IDR: 13274.17 | Change: 0.05% | Profit: 0.0000 USDT | Time: 17:06:26
+2025-05-13 17:06:38,825 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:06:40,762 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:06:40,762 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8015 | USDT/IDR: 16573.00 | ADA/IDR: 13283.26 | Change: 0.06% | Profit: 0.0000 USDT | Time: 17:06:40
+2025-05-13 17:06:53,558 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:06:56,122 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:06:56,123 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8014 | USDT/IDR: 16572.00 | ADA/IDR: 13280.80 | Change: -0.01% | Profit: 0.0000 USDT | Time: 17:06:56
+2025-05-13 17:07:08,921 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:07:11,048 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:07:11,056 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.801 | USDT/IDR: 16573.00 | ADA/IDR: 13274.97 | Change: -0.05% | Profit: 0.0000 USDT | Time: 17:07:11
+2025-05-13 17:07:23,672 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:07:25,814 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:07:25,821 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8007 | USDT/IDR: 16573.00 | ADA/IDR: 13270.00 | Change: -0.04% | Profit: 0.0000 USDT | Time: 17:07:25
+2025-05-13 17:07:38,824 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:07:41,177 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16573.0
+2025-05-13 17:07:41,177 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8004 | USDT/IDR: 16573.00 | ADA/IDR: 13265.03 | Change: -0.04% | Profit: 0.0000 USDT | Time: 17:07:41
+2025-05-13 17:07:53,799 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:07:56,021 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16572.0
+2025-05-13 17:07:56,023 - grid_bot - INFO - [PRICE UPDATE] ADAUSDT: 0.8 | USDT/IDR: 16572.00 | ADA/IDR: 13257.60 | Change: -0.05% | Profit: 0.0000 USDT | Time: 17:07:56
+2025-05-13 17:08:03,490 - grid_bot - INFO - Bot stopped by user. Final profit: 0.0000 USDT
+2025-05-13 17:08:03,490 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-13 17:15:38,979 - __main__ - INFO - Menjalankan dashboard tanpa bot trading
+2025-05-13 17:15:44,326 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.0.2:5000
+2025-05-13 17:15:44,327 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-13 17:15:46,612 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 17:15:46] "GET /stream HTTP/1.1" 200 -
+2025-05-13 17:15:46,612 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 17:15:46] "GET /stream HTTP/1.1" 200 -
+2025-05-13 17:15:46,612 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 17:15:46] "GET /stream HTTP/1.1" 200 -
+2025-05-13 17:15:46,620 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 17:15:46] "GET /stream HTTP/1.1" 200 -
+2025-05-13 17:15:46,620 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 17:15:46] "GET /stream HTTP/1.1" 200 -
+2025-05-13 17:15:46,620 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 17:15:46] "GET /stream HTTP/1.1" 200 -
+2025-05-13 17:16:12,678 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 17:16:12,678 - binance_client - INFO - Account status: SPOT
+2025-05-13 17:16:14,397 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 17:16:14,414 - risk_management - INFO - Risk manager initialized for ADAUSDT
+2025-05-13 17:16:14,414 - risk_management - INFO - Base asset: ADA, Quote asset: USDT
+2025-05-13 17:16:14,414 - risk_management - INFO - Max investment: 30 USDT
+2025-05-13 17:16:14,414 - risk_management - INFO - Stop loss percentage: 1%
+2025-05-13 17:16:14,414 - __main__ - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 17:16:14,414 - __main__ - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 17:16:14,414 - __main__ - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 17:16:14,414 - __main__ - INFO - Price range: 0.79 - 0.81
+2025-05-13 17:16:14,422 - __main__ - INFO - Grid number: 4, Grid size: 0.0050000000000000044
+2025-05-13 17:16:14,422 - __main__ - INFO - Order quantity: 10
+2025-05-13 17:16:14,423 - __main__ - INFO - Starting grid trading bot...
+2025-05-13 17:16:14,423 - __main__ - INFO - Setting up grid orders...
+2025-05-13 17:16:15,917 - risk_management - INFO - Current investment: 41.881053699999995 USDT
+2025-05-13 17:16:15,917 - __main__ - WARNING - Investment limit would be exceeded. Adjusting grid parameters...
+2025-05-13 17:16:17,203 - __main__ - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:16:20,457 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 17:16:21,279 - risk_management - INFO - Market volatility over the last 60 minutes: 1.10%
+2025-05-13 17:16:21,279 - __main__ - INFO - [REQUIREMENT] Need 15.9600 USDT for 2 buy orders
+2025-05-13 17:16:21,281 - __main__ - INFO - [REQUIREMENT] Need 30.0000 ADA for 3 sell orders
+2025-05-13 17:16:21,282 - __main__ - WARNING - Insufficient USDT balance. Have: 1.4845, Need: 15.9600
+2025-05-13 17:16:21,282 - __main__ - WARNING - Insufficient ADA balance. Have: 0.7640, Need: 30.0000
+2025-05-13 17:16:21,282 - __main__ - INFO - Current ADAUSDT price: 0.798
+2025-05-13 17:16:22,381 - binance_client - INFO - Cancelled order 6982614201 for ADAUSDT
+2025-05-13 17:16:22,894 - binance_client - INFO - Cancelled order 6982614206 for ADAUSDT
+2025-05-13 17:16:23,392 - binance_client - INFO - Cancelled order 6982614215 for ADAUSDT
+2025-05-13 17:16:23,907 - binance_client - INFO - Cancelled order 6982625200 for ADAUSDT
+2025-05-13 17:16:24,422 - binance_client - INFO - Cancelled order 6982626712 for ADAUSDT
+2025-05-13 17:16:24,422 - __main__ - INFO - Cancelled all existing orders
+2025-05-13 17:16:24,929 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7900
+2025-05-13 17:16:25,474 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7950
+2025-05-13 17:16:26,089 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8000
+2025-05-13 17:16:26,704 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8050
+2025-05-13 17:16:27,317 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8100
+2025-05-13 17:16:27,317 - __main__ - INFO - Grid setup complete. 2 buy orders and 3 sell orders placed.
+2025-05-13 17:16:31,413 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 17:16:32,679 - __main__ - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
+2025-05-13 17:16:39,578 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-05-13 17:16:39,619 - __main__ - INFO - Menggunakan Waitress production server (kompatibel dengan Windows)
+2025-05-13 17:16:39,622 - __main__ - INFO - Dashboard production server berhasil dimulai di http://localhost:5000
+2025-05-13 17:16:39,623 - __main__ - INFO - Username: admin
+2025-05-13 17:16:39,623 - __main__ - INFO - Password: Grid@Trading123
+2025-05-13 17:16:40,123 - waitress.queue - WARNING - Task queue depth is 1
+2025-05-13 17:16:40,123 - waitress.queue - WARNING - Task queue depth is 2
+2025-05-13 17:16:44,136 - binance_client - INFO - Successfully connected to Binance
+2025-05-13 17:16:44,136 - binance_client - INFO - Account status: SPOT
+2025-05-13 17:16:45,978 - binance_client - INFO - Loaded exchange info for 3096 symbols
+2025-05-13 17:16:46,002 - risk_management - INFO - Risk manager initialized for ADAUSDT
+2025-05-13 17:16:46,002 - risk_management - INFO - Base asset: ADA, Quote asset: USDT
+2025-05-13 17:16:46,002 - risk_management - INFO - Max investment: 30 USDT
+2025-05-13 17:16:46,002 - risk_management - INFO - Stop loss percentage: 1%
+2025-05-13 17:16:46,011 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-05-13 17:16:46,012 - grid_bot - INFO - Loaded previous profit: 0.0000 USDT
+2025-05-13 17:16:46,012 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-05-13 17:16:46,012 - grid_bot - INFO - Price range: 0.79 - 0.81
+2025-05-13 17:16:46,013 - grid_bot - INFO - Grid number: 4, Grid size: 0.0050000000000000044
+2025-05-13 17:16:46,013 - grid_bot - INFO - Order quantity: 10
+2025-05-13 17:16:46,013 - grid_bot - INFO - Starting grid trading bot...
+2025-05-13 17:16:46,013 - grid_bot - INFO - Setting up grid orders...
+2025-05-13 17:16:47,535 - risk_management - INFO - Current investment: 41.8779773 USDT
+2025-05-13 17:16:47,535 - grid_bot - WARNING - Investment limit would be exceeded. Adjusting grid parameters...
+2025-05-13 17:16:48,251 - waitress.queue - WARNING - Task queue depth is 3
+2025-05-13 17:16:48,782 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:16:50,171 - dashboard - INFO - Removed SSE client 7bb24905-cc00-40b3-969a-b76a439dbe20
+2025-05-13 17:16:50,172 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 17:16:50,173 - dashboard - INFO - Removed SSE client d520c2b5-3bb5-4aac-a831-c60bee65c9b9
+2025-05-13 17:16:50,175 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 17:16:50,175 - dashboard - INFO - Removed SSE client ee8bbd5d-8040-402b-b11a-9551e8e52676
+2025-05-13 17:16:50,182 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 17:16:50,185 - dashboard - INFO - Removed SSE client cef23321-413e-411f-a3f6-a375ac7da7b3
+2025-05-13 17:16:50,191 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 17:16:50,620 - waitress.queue - WARNING - Task queue depth is 1
+2025-05-13 17:16:51,205 - dashboard - INFO - Removed SSE client 44ab9b52-a76c-4ae2-a460-55efb9e48220
+2025-05-13 17:16:51,206 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 17:16:51,207 - dashboard - INFO - Removed SSE client ba244945-60d7-4154-ba2c-357cfe0708f6
+2025-05-13 17:16:51,207 - waitress - INFO - Client disconnected while serving /stream
+2025-05-13 17:16:51,797 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 17:16:53,434 - risk_management - INFO - Market volatility over the last 60 minutes: 1.10%
+2025-05-13 17:16:53,439 - grid_bot - INFO - [REQUIREMENT] Need 15.9520 USDT for 2 buy orders
+2025-05-13 17:16:53,439 - grid_bot - INFO - [REQUIREMENT] Need 30.0000 ADA for 3 sell orders
+2025-05-13 17:16:53,440 - grid_bot - WARNING - Insufficient USDT balance. Have: 1.4845, Need: 15.9520
+2025-05-13 17:16:53,442 - grid_bot - WARNING - Insufficient ADA balance. Have: 0.7640, Need: 30.0000
+2025-05-13 17:16:53,443 - grid_bot - INFO - Current ADAUSDT price: 0.7976
+2025-05-13 17:16:53,722 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 17:16:53,979 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 17:16:54,692 - binance_client - INFO - Cancelled order 6982687967 for ADAUSDT
+2025-05-13 17:16:55,203 - binance_client - INFO - Cancelled order 6982687975 for ADAUSDT
+2025-05-13 17:16:55,724 - binance_client - INFO - Cancelled order 6982687980 for ADAUSDT
+2025-05-13 17:16:56,235 - binance_client - INFO - Cancelled order 6982687999 for ADAUSDT
+2025-05-13 17:16:56,753 - binance_client - INFO - Cancelled order 6982688022 for ADAUSDT
+2025-05-13 17:16:56,753 - grid_bot - INFO - Cancelled all existing orders
+2025-05-13 17:16:57,275 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7900
+2025-05-13 17:16:57,834 - binance_client - INFO - Placed BUY order for 10 ADAUSDT at 0.7950
+2025-05-13 17:16:58,451 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8000
+2025-05-13 17:16:59,059 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8050
+2025-05-13 17:16:59,679 - binance_client - INFO - Placed SELL order for 10 ADAUSDT at 0.8100
+2025-05-13 17:16:59,679 - grid_bot - INFO - Grid setup complete. 2 buy orders and 3 sell orders placed.
+2025-05-13 17:17:03,467 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:03,564 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:03,843 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16571.0
+2025-05-13 17:17:05,433 - grid_bot - INFO - [BALANCE] USDT: 1.4845 (Free) + 15.8500 (Locked) | ADA: 0.7640 (Free) + 30.0000 (Locked)
+2025-05-13 17:17:14,084 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:14,133 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:18,111 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:23,745 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:24,049 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:31,849 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:33,465 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:33,465 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:43,916 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:44,354 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:44,835 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:53,647 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:53,948 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:17:57,638 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:04,405 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:18:04,698 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:18:11,532 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:13,509 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:14,108 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:24,165 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:24,363 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:24,775 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:33,992 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:34,700 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:37,773 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:43,817 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:44,024 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:18:51,216 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:18:53,544 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:18:53,861 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:19:03,994 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:04,093 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:04,388 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:14,139 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:14,139 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:17,566 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:24,269 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:24,271 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:31,260 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:33,487 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:33,793 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:43,623 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:19:43,934 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:44,544 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:53,434 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:19:53,679 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:19:57,756 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:20:03,900 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:20:04,329 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:20:11,340 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:20:13,562 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:20:13,838 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:20:24,489 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:20:24,890 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:20:25,200 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:20:33,851 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:20:34,043 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:20:38,102 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:20:44,550 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:20:44,739 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:20:52,028 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:20:54,275 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:20:54,298 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:21:04,218 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:04,511 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:04,650 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:14,363 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:14,658 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:17,833 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:24,772 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:24,825 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:31,552 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:33,696 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:34,249 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:21:45,379 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:21:48,137 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:21:48,144 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:21:54,130 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:21:54,438 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:21:58,992 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:22:04,220 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:22:04,524 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:22:13,033 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:22:13,341 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:22:13,341 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:22:23,918 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:22:24,224 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:22:26,340 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16569.0
+2025-05-13 17:22:34,522 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:22:34,631 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:22:39,853 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16570.0
+2025-05-13 17:22:42,462 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0000 USDT
