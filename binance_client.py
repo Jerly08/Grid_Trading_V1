@@ -69,10 +69,40 @@ class BinanceClient:
                 return precision
         return 2  # Default precision
 
+    def get_quantity_precision(self, symbol):
+        """Get quantity precision for a symbol"""
+        # Preferentially use configuration if available
+        if symbol == config.SYMBOL and hasattr(config, 'QUANTITY_PRECISION'):
+            return config.QUANTITY_PRECISION
+        
+        # Otherwise try to get from exchange info
+        if symbol not in self.exchange_info:
+            # Default precision if symbol not found
+            return 2
+        
+        for filter_data in self.exchange_info[symbol]['filters']:
+            if filter_data['filterType'] == 'LOT_SIZE':
+                step_size = float(filter_data['stepSize'])
+                # Calculate precision from step size (e.g. 0.00001 -> 5)
+                if step_size == 1.0:  # Whole number precision
+                    return 0
+                precision = int(round(-math.log10(float(step_size))))
+                return precision
+        return 2  # Default precision
+
     def format_price(self, symbol, price):
         """Format price according to symbol's precision requirements"""
         precision = self.get_price_precision(symbol)
         return "{:.{}f}".format(float(price), precision)
+
+    def format_quantity(self, symbol, quantity):
+        """Format quantity according to symbol's precision requirements"""
+        precision = self.get_quantity_precision(symbol)
+        formatted_quantity = "{:.{}f}".format(float(quantity), precision)
+        # Remove trailing zeros for integer values
+        if precision == 0:
+            return str(int(float(formatted_quantity)))
+        return formatted_quantity
 
     def get_symbol_price(self, symbol=config.SYMBOL):
         """Get current price of a symbol"""
@@ -115,16 +145,19 @@ class BinanceClient:
         # Format price to match symbol's precision requirements
         formatted_price = self.format_price(symbol, price)
         
+        # Format quantity to match symbol's precision requirements (NEW)
+        formatted_quantity = self.format_quantity(symbol, quantity)
+        
         try:
             order = self.client.create_order(
                 symbol=symbol,
                 side=side,  # SIDE.BUY or SIDE.SELL
                 type=Client.ORDER_TYPE_LIMIT,
                 timeInForce=Client.TIME_IN_FORCE_GTC,
-                quantity=quantity,
+                quantity=formatted_quantity,
                 price=formatted_price
             )
-            logger.info(f"Placed {side} order for {quantity} {symbol} at {formatted_price}")
+            logger.info(f"Placed {side} order for {formatted_quantity} {symbol} at {formatted_price}")
             return order
         except BinanceAPIException as e:
             if "Account has insufficient balance" in str(e):

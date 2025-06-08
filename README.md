@@ -17,6 +17,7 @@ Bot ini menerapkan strategi trading grid pada platform Binance. Strategi trading
 - Dashboard web untuk monitoring bot
 - Pengelolaan risiko terintegrasi
 - Keamanan dashboard dengan login & penanganan IP
+- **Auto Balancer** - Menyeimbangkan portfolio secara otomatis
 
 ## Instalasi
 
@@ -61,6 +62,8 @@ Jalankan bot dengan perintah:
 python run.py
 ```
 
+Bot secara otomatis akan menyeimbangkan portfolio Anda terlebih dahulu sebelum menjalankan grid trading.
+
 Untuk menjalankan hanya bot tanpa dashboard:
 ```
 python run.py bot
@@ -87,7 +90,35 @@ Mode production menggunakan:
 - **Windows**: Waitress sebagai WSGI server
 - **Linux/Mac**: Gunicorn sebagai WSGI server
 
-Kedua server ini lebih aman dan efisien untuk lingkungan produksi dibandingkan server development Flask.
+### Auto Balancer
+
+Bot ini dilengkapi dengan fitur Auto Balancer untuk penyeimbangan portfolio secara otomatis:
+
+1. **Auto Balancing saat startup**: Bot akan secara otomatis menyeimbangkan portfolio sebelum memulai grid trading
+   
+2. **Penyeimbangan manual secara interaktif**:
+   ```
+   python balance_portfolio.py
+   ```
+   Gunakan parameter `--aggressive` untuk menggunakan lebih banyak USDT (90% vs 50%):
+   ```
+   python balance_portfolio.py --aggressive
+   ```
+
+3. **Penyeimbangan non-interaktif** (untuk crontab/scheduled tasks):
+   ```
+   python auto_balance.py
+   ```
+   Parameter:
+   - `--aggressive`: Gunakan lebih banyak USDT (90% vs 50%)
+   - `--force`: Paksa menjalankan bahkan jika tidak terdeteksi kebutuhan penyeimbangan
+
+#### Contoh Penggunaan Scheduled Task (Windows):
+
+```powershell
+# Buat scheduled task yang berjalan setiap jam untuk menyeimbangkan portfolio
+schtasks /create /sc hourly /tn "Crypto Portfolio Balancer" /tr "D:\Project\BOT_trading\venv\python.exe D:\Project\BOT_trading\auto_balance.py --aggressive"
+```
 
 ## Dashboard Monitoring
 

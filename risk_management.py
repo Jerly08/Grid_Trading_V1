@@ -31,33 +31,43 @@ class RiskManager:
         logger.info(f"Max investment: {self.max_investment} {self.quote_asset}")
         logger.info(f"Stop loss percentage: {self.stop_loss_percentage}%")
 
-    def check_investment_limit(self):
-        """Check if current investment is within the maximum allowed limit"""
+    def calculate_current_investment(self):
+        """Calculate current investment value in quote asset (e.g., USDT)"""
         try:
             # Get balance of the quote asset (e.g., USDT)
             quote_balance = self.client.get_account_balance(self.quote_asset)
             if not quote_balance:
                 logger.error(f"Failed to get {self.quote_asset} balance")
-                return False
+                return 0
             
-            # Get balance of the base asset (e.g., BTC)
+            # Get balance of the base asset (e.g., ADA)
             base_balance = self.client.get_account_balance(self.base_asset)
             if not base_balance:
                 logger.error(f"Failed to get {self.base_asset} balance")
-                return False
+                return 0
             
             # Get current price
             current_price = self.client.get_symbol_price(self.symbol)
             if not current_price:
                 logger.error("Failed to get current price")
-                return False
+                return 0
             
             # Calculate total investment in quote asset
-            quote_value = quote_balance['free'] + quote_balance['locked']
+            quote_locked = quote_balance['locked']  # Only count locked USDT (in open buy orders)
             base_value_in_quote = (base_balance['free'] + base_balance['locked']) * current_price
-            total_investment = quote_value + base_value_in_quote
+            total_investment = quote_locked + base_value_in_quote
             
-            logger.info(f"Current investment: {total_investment} {self.quote_asset}")
+            return total_investment
+            
+        except Exception as e:
+            logger.error(f"Error calculating current investment: {e}")
+            return 0
+
+    def check_investment_limit(self):
+        """Check if current investment is within the maximum allowed limit"""
+        try:
+            # Calculate current investment
+            total_investment = self.calculate_current_investment()
             
             # Check if investment is within limit
             return total_investment <= self.max_investment

@@ -1,5 +1,5 @@
 {
-  "total_profit": 0.0,
+  "total_profit": 0.08000000000000007,
   "trades": [
     {
       "time": "2025-05-09T23:53:00.330992",
@@ -297,13 +297,24 @@
       "profit": 0.0,
       "side": "SELL",
       "value": 8.05
+    },
+    {
+      "time": "2025-06-06T13:05:29.621364",
+      "side": "SELL",
+      "price": 0.64,
+      "quantity": 16.0,
+      "value": 10.24,
+      "next_target": 0.635,
+      "actual_profit": 0.08000000000000007,
+      "total_profit": 0.08000000000000007,
+      "profit": 0.08000000000000007
     }
   ],
-  "last_update": "2025-05-13T17:22:13.537762",
+  "last_update": "2025-06-08T23:47:01.969553",
   "price_range": [
-    0.79,
-    0.81
+    0.64,
+    0.69
   ],
-  "grid_number": 4,
-  "last_price": 0.7985
+  "grid_number": 5,
+  "last_price": 0.672
 }
