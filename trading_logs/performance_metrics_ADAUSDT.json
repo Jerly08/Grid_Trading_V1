@@ -1,0 +1,11 @@
+{
+  "daily_profits": {},
+  "cumulative_profit": 0,
+  "win_count": 0,
+  "loss_count": 0,
+  "largest_profit": 0,
+  "largest_loss": 0,
+  "avg_profit_per_trade": 0,
+  "total_volume_traded": 0,
+  "roi": 0.08252939953274516
+}

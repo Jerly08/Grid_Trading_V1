@@ -310,11 +310,11 @@
       "profit": 0.08000000000000007
     }
   ],
-  "last_update": "2025-06-08T23:52:09.919751",
+  "last_update": "2025-06-09T19:37:36.782058",
   "price_range": [
-    0.64,
-    0.69
+    0.63,
+    0.7
   ],
-  "grid_number": 5,
-  "last_price": 0.6719
+  "grid_number": 7,
+  "last_price": 0.6738
 }

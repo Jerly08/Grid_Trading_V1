@@ -8,6 +8,7 @@ import config
 import datetime
 import json
 import os
+from trading_analytics import get_analytics  # Import the analytics module
 
 # Configure logging
 logging.basicConfig(
@@ -37,6 +38,9 @@ class GridTradingBot:
         self.grid_number = config.GRID_NUMBER
         self.grid_size = config.GRID_SIZE
         self.quantity = config.QUANTITY
+        
+        # Initialize analytics
+        self.analytics = get_analytics(self.symbol)
         
         # Calculate price levels for the grid
         self.grid_prices = self._calculate_grid_prices()
@@ -166,6 +170,34 @@ class GridTradingBot:
             logger.info(f"[REQUIREMENT] Need {required_usdt:.4f} {quote_asset} for {grid_below_current} buy orders")
             logger.info(f"[REQUIREMENT] Need {required_ada:.4f} {base_asset} for {grid_above_current} sell orders")
             
+            # AUTO-BALANCE: Cek jika USDT tidak cukup, jalankan auto-balancer untuk mempertahankan quantity asli
+            if usdt_free < required_usdt:
+                from auto_balancer import AutoBalancer
+                
+                logger.info("USDT tidak cukup untuk grid trading dengan quantity asli. Menjalankan auto-balancer...")
+                
+                # Buat dictionary kebutuhan grid
+                grid_requirements = {
+                    'required_usdt': required_usdt,
+                    'required_ada': required_ada
+                }
+                
+                # Jalankan auto-balancer dengan kebutuhan grid
+                balancer = AutoBalancer()
+                balance_result = balancer.execute_auto_balance(safe_mode=False, required_for_grid=grid_requirements)
+                
+                if balance_result:
+                    logger.info("Auto-balancer berhasil. Menyegarkan saldo...")
+                    # Refresh saldo setelah balancing
+                    quote_balance = self.client.get_account_balance(quote_asset)
+                    base_balance = self.client.get_account_balance(base_asset)
+                    usdt_free = quote_balance['free'] if quote_balance else 0
+                    ada_free = base_balance['free'] if base_balance else 0
+                    
+                    logger.info(f"[UPDATED BALANCE] {quote_asset}: {usdt_free:.4f} (Free) | {base_asset}: {ada_free:.4f} (Free)")
+                else:
+                    logger.warning("Auto-balancer tidak dapat memenuhi kebutuhan saldo. Proceeding with quantity adjustment...")
+            
             # Menyesuaikan quantity jika saldo tidak mencukupi
             original_quantity = self.quantity
             adjusted = False
@@ -188,7 +220,7 @@ class GridTradingBot:
                 else:
                     logger.warning(f"Critically low {base_asset} balance. Cannot place sell orders.")
             
-            # Periksa saldo USDT untuk buy orders
+            # Periksa saldo USDT untuk buy orders - hanya jika auto-balancer tidak berhasil
             if usdt_free < required_usdt and grid_below_current > 0:
                 # Hitung quantity yang lebih kecil berdasarkan saldo USDT (dengan 5% buffer)
                 safe_usdt_balance = usdt_free * 0.95  # 95% dari saldo USDT yang tersedia
@@ -301,12 +333,16 @@ class GridTradingBot:
             current_price = self.client.get_symbol_price(self.symbol)
             if current_price and (not self.last_price or abs(current_price - self.last_price) > 0.0001):
                 self.last_price = current_price
-                self.price_history.append({
+                price_data = {
                     "time": datetime.datetime.now().isoformat(),
                     "price": current_price,
                     "usdt_idr": self.client.get_usdt_idr_rate()
-                })
+                }
+                self.price_history.append(price_data)
                 self.price_update_time = datetime.datetime.now()
+                
+                # Log price data to analytics
+                self.analytics.log_price_data(price_data)
                 
                 # Keep only recent price history to save memory
                 if len(self.price_history) > 1000:
@@ -358,6 +394,23 @@ class GridTradingBot:
                         }
                         self.trades.append(trade)
                         
+                        # Log detailed transaction in analytics
+                        self.analytics.log_transaction({
+                            'time': datetime.datetime.now().isoformat(),
+                            'type': 'BUY',
+                            'price': price,
+                            'quantity': self.quantity,
+                            'value': price * self.quantity,
+                            'target_sell_price': sell_price,
+                            'profit': 0,
+                            'grid_level': list(self.grid_prices).index(price) if price in self.grid_prices else -1,
+                            'market_conditions': {
+                                'current_price': self.last_price,
+                                'usdt_idr': self.client.get_usdt_idr_rate(),
+                                'grid_range': [self.lower_price, self.upper_price]
+                            }
+                        })
+                        
                         # Save updated state
                         self._save_state()
                     
@@ -370,18 +423,43 @@ class GridTradingBot:
                     # Sell order was filled, place a buy order at the next price level
                     buy_price = price - self.grid_size
                     
-                    # Hitung profit dengan formula yang benar: selisih antara harga jual dan beli
-                    # Asumsi buy_price adalah harga pembelian sebelumnya untuk posisi ini
-                    profit = (price - buy_price) * self.quantity
-                    self.total_profit += profit
-                    profit_percentage = (profit / (buy_price * self.quantity)) * 100
+                    # Dapatkan detail order yang terpenuhi untuk mendapatkan fee yang dibayarkan
+                    order_details = self.client.get_order_status(order_id, self.symbol)
                     
-                    # Log perhitungan profit dengan lebih detail
-                    logger.info(f"[PROFIT DETAIL] Sell Price: {price}, Buy Price: {buy_price}, Quantity: {self.quantity}")
-                    logger.info(f"[PROFIT CALCULATION] ({price} - {buy_price}) * {self.quantity} = {profit:.4f} USDT")
+                    # Hitung fee berdasarkan data order
+                    fee_percentage = 0.1  # Default 0.1% fee Binance
+                    fee_amount = 0
+                    actual_filled_quantity = self.quantity
                     
-                    # Log the filled sell order
-                    logger.info(f"Sell order at {price} filled. Profit: {profit:.4f} USDT ({profit_percentage:.2f}%). Total profit: {self.total_profit:.4f} USDT")
+                    if order_details and 'fills' in order_details:
+                        # Akumulasi fee dari semua fills
+                        for fill in order_details['fills']:
+                            if fill['commissionAsset'] == 'USDT':
+                                fee_amount += float(fill['commission'])
+                            elif fill['commissionAsset'] == self.symbol.replace('USDT', ''):
+                                # Jika fee dalam bentuk base asset (ADA), konversi ke USDT
+                                fee_amount += float(fill['commission']) * price
+                        
+                        # Catat actual executed quantity jika berbeda
+                        if 'executedQty' in order_details:
+                            actual_filled_quantity = float(order_details['executedQty'])
+                    
+                    # Hitung profit dengan memperhitungkan fee
+                    gross_profit = (price - buy_price) * actual_filled_quantity
+                    net_profit = gross_profit - fee_amount
+                    self.total_profit += net_profit
+                    
+                    # Hitung profit percentage berdasarkan profit bersih
+                    profit_percentage = (net_profit / (buy_price * actual_filled_quantity)) * 100
+                    
+                    # Detail perhitungan untuk logging
+                    logger.info(f"[PROFIT DETAIL] Sell Price: {price}, Buy Price: {buy_price}, Quantity: {actual_filled_quantity}")
+                    logger.info(f"[PROFIT CALCULATION] Gross: ({price} - {buy_price}) * {actual_filled_quantity} = {gross_profit:.4f} USDT")
+                    logger.info(f"[PROFIT CALCULATION] Fee: {fee_amount:.4f} USDT")
+                    logger.info(f"[PROFIT CALCULATION] Net: {gross_profit:.4f} - {fee_amount:.4f} = {net_profit:.4f} USDT")
+                    
+                    # Log the filled sell order dengan profit bersih
+                    logger.info(f"Sell order at {price} filled. Net Profit: {net_profit:.4f} USDT ({profit_percentage:.2f}%). Total profit: {self.total_profit:.4f} USDT")
                     
                     # Check investment limit before placing new order
                     if not self.risk_manager.check_investment_limit():
@@ -399,18 +477,41 @@ class GridTradingBot:
                     if order:
                         self.buy_orders[buy_price] = order['orderId']
                         
-                        # Record the trade
+                        # Record the trade dengan fee dan profit bersih
                         trade = {
                             'time': datetime.datetime.now().isoformat(),
                             'side': 'SELL',
                             'price': price,
-                            'quantity': self.quantity,
-                            'value': price * self.quantity,
+                            'quantity': actual_filled_quantity,
+                            'value': price * actual_filled_quantity,
                             'next_target': buy_price,
-                            'actual_profit': profit,
+                            'fee': fee_amount,
+                            'gross_profit': gross_profit,
+                            'actual_profit': net_profit,
                             'total_profit': self.total_profit
                         }
                         self.trades.append(trade)
+                        
+                        # Log detailed transaction in analytics dengan data fee
+                        self.analytics.log_transaction({
+                            'time': datetime.datetime.now().isoformat(),
+                            'type': 'SELL',
+                            'price': price,
+                            'quantity': actual_filled_quantity,
+                            'value': price * actual_filled_quantity,
+                            'buy_price': buy_price,
+                            'profit': net_profit,
+                            'gross_profit': gross_profit,
+                            'fee': fee_amount,
+                            'profit_percentage': profit_percentage,
+                            'total_profit': self.total_profit,
+                            'grid_level': list(self.grid_prices).index(price) if price in self.grid_prices else -1,
+                            'market_conditions': {
+                                'current_price': self.last_price,
+                                'usdt_idr': self.client.get_usdt_idr_rate(),
+                                'grid_range': [self.lower_price, self.upper_price]
+                            }
+                        })
                         
                         # Save updated state
                         self._save_state()
@@ -440,6 +541,26 @@ class GridTradingBot:
         
         # Log balance information
         logger.info(f"[BALANCE] {quote_asset}: {usdt_free:.4f} (Free) + {usdt_locked:.4f} (Locked) | {base_asset}: {ada_free:.4f} (Free) + {ada_locked:.4f} (Locked)")
+        
+        # Log to analytics with more details
+        current_price = self.last_price or self.client.get_symbol_price(self.symbol)
+        total_value_usdt = (ada_free + ada_locked) * (current_price or 0) + usdt_free + usdt_locked
+        
+        balance_data = {
+            'timestamp': datetime.datetime.now().isoformat(),
+            'base_asset': base_asset,
+            'quote_asset': quote_asset,
+            'base_free': ada_free,
+            'base_locked': ada_locked,
+            'quote_free': usdt_free,
+            'quote_locked': usdt_locked,
+            'current_price': current_price,
+            'total_value_usdt': total_value_usdt,
+            'usdt_idr_rate': self.client.get_usdt_idr_rate()
+        }
+        
+        # Log to analytics system
+        self.analytics.log_balance(balance_data)
 
     def adjust_grid(self):
         """Adjust grid parameters based on market conditions"""
@@ -502,6 +623,12 @@ class GridTradingBot:
         """Run the grid trading bot"""
         logger.info("Starting grid trading bot...")
         
+        # Generate daily report if it's a new day or first run
+        try:
+            self.analytics.generate_daily_report()
+        except Exception as e:
+            logger.error(f"Error generating daily report: {e}")
+        
         # Cek dan verifikasi nilai profit
         recalculated_profit = self.recalculate_profit_from_trades()
         if abs(recalculated_profit - self.total_profit) > 0.01:
@@ -509,6 +636,7 @@ class GridTradingBot:
             logger.warning("Untuk menghindari masalah perhitungan, profit direkalkulasi. Nilai lama diabaikan.")
             self.total_profit = recalculated_profit
             self._save_state()
+            logger.info(f"Total profit diperbarui menjadi: {self.total_profit:.4f} USDT")
         
         # Set up the initial grid
         if not self.setup_grid():
@@ -516,6 +644,9 @@ class GridTradingBot:
             return
         
         try:
+            # Track last daily report time
+            last_daily_report = datetime.datetime.now().date()
+            
             # Main bot loop
             while True:
                 try:
@@ -533,6 +664,15 @@ class GridTradingBot:
                         self._log_current_balance()
                         self.last_balance_log = now
                     
+                    # Generate daily report at new day
+                    current_date = now.date()
+                    if current_date != last_daily_report:
+                        try:
+                            self.analytics.generate_daily_report()
+                            last_daily_report = current_date
+                        except Exception as e:
+                            logger.error(f"Error generating daily report: {e}")
+                    
                     # Save state occasionally
                     if not hasattr(self, 'last_state_save') or (now - self.last_state_save).total_seconds() > 300:
                         self._save_state()
@@ -548,6 +688,17 @@ class GridTradingBot:
             # Hapus instance referensi ketika bot berhenti
             if GridTradingBot.instance == self:
                 GridTradingBot.instance = None
+            
+            # Log final performance metrics
+            try:
+                perf_summary = self.analytics.get_performance_summary()
+                logger.info(f"[PERFORMANCE] Total trades: {perf_summary['total_trades']}")
+                logger.info(f"[PERFORMANCE] Win rate: {perf_summary['win_rate']:.2f}%")
+                logger.info(f"[PERFORMANCE] Avg profit per trade: {perf_summary['avg_profit_per_trade']:.4f} USDT")
+                logger.info(f"[PERFORMANCE] ROI: {perf_summary['roi']:.2f}%")
+            except Exception as e:
+                logger.error(f"Error logging performance metrics: {e}")
+                
             logger.info(f"Grid trading bot stopped. Total profit: {self.total_profit:.4f} USDT")
 
     def recalculate_profit_from_trades(self):
@@ -557,6 +708,7 @@ class GridTradingBot:
             trades_analyzed = 0
             sell_count = 0
             buy_count = 0
+            total_fee = 0
             
             logger.info("Menghitung ulang profit dari riwayat transaksi...")
             
@@ -564,25 +716,51 @@ class GridTradingBot:
                 # Hanya hitung profit dari transaksi SELL yang memiliki data profit
                 if trade.get('side') == 'SELL' or trade.get('type') == 'SELL':
                     sell_count += 1
+                    
+                    # Cek ada fee dalam trade
+                    fee = 0
+                    if 'fee' in trade:
+                        fee = trade['fee']
+                        total_fee += fee
+                    
+                    # Coba ambil profit bersih (setelah fee) jika tersedia
                     if 'actual_profit' in trade:
+                        # Dalam format baru actual_profit sudah memperhitungkan fee
                         profit = trade['actual_profit']
                         total_profit += profit
                         trades_analyzed += 1
-                    elif 'profit' in trade and trade['profit'] > 0:
-                        profit = trade['profit']
+                    elif 'gross_profit' in trade and 'fee' in trade:
+                        # Jika ada gross_profit dan fee, hitung profit bersih
+                        profit = trade['gross_profit'] - trade['fee']
                         total_profit += profit
                         trades_analyzed += 1
+                    elif 'profit' in trade and trade['profit'] > 0:
+                        # Untuk riwayat transaksi lama tanpa fee, coba ambil nilai profit
+                        profit = trade['profit']
+                        # Estimasi fee sebagai 0.1% dari nilai transaksi (default Binance)
+                        estimated_fee = 0
+                        if 'value' in trade:
+                            estimated_fee = trade['value'] * 0.001
+                            total_fee += estimated_fee
+                            
+                        # Kurangi estimasi fee dari profit
+                        adjusted_profit = profit - estimated_fee
+                        total_profit += adjusted_profit
+                        trades_analyzed += 1
+                        
+                        # Log penyesuaian yang dilakukan
+                        logger.info(f"Adjusted old trade record: Original profit: {profit:.4f}, Estimated fee: {estimated_fee:.4f}, Adjusted profit: {adjusted_profit:.4f}")
+                        
                 elif trade.get('side') == 'BUY' or trade.get('type') == 'BUY':
                     buy_count += 1
             
             logger.info(f"Analisis selesai: {trades_analyzed} transaksi profit ditemukan dari {sell_count} transaksi SELL dan {buy_count} transaksi BUY")
+            logger.info(f"Total fee yang diakumulasi: {total_fee:.4f} USDT")
             logger.info(f"Total profit dari analisis: {total_profit:.4f} USDT (sebelumnya: {self.total_profit:.4f} USDT)")
             
             if abs(total_profit - self.total_profit) > 0.01:
                 logger.warning(f"Perbedaan signifikan dalam perhitungan profit: {abs(total_profit - self.total_profit):.4f} USDT")
-                
-                # Tanyakan apakah ingin perbarui nilai total profit
-                logger.info("Untuk memperbarui nilai total profit, set self.total_profit = recalculate_profit_from_trades() dalam kode")
+                logger.warning(f"Profit lama: {self.total_profit:.4f} USDT, Profit setelah penyesuaian fee: {total_profit:.4f} USDT")
             
             return total_profit
             

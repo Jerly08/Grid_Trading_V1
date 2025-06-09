@@ -15695,3 +15695,328 @@ information about how to avoid this problem.
 2025-06-08 23:55:01,774 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16347.0
 2025-06-08 23:55:04,451 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16347.0
 2025-06-08 23:55:04,563 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0800 USDT
+2025-06-09 19:21:27,325 - __main__ - INFO - Menjalankan Auto Balancer sebelum mode utama...
+2025-06-09 19:21:27,326 - __main__ - INFO - Menjalankan Auto Balancer untuk menyeimbangkan portfolio...
+2025-06-09 19:21:28,420 - urllib3.connection - WARNING - Certificate did not match expected hostname: api.binance.com. Certificate: {'subject': ((('commonName', 'internetpositif.id'),),), 'issuer': ((('countryName', 'US'),), (('organizationName', "Let's Encrypt"),), (('commonName', 'E6'),)), 'version': 3, 'serialNumber': '0525BAC0FD4EBC5E042F273D45838765AEA6', 'notBefore': 'Mar 25 00:06:15 2025 GMT', 'notAfter': 'Jun 23 00:06:14 2025 GMT', 'subjectAltName': (('DNS', 'internetpositif.id'),), 'OCSP': ('http://e6.o.lencr.org',), 'caIssuers': ('http://e6.i.lencr.org/',), 'crlDistributionPoints': ('http://e6.c.lencr.org/39.crl',)}
+2025-06-09 19:21:28,422 - __main__ - ERROR - Error dalam Auto Balancer: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ping (Caused by SSLError(CertificateError("hostname 'api.binance.com' doesn't match 'internetpositif.id'")))
+2025-06-09 19:21:33,431 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-06-09 19:21:33,434 - __main__ - INFO - Dashboard development server berhasil dimulai di http://localhost:5000
+2025-06-09 19:21:33,435 - __main__ - INFO - Username: admin
+2025-06-09 19:21:33,436 - __main__ - INFO - Password: Grid@Trading123
+2025-06-09 19:21:33,466 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-06-09 19:21:33,467 - werkzeug - INFO -  * Running on http://192.168.1.7:5000/ (Press CTRL+C to quit)
+2025-06-09 19:21:36,520 - urllib3.connection - WARNING - Certificate did not match expected hostname: api.binance.com. Certificate: {'subject': ((('commonName', 'internetpositif.id'),),), 'issuer': ((('countryName', 'US'),), (('organizationName', "Let's Encrypt"),), (('commonName', 'E6'),)), 'version': 3, 'serialNumber': '0525BAC0FD4EBC5E042F273D45838765AEA6', 'notBefore': 'Mar 25 00:06:15 2025 GMT', 'notAfter': 'Jun 23 00:06:14 2025 GMT', 'subjectAltName': (('DNS', 'internetpositif.id'),), 'OCSP': ('http://e6.o.lencr.org',), 'caIssuers': ('http://e6.i.lencr.org/',), 'crlDistributionPoints': ('http://e6.c.lencr.org/39.crl',)}
+2025-06-09 19:21:36,522 - __main__ - ERROR - Error dalam bot trading: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ping (Caused by SSLError(CertificateError("hostname 'api.binance.com' doesn't match 'internetpositif.id'")))
+2025-06-09 19:22:01,223 - __main__ - INFO - Menjalankan Auto Balancer sebelum mode utama...
+2025-06-09 19:22:01,224 - __main__ - INFO - Menjalankan Auto Balancer untuk menyeimbangkan portfolio...
+2025-06-09 19:22:03,400 - binance_client - INFO - Successfully connected to Binance
+2025-06-09 19:22:03,400 - binance_client - INFO - Account status: SPOT
+2025-06-09 19:22:05,122 - binance_client - INFO - Loaded exchange info for 3128 symbols
+2025-06-09 19:22:06,648 - auto_balancer - INFO - Free ADA: 177.1858, Free USDT: 38.51282022
+2025-06-09 19:22:08,354 - auto_balancer - INFO - --- AUTO BALANCER: SELLING ADA ---
+2025-06-09 19:22:08,354 - auto_balancer - INFO - Selling 6 ADA at price 0.672 (expected: 4.0320 USDT)
+2025-06-09 19:22:08,354 - auto_balancer - INFO - Original quantity before LOT_SIZE adjustment: 5.746148181249994, after adjustment: 6
+2025-06-09 19:22:08,846 - auto_balancer - ERROR - ERROR AUTO BALANCER - Gagal menjual ADA: APIError(code=-1013): Filter failure: NOTIONAL
+2025-06-09 19:22:08,846 - __main__ - WARNING - Auto Balancer tidak melakukan perubahan
+2025-06-09 19:22:13,898 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-06-09 19:22:13,923 - __main__ - INFO - Dashboard development server berhasil dimulai di http://localhost:5000
+2025-06-09 19:22:13,923 - __main__ - INFO - Username: admin
+2025-06-09 19:22:13,928 - __main__ - INFO - Password: Grid@Trading123
+2025-06-09 19:22:17,987 - binance_client - INFO - Successfully connected to Binance
+2025-06-09 19:22:17,990 - binance_client - INFO - Account status: SPOT
+2025-06-09 19:22:19,146 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-06-09 19:22:19,146 - werkzeug - INFO -  * Running on http://10.2.0.2:5000/ (Press CTRL+C to quit)
+2025-06-09 19:22:19,824 - binance_client - INFO - Loaded exchange info for 3128 symbols
+2025-06-09 19:22:19,849 - risk_management - INFO - Risk manager initialized for ADAUSDT
+2025-06-09 19:22:19,851 - risk_management - INFO - Base asset: ADA, Quote asset: USDT
+2025-06-09 19:22:19,859 - risk_management - INFO - Max investment: 180 USDT
+2025-06-09 19:22:19,859 - risk_management - INFO - Stop loss percentage: 2.0%
+2025-06-09 19:22:19,864 - trading_analytics - INFO - Trading Analytics initialized for ADAUSDT
+2025-06-09 19:22:19,867 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-06-09 19:22:19,867 - grid_bot - INFO - Loaded previous profit: 0.0800 USDT
+2025-06-09 19:22:19,868 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-06-09 19:22:19,868 - grid_bot - INFO - Price range: 0.63 - 0.7
+2025-06-09 19:22:19,869 - grid_bot - INFO - Grid number: 7, Grid size: 0.009999999999999993
+2025-06-09 19:22:19,869 - grid_bot - INFO - Order quantity: 21
+2025-06-09 19:22:19,869 - grid_bot - INFO - Loaded previous profit: 0.08000000000000007 USDT
+2025-06-09 19:22:19,869 - grid_bot - INFO - Starting grid trading bot...
+2025-06-09 19:22:19,869 - trading_analytics - INFO - [DAILY REPORT] Date: 2025-06-09
+2025-06-09 19:22:19,869 - trading_analytics - INFO - [DAILY REPORT] Today's profit: 0.0000 USDT
+2025-06-09 19:22:19,869 - trading_analytics - INFO - [DAILY REPORT] Yesterday's profit: 0.0000 USDT
+2025-06-09 19:22:19,873 - trading_analytics - INFO - [DAILY REPORT] Total profit to date: 0.0000 USDT
+2025-06-09 19:22:19,873 - trading_analytics - INFO - [DAILY REPORT] Today's trades: 0
+2025-06-09 19:22:19,874 - trading_analytics - INFO - [DAILY REPORT] Overall win rate: 0.00%
+2025-06-09 19:22:19,874 - trading_analytics - INFO - [DAILY REPORT] Current ROI: 0.00%
+2025-06-09 19:22:19,874 - grid_bot - INFO - Menghitung ulang profit dari riwayat transaksi...
+2025-06-09 19:22:19,874 - grid_bot - INFO - Analisis selesai: 1 transaksi profit ditemukan dari 19 transaksi SELL dan 13 transaksi BUY
+2025-06-09 19:22:19,874 - grid_bot - INFO - Total profit dari analisis: 0.0800 USDT (sebelumnya: 0.0800 USDT)
+2025-06-09 19:22:19,874 - grid_bot - INFO - Setting up grid orders...
+2025-06-09 19:22:23,341 - grid_bot - INFO - Current investment: 198.0588576 USDT
+2025-06-09 19:22:23,342 - grid_bot - WARNING - Investment limit would be exceeded. Adjusting grid parameters...
+2025-06-09 19:22:23,342 - grid_bot - INFO - [BALANCE] USDT: 38.5128 (Free) + 48.7500 (Locked) | ADA: 177.1858 (Free) + 45.0000 (Locked)
+2025-06-09 19:22:23,342 - grid_bot - INFO - [REQUIREMENT] Need 70.5600 USDT for 5 buy orders
+2025-06-09 19:22:23,343 - grid_bot - INFO - [REQUIREMENT] Need 63.0000 ADA for 3 sell orders
+2025-06-09 19:22:23,343 - grid_bot - INFO - USDT tidak cukup untuk grid trading dengan quantity asli. Menjalankan auto-balancer...
+2025-06-09 19:22:24,404 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16274.0
+2025-06-09 19:22:25,475 - binance_client - INFO - Successfully connected to Binance
+2025-06-09 19:22:25,475 - binance_client - INFO - Account status: SPOT
+2025-06-09 19:22:27,390 - binance_client - INFO - Loaded exchange info for 3128 symbols
+2025-06-09 19:22:27,624 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16274.0
+2025-06-09 19:22:29,126 - auto_balancer - INFO - Free ADA: 177.1858, Free USDT: 38.51282022
+2025-06-09 19:22:29,126 - auto_balancer - INFO - Kebutuhan untuk grid trading: 70.5600 USDT dan 63.0000 ADA
+2025-06-09 19:22:29,126 - auto_balancer - INFO - Needed USDT: 70.5600, Shortfall: 32.0472
+2025-06-09 19:22:29,126 - auto_balancer - INFO - Selling 51 ADA at price 0.672 (expected: 34.2720 USDT)
+2025-06-09 19:22:29,126 - auto_balancer - INFO - --- AUTO BALANCER: SELLING ADA ---
+2025-06-09 19:22:29,126 - auto_balancer - INFO - Selling 51 ADA at price 0.672 (expected: 34.2720 USDT)
+2025-06-09 19:22:29,126 - auto_balancer - INFO - Original quantity before LOT_SIZE adjustment: 51, after adjustment: 51
+2025-06-09 19:22:29,629 - auto_balancer - INFO - AUTO BALANCER - Market sell berhasil: {'symbol': 'ADAUSDT', 'orderId': 7125168333, 'orderListId': -1, 'clientOrderId': 'sQacVRClwRFuLYkmb2iKnB', 'transactTime': 1749471749359, 'price': '0.00000000', 'origQty': '51.00000000', 'executedQty': '51.00000000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '34.27200000', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'SELL', 'workingTime': 1749471749359, 'fills': [{'price': '0.67200000', 'qty': '51.00000000', 'commission': '0.03427200', 'commissionAsset': 'USDT', 'tradeId': 668519033}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+2025-06-09 19:22:29,630 - auto_balancer - INFO - Tunggu 5 detik untuk memastikan order terekam di sistem...
+2025-06-09 19:22:31,375 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16274.0
+2025-06-09 19:22:35,191 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16274.0
+2025-06-09 19:22:35,521 - auto_balancer - INFO - Balance USDT sekarang: 72.75054822 (free) + 48.75 (locked)
+2025-06-09 19:22:35,525 - grid_bot - INFO - Auto-balancer berhasil. Menyegarkan saldo...
+2025-06-09 19:22:36,958 - grid_bot - INFO - [UPDATED BALANCE] USDT: 72.7505 (Free) | ADA: 126.1858 (Free)
+2025-06-09 19:22:36,958 - grid_bot - INFO - Current ADAUSDT price: 0.672
+2025-06-09 19:22:38,009 - binance_client - INFO - Cancelled order 7125130159 for ADAUSDT
+2025-06-09 19:22:38,502 - binance_client - INFO - Cancelled order 7125130166 for ADAUSDT
+2025-06-09 19:22:38,990 - binance_client - INFO - Cancelled order 7125130167 for ADAUSDT
+2025-06-09 19:22:39,478 - binance_client - INFO - Cancelled order 7125130169 for ADAUSDT
+2025-06-09 19:22:39,643 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16304.0
+2025-06-09 19:22:39,966 - binance_client - INFO - Cancelled order 7125130171 for ADAUSDT
+2025-06-09 19:22:40,458 - binance_client - INFO - Cancelled order 7125130180 for ADAUSDT
+2025-06-09 19:22:40,945 - binance_client - INFO - Cancelled order 7125130181 for ADAUSDT
+2025-06-09 19:22:41,440 - binance_client - INFO - Cancelled order 7125130182 for ADAUSDT
+2025-06-09 19:22:41,440 - grid_bot - INFO - Cancelled all existing orders
+2025-06-09 19:22:41,924 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6300
+2025-06-09 19:22:42,442 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6400
+2025-06-09 19:22:42,924 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6500
+2025-06-09 19:22:43,023 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16304.0
+2025-06-09 19:22:43,425 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6600
+2025-06-09 19:22:43,918 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6700
+2025-06-09 19:22:44,408 - binance_client - INFO - Placed SELL order for 21 ADAUSDT at 0.6800
+2025-06-09 19:22:44,908 - binance_client - INFO - Placed SELL order for 21 ADAUSDT at 0.6900
+2025-06-09 19:22:45,391 - binance_client - INFO - Placed SELL order for 21 ADAUSDT at 0.7000
+2025-06-09 19:22:45,391 - grid_bot - INFO - Grid setup complete. 5 buy orders and 3 sell orders placed.
+2025-06-09 19:22:46,624 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16304.0
+2025-06-09 19:22:47,569 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16304.0
+2025-06-09 19:22:49,375 - grid_bot - INFO - [BALANCE] USDT: 53.2505 (Free) + 68.2500 (Locked) | ADA: 108.1858 (Free) + 63.0000 (Locked)
+2025-06-09 19:22:50,190 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16304.0
+2025-06-09 19:22:50,785 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16304.0
+2025-06-09 19:22:50,842 - trading_analytics - INFO - [BALANCE SNAPSHOT] Base free: 108.1858, Quote free: 53.2505, Total USDT value: 236.6230
+2025-06-09 19:22:54,091 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:22:57,742 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:01,458 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:03,259 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:05,025 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:08,957 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:12,473 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:16,444 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:19,426 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:23,394 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:27,072 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:28,307 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:31,006 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16276.0
+2025-06-09 19:23:34,303 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16276.0
+2025-06-09 19:23:38,128 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:23:41,526 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:23:41,665 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:23:45,592 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:23:49,528 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:23:53,722 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:54,488 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:23:56,974 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:24:01,251 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:24:04,939 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:24:08,689 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:24:08,856 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:24:12,588 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:24:16,193 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:24:19,360 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:24:23,523 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:24:27,272 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:24:31,578 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:24:34,962 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:24:39,191 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:24:42,772 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:24:45,555 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:24:46,124 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:24:49,547 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:24:53,479 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:24:56,821 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:00,960 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:25:04,590 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:25:07,573 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:10,145 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:10,645 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:14,741 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:25:18,145 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:25:22,224 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:23,072 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:25,262 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:29,254 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:32,376 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:35,978 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16274.0
+2025-06-09 19:25:39,256 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16274.0
+2025-06-09 19:25:43,631 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:46,922 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:47,764 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:25:50,871 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:25:54,189 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:25:58,172 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:26:01,689 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:26:05,821 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:26:09,289 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:26:13,882 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:26:17,586 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16303.0
+2025-06-09 19:26:21,723 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16273.0
+2025-06-09 19:26:24,320 - grid_bot - INFO - [PERFORMANCE] Total trades: 0
+2025-06-09 19:26:24,320 - grid_bot - INFO - [PERFORMANCE] Win rate: 0.00%
+2025-06-09 19:26:24,320 - grid_bot - INFO - [PERFORMANCE] Avg profit per trade: 0.0000 USDT
+2025-06-09 19:26:24,320 - grid_bot - INFO - [PERFORMANCE] ROI: 0.00%
+2025-06-09 19:26:24,320 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0800 USDT
+2025-06-09 19:36:46,925 - __main__ - INFO - Menjalankan Auto Balancer sebelum mode utama...
+2025-06-09 19:36:46,926 - __main__ - INFO - Menjalankan Auto Balancer untuk menyeimbangkan portfolio...
+2025-06-09 19:36:49,414 - binance_client - INFO - Successfully connected to Binance
+2025-06-09 19:36:49,415 - binance_client - INFO - Account status: SPOT
+2025-06-09 19:36:51,115 - binance_client - INFO - Loaded exchange info for 3128 symbols
+2025-06-09 19:36:52,590 - auto_balancer - INFO - Free ADA: 108.1858, Free USDT: 53.25054822
+2025-06-09 19:36:54,338 - auto_balancer - INFO - Tidak perlu penyeimbangan aset
+2025-06-09 19:36:54,340 - __main__ - INFO - Auto Balancer selesai dijalankan
+2025-06-09 19:36:59,359 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-06-09 19:36:59,363 - __main__ - INFO - Dashboard development server berhasil dimulai di http://localhost:5000
+2025-06-09 19:36:59,363 - __main__ - INFO - Username: admin
+2025-06-09 19:36:59,365 - __main__ - INFO - Password: Grid@Trading123
+2025-06-09 19:37:03,506 - binance_client - INFO - Successfully connected to Binance
+2025-06-09 19:37:03,507 - binance_client - INFO - Account status: SPOT
+2025-06-09 19:37:04,618 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-06-09 19:37:04,648 - werkzeug - INFO -  * Running on http://10.2.0.2:5000/ (Press CTRL+C to quit)
+2025-06-09 19:37:05,259 - binance_client - INFO - Loaded exchange info for 3128 symbols
+2025-06-09 19:37:05,281 - risk_management - INFO - Risk manager initialized for ADAUSDT
+2025-06-09 19:37:05,281 - risk_management - INFO - Base asset: ADA, Quote asset: USDT
+2025-06-09 19:37:05,282 - risk_management - INFO - Max investment: 180 USDT
+2025-06-09 19:37:05,282 - risk_management - INFO - Stop loss percentage: 2.0%
+2025-06-09 19:37:05,283 - trading_analytics - INFO - Loaded 0 existing transactions from log
+2025-06-09 19:37:05,299 - trading_analytics - INFO - Loaded 1 price data points from log
+2025-06-09 19:37:05,302 - trading_analytics - INFO - Loaded 1 balance entries from log
+2025-06-09 19:37:05,303 - trading_analytics - INFO - Loaded performance metrics from log
+2025-06-09 19:37:05,304 - trading_analytics - INFO - Trading Analytics initialized for ADAUSDT
+2025-06-09 19:37:05,305 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-06-09 19:37:05,306 - grid_bot - INFO - Loaded previous profit: 0.0800 USDT
+2025-06-09 19:37:05,310 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-06-09 19:37:05,310 - grid_bot - INFO - Price range: 0.63 - 0.7
+2025-06-09 19:37:05,311 - grid_bot - INFO - Grid number: 7, Grid size: 0.009999999999999993
+2025-06-09 19:37:05,312 - grid_bot - INFO - Order quantity: 21
+2025-06-09 19:37:05,312 - grid_bot - INFO - Loaded previous profit: 0.08000000000000007 USDT
+2025-06-09 19:37:05,313 - grid_bot - INFO - Starting grid trading bot...
+2025-06-09 19:37:05,313 - trading_analytics - INFO - [DAILY REPORT] Date: 2025-06-09
+2025-06-09 19:37:05,313 - trading_analytics - INFO - [DAILY REPORT] Today's profit: 0.0000 USDT
+2025-06-09 19:37:05,314 - trading_analytics - INFO - [DAILY REPORT] Yesterday's profit: 0.0000 USDT
+2025-06-09 19:37:05,315 - trading_analytics - INFO - [DAILY REPORT] Total profit to date: 0.0000 USDT
+2025-06-09 19:37:05,316 - trading_analytics - INFO - [DAILY REPORT] Today's trades: 0
+2025-06-09 19:37:05,316 - trading_analytics - INFO - [DAILY REPORT] Overall win rate: 0.00%
+2025-06-09 19:37:05,317 - trading_analytics - INFO - [DAILY REPORT] Current ROI: 0.00%
+2025-06-09 19:37:05,317 - grid_bot - INFO - Menghitung ulang profit dari riwayat transaksi...
+2025-06-09 19:37:05,325 - grid_bot - INFO - Analisis selesai: 1 transaksi profit ditemukan dari 19 transaksi SELL dan 13 transaksi BUY
+2025-06-09 19:37:05,328 - grid_bot - INFO - Total fee yang diakumulasi: 0.0000 USDT
+2025-06-09 19:37:05,328 - grid_bot - INFO - Total profit dari analisis: 0.0800 USDT (sebelumnya: 0.0800 USDT)
+2025-06-09 19:37:05,330 - grid_bot - INFO - Setting up grid orders...
+2025-06-09 19:37:08,792 - grid_bot - INFO - Current investment: 183.52651772000002 USDT
+2025-06-09 19:37:08,795 - grid_bot - WARNING - Investment limit would be exceeded. Adjusting grid parameters...
+2025-06-09 19:37:08,796 - grid_bot - INFO - [BALANCE] USDT: 53.2505 (Free) + 68.2500 (Locked) | ADA: 108.1858 (Free) + 63.0000 (Locked)
+2025-06-09 19:37:08,797 - grid_bot - INFO - [REQUIREMENT] Need 70.6965 USDT for 5 buy orders
+2025-06-09 19:37:08,797 - grid_bot - INFO - [REQUIREMENT] Need 63.0000 ADA for 3 sell orders
+2025-06-09 19:37:08,797 - grid_bot - INFO - USDT tidak cukup untuk grid trading dengan quantity asli. Menjalankan auto-balancer...
+2025-06-09 19:37:09,124 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16287.0
+2025-06-09 19:37:10,918 - binance_client - INFO - Successfully connected to Binance
+2025-06-09 19:37:10,921 - binance_client - INFO - Account status: SPOT
+2025-06-09 19:37:12,779 - binance_client - INFO - Loaded exchange info for 3128 symbols
+2025-06-09 19:37:12,781 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16287.0
+2025-06-09 19:37:14,821 - auto_balancer - INFO - Free ADA: 108.1858, Free USDT: 53.25054822
+2025-06-09 19:37:14,823 - auto_balancer - INFO - Kebutuhan untuk grid trading: 70.6965 USDT dan 63.0000 ADA
+2025-06-09 19:37:14,824 - auto_balancer - INFO - Needed USDT: 70.6965, Shortfall: 17.4460
+2025-06-09 19:37:14,825 - auto_balancer - INFO - Selling 28 ADA at price 0.6735 (expected: 18.8580 USDT)
+2025-06-09 19:37:14,826 - auto_balancer - INFO - --- AUTO BALANCER: SELLING ADA ---
+2025-06-09 19:37:14,826 - auto_balancer - INFO - Selling 28 ADA at price 0.6735 (expected: 18.8580 USDT)
+2025-06-09 19:37:14,826 - auto_balancer - INFO - Original quantity before LOT_SIZE adjustment: 28, after adjustment: 28
+2025-06-09 19:37:15,315 - auto_balancer - INFO - AUTO BALANCER - Market sell berhasil: {'symbol': 'ADAUSDT', 'orderId': 7125197519, 'orderListId': -1, 'clientOrderId': 'ZgTvWqL0B5jxcuOrSr7Scn', 'transactTime': 1749472635049, 'price': '0.00000000', 'origQty': '28.00000000', 'executedQty': '28.00000000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '18.85800000', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'SELL', 'workingTime': 1749472635049, 'fills': [{'price': '0.67350000', 'qty': '28.00000000', 'commission': '0.01885800', 'commissionAsset': 'USDT', 'tradeId': 668520491}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+2025-06-09 19:37:15,317 - auto_balancer - INFO - Tunggu 5 detik untuk memastikan order terekam di sistem...
+2025-06-09 19:37:16,296 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16287.0
+2025-06-09 19:37:19,725 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:20,822 - auto_balancer - INFO - Balance USDT sekarang: 72.08969022 (free) + 68.25 (locked)
+2025-06-09 19:37:20,826 - grid_bot - INFO - Auto-balancer berhasil. Menyegarkan saldo...
+2025-06-09 19:37:21,837 - grid_bot - INFO - [UPDATED BALANCE] USDT: 72.0897 (Free) | ADA: 80.1858 (Free)
+2025-06-09 19:37:21,838 - grid_bot - INFO - Current ADAUSDT price: 0.6733
+2025-06-09 19:37:22,821 - binance_client - INFO - Cancelled order 7125168903 for ADAUSDT
+2025-06-09 19:37:23,149 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:23,319 - binance_client - INFO - Cancelled order 7125168906 for ADAUSDT
+2025-06-09 19:37:23,826 - binance_client - INFO - Cancelled order 7125168916 for ADAUSDT
+2025-06-09 19:37:24,323 - binance_client - INFO - Cancelled order 7125168923 for ADAUSDT
+2025-06-09 19:37:24,851 - binance_client - INFO - Cancelled order 7125168930 for ADAUSDT
+2025-06-09 19:37:25,356 - binance_client - INFO - Cancelled order 7125169096 for ADAUSDT
+2025-06-09 19:37:25,848 - binance_client - INFO - Cancelled order 7125169142 for ADAUSDT
+2025-06-09 19:37:26,341 - binance_client - INFO - Cancelled order 7125169157 for ADAUSDT
+2025-06-09 19:37:26,341 - grid_bot - INFO - Cancelled all existing orders
+2025-06-09 19:37:26,845 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6300
+2025-06-09 19:37:26,948 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:27,334 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6400
+2025-06-09 19:37:27,832 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6500
+2025-06-09 19:37:28,333 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6600
+2025-06-09 19:37:28,843 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6700
+2025-06-09 19:37:29,366 - binance_client - INFO - Placed SELL order for 21 ADAUSDT at 0.6800
+2025-06-09 19:37:29,904 - binance_client - INFO - Placed SELL order for 21 ADAUSDT at 0.6900
+2025-06-09 19:37:30,207 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:30,412 - binance_client - INFO - Placed SELL order for 21 ADAUSDT at 0.7000
+2025-06-09 19:37:30,414 - grid_bot - INFO - Grid setup complete. 5 buy orders and 3 sell orders placed.
+2025-06-09 19:37:33,689 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16299.0
+2025-06-09 19:37:33,955 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:35,413 - grid_bot - INFO - [BALANCE] USDT: 72.0897 (Free) + 68.2500 (Locked) | ADA: 80.1858 (Free) + 63.0000 (Locked)
+2025-06-09 19:37:36,767 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:36,781 - trading_analytics - INFO - [BALANCE SNAPSHOT] Base free: 80.1858, Quote free: 72.0897, Total USDT value: 236.8183
+2025-06-09 19:37:36,878 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:40,624 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:43,809 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:47,614 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:49,675 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:50,247 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:37:50] "GET / HTTP/1.1" 200 -
+2025-06-09 19:37:50,748 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16288.0
+2025-06-09 19:37:54,417 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16287.0
+2025-06-09 19:37:55,004 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:37:55] "GET /api/trades HTTP/1.1" 200 -
+2025-06-09 19:37:55,147 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:37:55] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-09 19:37:57,093 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16287.0
+2025-06-09 19:37:57,316 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16287.0
+2025-06-09 19:37:57,330 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:37:57] "GET /api/status HTTP/1.1" 200 -
+2025-06-09 19:37:58,820 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16287.0
+2025-06-09 19:38:00,422 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:00] "GET /api/price_chart HTTP/1.1" 200 -
+2025-06-09 19:38:02,746 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:04,706 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:04] "GET /api/trades HTTP/1.1" 200 -
+2025-06-09 19:38:06,520 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:07,304 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:07,438 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:07] "GET /api/price_chart HTTP/1.1" 200 -
+2025-06-09 19:38:07,544 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:07,548 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:07] "GET /api/status HTTP/1.1" 200 -
+2025-06-09 19:38:10,518 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:14,002 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:14,699 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:14] "GET /api/trades HTTP/1.1" 200 -
+2025-06-09 19:38:17,903 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:17,918 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:17] "GET /api/status HTTP/1.1" 200 -
+2025-06-09 19:38:18,263 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:18,272 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:18,345 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:18] "GET /api/price_chart HTTP/1.1" 200 -
+2025-06-09 19:38:21,493 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:24,717 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16299.0
+2025-06-09 19:38:24,783 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:24] "GET /api/trades HTTP/1.1" 200 -
+2025-06-09 19:38:25,347 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16299.0
+2025-06-09 19:38:27,363 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16299.0
+2025-06-09 19:38:27,482 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16299.0
+2025-06-09 19:38:27,486 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:27] "GET /api/status HTTP/1.1" 200 -
+2025-06-09 19:38:27,704 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16299.0
+2025-06-09 19:38:27,781 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 19:38:27] "GET /api/price_chart HTTP/1.1" 200 -
+2025-06-09 19:38:31,745 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16286.0
+2025-06-09 19:38:34,582 - grid_bot - INFO - [PERFORMANCE] Total trades: 0
+2025-06-09 19:38:34,584 - grid_bot - INFO - [PERFORMANCE] Win rate: 0.00%
+2025-06-09 19:38:34,585 - grid_bot - INFO - [PERFORMANCE] Avg profit per trade: 0.0000 USDT
+2025-06-09 19:38:34,590 - grid_bot - INFO - [PERFORMANCE] ROI: 0.08%
+2025-06-09 19:38:34,594 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0800 USDT

@@ -1,0 +1,26 @@
+[
+  {
+    "timestamp": "2025-06-09T19:22:49.375143",
+    "base_asset": "ADA",
+    "quote_asset": "USDT",
+    "base_free": 108.1858,
+    "base_locked": 63.0,
+    "quote_free": 53.25054822,
+    "quote_locked": 68.25,
+    "current_price": 0.6725,
+    "total_value_usdt": 236.62299872,
+    "usdt_idr_rate": 16304.0
+  },
+  {
+    "timestamp": "2025-06-09T19:37:35.414937",
+    "base_asset": "ADA",
+    "quote_asset": "USDT",
+    "base_free": 80.1858,
+    "base_locked": 63.0,
+    "quote_free": 72.08969022,
+    "quote_locked": 68.25,
+    "current_price": 0.6738,
+    "total_value_usdt": 236.81828226,
+    "usdt_idr_rate": 16288.0
+  }
+]

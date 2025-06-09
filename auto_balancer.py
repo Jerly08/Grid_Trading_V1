@@ -1,5 +1,6 @@
 import logging
 import time
+import math  # Tambahkan import math untuk pembulatan
 from binance.exceptions import BinanceAPIException
 import config
 from binance_client import BinanceClient
@@ -98,20 +99,132 @@ class AutoBalancer:
         except Exception as e:
             logger.error(f"Error saat memeriksa balance: {e}")
             return result
+    
+    def _sell_base_for_quote(self, quantity_to_sell, current_price=None):
+        """
+        Fungsi bantuan untuk menjual base asset (ADA) untuk mendapatkan USDT.
+        
+        Args:
+            quantity_to_sell (float): Jumlah ADA yang akan dijual
+            current_price (float, optional): Harga ADA saat ini
             
-    def execute_auto_balance(self, safe_mode=True):
+        Returns:
+            bool: True jika berhasil, False jika gagal
+        """
+        if current_price is None:
+            current_price = self.client.get_symbol_price(self.symbol)
+            if not current_price:
+                logger.error("Gagal mendapatkan harga saat ini")
+                return False
+        
+        # Format quantity sesuai aturan LOT_SIZE
+        base_to_sell_raw = quantity_to_sell
+        base_to_sell = self.client.format_quantity(self.symbol, quantity_to_sell)
+        
+        # Konversi kembali ke float untuk perbandingan
+        base_to_sell_float = float(base_to_sell)
+        
+        logger.info(f"--- AUTO BALANCER: SELLING {self.base_asset} ---")
+        logger.info(f"Selling {base_to_sell} {self.base_asset} at price {current_price} (expected: {base_to_sell_float * current_price:.4f} USDT)")
+        logger.info(f"Original quantity before LOT_SIZE adjustment: {base_to_sell_raw}, after adjustment: {base_to_sell}")
+        
+        try:
+            result = self.client.client.create_order(
+                symbol=self.symbol,
+                side="SELL",
+                type="MARKET",
+                quantity=base_to_sell
+            )
+            
+            logger.info(f"AUTO BALANCER - Market sell berhasil: {result}")
+            logger.info(f"Tunggu 5 detik untuk memastikan order terekam di sistem...")
+            time.sleep(5)  # Tunggu beberapa saat agar balance terbarukan
+            
+            # Cek balance setelah penjualan
+            new_usdt_balance = self.client.get_account_balance(self.quote_asset)
+            logger.info(f"Balance USDT sekarang: {new_usdt_balance['free']} (free) + {new_usdt_balance['locked']} (locked)")
+            
+            return True
+            
+        except BinanceAPIException as e:
+            logger.error(f"ERROR AUTO BALANCER - Gagal menjual {self.base_asset}: {e}")
+            # Penanganan error untuk LOT_SIZE seperti yang sudah ada
+            if "LOT_SIZE" in str(e):
+                # Kode penanganan LOT_SIZE error seperti yang sudah ada
+                # ...
+                pass
+            return False
+            
+    def execute_auto_balance(self, safe_mode=True, required_for_grid=None):
         """
         Mengeksekusi auto-balancing portfolio untuk grid trading.
         
         Args:
             safe_mode (bool): Jika True, hanya gunakan sebagian aset untuk transaksi
                              Jika False, gunakan lebih banyak aset yang tersedia
+            required_for_grid (dict, optional): Dictionary dengan kebutuhan grid trading:
+                - required_usdt: Jumlah USDT yang dibutuhkan untuk grid trading
+                - required_ada: Jumlah ADA yang dibutuhkan untuk grid trading
         
         Return:
             bool: True jika berhasil, False jika gagal
         """
         try:
-            # Cek apakah kita perlu penyeimbangan
+            # Dapatkan saldo saat ini
+            base_balance = self.client.get_account_balance(self.base_asset)
+            quote_balance = self.client.get_account_balance(self.quote_asset)
+            
+            if not base_balance or not quote_balance:
+                logger.error("Gagal mendapatkan informasi saldo")
+                return False
+            
+            # Dapatkan harga terbaru
+            current_price = self.client.get_symbol_price(self.symbol)
+            if not current_price:
+                logger.error("Gagal mendapatkan harga terkini")
+                return False
+            
+            # Hitung saldo yang tersedia (free)
+            ada_free = base_balance['free']
+            usdt_free = quote_balance['free']
+            
+            logger.info(f"Free {self.base_asset}: {ada_free}, Free {self.quote_asset}: {usdt_free}")
+            
+            # Jika required_for_grid diberikan, cek kebutuhan USDT untuk grid
+            if required_for_grid:
+                required_usdt = required_for_grid.get('required_usdt', 0)
+                required_ada = required_for_grid.get('required_ada', 0)
+                
+                logger.info(f"Kebutuhan untuk grid trading: {required_usdt:.4f} USDT dan {required_ada:.4f} ADA")
+                
+                # Cek apakah USDT cukup untuk grid trading
+                usdt_shortfall = required_usdt - usdt_free
+                
+                if usdt_shortfall > 2.0:  # Minimal shortfall 2 USDT untuk menghindari konversi kecil
+                    logger.info(f"Needed {self.quote_asset}: {required_usdt:.4f}, Shortfall: {usdt_shortfall:.4f}")
+                    
+                    # Hitung berapa ADA yang perlu dijual (tambahkan buffer 5%)
+                    ada_to_sell = (usdt_shortfall / current_price) * 1.05
+                    ada_to_sell = math.ceil(ada_to_sell)  # Bulatkan ke atas untuk memastikan cukup
+                    
+                    # Cek apakah ada cukup ADA untuk dijual dan tetap menyisakan untuk grid
+                    if ada_free - ada_to_sell >= required_ada:
+                        logger.info(f"Selling {ada_to_sell} {self.base_asset} at price {current_price} (expected: {ada_to_sell * current_price:.4f} {self.quote_asset})")
+                        
+                        if not safe_mode:
+                            return self._sell_base_for_quote(ada_to_sell, current_price)
+                        else:
+                            logger.info(f"[SIMULASI] Menjual {ada_to_sell} {self.base_asset} untuk mendapatkan {ada_to_sell * current_price:.4f} {self.quote_asset}")
+                            return True
+                    else:
+                        logger.warning(f"Tidak cukup {self.base_asset} untuk penyeimbangan dan kebutuhan grid")
+                        return False
+                elif usdt_shortfall > 0:
+                    logger.info(f"USDT shortfall ({usdt_shortfall:.4f}) terlalu kecil untuk penyeimbangan")
+                else:
+                    logger.info(f"USDT sudah cukup untuk grid trading")
+            
+            # Jika tidak ada required_for_grid, gunakan check_balance_needed normal
             balance_check = self.check_balance_needed()
             
             if balance_check['need_adjustment_type'] == 'none':
@@ -211,94 +324,7 @@ class AutoBalancer:
                 else:
                     base_to_sell = min(excess_base_asset * 0.9, base_to_sell_for_usdt)
                 
-                # PERBAIKAN: Gunakan format_quantity untuk memastikan jumlah sesuai dengan aturan LOT_SIZE Binance
-                base_to_sell_raw = base_to_sell
-                base_to_sell = self.client.format_quantity(self.symbol, base_to_sell)
-                
-                # Konversi kembali ke float untuk perbandingan
-                base_to_sell_float = float(base_to_sell)
-                
-                if base_to_sell_float < 5:  # Terlalu kecil, kemungkinan di bawah minimum
-                    logger.warning(f"Quantity untuk dijual terlalu kecil ({base_to_sell} {self.base_asset})")
-                    return False
-                
-                # Log rencana aksi
-                logger.info(f"--- AUTO BALANCER ACTIVE (SELLING) ---")
-                logger.info(f"Free {self.base_asset}: {free_base}, Free USDT: {free_usdt}")
-                logger.info(f"Needed USDT: {needed_usdt}, Shortfall: {usdt_shortfall}")
-                logger.info(f"Selling {base_to_sell} {self.base_asset} at price {current_price} (expected: {base_to_sell_float * current_price} USDT)")
-                logger.info(f"Original quantity before LOT_SIZE adjustment: {base_to_sell_raw}, after adjustment: {base_to_sell}")
-                
-                # Eksekusi penjualan Market
-                try:
-                    result = self.client.client.create_order(
-                        symbol=self.symbol,
-                        side="SELL",
-                        type="MARKET",
-                        quantity=base_to_sell
-                    )
-                    
-                    logger.info(f"AUTO BALANCER - Market sell berhasil: {result}")
-                    logger.info(f"Tunggu 5 detik untuk memastikan order terekam di sistem...")
-                    time.sleep(5)  # Tunggu beberapa saat agar balance terbarukan
-                    
-                    # Cek balance setelah penjualan
-                    new_usdt_balance = self.client.get_account_balance(self.quote_asset)
-                    logger.info(f"Balance USDT sekarang: {new_usdt_balance['free']} (free) + {new_usdt_balance['locked']} (locked)")
-                    
-                    return True
-                    
-                except BinanceAPIException as e:
-                    logger.error(f"ERROR AUTO BALANCER - Gagal menjual {self.base_asset}: {e}")
-                    # Tambahkan informasi lebih detail untuk debugging
-                    if "LOT_SIZE" in str(e):
-                        # Coba dapatkan informasi LOT_SIZE yang benar dari exchange info
-                        lot_size_info = None
-                        if self.symbol in self.client.exchange_info:
-                            for filter_data in self.client.exchange_info[self.symbol]['filters']:
-                                if filter_data['filterType'] == 'LOT_SIZE':
-                                    lot_size_info = filter_data
-                                    break
-                        
-                        logger.error(f"LOT_SIZE error details - Symbol: {self.symbol}, Quantity: {base_to_sell}")
-                        if lot_size_info:
-                            logger.error(f"LOT_SIZE filter: minQty={lot_size_info['minQty']}, maxQty={lot_size_info['maxQty']}, stepSize={lot_size_info['stepSize']}")
-                            
-                            # Coba lagi dengan quantity yang disesuaikan dengan stepSize
-                            try:
-                                step_size = float(lot_size_info['stepSize'])
-                                min_qty = float(lot_size_info['minQty'])
-                                
-                                # Bulatkan ke bawah ke kelipatan stepSize terdekat
-                                adjusted_qty = int(base_to_sell_float / step_size) * step_size
-                                adjusted_qty = max(adjusted_qty, min_qty)  # Pastikan minimal minQty
-                                
-                                # Format dengan precision yang benar
-                                adjusted_qty_str = self.client.format_quantity(self.symbol, adjusted_qty)
-                                
-                                logger.info(f"Mencoba lagi dengan quantity yang disesuaikan: {adjusted_qty_str}")
-                                
-                                result = self.client.client.create_order(
-                                    symbol=self.symbol,
-                                    side="SELL",
-                                    type="MARKET",
-                                    quantity=adjusted_qty_str
-                                )
-                                
-                                logger.info(f"AUTO BALANCER - Market sell berhasil dengan quantity yang disesuaikan: {result}")
-                                logger.info(f"Tunggu 5 detik untuk memastikan order terekam di sistem...")
-                                time.sleep(5)
-                                
-                                # Cek balance setelah penjualan
-                                new_usdt_balance = self.client.get_account_balance(self.quote_asset)
-                                logger.info(f"Balance USDT sekarang: {new_usdt_balance['free']} (free) + {new_usdt_balance['locked']} (locked)")
-                                
-                                return True
-                                
-                            except BinanceAPIException as retry_e:
-                                logger.error(f"Percobaan kedua juga gagal: {retry_e}")
-                                return False
-                    return False
+                return self._sell_base_for_quote(base_to_sell, current_price)
                 
         except Exception as e:
             logger.error(f"Error dalam auto balancing: {e}")

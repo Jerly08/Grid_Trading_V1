@@ -221,4 +221,46 @@ class BinanceClient:
             return result
         except BinanceAPIException as e:
             logger.error(f"Failed to cancel order {order_id}: {e}")
+            return None
+
+    def get_order_status(self, order_id, symbol=config.SYMBOL):
+        """Get detailed information about an order including fees
+        
+        Args:
+            order_id (int): ID of the order to check
+            symbol (str): Symbol for the order
+            
+        Returns:
+            dict: Order details including fills and fee information
+        """
+        try:
+            order = self.client.get_order(symbol=symbol, orderId=order_id)
+            
+            # For filled orders, try to get more details including fee information
+            if order['status'] == 'FILLED':
+                # Get trades for this order to extract fee information
+                trades = self.client.get_my_trades(symbol=symbol)
+                
+                # Filter trades for this specific order
+                order_trades = [trade for trade in trades if trade['orderId'] == order_id]
+                
+                # If we found trades, add the fills information
+                if order_trades:
+                    fills = []
+                    for trade in order_trades:
+                        fill = {
+                            'price': trade['price'],
+                            'qty': trade['qty'],
+                            'commission': trade['commission'],
+                            'commissionAsset': trade['commissionAsset'],
+                            'tradeId': trade['id']
+                        }
+                        fills.append(fill)
+                    
+                    # Add fills to order data
+                    order['fills'] = fills
+            
+            return order
+        except BinanceAPIException as e:
+            logger.error(f"Failed to get order status for {order_id}: {e}")
             return None 
