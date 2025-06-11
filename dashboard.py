@@ -263,41 +263,11 @@ def get_trades():
             if 'value' not in trade and 'price' in trade and 'quantity' in trade:
                 trade['value'] = trade['price'] * trade['quantity']
             
-            # --- PROFIT HANDLING ---
-            # Pastikan informasi fee tersedia
-            if 'fee' not in trade:
-                # Estimasi fee sebagai 0.1% dari nilai transaksi (default Binance)
-                if 'value' in trade:
-                    trade['fee'] = round(trade['value'] * 0.001, 4)
-                else:
-                    trade['fee'] = 0.0
-            
-            # Pastikan informasi gross_profit tersedia (profit sebelum fee)
-            if 'gross_profit' not in trade and 'side' in trade and trade['side'] == 'SELL':
-                if 'actual_profit' in trade and 'fee' in trade:
-                    # Hitung mundur dari profit bersih jika sudah ada
-                    trade['gross_profit'] = trade['actual_profit'] + trade['fee']
-                elif 'profit' in trade:
-                    # Gunakan nilai profit yang ada sebagai gross_profit (untuk kompatibilitas dengan data lama)
-                    # dan hitung profit bersih
-                    trade['gross_profit'] = trade['profit']
-                    trade['net_profit'] = trade['profit'] - trade['fee']
-                    
-                    # Update nilai profit untuk menunjukkan nilai bersih
-                    trade['profit'] = trade['net_profit']
-            
-            # Pastikan keseragaman nama field untuk profit bersih
-            if 'net_profit' not in trade and 'actual_profit' in trade:
-                trade['net_profit'] = trade['actual_profit']
-            elif 'net_profit' not in trade and 'profit' in trade and trade['side'] == 'SELL':
-                # Untuk data lama yang tidak memperhitungkan fee
-                trade['net_profit'] = trade['profit'] - trade['fee']
-            
-            # Untuk BUY order, profit selalu 0
-            if trade['side'] == 'BUY':
-                trade['profit'] = 0
-                trade['net_profit'] = 0
-                trade['gross_profit'] = 0
+            # Pastikan informasi profit tersedia
+            if 'profit' not in trade and 'actual_profit' in trade:
+                trade['profit'] = trade['actual_profit']
+            elif 'profit' not in trade and 'potential_profit' in trade:
+                trade['profit'] = trade['potential_profit']
             
         return jsonify({"status": "success", "trades": trades_data})
     except Exception as e:
@@ -610,9 +580,7 @@ def load_bot_data():
                     latest_price = GridTradingBot.instance.last_price
                 
                 if hasattr(GridTradingBot.instance, 'total_profit'):
-                    # total_profit dalam bot sudah memperhitungkan fee
                     bot_profit = GridTradingBot.instance.total_profit
-                    logger.debug(f"Loaded profit from bot instance: {bot_profit}")
                 
                 if hasattr(GridTradingBot.instance, 'trades'):
                     trades_history = GridTradingBot.instance.trades

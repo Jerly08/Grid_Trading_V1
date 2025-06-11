@@ -22,5 +22,17 @@
     "current_price": 0.6738,
     "total_value_usdt": 236.81828226,
     "usdt_idr_rate": 16288.0
+  },
+  {
+    "timestamp": "2025-06-11T21:09:51.279730",
+    "base_asset": "ADA",
+    "quote_asset": "USDT",
+    "base_free": 83.9591,
+    "base_locked": 0.0,
+    "quote_free": 69.23886419,
+    "quote_locked": 111.72,
+    "current_price": 0.7215,
+    "total_value_usdt": 241.53535484,
+    "usdt_idr_rate": 16281.0
   }
 ]

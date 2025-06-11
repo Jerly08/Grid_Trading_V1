@@ -16020,3 +16020,102 @@ information about how to avoid this problem.
 2025-06-09 19:38:34,585 - grid_bot - INFO - [PERFORMANCE] Avg profit per trade: 0.0000 USDT
 2025-06-09 19:38:34,590 - grid_bot - INFO - [PERFORMANCE] ROI: 0.08%
 2025-06-09 19:38:34,594 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0800 USDT
+2025-06-11 21:08:59,484 - __main__ - INFO - Menjalankan Auto Balancer sebelum mode utama...
+2025-06-11 21:08:59,484 - __main__ - INFO - Menjalankan Auto Balancer untuk menyeimbangkan portfolio...
+2025-06-11 21:09:09,523 - __main__ - ERROR - Error dalam Auto Balancer: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ping (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001F09092D0D0>, 'Connection to api.binance.com timed out. (connect timeout=10)'))
+2025-06-11 21:09:14,548 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-06-11 21:09:14,548 - __main__ - INFO - Dashboard development server berhasil dimulai di http://localhost:5000
+2025-06-11 21:09:14,548 - __main__ - INFO - Username: admin
+2025-06-11 21:09:14,548 - __main__ - INFO - Password: Grid@Trading123
+2025-06-11 21:09:14,584 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-06-11 21:09:14,585 - werkzeug - INFO -  * Running on http://192.168.1.41:5000/ (Press CTRL+C to quit)
+2025-06-11 21:09:17,676 - urllib3.connection - WARNING - Certificate did not match expected hostname: api.binance.com. Certificate: {'subject': ((('commonName', 'internetpositif.id'),),), 'issuer': ((('countryName', 'US'),), (('organizationName', "Let's Encrypt"),), (('commonName', 'E6'),)), 'version': 3, 'serialNumber': '0525BAC0FD4EBC5E042F273D45838765AEA6', 'notBefore': 'Mar 25 00:06:15 2025 GMT', 'notAfter': 'Jun 23 00:06:14 2025 GMT', 'subjectAltName': (('DNS', 'internetpositif.id'),), 'OCSP': ('http://e6.o.lencr.org',), 'caIssuers': ('http://e6.i.lencr.org/',), 'crlDistributionPoints': ('http://e6.c.lencr.org/39.crl',)}
+2025-06-11 21:09:17,676 - __main__ - ERROR - Error dalam bot trading: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ping (Caused by SSLError(CertificateError("hostname 'api.binance.com' doesn't match 'internetpositif.id'")))
+2025-06-11 21:09:34,970 - __main__ - INFO - Menjalankan Auto Balancer sebelum mode utama...
+2025-06-11 21:09:34,970 - __main__ - INFO - Menjalankan Auto Balancer untuk menyeimbangkan portfolio...
+2025-06-11 21:09:36,114 - binance_client - INFO - Successfully connected to Binance
+2025-06-11 21:09:36,116 - binance_client - INFO - Account status: SPOT
+2025-06-11 21:09:36,870 - binance_client - INFO - Loaded exchange info for 3130 symbols
+2025-06-11 21:09:37,323 - auto_balancer - INFO - Free ADA: 83.9591, Free USDT: 180.95886419
+2025-06-11 21:09:37,733 - auto_balancer - INFO - Tidak perlu penyeimbangan aset
+2025-06-11 21:09:37,749 - __main__ - INFO - Auto Balancer selesai dijalankan
+2025-06-11 21:09:42,765 - __main__ - INFO - Menjalankan bot trading dan dashboard
+2025-06-11 21:09:42,771 - __main__ - INFO - Dashboard development server berhasil dimulai di http://localhost:5000
+2025-06-11 21:09:42,771 - __main__ - INFO - Username: admin
+2025-06-11 21:09:42,771 - __main__ - INFO - Password: Grid@Trading123
+2025-06-11 21:09:46,135 - binance_client - INFO - Successfully connected to Binance
+2025-06-11 21:09:46,135 - binance_client - INFO - Account status: SPOT
+2025-06-11 21:09:47,330 - binance_client - INFO - Loaded exchange info for 3130 symbols
+2025-06-11 21:09:47,346 - risk_management - INFO - Risk manager initialized for ADAUSDT
+2025-06-11 21:09:47,346 - risk_management - INFO - Base asset: ADA, Quote asset: USDT
+2025-06-11 21:09:47,346 - risk_management - INFO - Max investment: 180 USDT
+2025-06-11 21:09:47,346 - risk_management - INFO - Stop loss percentage: 2.0%
+2025-06-11 21:09:47,360 - trading_analytics - INFO - Loaded 0 existing transactions from log
+2025-06-11 21:09:47,394 - trading_analytics - INFO - Loaded 2 price data points from log
+2025-06-11 21:09:47,394 - trading_analytics - INFO - Loaded 2 balance entries from log
+2025-06-11 21:09:47,396 - trading_analytics - INFO - Loaded performance metrics from log
+2025-06-11 21:09:47,396 - trading_analytics - INFO - Trading Analytics initialized for ADAUSDT
+2025-06-11 21:09:47,398 - grid_bot - INFO - Loaded previous state from grid_state_ADAUSDT.json
+2025-06-11 21:09:47,398 - grid_bot - INFO - Loaded previous profit: 0.0800 USDT
+2025-06-11 21:09:47,398 - grid_bot - INFO - Grid bot initialized for ADAUSDT
+2025-06-11 21:09:47,398 - grid_bot - INFO - Price range: 0.63 - 0.7
+2025-06-11 21:09:47,398 - grid_bot - INFO - Grid number: 7, Grid size: 0.009999999999999993
+2025-06-11 21:09:47,401 - grid_bot - INFO - Order quantity: 21
+2025-06-11 21:09:47,401 - grid_bot - INFO - Loaded previous profit: 0.08000000000000007 USDT
+2025-06-11 21:09:47,401 - grid_bot - INFO - Starting grid trading bot...
+2025-06-11 21:09:47,402 - trading_analytics - INFO - [DAILY REPORT] Date: 2025-06-11
+2025-06-11 21:09:47,402 - trading_analytics - INFO - [DAILY REPORT] Today's profit: 0.0000 USDT
+2025-06-11 21:09:47,402 - trading_analytics - INFO - [DAILY REPORT] Yesterday's profit: 0.0000 USDT
+2025-06-11 21:09:47,402 - trading_analytics - INFO - [DAILY REPORT] Total profit to date: 0.0000 USDT
+2025-06-11 21:09:47,402 - trading_analytics - INFO - [DAILY REPORT] Today's trades: 0
+2025-06-11 21:09:47,405 - trading_analytics - INFO - [DAILY REPORT] Overall win rate: 0.00%
+2025-06-11 21:09:47,405 - trading_analytics - INFO - [DAILY REPORT] Current ROI: 0.08%
+2025-06-11 21:09:47,406 - grid_bot - INFO - Menghitung ulang profit dari riwayat transaksi...
+2025-06-11 21:09:47,406 - grid_bot - INFO - Analisis selesai: 1 transaksi profit ditemukan dari 19 transaksi SELL dan 13 transaksi BUY
+2025-06-11 21:09:47,407 - grid_bot - INFO - Total fee yang diakumulasi: 0.0000 USDT
+2025-06-11 21:09:47,408 - grid_bot - INFO - Total profit dari analisis: 0.0800 USDT (sebelumnya: 0.0800 USDT)
+2025-06-11 21:09:47,408 - grid_bot - INFO - Setting up grid orders...
+2025-06-11 21:09:47,891 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2025-06-11 21:09:47,891 - werkzeug - INFO -  * Running on http://10.2.0.2:5000/ (Press CTRL+C to quit)
+2025-06-11 21:09:48,594 - grid_bot - INFO - Current investment: 60.576490650000004 USDT
+2025-06-11 21:09:48,597 - grid_bot - INFO - [BALANCE] USDT: 180.9589 (Free) + 0.0000 (Locked) | ADA: 83.9591 (Free) + 0.0000 (Locked)
+2025-06-11 21:09:48,597 - grid_bot - INFO - [REQUIREMENT] Need 121.2120 USDT for 8 buy orders
+2025-06-11 21:09:48,597 - grid_bot - INFO - [REQUIREMENT] Need 0.0000 ADA for 0 sell orders
+2025-06-11 21:09:48,597 - grid_bot - INFO - Current ADAUSDT price: 0.7215
+2025-06-11 21:09:48,832 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6300
+2025-06-11 21:09:48,944 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6400
+2025-06-11 21:09:49,510 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6500
+2025-06-11 21:09:49,629 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6600
+2025-06-11 21:09:49,796 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6700
+2025-06-11 21:09:49,900 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6800
+2025-06-11 21:09:50,020 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.6900
+2025-06-11 21:09:50,134 - binance_client - INFO - Placed BUY order for 21 ADAUSDT at 0.7000
+2025-06-11 21:09:50,134 - grid_bot - INFO - Grid setup complete. 8 buy orders and 0 sell orders placed.
+2025-06-11 21:09:50,524 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16281.0
+2025-06-11 21:09:50,806 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16281.0
+2025-06-11 21:09:51,279 - grid_bot - INFO - [BALANCE] USDT: 69.2389 (Free) + 111.7200 (Locked) | ADA: 83.9591 (Free) + 0.0000 (Locked)
+2025-06-11 21:09:51,812 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16281.0
+2025-06-11 21:09:51,982 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16281.0
+2025-06-11 21:09:51,998 - trading_analytics - INFO - [BALANCE SNAPSHOT] Base free: 83.9591, Quote free: 69.2389, Total USDT value: 241.5354
+2025-06-11 21:09:54,297 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16281.0
+2025-06-11 21:09:57,025 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16310.0
+2025-06-11 21:09:59,854 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16310.0
+2025-06-11 21:10:01,889 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16310.0
+2025-06-11 21:10:03,638 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16300.0
+2025-06-11 21:10:03,850 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16300.0
+2025-06-11 21:10:06,495 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16300.0
+2025-06-11 21:10:08,638 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16300.0
+2025-06-11 21:10:10,210 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16310.0
+2025-06-11 21:10:12,138 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16310.0
+2025-06-11 21:10:14,756 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16310.0
+2025-06-11 21:10:14,849 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16310.0
+2025-06-11 21:10:16,940 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16295.0
+2025-06-11 21:10:19,505 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16300.0
+2025-06-11 21:10:21,559 - binance_client - INFO - Realtime USDT/IDR dari Indodax: 16295.0
+2025-06-11 21:10:22,782 - grid_bot - INFO - [PERFORMANCE] Total trades: 0
+2025-06-11 21:10:22,782 - grid_bot - INFO - [PERFORMANCE] Win rate: 0.00%
+2025-06-11 21:10:22,782 - grid_bot - INFO - [PERFORMANCE] Avg profit per trade: 0.0000 USDT
+2025-06-11 21:10:22,783 - grid_bot - INFO - [PERFORMANCE] ROI: 2.08%
+2025-06-11 21:10:22,784 - grid_bot - INFO - Grid trading bot stopped. Total profit: 0.0800 USDT
